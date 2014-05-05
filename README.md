@@ -23,7 +23,7 @@ If this either makes no sense to you, or you just is not convinced, please visit
 Target Audience
 ===============
 
-Object-Oriented software developers using JAVA/C#.
+Object-Oriented software developers using Java/C#.
 
 
 Goal
@@ -56,6 +56,7 @@ E) Fail-fast principle using runtime exceptions.
 F) Favor simple runtime features over fancy runtime features. Keeps it straight-forward.  
 
 I change my opinions often. Sometimes because I improve, sometimes because I am wrong.
+
 Please help me change my opinions and this library, if you feel like it.
 
 
