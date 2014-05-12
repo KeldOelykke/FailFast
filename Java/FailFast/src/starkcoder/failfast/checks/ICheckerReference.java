@@ -25,27 +25,27 @@ package starkcoder.failfast.checks;
 
 /**
  * Checker reference specification.
- * 
+ * <p>
  * Implement this to manage a reference to a checker.
- * 
+ * </p>
  * @author Keld Oelykke
  */
 public interface ICheckerReference
 {
 	/**
 	 * Retrieves checker.
-	 * 
+	 * <p>
 	 * Call methods of this to check arguments.
-	 * 
+	 * </p>
 	 * @return checker.
 	 */
 	IChecker getChecker();
 
 	/**
 	 * Sets the checker.
-	 * 
+	 * <p>
 	 * Call methods of this to check arguments.
-	 * 
+	 * </p>
 	 * @param checker
 	 *            checker to use.
 	 */

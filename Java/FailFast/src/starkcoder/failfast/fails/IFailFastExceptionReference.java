@@ -23,21 +23,19 @@
  */
 package starkcoder.failfast.fails;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
- * Implementations of this should be extensible (not final).
- * 
  * @author Keld Oelykke
+ *
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference
+public interface IFailFastExceptionReference
 {
+	/**
+	 * Returns the first thrown fail-fast exception, if any.
+	 * 
+	 * In a multi-threaded application each thread can poll this
+	 * and end, if it is not null.
+	 * 
+	 * @return first thrown fail-fast exception, or null.
+	 */
+	IFailFastException getFailFastExceptionOrNull();
 }

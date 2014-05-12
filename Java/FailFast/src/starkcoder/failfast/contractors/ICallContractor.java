@@ -21,23 +21,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails;
+package starkcoder.failfast.contractors;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
+import starkcoder.failfast.checks.IChecker;
+import starkcoder.failfast.fails.IFailer;
 
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
+ * Specification of a call contractor.
+ * <p>
+ * This contractor is to make a sure a check-call that asserts is followed up by
+ * a matching fail-call.
+ * </p>
+ * <p>
  * Implementations of this should be extensible (not final).
- * 
+ * </p>
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference
+public interface ICallContractor
 {
+	/**
+	 * Starts a contract between caller and call contractor.
+	 * 
+	 * @param caller
+	 *            instance that called a checker and needs to call a failer
+	 * @param assertingChecker
+	 *            checker that was called and asserted
+	 * @param checkerSpecification
+	 *            specification type inherited by IChecker
+	 */
+	void pushContractWithCaller(Object caller, IChecker assertingChecker,
+			Class<?> checkerSpecification);
+
+	/**
+	 * Ends a contract between caller and call contractor.
+	 * 
+	 * @param caller
+	 *            instance that called a checker and needs to call a failer
+	 * @param throwingFailer
+	 *            failer that was called to throw an exception
+	 * @param checkerSpecification
+	 *            specification type inherited by IChecker
+	 */
+	void popContractWithCaller(Object caller, IFailer throwingFailer,
+			Class<?> checkerSpecification);
 }

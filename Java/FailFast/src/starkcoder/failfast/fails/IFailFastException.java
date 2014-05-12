@@ -21,41 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.calls;
+package starkcoder.failfast.fails;
 
 /**
- * Call contractor reference specification.
- * 
- * Implement this to manage a reference to a call contractor.
+ * Specification of a fail-fast exception.
  * 
  * @author Keld Oelykke
  */
-public interface ICallContractorReference
+public interface IFailFastException
 {
-	/**
-	 * Retrieves the call contractor, if any.
-	 * 
-	 * The call contractor ensures that an IChecker-call that asserts is
-	 * followed by a matching IFailer-call.
-	 * 
-	 * If this is null the checker/failer calls do not have to be chained into
-	 * matching checker/failer pairs.
-	 * 
-	 * @return call contractor, or null.
-	 */
-	ICallContractor getCallContractorOrNull();
 
-	/**
-	 * Sets the call contractor, or null to end an existing contract.
-	 * 
-	 * The call contractor ensures that an IChecker-call that asserts is
-	 * followed by a matching IFailer-call.
-	 * 
-	 * If this is null the checker/failer calls do not have to be chained into
-	 * matching checker/failer pairs.
-	 * 
-	 * @param callContractor
-	 *            contractor to use, or null, if no contract.
-	 */
-	void setCallContractorOrNull(ICallContractor callContractor);
 }

@@ -23,21 +23,32 @@
  */
 package starkcoder.failfast.fails;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
- * Implementations of this should be extensible (not final).
- * 
+ * Abstract implementation of fail-fast exception inheriting RuntimeException.
+ * <p>
+ * Exception is a checked exception that would require try-catches, but RuntimeException is not.
+ * </p>
+ * <p>
+ * To use checked exceptions would be against one of the purposes of the fail-fast principle
+ * (to avoid complex try-catch code).
+ * </p>
+ * <p>
+ * The purpose of this is to ease the burden of concrete implementations.
+ * </p>
+ * <p>
+ * To extend this in a concrete implementation is optional.
+ * </p>
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference
+public abstract class AFailFastException extends RuntimeException implements
+		IFailFastException
 {
+
+	/**
+	 * No idea why this needs to be in an abstract class, but here is because Eclipse says so.
+	 * 
+	 * {@link http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html}
+	 */
+	private static final long serialVersionUID = -255945944091813082L;
+
 }

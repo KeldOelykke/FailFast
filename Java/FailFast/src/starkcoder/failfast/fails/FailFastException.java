@@ -21,18 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.calls;
+package starkcoder.failfast.fails;
 
 /**
- * Specification of a call contractor.
- * 
- * This contractor is to make a sure a check-call that asserts is followed up by a matching fail-call.
- * 
- * Implementations of this should be extensible (not final).
- * 
+ * Top-level concrete fail-fast exception.
+ * <p>
+ * All fail-fast exceptions created by this or a derived class can be caught, if needed.
+ * </p>
  * @author Keld Oelykke
  */
-public interface ICallContractor
+public class FailFastException extends AFailFastException
 {
+
+	/**
+	 * Version specific id of this class for serialization purposes. 
+	 */
+	private static final long serialVersionUID = 3308352080068039213L;
 
 }
