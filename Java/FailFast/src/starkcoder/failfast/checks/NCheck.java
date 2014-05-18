@@ -23,20 +23,26 @@
  */
 package starkcoder.failfast.checks;
 
-import starkcoder.failfast.checks.objects.IObjectChecker;
-import starkcoder.failfast.contractors.ICallContractorReference;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import starkcoder.failfast.fails.IFail;
 
 /**
- * Specification grouping all checker specifications.
- * <p>
- * Each checker should be specified as an interface that can be inherited by this.
- * </p>
- * <p>
- * Implementations of this should be extensible (not final).
- * </p>
+ * Annotates check-methods in checkers.
+ * 
  * @author Keld Oelykke
  */
-public interface IChecker extends ICallContractorReference, IObjectChecker
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface NCheck
 {
-
+	/**
+	 * The corresponding fail specification to call when check asserts.
+	 * 
+	 * @return fail interface to call when check asserts.
+	 */
+	public Class<? extends IFail> failSpecificationType();
 }

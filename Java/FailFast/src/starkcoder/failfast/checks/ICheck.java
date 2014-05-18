@@ -23,20 +23,18 @@
  */
 package starkcoder.failfast.checks;
 
-import starkcoder.failfast.checks.objects.IObjectChecker;
-import starkcoder.failfast.contractors.ICallContractorReference;
-
 /**
- * Specification grouping all checker specifications.
+ * Type specification for a single check.
  * <p>
- * Each checker should be specified as an interface that can be inherited by this.
+ * This is a super interface that all check interfaces must inherit.
  * </p>
  * <p>
- * Implementations of this should be extensible (not final).
+ * A specification directly inheriting this must contain only 1 check method
+ * annotated with { link: NCheck }.
  * </p>
  * @author Keld Oelykke
  */
-public interface IChecker extends ICallContractorReference, IObjectChecker
+public interface ICheck
 {
 
 }

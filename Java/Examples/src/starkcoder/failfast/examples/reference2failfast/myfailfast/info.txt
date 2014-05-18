@@ -1,0 +1,10 @@
+package starkcoder.failfast.examples.reference2failfast.myfailfast is an
+example on how you can wrap the failfast library, so you can extend or replace
+the code when needed.
+
+Most example files are basically wrappers for you to reference:
+- IMyFailFast & MyFailFast (yours) that wrap IFailFast & FailFast (failfast api)
+- IMyChecker & MyChecker (yours) that wrap IChecker & Checker (failfast api), and 
+- IMyFailer & MyFailer (yours) that wrap IFailer & Failer (failfast api).
+
+Additionally, a static class - SMyFailFast - can be used to manage a single set of failfast instances.

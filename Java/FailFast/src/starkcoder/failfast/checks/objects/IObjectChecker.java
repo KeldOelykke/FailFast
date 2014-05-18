@@ -21,22 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks;
-
-import starkcoder.failfast.checks.objects.IObjectChecker;
-import starkcoder.failfast.contractors.ICallContractorReference;
+package starkcoder.failfast.checks.objects;
 
 /**
- * Specification grouping all checker specifications.
+ * Specification grouping all object check specifications.
  * <p>
- * Each checker should be specified as an interface that can be inherited by this.
- * </p>
- * <p>
- * Implementations of this should be extensible (not final).
+ * This (or a derivative) should inherit all check methods targeting Object.
  * </p>
  * @author Keld Oelykke
  */
-public interface IChecker extends ICallContractorReference, IObjectChecker
+public interface IObjectChecker extends IObjectIsNullCheck
 {
 
 }

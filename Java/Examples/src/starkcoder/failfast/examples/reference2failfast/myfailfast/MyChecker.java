@@ -21,22 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks;
+package starkcoder.failfast.examples.reference2failfast.myfailfast;
 
-import starkcoder.failfast.checks.objects.IObjectChecker;
-import starkcoder.failfast.contractors.ICallContractorReference;
+import starkcoder.failfast.checks.AChecker;
+import starkcoder.failfast.contractors.ICallContractor;
+
 
 /**
- * Specification grouping all checker specifications.
- * <p>
- * Each checker should be specified as an interface that can be inherited by this.
- * </p>
- * <p>
- * Implementations of this should be extensible (not final).
- * </p>
+ * Custom checker class.
+ *
  * @author Keld Oelykke
  */
-public interface IChecker extends ICallContractorReference, IObjectChecker
+public class MyChecker extends AChecker implements IMyChecker
 {
-
+	/**
+	 * Default constructor.
+	 * <p>
+	 * Remember to set call contractor before usage.
+	 * </p>
+	 */	
+	public MyChecker()
+	{
+		super();
+	}
+	
+	/**
+	 * Recommended constructor receiving required references (manual constructor dependency injection).
+	 * <p>
+	 * This is ready for use after this call.
+	 * </p>
+	 * @param callContractor
+	 *            used by this
+	 */
+	public MyChecker(ICallContractor callContractor)
+	{
+		super(callContractor);
+	}
 }

@@ -50,5 +50,10 @@ public abstract class AFailFastException extends RuntimeException implements
 	 * {@link http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html}
 	 */
 	private static final long serialVersionUID = -255945944091813082L;
+	
+	protected AFailFastException(String message)
+	{
+		super(message);
+	}
 
 }

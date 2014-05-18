@@ -23,7 +23,9 @@
  */
 package starkcoder.failfast.contractors;
 
+import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.IChecker;
+import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.IFailer;
 
 /**
@@ -35,33 +37,42 @@ import starkcoder.failfast.fails.IFailer;
  * <p>
  * Implementations of this should be extensible (not final).
  * </p>
+ * 
  * @author Keld Oelykke
  */
 public interface ICallContractor
 {
 	/**
 	 * Starts a contract between caller and call contractor.
+	 * <p>
+	 * Argument checkSpecification is annotated with a matching fail specification that
+	 * needs to be employed by the caller to end the contract.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            instance that called a checker and needs to call a failer
 	 * @param assertingChecker
 	 *            checker that was called and asserted
-	 * @param checkerSpecification
-	 *            specification type inherited by IChecker
+	 * @param checkSpecification
+	 *            check specification type inheriting ICheck
 	 */
 	void pushContractWithCaller(Object caller, IChecker assertingChecker,
-			Class<?> checkerSpecification);
+			Class<? extends ICheck> checkSpecification);
 
 	/**
 	 * Ends a contract between caller and call contractor.
+	 * <p>
+	 * Argument failSpecification is annotated with a matching check specification that
+	 * was employed by the caller to start the contract.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            instance that called a checker and needs to call a failer
 	 * @param throwingFailer
 	 *            failer that was called to throw an exception
-	 * @param checkerSpecification
-	 *            specification type inherited by IChecker
+	 * @param failSpecification
+	 *            fail specification type inhering by IFail
 	 */
 	void popContractWithCaller(Object caller, IFailer throwingFailer,
-			Class<?> checkerSpecification);
+			Class<? extends IFail> failSpecification);
 }

@@ -23,6 +23,7 @@
  */
 package starkcoder.failfast.checks;
 
+import starkcoder.failfast.checks.objects.IObjectIsNullCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -55,6 +56,32 @@ public class AChecker implements IChecker
 		this.callContractor = callContractor;
 	}
 	
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.IObjectIsNullChecker#isObjectNull(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public boolean isObjectNull(Object caller, Object reference)
+	{
+        boolean result = false;
+
+        if (null == caller)
+        {
+            throw new IllegalArgumentException("caller is null");
+        }
+
+        if (null == reference)
+        {
+            this.pushContractWithCaller(caller, IObjectIsNullCheck.class);
+            result = true;
+        }
+
+        return result;
+	}
+	
+	
+	
 	/**
 	 * Default constructor.
 	 * <p>
@@ -86,5 +113,17 @@ public class AChecker implements IChecker
 		}
 	}
 	
+    protected void pushContractWithCaller(Object caller, Class<? extends ICheck> checkerSpecification)
+    {
+    	ICallContractor callContractor = this.getCallContractor();
+    	if(null == callContractor)
+    	{
+    		throw new IllegalStateException("CallContractor must be set before using this checker.");
+    	}
+    	
+    	// require a fail call from caller
+    	callContractor.pushContractWithCaller(caller, this, checkerSpecification);
+    }
+
 
 }

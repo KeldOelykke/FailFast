@@ -37,6 +37,7 @@ import starkcoder.failfast.contractors.ICallContractor;
  */
 public class Failer extends AFailer
 {
+	
 	/**
 	 * Default constructor.
 	 * <p>
@@ -61,4 +62,6 @@ public class Failer extends AFailer
 	{
 		super(callContractor);
 	}
+
+
 }

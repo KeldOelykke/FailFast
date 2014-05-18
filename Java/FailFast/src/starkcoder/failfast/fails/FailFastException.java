@@ -26,15 +26,29 @@ package starkcoder.failfast.fails;
 /**
  * Top-level concrete fail-fast exception.
  * <p>
- * All fail-fast exceptions created by this or a derived class can be caught, if needed.
+ * All fail-fast exceptions created by this or a derived class can be caught, if
+ * needed.
  * </p>
+ * 
  * @author Keld Oelykke
  */
 public class FailFastException extends AFailFastException
 {
 
 	/**
-	 * Version specific id of this class for serialization purposes. 
+	 * Constructor called by {link: IFailer} when a check asserts and failer is
+	 * called.
+	 * 
+	 * @param message
+	 *            compound message specified by fail method.
+	 */
+	public FailFastException(String message)
+	{
+		super(message);
+	}
+
+	/**
+	 * Version specific id of this class for serialization purposes.
 	 */
 	private static final long serialVersionUID = 3308352080068039213L;
 

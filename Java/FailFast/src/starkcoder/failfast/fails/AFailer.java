@@ -23,7 +23,12 @@
  */
 package starkcoder.failfast.fails;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.fails.objects.IObjectIsNullFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -82,6 +87,28 @@ public abstract class AFailer implements IFailer
 		this.failFastExceptionOrNull = failFastExceptionOrNull;
 	}
 
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectIsNullFailer#failIsObjectNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failIsObjectNull(Object caller, String referenceName)
+	{
+		this.Throw(caller, IObjectIsNullFail.class, new Object[] { caller, referenceName });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectIsNullFailer#failIsObjectNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failIsObjectNull(Object caller, String referenceName,
+			String message)
+	{
+		this.Throw(caller, IObjectIsNullFail.class, new Object[] { caller, referenceName, message });
+	}
+	
+	
 	/**
 	 * Default constructor.
 	 * <p>
@@ -113,5 +140,112 @@ public abstract class AFailer implements IFailer
 			this.setCallContractor(callContractor);
 		}
 	}
+	
+    protected void Throw(Object caller, Class<? extends IFail> failerSpecificationType, Object[] messageFormatArguments)
+    {
+        NFail failAnnotation = this.LookupFailAnnotation(failerSpecificationType, messageFormatArguments);
+        String message = String.format(failAnnotation.failMessageFormat(), messageFormatArguments);
+        this.popContractWithCaller(caller, failerSpecificationType);
+        FailFastException exception = this.constructFailException(failAnnotation.failExceptionType(), message);
+        throw exception;
+    }
 
+    protected NFail LookupFailAnnotation(Class<?> failSpecificationType, Object[] messageFormatArguments)
+    {
+    	NFail result = null;
+
+    	Method[] methodInfos = failSpecificationType.getDeclaredMethods();
+        if (methodInfos.length <= 0)
+        {
+            throw new IllegalArgumentException(failSpecificationType + " contains no methods");
+        }
+        
+        Method methodInfo = null;
+        {
+            for (int index = 0; index < methodInfos.length; ++index)
+            {
+                methodInfo = methodInfos[index];
+                Class<?>[] parameterTypes = methodInfo.getParameterTypes();
+                // arguments + caller
+                if (messageFormatArguments.length == parameterTypes.length)
+                {
+                    boolean allParametersHaveMatchingType = true;
+                    for (int j = 0; j < parameterTypes.length; ++j)
+                    {
+                        Class<?> parameterInfo = parameterTypes[j];
+                        Class<?> argumentType = messageFormatArguments[j].getClass();
+                        if (!parameterInfo.isAssignableFrom(argumentType))
+                        {
+                            allParametersHaveMatchingType = false;
+                            break;
+                        }
+                    }
+                    if (allParametersHaveMatchingType)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    methodInfo = null;
+                }
+            }
+        }
+
+        if (null == methodInfo)
+        {
+            throw new IllegalArgumentException(failSpecificationType + " contains no method with " + messageFormatArguments.length + " arguments with appropriate types");
+        }
+        else
+        {
+            NFail failAnnotation = methodInfo.getAnnotation(NFail.class);
+            if (null == failAnnotation)
+            {
+                throw new IllegalArgumentException(failSpecificationType + "." + methodInfo.getName() + " is not annotated with a NFail annotaiton");
+            }
+            result = failAnnotation;
+        }
+
+        return result;
+    }
+    
+    protected void popContractWithCaller(Object caller, Class<? extends IFail> failSpecification)
+    {
+    	ICallContractor callContractor = this.getCallContractor();
+    	if(null == callContractor)
+    	{
+    		throw new IllegalStateException("CallContractor must be set before using this failer.");
+    	}
+    	// fail call requires a checker call from caller
+    	callContractor.popContractWithCaller(caller, this, failSpecification);
+    }
+
+    protected FailFastException constructFailException(Class<? extends FailFastException> exceptionType, String message)
+    {
+    	FailFastException exception = null;
+        
+        Constructor<? extends FailFastException> constructor;
+		try
+		{
+			constructor = exceptionType.getConstructor(String.class);
+		}
+		catch (NoSuchMethodException | SecurityException e)
+		{
+			throw new IllegalArgumentException("Could not fetch a constructor from '" + exceptionType + "' with a single String argument", e);
+		}
+		
+		
+        try
+		{
+			exception = constructor.newInstance(message);
+		}
+		catch (InstantiationException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException e)
+		{
+			throw new IllegalArgumentException("Could not invoke constructor of '" + exceptionType + "'", e);
+		}
+
+        return exception;
+    }
+    
 }

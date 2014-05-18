@@ -24,6 +24,7 @@
 package starkcoder.failfast.fails;
 
 import starkcoder.failfast.contractors.ICallContractorReference;
+import starkcoder.failfast.fails.objects.IObjectFailer;
 
 /**
  * Failer specification.
@@ -38,6 +39,6 @@ import starkcoder.failfast.contractors.ICallContractorReference;
  * 
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference
+public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, IObjectFailer
 {
 }

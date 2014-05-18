@@ -21,22 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks;
+package starkcoder.failfast.fails;
 
-import starkcoder.failfast.checks.objects.IObjectChecker;
-import starkcoder.failfast.contractors.ICallContractorReference;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 
 /**
- * Specification grouping all checker specifications.
- * <p>
- * Each checker should be specified as an interface that can be inherited by this.
- * </p>
- * <p>
- * Implementations of this should be extensible (not final).
- * </p>
+ * Annotates fail-methods in failers.
+ * 
  * @author Keld Oelykke
  */
-public interface IChecker extends ICallContractorReference, IObjectChecker
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface NFail
 {
-
+	public Class<?> checkerSpecificationType();
+	public Class<? extends FailFastException> failExceptionType();
+	public String failMessageFormat();
 }

@@ -1,0 +1,2 @@
+This example is a test file that shows how you can add abstract failfast methods to centralize and hide the reference to SMyFailFast.
+This centralization is preferable, since only a few lines in an abstract class specifies the static dependency to SMyFailFast.
