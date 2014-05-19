@@ -21,19 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.examples.reference2failfast.myfailfast;
+package starkcoder.failfast.checks.objects;
 
-import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.IObjectIsNotNullFail;
 
 /**
- * Your own failer specification that you can extend with your own failers.
- * <p>
- * This interface will be referenced from many places in your code.
- * </p>
+ * Specifies a not-null check for Object and derivatives.
+ * 
  * @author Keld Oelykke
  */
-public interface IMyFailer extends IFailer {
-
-	// you could add your own failers here or you could extend this with more failers
-
+public interface IObjectIsNotNullCheck extends ICheck
+{
+	/**
+	 * Checks if the reference is not-null.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param reference
+	 *            reference to check
+	 * @return true, if reference is not-null, otherwise false
+	 */
+	@NCheck(failSpecificationType = IObjectIsNotNullFail.class)
+	boolean isObjectNotNull(Object caller, Object reference);
 }

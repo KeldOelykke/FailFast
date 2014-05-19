@@ -28,6 +28,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.fails.objects.IObjectIsNotNullFail;
 import starkcoder.failfast.fails.objects.IObjectIsNullFail;
 
 /**
@@ -88,7 +89,6 @@ public abstract class AFailer implements IFailer
 	}
 
 	
-	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectIsNullFailer#failIsObjectNull(java.lang.Object, java.lang.String)
 	 */
@@ -97,7 +97,6 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IObjectIsNullFail.class, new Object[] { caller, referenceName });
 	}
-	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectIsNullFailer#failIsObjectNull(java.lang.Object, java.lang.String, java.lang.String)
 	 */
@@ -106,6 +105,25 @@ public abstract class AFailer implements IFailer
 			String message)
 	{
 		this.Throw(caller, IObjectIsNullFail.class, new Object[] { caller, referenceName, message });
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectIsNotNullFail#failIsObjectNotNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failIsObjectNotNull(Object caller, String referenceName)
+	{
+		this.Throw(caller, IObjectIsNotNullFail.class, new Object[] { caller, referenceName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectIsNotNullFail#failIsObjectNotNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failIsObjectNotNull(Object caller, String referenceName,
+			String message)
+	{
+		this.Throw(caller, IObjectIsNotNullFail.class, new Object[] { caller, referenceName, message });
 	}
 	
 	
@@ -143,6 +161,11 @@ public abstract class AFailer implements IFailer
 	
     protected void Throw(Object caller, Class<? extends IFail> failerSpecificationType, Object[] messageFormatArguments)
     {
+        if (null == caller)
+        {
+            throw new IllegalArgumentException("caller is null");
+        }
+
         NFail failAnnotation = this.LookupFailAnnotation(failerSpecificationType, messageFormatArguments);
         String message = String.format(failAnnotation.failMessageFormat(), messageFormatArguments);
         this.popContractWithCaller(caller, failerSpecificationType);

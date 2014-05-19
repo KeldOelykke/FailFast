@@ -30,7 +30,7 @@ package starkcoder.failfast.checks.objects;
  * </p>
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectIsNullCheck
+public interface IObjectChecker extends IObjectIsNullCheck, IObjectIsNotNullCheck
 {
 
 }

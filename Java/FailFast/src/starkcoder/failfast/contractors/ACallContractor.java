@@ -147,17 +147,17 @@ public abstract class ACallContractor implements ICallContractor
             {
                 throw new IllegalStateException("Cannot pop caller " + caller + ", since it is not currently pushed.");
             }
+            if (null == failSpecificationPushed)
+            { // this should never happen
+                throw new IllegalStateException("Cannot pop fail specification " + failSpecification + " for caller " + caller + ", since nothing is currently pushed.");
+            }
             if (caller != callerPushed)
             {
                 throw new IllegalStateException("Cannot pop caller " + caller + ", since caller " + callerPushed + " is currently pushed.");
             }
-            if (null == failSpecificationPushed)
-            {
-                throw new IllegalStateException("Cannot pop fail specification " + failSpecificationPushed + ", since it is not currently pushed.");
-            }
             if (failSpecification != failSpecificationPushed)
             {
-                throw new IllegalStateException("Cannot pop fail specification " + failSpecification + ", since fail specification " + failSpecificationPushed + " is currently pushed.");
+                throw new IllegalStateException("Cannot pop fail specification " + failSpecification + " for caller " + caller + ", since fail specification " + failSpecificationPushed + " is currently pushed.");
             }
             this.getThreadId2Caller().remove(currentThreadId);
             this.getThreadId2FailSpecification().remove(currentThreadId);
