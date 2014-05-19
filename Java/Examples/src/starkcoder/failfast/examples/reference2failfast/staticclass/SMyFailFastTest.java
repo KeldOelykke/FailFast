@@ -79,7 +79,7 @@ public class SMyFailFastTest {
 		Object referenceNull = null;
 		if(SMyFailFast.getMyChecker().isObjectNull(this, referenceNull))
 		{
-			SMyFailFast.getMyFailer().failIsObjectNull(this, "referenceNull");
+			SMyFailFast.getMyFailer().failObjectNull(this, "referenceNull");
 		}
 	}
 	
@@ -88,7 +88,7 @@ public class SMyFailFastTest {
 		Object referenceNotNull = new Object();
 		if(SMyFailFast.getMyChecker().isObjectNull(this, referenceNotNull))
 		{
-			SMyFailFast.getMyFailer().failIsObjectNull(this, "referenceNotNull");
+			SMyFailFast.getMyFailer().failObjectNull(this, "referenceNotNull");
 		}
 		assertTrue("Expected referenceNotNull to pass the null check", true);
 	}

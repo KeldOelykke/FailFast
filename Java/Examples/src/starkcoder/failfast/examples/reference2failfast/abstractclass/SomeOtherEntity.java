@@ -49,14 +49,14 @@ public class SomeOtherEntity extends AEntity
 		if (this.getMyFailFast().getMyChecker().isObjectNull(this, foo))
 		{
 			// expensive call creating string and exception
-			this.getMyFailFast().getMyFailer().failIsObjectNull(this, "foo");
+			this.getMyFailFast().getMyFailer().failObjectNull(this, "foo");
 		}
 		// cheap call using existing references
 		if (this.getMyFailFast().getMyChecker().isObjectNull(this, bar))
 		{
 			// expensive call creating strings and exception
 			this.getMyFailFast().getMyFailer()
-					.failIsObjectNull(this, "bar", "Is it really closed?");
+					.failObjectNull(this, "bar", "Is it really closed?");
 		}
 	}
 }

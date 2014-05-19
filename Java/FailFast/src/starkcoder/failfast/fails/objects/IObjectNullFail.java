@@ -23,7 +23,7 @@
  */
 package starkcoder.failfast.fails.objects;
 
-import starkcoder.failfast.checks.objects.IObjectIsNullCheck;
+import starkcoder.failfast.checks.objects.IObjectNullCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
@@ -33,7 +33,7 @@ import starkcoder.failfast.fails.NFail;
  * 
  * @author Keld Oelykke
  */
-public interface IObjectIsNullFail extends IFail
+public interface IObjectNullFail extends IFail
 {
 	/**
 	 * Fails specified reference, since it failed a null check.
@@ -43,8 +43,8 @@ public interface IObjectIsNullFail extends IFail
 	 * @param referenceName
 	 *            name of reference to fail
 	 */
-	@NFail(checkerSpecificationType = IObjectIsNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is null.")
-	void failIsObjectNull(Object caller, String referenceName);
+	@NFail(checkerSpecificationType = IObjectNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is null.")
+	void failObjectNull(Object caller, String referenceName);
 
 	/**
 	 * Fails specified reference, since it failed a null check.
@@ -56,7 +56,7 @@ public interface IObjectIsNullFail extends IFail
 	 * @param message
 	 *            additional information
 	 */
-	@NFail(checkerSpecificationType = IObjectIsNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is null. %s")
-	void failIsObjectNull(Object caller, String referenceName, String message);
+	@NFail(checkerSpecificationType = IObjectNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is null. %s")
+	void failObjectNull(Object caller, String referenceName, String message);
 
 }

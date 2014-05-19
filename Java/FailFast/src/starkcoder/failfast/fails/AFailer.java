@@ -28,8 +28,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import starkcoder.failfast.contractors.ICallContractor;
-import starkcoder.failfast.fails.objects.IObjectIsNotNullFail;
-import starkcoder.failfast.fails.objects.IObjectIsNullFail;
+import starkcoder.failfast.fails.objects.IObjectNotNullFail;
+import starkcoder.failfast.fails.objects.IObjectNullFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -90,40 +90,40 @@ public abstract class AFailer implements IFailer
 
 	
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.IObjectIsNullFailer#failIsObjectNull(java.lang.Object, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.IObjectNullFail#failObjectNull(java.lang.Object, java.lang.String)
 	 */
 	@Override
-	public void failIsObjectNull(Object caller, String referenceName)
+	public void failObjectNull(Object caller, String referenceName)
 	{
-		this.Throw(caller, IObjectIsNullFail.class, new Object[] { caller, referenceName });
+		this.Throw(caller, IObjectNullFail.class, new Object[] { caller, referenceName });
 	}
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.IObjectIsNullFailer#failIsObjectNull(java.lang.Object, java.lang.String, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.IObjectNullFail#failObjectNull(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failIsObjectNull(Object caller, String referenceName,
+	public void failObjectNull(Object caller, String referenceName,
 			String message)
 	{
-		this.Throw(caller, IObjectIsNullFail.class, new Object[] { caller, referenceName, message });
+		this.Throw(caller, IObjectNullFail.class, new Object[] { caller, referenceName, message });
 	}
 	
 	
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.IObjectIsNotNullFail#failIsObjectNotNull(java.lang.Object, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String)
 	 */
 	@Override
-	public void failIsObjectNotNull(Object caller, String referenceName)
+	public void failObjectNotNull(Object caller, String referenceName)
 	{
-		this.Throw(caller, IObjectIsNotNullFail.class, new Object[] { caller, referenceName });
+		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName });
 	}
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.IObjectIsNotNullFail#failIsObjectNotNull(java.lang.Object, java.lang.String, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failIsObjectNotNull(Object caller, String referenceName,
+	public void failObjectNotNull(Object caller, String referenceName,
 			String message)
 	{
-		this.Throw(caller, IObjectIsNotNullFail.class, new Object[] { caller, referenceName, message });
+		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName, message });
 	}
 	
 	

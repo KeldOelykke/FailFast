@@ -81,7 +81,7 @@ public class ObjectIsNullTest {
 		Object referenceNull = null;
 		if(checker.isObjectNull(null, referenceNull))
 		{
-			failer.failIsObjectNull(this, "referenceNull");
+			failer.failObjectNull(this, "referenceNull");
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class ObjectIsNullTest {
 		Object referenceNull = null;
 		if(checker.isObjectNull(this, referenceNull))
 		{
-			failer.failIsObjectNull(null, "referenceNull");
+			failer.failObjectNull(null, "referenceNull");
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class ObjectIsNullTest {
 		Object referenceNull = null;
 		if(checker.isObjectNull(new String("Foo"), referenceNull))
 		{
-			failer.failIsObjectNull(new String("Bar"), "referenceNull");
+			failer.failObjectNull(new String("Bar"), "referenceNull");
 		}
 	}
 	
@@ -107,7 +107,7 @@ public class ObjectIsNullTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectIsNotNullMismatchCheckCheck() {
+	public void testObjectIsNullMismatchCheckCheck() {
 		Object referenceNull = null;
 		if(checker.isObjectNull(this, referenceNull))
 		{
@@ -116,8 +116,8 @@ public class ObjectIsNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectIsNotNullMismatchFail() {
-		failer.failIsObjectNull(this, "referenceNull");
+	public void testObjectIsNullMismatchFail() {
+		failer.failObjectNull(this, "referenceNull");
 	}
 
 	@Test(expected=IllegalStateException.class)
@@ -125,7 +125,7 @@ public class ObjectIsNullTest {
 		Object referenceNull = new Object();
 		if(checker.isObjectNotNull(this, referenceNull)) // wrong call
 		{
-			failer.failIsObjectNull(this, "referenceNull");
+			failer.failObjectNull(this, "referenceNull");
 		}
 	}
 	
@@ -134,7 +134,7 @@ public class ObjectIsNullTest {
 		Object referenceNull = null;
 		if(checker.isObjectNull(this, referenceNull)) 
 		{
-			failer.failIsObjectNotNull(this, "referenceNull"); // wrong call
+			failer.failObjectNotNull(this, "referenceNull"); // wrong call
 		}
 	}
 	
@@ -146,7 +146,7 @@ public class ObjectIsNullTest {
 		Object referenceNull = null;
 		if(checker.isObjectNull(this, referenceNull))
 		{
-			failer.failIsObjectNull(this, "referenceNull");
+			failer.failObjectNull(this, "referenceNull");
 		}
 	}
 	
@@ -155,16 +155,16 @@ public class ObjectIsNullTest {
 		Object referenceNull = null;
 		if(checker.isObjectNull(this, referenceNull))
 		{
-			failer.failIsObjectNull(this, "referenceNull", "additional info");
+			failer.failObjectNull(this, "referenceNull", "additional info");
 		}
 	}
 	
 	@Test
-	public void testObjectIsNotNull() {
+	public void testObjectIsNullNoFail() {
 		Object referenceNotNull = new Object();
 		if(checker.isObjectNull(this, referenceNotNull))
 		{
-			failer.failIsObjectNull(this, "referenceNotNull");
+			failer.failObjectNull(this, "referenceNotNull");
 		}
 		assertTrue("Expected referenceNotNull to pass the null check", true);
 	}

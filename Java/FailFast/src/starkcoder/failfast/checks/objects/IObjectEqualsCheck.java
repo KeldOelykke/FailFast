@@ -25,24 +25,26 @@ package starkcoder.failfast.checks.objects;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.objects.IObjectIsNullFail;
+import starkcoder.failfast.fails.objects.IObjectNotNullFail;
 
 /**
- * Specifies a null check for Object and derivatives.
+ * Specifies an equals check for Object and derivatives.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectIsNullCheck extends ICheck
+public interface IObjectEqualsCheck extends ICheck
 {
 	/**
-	 * Checks whether the reference is null.
+	 * Checks if the references are equals or both nulls.
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
-	 * @param reference
-	 *            reference to check
-	 * @return true, if reference is null, otherwise is false
+	 * @param referenceA
+	 *            reference to equals check against reference B
+	 * @param referenceB
+	 *            argument to equals-method of reference A
+	 * @return true, if references are equals - including both nulls - otherwise false
 	 */
-	@NCheck(failSpecificationType = IObjectIsNullFail.class)
-	boolean isObjectNull(Object caller, Object reference);
+	@NCheck(failSpecificationType = IObjectNotNullFail.class)
+	boolean isObjectEquals(Object caller, Object referenceA, Object referenceB);
 }

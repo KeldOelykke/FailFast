@@ -23,7 +23,7 @@
  */
 package starkcoder.failfast.fails.objects;
 
-import starkcoder.failfast.checks.objects.IObjectIsNotNullCheck;
+import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
@@ -33,7 +33,7 @@ import starkcoder.failfast.fails.NFail;
  * 
  * @author Keld Oelykke
  */
-public interface IObjectIsNotNullFail extends IFail
+public interface IObjectNotNullFail extends IFail
 {
 	/**
 	 * Fails specified reference, since it failed a not-null check.
@@ -43,8 +43,8 @@ public interface IObjectIsNotNullFail extends IFail
 	 * @param referenceName
 	 *            name of reference to fail
 	 */
-	@NFail(checkerSpecificationType = IObjectIsNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null.")
-	void failIsObjectNotNull(Object caller, String referenceName);
+	@NFail(checkerSpecificationType = IObjectNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null.")
+	void failObjectNotNull(Object caller, String referenceName);
 
 	/**
 	 * Fails specified reference, since it failed a not-null check.
@@ -56,7 +56,7 @@ public interface IObjectIsNotNullFail extends IFail
 	 * @param message
 	 *            additional information
 	 */
-	@NFail(checkerSpecificationType = IObjectIsNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null. %s")
-	void failIsObjectNotNull(Object caller, String referenceName, String message);
+	@NFail(checkerSpecificationType = IObjectNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null. %s")
+	void failObjectNotNull(Object caller, String referenceName, String message);
 
 }

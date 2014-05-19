@@ -30,7 +30,7 @@ package starkcoder.failfast.fails.objects;
  * </p>
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectIsNullFail, IObjectIsNotNullFail
+public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail
 {
 
 }

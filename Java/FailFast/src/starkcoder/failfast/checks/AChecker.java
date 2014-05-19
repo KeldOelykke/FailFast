@@ -23,8 +23,8 @@
  */
 package starkcoder.failfast.checks;
 
-import starkcoder.failfast.checks.objects.IObjectIsNotNullCheck;
-import starkcoder.failfast.checks.objects.IObjectIsNullCheck;
+import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
+import starkcoder.failfast.checks.objects.IObjectNullCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -57,10 +57,9 @@ public class AChecker implements IChecker
 		this.callContractor = callContractor;
 	}
 	
-	
-	
+
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.IObjectIsNullChecker#isObjectNull(java.lang.Object, java.lang.Object)
+	 * @see starkcoder.failfast.checks.objects.IObjectNullCheck#isObjectNull(java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public boolean isObjectNull(Object caller, Object reference)
@@ -74,15 +73,16 @@ public class AChecker implements IChecker
 
         if (null == reference)
         {
-            this.pushContractWithCaller(caller, IObjectIsNullCheck.class);
+            this.pushContractWithCaller(caller, IObjectNullCheck.class);
             result = true;
         }
 
         return result;
 	}
 	
+
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.IObjectIsNotNullCheck#isObjectNotNull(java.lang.Object, java.lang.Object)
+	 * @see starkcoder.failfast.checks.objects.IObjectNotNullCheck#isObjectNotNull(java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public boolean isObjectNotNull(Object caller, Object reference)
@@ -96,7 +96,7 @@ public class AChecker implements IChecker
 
         if (null != reference)
         {
-            this.pushContractWithCaller(caller, IObjectIsNotNullCheck.class);
+            this.pushContractWithCaller(caller, IObjectNotNullCheck.class);
             result = true;
         }
 

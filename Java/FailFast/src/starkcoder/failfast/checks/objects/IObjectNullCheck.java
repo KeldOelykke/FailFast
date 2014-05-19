@@ -23,14 +23,26 @@
  */
 package starkcoder.failfast.checks.objects;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.IObjectNullFail;
+
 /**
- * Specification grouping all object check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
- * </p>
+ * Specifies a null check for Object and derivatives.
+ * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck
+public interface IObjectNullCheck extends ICheck
 {
-
+	/**
+	 * Checks whether the reference is null.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param reference
+	 *            reference to check
+	 * @return true, if reference is null, otherwise is false
+	 */
+	@NCheck(failSpecificationType = IObjectNullFail.class)
+	boolean isObjectNull(Object caller, Object reference);
 }

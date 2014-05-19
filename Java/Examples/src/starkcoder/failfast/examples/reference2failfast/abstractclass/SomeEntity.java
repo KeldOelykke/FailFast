@@ -44,13 +44,13 @@ public class SomeEntity extends AEntity {
 		if (this.getMyChecker().isObjectNull(this, foo)) 
 		{
 			// expensive call creating string and exception
-			this.getMyFailer().failIsObjectNull(this, "foo"); 
+			this.getMyFailer().failObjectNull(this, "foo"); 
 		}
 		// cheap call using existing references
 		if (this.getMyChecker().isObjectNull(this, bar))
 		{
 			// expensive call creating strings and exception
-			this.getMyFailer().failIsObjectNull(this, "bar",
+			this.getMyFailer().failObjectNull(this, "bar",
 					"Is it really closed?");
 		}
 	}
