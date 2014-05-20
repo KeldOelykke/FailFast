@@ -28,6 +28,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.fails.objects.IObjectEqualsFail;
+import starkcoder.failfast.fails.objects.IObjectNotEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectNotNullFail;
 import starkcoder.failfast.fails.objects.IObjectNullFail;
 
@@ -107,6 +109,45 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectNullFail.class, new Object[] { caller, referenceName, message });
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectEqualsFail#failObjectEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectEqualsFail#failObjectEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotEqualsFail#failObjectNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotEqualsFail#failObjectNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+
 	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String)

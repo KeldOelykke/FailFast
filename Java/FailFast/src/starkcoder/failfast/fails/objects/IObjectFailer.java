@@ -28,9 +28,11 @@ package starkcoder.failfast.fails.objects;
  * <p>
  * This (or a derivative) should inherit all fail methods targeting Object.
  * </p>
+ * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail
+public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
+		IObjectEqualsFail, IObjectNotEqualsFail
 {
 
 }

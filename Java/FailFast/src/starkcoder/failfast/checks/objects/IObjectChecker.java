@@ -28,9 +28,11 @@ package starkcoder.failfast.checks.objects;
  * <p>
  * This (or a derivative) should inherit all check methods targeting Object.
  * </p>
+ * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck
+public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
+		IObjectEqualsCheck, IObjectNotEqualsCheck
 {
 
 }

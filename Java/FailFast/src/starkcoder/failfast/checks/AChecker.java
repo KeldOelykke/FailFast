@@ -23,6 +23,8 @@
  */
 package starkcoder.failfast.checks;
 
+import starkcoder.failfast.checks.objects.IObjectEqualsCheck;
+import starkcoder.failfast.checks.objects.IObjectNotEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
 import starkcoder.failfast.checks.objects.IObjectNullCheck;
 import starkcoder.failfast.contractors.ICallContractor;
@@ -35,74 +37,147 @@ import starkcoder.failfast.contractors.ICallContractor;
  * <p>
  * To extend this in a concrete implementation is optional.
  * </p>
+ * 
  * @author Keld Oelykke
  */
 public class AChecker implements IChecker
 {
 	private ICallContractor callContractor;
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.contractors.ICallContractorReference#getCallContractor()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * starkcoder.failfast.contractors.ICallContractorReference#getCallContractor
+	 * ()
 	 */
 	@Override
 	public ICallContractor getCallContractor()
 	{
 		return this.callContractor;
 	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.contractors.ICallContractorReference#setCallContractor(starkcoder.failfast.contractors.ICallContractor)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * starkcoder.failfast.contractors.ICallContractorReference#setCallContractor
+	 * (starkcoder.failfast.contractors.ICallContractor)
 	 */
 	@Override
 	public void setCallContractor(ICallContractor callContractor)
 	{
 		this.callContractor = callContractor;
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.IObjectNullCheck#isObjectNull(java.lang.Object, java.lang.Object)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * starkcoder.failfast.checks.objects.IObjectNullCheck#isObjectNull(java
+	 * .lang.Object, java.lang.Object)
 	 */
 	@Override
 	public boolean isObjectNull(Object caller, Object reference)
 	{
-        boolean result = false;
+		boolean result = false;
 
-        if (null == caller)
-        {
-            throw new IllegalArgumentException("caller is null");
-        }
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
 
-        if (null == reference)
-        {
-            this.pushContractWithCaller(caller, IObjectNullCheck.class);
-            result = true;
-        }
+		if (null == reference)
+		{
+			this.pushContractWithCaller(caller, IObjectNullCheck.class);
+			result = true;
+		}
 
-        return result;
+		return result;
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.IObjectNotNullCheck#isObjectNotNull(java.lang.Object, java.lang.Object)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * starkcoder.failfast.checks.objects.IObjectNotNullCheck#isObjectNotNull
+	 * (java.lang.Object, java.lang.Object)
 	 */
 	@Override
 	public boolean isObjectNotNull(Object caller, Object reference)
 	{
-        boolean result = false;
+		boolean result = false;
 
-        if (null == caller)
-        {
-            throw new IllegalArgumentException("caller is null");
-        }
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
 
-        if (null != reference)
-        {
-            this.pushContractWithCaller(caller, IObjectNotNullCheck.class);
-            result = true;
-        }
+		if (null != reference)
+		{
+			this.pushContractWithCaller(caller, IObjectNotNullCheck.class);
+			result = true;
+		}
 
-        return result;
-    }
-	
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * starkcoder.failfast.checks.objects.IObjectEqualsCheck#isObjectEquals(
+	 * java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public boolean isObjectEquals(Object caller, Object referenceA,
+			Object referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if ((null == referenceA && null == referenceB)
+				|| (null != referenceA && referenceA.equals(referenceB)))
+		{
+			this.pushContractWithCaller(caller, IObjectEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * starkcoder.failfast.checks.objects.IObjectNotEqualsCheck#isObjectNotEquals
+	 * (java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public boolean isObjectNotEquals(Object caller, Object referenceA,
+			Object referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if ((null == referenceA && null != referenceB)
+				|| (null != referenceA && !referenceA.equals(referenceB)))
+		{
+			this.pushContractWithCaller(caller, IObjectNotEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
 	/**
 	 * Default constructor.
 	 * <p>
@@ -113,12 +188,14 @@ public class AChecker implements IChecker
 	{
 		super();
 	}
-	
+
 	/**
-	 * Recommended constructor receiving required references (manual constructor dependency injection).
+	 * Recommended constructor receiving required references (manual constructor
+	 * dependency injection).
 	 * <p>
 	 * This is ready for use after this call.
 	 * </p>
+	 * 
 	 * @param callContractor
 	 *            used by this
 	 */
@@ -126,25 +203,27 @@ public class AChecker implements IChecker
 	{
 		super();
 		{
-			if(null == callContractor)
+			if (null == callContractor)
 			{
 				throw new IllegalArgumentException("callContractor is null");
 			}
 			this.setCallContractor(callContractor);
 		}
 	}
-	
-    protected void pushContractWithCaller(Object caller, Class<? extends ICheck> checkerSpecification)
-    {
-    	ICallContractor callContractor = this.getCallContractor();
-    	if(null == callContractor)
-    	{
-    		throw new IllegalStateException("CallContractor must be set before using this checker.");
-    	}
-    	
-    	// require a fail call from caller
-    	callContractor.pushContractWithCaller(caller, this, checkerSpecification);
-    }
 
+	protected void pushContractWithCaller(Object caller,
+			Class<? extends ICheck> checkerSpecification)
+	{
+		ICallContractor callContractor = this.getCallContractor();
+		if (null == callContractor)
+		{
+			throw new IllegalStateException(
+					"CallContractor must be set before using this checker.");
+		}
+
+		// require a fail call from caller
+		callContractor.pushContractWithCaller(caller, this,
+				checkerSpecification);
+	}
 
 }
