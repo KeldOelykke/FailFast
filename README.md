@@ -29,11 +29,16 @@ Object-Oriented software developers using Java/C#.
 Goal
 ====
 
-We migrate between projects and we ask ourself what libraries should we pull this time? 
-Most times I search for a fail-fast library, but I can't seem to find any.
-Last time I didn't even bother to search.
+To have a library worth using because of its 
 
-Clearly, that is no good to anyone, so here is a go at a fail-fast library.
+ 1) design - simple, extensible & replaceable, and
+ 
+ 2) performance - poor on cpu & memory usage.
+ 
+We migrate between projects and we ask ourself what libraries should we pull this time? 
+In such moments I try a search for a fail-fast library, but I can't seem to find any.
+
+Clearly, that is no good to anyone, so here is one.
 
 
 Dogma
