@@ -23,6 +23,8 @@
  */
 package starkcoder.failfast.unit.objects;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -144,18 +146,35 @@ public class ObjectIsNotNullTest {
 	@Test(expected=FailFastException.class)
 	public void testObjectIsNotNullFailNoMessage() {
 		Object referenceNotNull = new Object();
-		if(checker.isObjectNotNull(this, referenceNotNull))
+		try
 		{
-			failer.failObjectNotNull(this, "referenceNotNull");
+			if(checker.isObjectNotNull(this, referenceNotNull))
+			{
+				failer.failObjectNotNull(this, "referenceNotNull");
+			}
 		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			throw failFastException;
+		}
+
 	}
 	
 	@Test(expected=FailFastException.class)
 	public void testObjectIsNotNullFailMessage() {
 		Object referenceNotNull = new Object();
-		if(checker.isObjectNotNull(this, referenceNotNull))
+		try
 		{
-			failer.failObjectNotNull(this, "referenceNotNull", "additional info");
+			if(checker.isObjectNotNull(this, referenceNotNull))
+			{
+				failer.failObjectNotNull(this, "referenceNotNull", "additional info");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			throw failFastException;
 		}
 	}
 	
@@ -167,6 +186,7 @@ public class ObjectIsNotNullTest {
 			failer.failObjectNotNull(this, "referenceNull");
 		}
 		assertTrue("Expected referenceNull to pass the not-null check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 
 }

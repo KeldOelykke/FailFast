@@ -23,6 +23,8 @@
  */
 package starkcoder.failfast.unit.objects;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -152,9 +154,17 @@ public class ObjectEqualsTest {
 	public void testObjectEqualsFailNoMessage() {
 		Object referenceA = null;
 		Object referenceB = null;
-		if(checker.isObjectEquals(this, referenceA, referenceB))
+		try
 		{
-			failer.failObjectEquals(this, "referenceA", "referenceB");
+			if(checker.isObjectEquals(this, referenceA, referenceB))
+			{
+				failer.failObjectEquals(this, "referenceA", "referenceB");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			throw failFastException;
 		}
 	}
 	
@@ -162,9 +172,17 @@ public class ObjectEqualsTest {
 	public void testObjectEqualsFailMessage() {
 		Object referenceA = new Object();
 		Object referenceB = referenceA;
-		if(checker.isObjectEquals(this, referenceA, referenceB))
+		try
 		{
-			failer.failObjectEquals(this, "referenceA", "referenceB", "additional info");
+			if(checker.isObjectEquals(this, referenceA, referenceB))
+			{
+				failer.failObjectEquals(this, "referenceA", "referenceB", "additional info");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			throw failFastException;
 		}
 	}
 	
@@ -177,6 +195,7 @@ public class ObjectEqualsTest {
 			failer.failObjectEquals(this, "referenceA", "referenceB");
 		}
 		assertTrue("Expected referenceA & referenceB to pass the equals check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 
 }

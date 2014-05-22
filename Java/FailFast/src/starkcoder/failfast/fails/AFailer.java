@@ -211,6 +211,10 @@ public abstract class AFailer implements IFailer
         String message = String.format(failAnnotation.failMessageFormat(), messageFormatArguments);
         this.popContractWithCaller(caller, failerSpecificationType);
         FailFastException exception = this.constructFailException(failAnnotation.failExceptionType(), message);
+        if(null == this.getFailFastExceptionOrNull())
+        { // remember first exception
+        	this.setFailFastExceptionOrNull(exception);
+        }
         throw exception;
     }
 

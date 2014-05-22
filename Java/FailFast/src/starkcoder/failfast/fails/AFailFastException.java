@@ -45,7 +45,7 @@ public abstract class AFailFastException extends RuntimeException implements
 {
 
 	/**
-	 * No idea why this needs to be in an abstract class, but here is because Eclipse says so.
+	 * No idea why this field needs to be in an abstract class, but here is because Eclipse says so.
 	 * 
 	 * {@link http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html}
 	 */
@@ -55,5 +55,11 @@ public abstract class AFailFastException extends RuntimeException implements
 	{
 		super(message);
 	}
+	
+	protected AFailFastException(String message, Throwable throwable)
+	{
+		super(message, throwable);
+	}
+	
 
 }

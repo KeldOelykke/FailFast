@@ -1,0 +1,1 @@
+These examples are test files that shows how your single threaded application can handle fail-fast exceptions differently to other exceptions.

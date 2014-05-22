@@ -48,6 +48,20 @@ public class FailFastException extends AFailFastException
 	}
 
 	/**
+	 * Constructor that can be used to nest an exception in a fail-fast
+	 * exception.
+	 * 
+	 * @param message
+	 *            custom message to specify.
+	 * @param throwable
+	 *            exception to nest
+	 */
+	public FailFastException(String message, Throwable throwable)
+	{
+		super(message, throwable);
+	}
+
+	/**
 	 * Version specific id of this class for serialization purposes.
 	 */
 	private static final long serialVersionUID = 3308352080068039213L;
