@@ -105,9 +105,9 @@ public class MainExceptionHandlerThreadedTest {
 						IFailFastException failFastExceptionOrNull = SFailFast.getFailer().getFailFastExceptionOrNull();
 						if(null != failFastExceptionOrNull)
 						{
-							// add logging to warn that a fail-fast exception has been thrown away
+							// add logging to warn that a fail-fast exception has been registered
 							// Nest the fail-fast exception into a new fail-fast exception to end the application
-							throw new FailFastException("Looks like a class intercepted a fail-fast exception.", (Exception)failFastExceptionOrNull);
+							throw new FailFastException("A fail-fast exception has occurred.", (Exception)failFastExceptionOrNull);
 						}
 					}
 					
