@@ -40,6 +40,11 @@ In such moments I try a search for a fail-fast library, but I can't seem to find
 
 Clearly, that is no good to anyone, so here is one.
 
+Examples
+========
+
+https://github.com/KeldOelykke/FailFast/wiki
+
 
 Dogma
 =====
