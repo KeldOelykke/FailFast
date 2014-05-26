@@ -26,7 +26,9 @@ package starkcoder.failfast.checks;
 import starkcoder.failfast.checks.objects.IObjectEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
+import starkcoder.failfast.checks.objects.IObjectNotSameCheck;
 import starkcoder.failfast.checks.objects.IObjectNullCheck;
+import starkcoder.failfast.checks.objects.IObjectSameCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -177,6 +179,54 @@ public class AChecker implements IChecker
 
 		return result;
 	}
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.IObjectSameCheck#isObjectSame(java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public boolean isObjectSame(Object caller, Object referenceA,
+			Object referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA == referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectSameCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.IObjectNotSameCheck#isObjectNotSame(java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public boolean isObjectNotSame(Object caller, Object referenceA,
+			Object referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA != referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectNotSameCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
 
 	/**
 	 * Default constructor.

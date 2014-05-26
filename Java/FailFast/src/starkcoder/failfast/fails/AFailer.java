@@ -31,7 +31,9 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.objects.IObjectEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectNotEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectNotNullFail;
+import starkcoder.failfast.fails.objects.IObjectNotSameFail;
 import starkcoder.failfast.fails.objects.IObjectNullFail;
+import starkcoder.failfast.fails.objects.IObjectSameFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -111,6 +113,25 @@ public abstract class AFailer implements IFailer
 	
 	
 	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failObjectNotNull(Object caller, String referenceName)
+	{
+		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectNotNull(Object caller, String referenceName,
+			String message)
+	{
+		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName, message });
+	}
+	
+	
+	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectEqualsFail#failObjectEquals(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -150,21 +171,42 @@ public abstract class AFailer implements IFailer
 
 	
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.IObjectSameFail#failObjectSame(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failObjectNotNull(Object caller, String referenceName)
+	public void failObjectSame(Object caller, String referenceAName,
+			String referenceBName)
 	{
-		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName });
+		this.Throw(caller, IObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.IObjectSameFail#failObjectSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failObjectNotNull(Object caller, String referenceName,
-			String message)
+	public void failObjectSame(Object caller, String referenceAName,
+			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName, message });
+		this.Throw(caller, IObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotSameFail#failObjectNotSame(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectNotSameFail#failObjectNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	

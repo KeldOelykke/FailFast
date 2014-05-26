@@ -23,16 +23,28 @@
  */
 package starkcoder.failfast.checks.objects;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.IObjectSameFail;
+
 /**
- * Specification grouping all object check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
- * </p>
+ * Specifies a reference check for Object and derivatives.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck
+public interface IObjectSameCheck extends ICheck
 {
-
+	/**
+	 * Checks if the references are the same (using ==) or both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check using == against reference B
+	 * @param referenceB
+	 *            argument to check using == of reference A
+	 * @return true, if references are the same (using ==) - including both nulls - otherwise false
+	 */
+	@NCheck(failSpecificationType = IObjectSameFail.class)
+	boolean isObjectSame(Object caller, Object referenceA, Object referenceB);
 }

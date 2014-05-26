@@ -32,7 +32,7 @@ package starkcoder.failfast.fails.objects;
  * @author Keld Oelykke
  */
 public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectEqualsFail, IObjectNotEqualsFail
+		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail
 {
 
 }
