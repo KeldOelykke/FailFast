@@ -21,25 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails;
+package starkcoder.failfast.fails.primitives;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-import starkcoder.failfast.fails.objects.IObjectFailer;
-import starkcoder.failfast.fails.primitives.IPrimitiveFailer;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFailer;
 
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
- * Implementations of this should be extensible (not final).
+ * Specification grouping all primitive type fail specifications.
+ * <p>
+ * This (or a derivative) should inherit all fail methods targeting primitive types.
+ * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, IObjectFailer, IPrimitiveFailer
+public interface IPrimitiveFailer extends 
+		IPrimitiveBooleanFailer
 {
+
 }

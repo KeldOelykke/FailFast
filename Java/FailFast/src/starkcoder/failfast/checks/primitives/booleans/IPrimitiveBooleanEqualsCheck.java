@@ -21,25 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails;
+package starkcoder.failfast.checks.primitives.booleans;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-import starkcoder.failfast.fails.objects.IObjectFailer;
-import starkcoder.failfast.fails.primitives.IPrimitiveFailer;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
 
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
- * Implementations of this should be extensible (not final).
+ * Specifies an equals check for boolean.
  * 
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, IObjectFailer, IPrimitiveFailer
+public interface IPrimitiveBooleanEqualsCheck extends ICheck
 {
+	/**
+	 * Checks if the values are equals.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to equals check against value B
+	 * @param valueB
+	 *            argument to equals-method of value A
+	 * @return true, if values are equals - otherwise false
+	 */
+	@NCheck(failSpecificationType = IPrimitiveBooleanEqualsFail.class)
+	boolean isBooleanValueEquals(Object caller, boolean valueA, boolean valueB);
 }

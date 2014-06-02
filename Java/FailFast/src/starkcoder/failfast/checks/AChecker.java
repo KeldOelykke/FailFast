@@ -29,6 +29,8 @@ import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
 import starkcoder.failfast.checks.objects.IObjectNotSameCheck;
 import starkcoder.failfast.checks.objects.IObjectNullCheck;
 import starkcoder.failfast.checks.objects.IObjectSameCheck;
+import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
+import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -227,7 +229,57 @@ public class AChecker implements IChecker
 		return result;
 	}
 
+	
+	// PRIMITIVES - BOOLEANS - START
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck#isObjectEquals(java.lang.Object, boolean, boolean)
+	 */
+	@Override
+	public boolean isBooleanValueEquals(Object caller, boolean valueA, boolean valueB)
+	{
+		boolean result = false;
 
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (valueA == valueB)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveBooleanEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck#isObjectNotEquals(java.lang.Object, boolean, boolean)
+	 */
+	@Override
+	public boolean isBooleanValueNotEquals(Object caller, boolean valueA,
+			boolean valueB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (valueA != valueB)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveBooleanNotEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	// PRIMITIVES - BOOLEANS - END
+	
 	/**
 	 * Default constructor.
 	 * <p>

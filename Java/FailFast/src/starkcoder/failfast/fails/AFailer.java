@@ -34,6 +34,8 @@ import starkcoder.failfast.fails.objects.IObjectNotNullFail;
 import starkcoder.failfast.fails.objects.IObjectNotSameFail;
 import starkcoder.failfast.fails.objects.IObjectNullFail;
 import starkcoder.failfast.fails.objects.IObjectSameFail;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -209,6 +211,49 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
+	
+	// PRIMITIVES - BOOLEAN - START -------------------------------
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueNotEquals(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveBooleanNotEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueNotEquals(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveBooleanNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail#failBooleanValueEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueEquals(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveBooleanEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail#failBooleanValueEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueEquals(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveBooleanEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	
+	// PRIMITIVES - BOOLEAN - END ---------------------------------
 	
 	/**
 	 * Default constructor.
