@@ -23,6 +23,8 @@
  */
 package starkcoder.failfast.fails.objects;
 
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
+
 /**
  * Specification grouping all object fail specifications.
  * <p>
@@ -32,7 +34,8 @@ package starkcoder.failfast.fails.objects;
  * @author Keld Oelykke
  */
 public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail
+		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
+		IObjectBooleanFailer
 {
 
 }

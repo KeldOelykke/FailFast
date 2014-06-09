@@ -21,21 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
+package starkcoder.failfast.checks.objects.booleans;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanEqualsFail;
 
 /**
- * Specification grouping all object check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
- * </p>
+ * Specifies an equals check for Boolean.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectBooleanChecker
+public interface IObjectBooleanEqualsCheck extends ICheck
 {
-
+	/**
+	 * Checks if the Booleans are equals.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to equals check against reference B
+	 * @param referenceB
+	 *            argument to equals-method of reference A
+	 * @return true, if referenced Booleans are equals - otherwise false
+	 */
+	@NCheck(failSpecificationType = IObjectBooleanEqualsFail.class)
+	boolean isBooleanEquals(Object caller, Boolean referenceA, Boolean referenceB);
 }

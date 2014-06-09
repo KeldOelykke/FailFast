@@ -21,21 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
-
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
+package starkcoder.failfast.checks.objects.booleans;
 
 /**
- * Specification grouping all object check specifications.
+ * Specification grouping all Boolean check specifications.
  * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
+ * This (or a derivative) should inherit all check methods targeting Boolean.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectBooleanChecker
+public interface IObjectBooleanChecker extends 
+		IObjectBooleanEqualsCheck, IObjectBooleanNotEqualsCheck
 {
 
 }
