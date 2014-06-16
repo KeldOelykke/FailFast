@@ -36,7 +36,7 @@ import starkcoder.failfast.fails.NFail;
 public interface IObjectNotSameFail extends IFail
 {
 	/**
-	 * Fails specified references, since they failed a not-same check (using !=).
+	 * Fails specified references, since they passed a not-same check (using !=).
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)
@@ -49,7 +49,7 @@ public interface IObjectNotSameFail extends IFail
 	void failObjectNotSame(Object caller, String referenceAName, String referenceBName);
 
 	/**
-	 * Fails specified references, since they failed a not-same check (using !=).
+	 * Fails specified references, since they passed a not-same check (using !=).
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)

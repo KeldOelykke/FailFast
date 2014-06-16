@@ -36,7 +36,7 @@ import starkcoder.failfast.fails.NFail;
 public interface IObjectNullFail extends IFail
 {
 	/**
-	 * Fails specified reference, since it failed a null check.
+	 * Fails specified reference, since it passed a null check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (reference check asserted)
@@ -47,7 +47,7 @@ public interface IObjectNullFail extends IFail
 	void failObjectNull(Object caller, String referenceName);
 
 	/**
-	 * Fails specified reference, since it failed a null check.
+	 * Fails specified reference, since it passed a null check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (reference check asserted)

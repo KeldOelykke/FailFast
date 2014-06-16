@@ -36,7 +36,7 @@ import starkcoder.failfast.fails.NFail;
 public interface IObjectEqualsFail extends IFail
 {
 	/**
-	 * Fails specified references, since they failed an equals check.
+	 * Fails specified references, since they passed an equals check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)
@@ -49,7 +49,7 @@ public interface IObjectEqualsFail extends IFail
 	void failObjectEquals(Object caller, String referenceAName, String referenceBName);
 
 	/**
-	 * Fails specified references, since they failed an equals check.
+	 * Fails specified references, since they passed an equals check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)

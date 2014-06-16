@@ -37,7 +37,9 @@ import starkcoder.failfast.fails.objects.IObjectSameFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -299,6 +301,41 @@ public abstract class AFailer implements IFailer
 			String valueBName, String message)
 	{
 		this.Throw(caller, IPrimitiveBooleanEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail#failBooleanValueFalse(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueFalse(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveBooleanFalseFail.class, new Object[] { caller, valueAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail#failBooleanValueFalse(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueFalse(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveBooleanFalseFail.class, new Object[] { caller, valueAName, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail#failBooleanValueTrue(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueTrue(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail#failBooleanValueTrue(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanValueTrue(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName, message });
 	}
 	
 	

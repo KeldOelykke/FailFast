@@ -36,7 +36,7 @@ import starkcoder.failfast.fails.NFail;
 public interface IObjectBooleanEqualsFail extends IFail
 {
 	/**
-	 * Fails specified Booleans, since they failed an equals check.
+	 * Fails specified Booleans, since they passed an equals check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if Boolean check asserted)
@@ -49,7 +49,7 @@ public interface IObjectBooleanEqualsFail extends IFail
 	void failBooleanEquals(Object caller, String referenceAName, String referenceBName);
 
 	/**
-	 * Fails specified Booleans, since they failed an equals check.
+	 * Fails specified Booleans, since they passed an equals check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if Boolean check asserted)

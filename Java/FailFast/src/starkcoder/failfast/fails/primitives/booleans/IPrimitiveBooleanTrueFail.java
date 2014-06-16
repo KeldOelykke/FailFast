@@ -21,46 +21,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.fails.primitives.booleans;
 
-import starkcoder.failfast.checks.objects.IObjectSameCheck;
+import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
 
 /**
- * Fail specification throwing an exception when a same check asserts.
+ * Fail specification throwing an exception when a true check asserts.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectSameFail extends IFail
+public interface IPrimitiveBooleanTrueFail extends IFail
 {
 	/**
-	 * Fails specified references, since they passed a same check (using ==).
+	 * Fails specified value, since it passed a true check.
 	 * 
 	 * @param caller
-	 *            object calling checker and then failer (if reference check asserted)
-	 * @param referenceAName
-	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
+	 *            object calling checker and then failer (if value check asserted)
+	 * @param valueAName
+	 *            name of value A to fail
 	 */
-	@NFail(checkerSpecificationType = IObjectSameCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is same as object '%s'.")
-	void failObjectSame(Object caller, String referenceAName, String referenceBName);
+	@NFail(checkerSpecificationType = IPrimitiveBooleanTrueCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is true.")
+	void failBooleanValueTrue(Object caller, String valueAName);
 
 	/**
-	 * Fails specified references, since they passed a same check (using ==).
+	 * Fails specified value, since it passed a true check.
 	 * 
 	 * @param caller
-	 *            object calling checker and then failer (if reference check asserted)
-	 * @param referenceAName
-	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
+	 *            object calling checker and then failer (if value check asserted)
+	 * @param valueAName
+	 *            name of value A to fail
 	 * @param message
 	 *            additional information
 	 */
-	@NFail(checkerSpecificationType = IObjectSameCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is same as object '%s'. %s")
-	void failObjectSame(Object caller, String referenceAName, String referenceBName, String message);
+	@NFail(checkerSpecificationType = IPrimitiveBooleanTrueCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is true. %s")
+	void failBooleanValueTrue(Object caller, String valueAName, String message);
 
 }

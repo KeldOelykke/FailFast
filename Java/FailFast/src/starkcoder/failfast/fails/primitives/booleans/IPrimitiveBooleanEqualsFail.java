@@ -36,7 +36,7 @@ import starkcoder.failfast.fails.NFail;
 public interface IPrimitiveBooleanEqualsFail extends IFail
 {
 	/**
-	 * Fails specified values, since they failed an equals check.
+	 * Fails specified values, since they passed an equals check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if value check asserted)
@@ -49,7 +49,7 @@ public interface IPrimitiveBooleanEqualsFail extends IFail
 	void failBooleanValueEquals(Object caller, String valueAName, String valueBName);
 
 	/**
-	 * Fails specified values, since they failed an equals check.
+	 * Fails specified values, since they passed an equals check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if value check asserted)

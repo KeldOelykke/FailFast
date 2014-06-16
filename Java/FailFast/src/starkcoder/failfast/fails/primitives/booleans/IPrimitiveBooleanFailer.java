@@ -32,7 +32,8 @@ package starkcoder.failfast.fails.primitives.booleans;
  * @author Keld Oelykke
  */
 public interface IPrimitiveBooleanFailer extends 
-		IPrimitiveBooleanEqualsFail, IPrimitiveBooleanNotEqualsFail
+	IPrimitiveBooleanEqualsFail, IPrimitiveBooleanNotEqualsFail,
+	IPrimitiveBooleanFalseFail, IPrimitiveBooleanTrueFail
 {
 
 }

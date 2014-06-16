@@ -32,7 +32,9 @@ import starkcoder.failfast.checks.objects.IObjectSameCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
+import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
+import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -336,9 +338,55 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck#isBooleanValueFalse(java.lang.Object, boolean)
+	 */
+	@Override
+	public boolean isBooleanValueFalse(Object caller, boolean valueA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (!valueA)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveBooleanFalseCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck#isBooleanValueTrue(java.lang.Object, boolean)
+	 */
+	@Override
+	public boolean isBooleanValueTrue(Object caller, boolean valueA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (valueA)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveBooleanTrueCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
 
 	// PRIMITIVES - BOOLEANS - END
 	
+
 	/**
 	 * Default constructor.
 	 * <p>

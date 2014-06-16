@@ -23,17 +23,26 @@
  */
 package starkcoder.failfast.checks.primitives.booleans;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail;
+
 /**
- * Specification grouping all boolean check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting boolean.
- * </p>
+ * Specifies a true check for boolean.
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveBooleanChecker extends 
-		IPrimitiveBooleanEqualsCheck, IPrimitiveBooleanNotEqualsCheck,
-		IPrimitiveBooleanFalseCheck, IPrimitiveBooleanTrueCheck
+public interface IPrimitiveBooleanTrueCheck extends ICheck
 {
-
+	/**
+	 * Checks if the value is true.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to true check
+	 * @return true, if value is true, otherwise false
+	 */
+	@NCheck(failSpecificationType = IPrimitiveBooleanTrueFail.class)
+	boolean isBooleanValueTrue(Object caller, boolean valueA);
 }
