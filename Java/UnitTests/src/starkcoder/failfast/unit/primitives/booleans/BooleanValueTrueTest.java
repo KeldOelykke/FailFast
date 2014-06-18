@@ -178,7 +178,7 @@ public class BooleanValueTrueTest {
 	}
 	
 	@Test
-	public void testBooleanValueTrueNoFail() {
+	public void testBooleanValueFalseNoFail() {
 		boolean valueA = false;
 		if(checker.isBooleanValueTrue(this, valueA))
 		{

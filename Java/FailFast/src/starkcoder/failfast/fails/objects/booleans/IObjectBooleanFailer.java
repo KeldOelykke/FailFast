@@ -23,6 +23,7 @@
  */
 package starkcoder.failfast.fails.objects.booleans;
 
+
 /**
  * Specification grouping all Boolean fail specifications.
  * <p>
@@ -32,7 +33,9 @@ package starkcoder.failfast.fails.objects.booleans;
  * @author Keld Oelykke
  */
 public interface IObjectBooleanFailer extends 
-		IObjectBooleanEqualsFail, IObjectBooleanNotEqualsFail
+		IObjectBooleanEqualsFail, IObjectBooleanNotEqualsFail,
+		IObjectBooleanNullFail, IObjectBooleanNotNullFail,
+		IObjectBooleanFalseFail, IObjectBooleanTrueFail
 {
 
 }

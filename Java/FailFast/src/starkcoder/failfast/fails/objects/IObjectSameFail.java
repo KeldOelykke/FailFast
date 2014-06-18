@@ -44,6 +44,8 @@ public interface IObjectSameFail extends IFail
 	 *            name of reference A to fail
 	 * @param referenceBName
 	 *            name of reference B to fail
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IObjectSameCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is same as object '%s'.")
 	void failObjectSame(Object caller, String referenceAName, String referenceBName);
@@ -59,6 +61,8 @@ public interface IObjectSameFail extends IFail
 	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IObjectSameCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is same as object '%s'. %s")
 	void failObjectSame(Object caller, String referenceAName, String referenceBName, String message);

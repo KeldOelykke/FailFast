@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.booleans;
+package starkcoder.failfast.unit.objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -43,11 +43,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveBooleanFalseCheck} and {link:IPrimitiveBooleanFalseFail}.
+ * Fail-fast unit test of {link:IObjectNotNullCheck} and {link:IObjectNotNullFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanValueFalseTest {
+public class ObjectNotNullTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -79,64 +79,64 @@ public class BooleanValueFalseTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanValueFalseCheckerCallerIsNull() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(null, valueA))
+	public void testObjectNotNullCheckerCallerIsNull() {
+		Object referenceNotNull = new Object();
+		if(checker.isObjectNotNull(null, referenceNotNull))
 		{
-			failer.failBooleanValueFalse(this, "valueA");
+			failer.failObjectNotNull(this, "referenceNotNull");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanValueFalseFailerCallerIsNull() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testObjectNotNullFailerCallerIsNull() {
+		Object referenceNotNull = new Object();
+		if(checker.isObjectNotNull(this, referenceNotNull))
 		{
-			failer.failBooleanValueFalse(null, "valueA");
+			failer.failObjectNotNull(null, "referenceNotNull");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFailerCallerIsWrong() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(new String("Foo"), valueA))
+	public void testObjectNotNullFailerCallerIsWrong() {
+		Object referenceNotNull = new Object();
+		if(checker.isObjectNotNull(new String("Foo"), referenceNotNull))
 		{
-			failer.failBooleanValueFalse(new String("Bar"), "valueA");
+			failer.failObjectNotNull(new String("Bar"), "referenceNotNull");
 		}
 	}
 	
-	
+
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchCheckCheck() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testObjectNotNullMismatchCheckCheck() {
+		Object referenceNotNull = new Object();
+		if(checker.isObjectNotNull(this, referenceNotNull))
 		{
-			checker.isBooleanValueFalse(this, valueA);
+			checker.isObjectNotNull(this, referenceNotNull);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchFail() {
-		failer.failBooleanValueFalse(this, "valueA");
+	public void testObjectNotNullMismatchFail() {
+		failer.failObjectNull(this, "referenceNotNull");
 	}
-
+	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchWrongCheck() {
-		boolean valueA = true;
-		if(checker.isBooleanValueTrue(this, valueA)) // wrong call
+	public void testObjectNotNullMismatchWrongCheck() {
+		Object referenceNotNull = null;
+		if(checker.isObjectNull(this, referenceNotNull)) // wrong call
 		{
-			failer.failBooleanValueFalse(this, "valueA");
+			failer.failObjectNotNull(this, "referenceNotNull");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchWrongFail() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testObjectNotNullMismatchWrongFail() {
+		Object referenceNotNull = new Object();
+		if(checker.isObjectNotNull(this, referenceNotNull)) 
 		{
-			failer.failBooleanValueTrue(this, "valueA"); // wrong call
+			failer.failObjectNull(this, "referenceNotNull"); // wrong call
 		}
 	}
 	
@@ -144,13 +144,13 @@ public class BooleanValueFalseTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanValueFalseFailNoMessage() {
-		boolean valueA = false;
+	public void testObjectNotNullFailNoMessage() {
+		Object referenceNotNull = new Object();
 		try
 		{
-			if(checker.isBooleanValueFalse(this, valueA))
+			if(checker.isObjectNotNull(this, referenceNotNull))
 			{
-				failer.failBooleanValueFalse(this, "valueA");
+				failer.failObjectNotNull(this, "referenceNotNull");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -158,16 +158,17 @@ public class BooleanValueFalseTest {
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
 			throw failFastException;
 		}
+
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanValueFalseFailMessage() {
-		boolean valueA = false;
+	public void testObjectNotNullFailMessage() {
+		Object referenceNotNull = new Object();
 		try
 		{
-			if(checker.isBooleanValueFalse(this, valueA))
+			if(checker.isObjectNotNull(this, referenceNotNull))
 			{
-				failer.failBooleanValueFalse(this, "valueA", "additional info");
+				failer.failObjectNotNull(this, "referenceNotNull", "additional info");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -178,13 +179,13 @@ public class BooleanValueFalseTest {
 	}
 	
 	@Test
-	public void testBooleanValueTrueNoFail() {
-		boolean valueA = true;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testObjectNullNoFail() {
+		Object referenceNull = null;
+		if(checker.isObjectNotNull(this, referenceNull))
 		{
-			failer.failBooleanValueFalse(this, "valueA");
+			failer.failObjectNotNull(this, "referenceNull");
 		}
-		assertTrue("Expected valueA not to pass the check", true);
+		assertTrue("Expected referenceNull to pass the not-null check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

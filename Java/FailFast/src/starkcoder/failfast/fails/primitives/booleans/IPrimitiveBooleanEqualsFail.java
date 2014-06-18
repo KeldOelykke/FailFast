@@ -44,6 +44,8 @@ public interface IPrimitiveBooleanEqualsFail extends IFail
 	 *            name of value A to fail
 	 * @param valueBName
 	 *            name of value B to fail
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IPrimitiveBooleanEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is equal to value '%s'.")
 	void failBooleanValueEquals(Object caller, String valueAName, String valueBName);
@@ -59,6 +61,8 @@ public interface IPrimitiveBooleanEqualsFail extends IFail
 	 *            name of value B to fail
 	 * @param message
 	 *            additional information
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IPrimitiveBooleanEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is equal to value '%s'. %s")
 	void failBooleanValueEquals(Object caller, String valueAName, String valueBName, String message);

@@ -44,6 +44,8 @@ public interface IObjectEqualsFail extends IFail
 	 *            name of reference A to fail
 	 * @param referenceBName
 	 *            name of reference B to fail
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IObjectEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is equal to object '%s'.")
 	void failObjectEquals(Object caller, String referenceAName, String referenceBName);
@@ -59,6 +61,8 @@ public interface IObjectEqualsFail extends IFail
 	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IObjectEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is equal to object '%s'. %s")
 	void failObjectEquals(Object caller, String referenceAName, String referenceBName, String message);

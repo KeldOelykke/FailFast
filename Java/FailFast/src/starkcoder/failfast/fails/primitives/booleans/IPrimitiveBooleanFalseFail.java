@@ -42,6 +42,8 @@ public interface IPrimitiveBooleanFalseFail extends IFail
 	 *            object calling checker and then failer (if value check asserted)
 	 * @param valueAName
 	 *            name of value A to fail
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IPrimitiveBooleanFalseCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is false.")
 	void failBooleanValueFalse(Object caller, String valueAName);
@@ -55,6 +57,8 @@ public interface IPrimitiveBooleanFalseFail extends IFail
 	 *            name of value A to fail
 	 * @param message
 	 *            additional information
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IPrimitiveBooleanFalseCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is false. %s")
 	void failBooleanValueFalse(Object caller, String valueAName, String message);

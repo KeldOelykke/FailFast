@@ -42,6 +42,8 @@ public interface IPrimitiveBooleanTrueCheck extends ICheck
 	 * @param valueA
 	 *            value to true check
 	 * @return true, if value is true, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IPrimitiveBooleanTrueFail.class)
 	boolean isBooleanValueTrue(Object caller, boolean valueA);

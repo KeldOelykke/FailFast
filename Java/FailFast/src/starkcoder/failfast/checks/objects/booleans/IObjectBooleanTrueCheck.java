@@ -21,30 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.primitives.booleans;
+package starkcoder.failfast.checks.objects.booleans;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
 
 /**
- * Specifies a false check for boolean.
+ * Specifies a true check for boolean.
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveBooleanFalseCheck extends ICheck
+public interface IObjectBooleanTrueCheck extends ICheck
 {
 	/**
-	 * Checks if the value is false.
+	 * Checks if the Boolean is true.
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
-	 * @param valueA
-	 *            value to false check
-	 * @return true, if value is false, otherwise false
+	 * @param referenceA
+	 *            reference to true check
+	 * @return true, if referenced object is true, otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NCheck(failSpecificationType = IPrimitiveBooleanFalseFail.class)
-	boolean isBooleanValueFalse(Object caller, boolean valueA);
+	@NCheck(failSpecificationType = IObjectBooleanTrueFail.class)
+	boolean isBooleanTrue(Object caller, Boolean referenceA);
 }

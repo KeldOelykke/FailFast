@@ -35,7 +35,11 @@ import starkcoder.failfast.fails.objects.IObjectNotSameFail;
 import starkcoder.failfast.fails.objects.IObjectNullFail;
 import starkcoder.failfast.fails.objects.IObjectSameFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanEqualsFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFalseFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail;
@@ -259,10 +263,78 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectBooleanEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail#failBooleanNotNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failBooleanNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectBooleanNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail#failBooleanNotNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectBooleanNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail#failBooleanNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failBooleanNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectBooleanNullFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail#failBooleanNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectBooleanNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanFalseFail#failBooleanFalse(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failBooleanFalse(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectBooleanFalseFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanFalseFail#failBooleanFalse(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanFalse(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectBooleanFalseFail.class, new Object[] { caller, referenceAName, message });
+	}	
+
+	@Override
+	public void failBooleanTrue(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectBooleanTrueFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failBooleanTrue(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectBooleanTrueFail.class, new Object[] { caller, referenceAName, message });
+	}	
+	
+	
 	// OBJECTS - BOOLEAN - END ---------------------------------
 	
 	
 	// PRIMITIVES - BOOLEAN - START -------------------------------
+
 
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)

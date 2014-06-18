@@ -44,6 +44,8 @@ public interface IObjectNotEqualsCheck extends ICheck
 	 * @param referenceB
 	 *            argument to equals-method of reference A
 	 * @return true, if references are not equals - including not both nulls - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectNotEqualsFail.class)
 	boolean isObjectNotEquals(Object caller, Object referenceA, Object referenceB);

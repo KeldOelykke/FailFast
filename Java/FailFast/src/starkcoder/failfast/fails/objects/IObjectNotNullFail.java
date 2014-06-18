@@ -42,6 +42,8 @@ public interface IObjectNotNullFail extends IFail
 	 *            object calling checker and then failer (reference check asserted)
 	 * @param referenceName
 	 *            name of reference to fail
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IObjectNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null.")
 	void failObjectNotNull(Object caller, String referenceName);
@@ -55,6 +57,8 @@ public interface IObjectNotNullFail extends IFail
 	 *            name of reference to fail
 	 * @param message
 	 *            additional information
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IObjectNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null. %s")
 	void failObjectNotNull(Object caller, String referenceName, String message);

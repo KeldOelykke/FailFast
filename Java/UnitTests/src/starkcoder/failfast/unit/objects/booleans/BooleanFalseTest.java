@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.booleans;
+package starkcoder.failfast.unit.objects.booleans;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -43,11 +43,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveBooleanFalseCheck} and {link:IPrimitiveBooleanFalseFail}.
+ * Fail-fast unit test of {link:IObjectBooleanFalseCheck} and {link:IObjectBooleanFalseFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanValueFalseTest {
+public class BooleanFalseTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -79,29 +79,29 @@ public class BooleanValueFalseTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanValueFalseCheckerCallerIsNull() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(null, valueA))
+	public void testBooleanFalseCheckerCallerIsNull() {
+		Boolean referenceA = Boolean.FALSE;
+		if(checker.isBooleanFalse(null, referenceA))
 		{
-			failer.failBooleanValueFalse(this, "valueA");
+			failer.failBooleanFalse(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanValueFalseFailerCallerIsNull() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testBooleanFalseFailerCallerIsNull() {
+		Boolean referenceA = Boolean.FALSE;
+		if(checker.isBooleanFalse(this, referenceA))
 		{
-			failer.failBooleanValueFalse(null, "valueA");
+			failer.failBooleanFalse(null, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFailerCallerIsWrong() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(new String("Foo"), valueA))
+	public void testBooleanFailerCallerIsWrong() {
+		Boolean referenceA = Boolean.FALSE;
+		if(checker.isBooleanFalse(new String("Foo"), referenceA))
 		{
-			failer.failBooleanValueFalse(new String("Bar"), "valueA");
+			failer.failBooleanFalse(new String("Bar"), "referenceA");
 		}
 	}
 	
@@ -109,34 +109,34 @@ public class BooleanValueFalseTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchCheckCheck() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testBooleanFalseMismatchCheckCheck() {
+		Boolean referenceA = Boolean.FALSE;
+		if(checker.isBooleanFalse(this, referenceA))
 		{
-			checker.isBooleanValueFalse(this, valueA);
+			checker.isBooleanFalse(this, referenceA);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchFail() {
-		failer.failBooleanValueFalse(this, "valueA");
+	public void testBooleanFalseMismatchFail() {
+		failer.failBooleanFalse(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchWrongCheck() {
-		boolean valueA = true;
-		if(checker.isBooleanValueTrue(this, valueA)) // wrong call
+	public void testBooleanFalseMismatchWrongCheck() {
+		Boolean referenceA = Boolean.TRUE;
+		if(checker.isBooleanTrue(this, referenceA)) // wrong call
 		{
-			failer.failBooleanValueFalse(this, "valueA");
+			failer.failBooleanFalse(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanValueFalseMismatchWrongFail() {
-		boolean valueA = false;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testBooleanFalseMismatchWrongFail() {
+		Boolean referenceA = Boolean.FALSE;
+		if(checker.isBooleanFalse(this, referenceA))
 		{
-			failer.failBooleanValueTrue(this, "valueA"); // wrong call
+			failer.failBooleanTrue(this, "referenceA"); // wrong call
 		}
 	}
 	
@@ -144,13 +144,13 @@ public class BooleanValueFalseTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanValueFalseFailNoMessage() {
-		boolean valueA = false;
+	public void testBooleanFalseFailNoMessage() {
+		Boolean referenceA = Boolean.FALSE;
 		try
 		{
-			if(checker.isBooleanValueFalse(this, valueA))
+			if(checker.isBooleanFalse(this, referenceA))
 			{
-				failer.failBooleanValueFalse(this, "valueA");
+				failer.failBooleanFalse(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -161,13 +161,13 @@ public class BooleanValueFalseTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanValueFalseFailMessage() {
-		boolean valueA = false;
+	public void testBooleanFalseFailMessage() {
+		Boolean referenceA = Boolean.FALSE;
 		try
 		{
-			if(checker.isBooleanValueFalse(this, valueA))
+			if(checker.isBooleanFalse(this, referenceA))
 			{
-				failer.failBooleanValueFalse(this, "valueA", "additional info");
+				failer.failBooleanFalse(this, "referenceA", "additional info");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -178,13 +178,24 @@ public class BooleanValueFalseTest {
 	}
 	
 	@Test
-	public void testBooleanValueTrueNoFail() {
-		boolean valueA = true;
-		if(checker.isBooleanValueFalse(this, valueA))
+	public void testBooleanNullNoFail() {
+		Boolean referenceA = null;
+		if(checker.isBooleanFalse(this, referenceA))
 		{
-			failer.failBooleanValueFalse(this, "valueA");
+			failer.failBooleanFalse(this, "referenceA");
 		}
-		assertTrue("Expected valueA not to pass the check", true);
+		assertTrue("Expected referenceA not to pass the check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+	
+	@Test
+	public void testBooleanTrueNoFail() {
+		Boolean referenceA = Boolean.TRUE;
+		if(checker.isBooleanFalse(this, referenceA))
+		{
+			failer.failBooleanFalse(this, "referenceA");
+		}
+		assertTrue("Expected referenceA not to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

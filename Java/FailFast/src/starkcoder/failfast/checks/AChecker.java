@@ -30,7 +30,11 @@ import starkcoder.failfast.checks.objects.IObjectNotSameCheck;
 import starkcoder.failfast.checks.objects.IObjectNullCheck;
 import starkcoder.failfast.checks.objects.IObjectSameCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanEqualsCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanFalseCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
@@ -287,13 +291,97 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
+	
+	@Override
+	public boolean isBooleanNotNull(Object caller, Boolean referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectBooleanNotNullCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	@Override
+	public boolean isBooleanNull(Object caller, Boolean referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectBooleanNullCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanFalseCheck#isBooleanFalse(java.lang.Object, java.lang.Boolean)
+	 */
+	@Override
+	public boolean isBooleanFalse(Object caller, Boolean referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (null != referenceA)
+		{
+			if (!referenceA.booleanValue())
+			{
+				this.pushContractWithCaller(caller, IObjectBooleanFalseCheck.class);
+				result = true;
+			}
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck#isBooleanTrue(java.lang.Object, java.lang.Boolean)
+	 */
+	@Override
+	public boolean isBooleanTrue(Object caller, Boolean referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (null != referenceA)
+		{
+			if (referenceA.booleanValue())
+			{
+				this.pushContractWithCaller(caller, IObjectBooleanTrueCheck.class);
+				result = true;
+			}
+		}
+
+		return result;
+	}
 
 	// OBJECTS - BOOLEANS - END
 
 	
 	// PRIMITIVES - BOOLEANS - START
-	
-	
+
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck#isObjectEquals(java.lang.Object, boolean, boolean)
 	 */

@@ -44,6 +44,8 @@ public interface IObjectNotSameCheck extends ICheck
 	 * @param referenceB
 	 *            argument to check using != of reference A
 	 * @return true, if references are not the same (using !=) - including both not nulls - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectNotSameFail.class)
 	boolean isObjectNotSame(Object caller, Object referenceA, Object referenceB);

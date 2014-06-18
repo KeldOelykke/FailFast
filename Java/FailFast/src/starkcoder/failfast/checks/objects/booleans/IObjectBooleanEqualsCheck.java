@@ -44,6 +44,8 @@ public interface IObjectBooleanEqualsCheck extends ICheck
 	 * @param referenceB
 	 *            argument to equals-method of reference A
 	 * @return true, if referenced Booleans are equals - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectBooleanEqualsFail.class)
 	boolean isBooleanEquals(Object caller, Boolean referenceA, Boolean referenceB);

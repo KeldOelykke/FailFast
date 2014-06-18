@@ -42,6 +42,8 @@ public interface IObjectNullCheck extends ICheck
 	 * @param reference
 	 *            reference to check
 	 * @return true, if reference is null, otherwise is false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectNullFail.class)
 	boolean isObjectNull(Object caller, Object reference);

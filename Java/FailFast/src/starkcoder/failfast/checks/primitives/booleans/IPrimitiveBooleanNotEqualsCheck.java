@@ -44,6 +44,8 @@ public interface IPrimitiveBooleanNotEqualsCheck extends ICheck
 	 * @param valueB
 	 *            argument to equals-method of value A
 	 * @return true, if values are not equals - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IPrimitiveBooleanNotEqualsFail.class)
 	boolean isBooleanValueNotEquals(Object caller, boolean valueA, boolean valueB);

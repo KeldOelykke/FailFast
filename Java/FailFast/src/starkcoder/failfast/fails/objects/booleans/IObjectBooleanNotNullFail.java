@@ -21,50 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.primitives.booleans;
+package starkcoder.failfast.fails.objects.booleans;
 
-import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
 
 /**
- * Fail specification throwing an exception when a not-equals check asserts.
+ * Fail specification throwing an exception when a not-null check asserts.
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveBooleanNotEqualsFail extends IFail
+public interface IObjectBooleanNotNullFail extends IFail
 {
 	/**
-	 * Fails specified values, since they passed a not-equals check.
+	 * Fails specified reference, since it passed a not-null check.
 	 * 
 	 * @param caller
-	 *            object calling checker and then failer (if value check asserted)
-	 * @param valueAName
-	 *            name of value A to fail
-	 * @param valueBName
-	 *            name of value B to fail
+	 *            object calling checker and then failer (if reference check asserted)
+	 * @param referenceAName
+	 *            name of reference A to fail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal to value '%s'.")
-	void failBooleanValueNotEquals(Object caller, String valueAName, String valueBName);
+	@NFail(checkerSpecificationType = IObjectBooleanNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' is NOT null.")
+	void failBooleanNotNull(Object caller, String referenceAName);
 
 	/**
-	 * Fails specified values, since they passed a not-equals check.
+	 * Fails specified reference, since it passed a null check.
 	 * 
 	 * @param caller
-	 *            object calling checker and then failer (if value check asserted)
-	 * @param valueAName
-	 *            name of value A to fail
-	 * @param valueBName
-	 *            name of value B to fail
+	 *            object calling checker and then failer (if reference check asserted)
+	 * @param referenceAName
+	 *            name of reference A to fail
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal to value '%s'. %s")
-	void failBooleanValueNotEquals(Object caller, String valueAName, String valueBName, String message);
+	@NFail(checkerSpecificationType = IObjectBooleanNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' is NOT null. %s")
+	void failBooleanNotNull(Object caller, String referenceAName, String message);
 
 }
