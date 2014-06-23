@@ -8,7 +8,6 @@
 	
 	<property name="bin.dir" value="bin" />
 	<property name="jar.dir" value="${bin.dir}/jar" />
-	<property name="log.dir" value="log" />
 	
     <property name="main-class"	value="starkcoder.failfast.SFailFast" />
 
@@ -42,7 +41,6 @@
           target: clean              
          ================================= -->
     <target name="clean" depends="init,FailFast.clean" description="Removes temporary directories and files">
-        <delete dir="${log.dir}"/>
     </target>
 
 	<!-- ================================= 
