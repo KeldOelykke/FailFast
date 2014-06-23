@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." name="starkcoder.failfast">
+	
+	<import file="build-eclipse-generated.xml"/>
+	
+	<property name="version.major" value="0"/> 
+	<property name="version.minor" value="1"/>
+	
+	<property name="bin.dir" value="bin" />
+	<property name="jar.dir" value="${bin.dir}/jar" />
+	<property name="log.dir" value="log" />
+	
+    <property name="main-class"	value="starkcoder.failfast.SFailFast" />
+
+	
+	<!-- ================================= 
+          target: init              
+         ================================= -->
+    <target name="init" depends="FailFast.init" description="Initializes settings and filesystem">
+		<echo message="ANT_HOME=${env.ANT_HOME}"/>
+		<echo message="JAVA_HOME=${env.JAVA_HOME}"/>
+		<echo message="source=${source}"/>
+		<echo message="target=${target}"/>
+		<echo message="debuglevel=${debuglevel}"/>
+		<echo message="ant.project.name=${ant.project.name}"/>
+		<echo message="version.major=${version.major}"/>
+		<echo message="version.minor=${version.minor}"/>
+		
+		<tstamp>
+		    <format property="now.mdd" pattern="MDD" locale="UTC"/>
+		</tstamp>
+		<tstamp>
+		    <format property="now.hmm" pattern="Hmm" locale="UTC"/>
+		</tstamp>
+						
+	    <property name="version" value="${version.major}.${version.minor}.${now.mdd}.${now.hmm}" />
+		<echo message="version=${version}"/>
+		<echo message="jar=${jar.dir}"/>
+    </target>
+
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean" depends="init,FailFast.clean" description="Removes temporary directories and files">
+        <delete dir="${log.dir}"/>
+    </target>
+
+	<!-- ================================= 
+          target: build              
+         ================================= -->
+    <target name="build" depends="init,FailFast.build" description="Builds the server">
+    </target>
+
+
+	<!-- ================================= 
+          target: jar              
+         ================================= -->
+    <target name="jar" depends="build" description="Builds a jar file">
+       	
+            <mkdir dir="${jar.dir}"/>
+    		<jar destfile="${jar.dir}/${ant.project.name}-${version.major}.${version.minor}.jar" basedir="${bin.dir}">
+                <manifest>
+                    <attribute name="Main-Class" value="${main-class}"/>
+                </manifest>
+            </jar>
+    </target>
+
+	
+	
+</project>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Examples">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../Pgm/eclipse"/>
+    <property name="junit.output.dir" value="bin/unit"/>
+    <property name="FailFast.location" value="../FailFast"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="FailFast.classpath">
+        <pathelement location="${FailFast.location}/bin"/>
+    </path>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="Examples.classpath">
+        <pathelement location="bin"/>
+        <path refid="FailFast.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build-eclipse-generated.xml" dir="${FailFast.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build-eclipse-generated.xml" dir="${FailFast.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Examples.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="EntitiesWithMyFailFastTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.abstractclass.EntitiesWithMyFailFastTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="MainExceptionHandlerPassiveTest.testApplicationMainLoop">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerPassiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="MainExceptionHandlerReactiveTest.testApplicationMainLoopReactive">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerReactiveTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="MainExceptionHandlerThreadedTest.testApplicationMainLoopThreaded">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.multithreaded.MainExceptionHandlerThreadedTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="SMyFailFastTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.staticclass.SMyFailFastTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="SMyFailFastTest.testObjectIsNotNull">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.staticclass.SMyFailFastTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="SMyFailFastTest.testObjectIsNull">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.staticclass.SMyFailFastTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="src">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.multithreaded.MainExceptionHandlerThreadedTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerPassiveTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerReactiveTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.abstractclass.EntitiesWithMyFailFastTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.staticclass.SMyFailFastTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
