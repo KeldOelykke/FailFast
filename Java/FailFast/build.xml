@@ -10,7 +10,6 @@
 	<property name="jar.dir" value="${bin.dir}/jar" />
 	
     <property name="main-class"	value="starkcoder.failfast.SFailFast" />
-
 	
 	<!-- ================================= 
           target: init              
@@ -49,7 +48,6 @@
     <target name="build" depends="init,FailFast.build" description="Builds the server">
     </target>
 
-
 	<!-- ================================= 
           target: jar              
          ================================= -->
@@ -62,7 +60,5 @@
                 </manifest>
             </jar>
     </target>
-
-	
 	
 </project>
