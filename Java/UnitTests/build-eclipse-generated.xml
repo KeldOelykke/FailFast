@@ -11,17 +11,14 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
-    </path>
     <path id="FailFast.classpath">
         <pathelement location="${FailFast.location}/bin"/>
     </path>
     <path id="UnitTests.classpath">
         <pathelement location="bin"/>
-        <path refid="JUnit 4.libraryclasspath"/>
         <path refid="FailFast.classpath"/>
+        <pathelement location="../3rd/junit-4.11/lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="../3rd/junit-4.11/lib/junit-4.11.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
