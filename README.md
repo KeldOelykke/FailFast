@@ -46,6 +46,12 @@ Examples
 https://github.com/KeldOelykke/FailFast/wiki
 
 
+Builds, Tests & Jar
+===================
+
+https://keldoelykke.ci.cloudbees.com/job/FailFast/
+
+
 Dogma
 =====
 
