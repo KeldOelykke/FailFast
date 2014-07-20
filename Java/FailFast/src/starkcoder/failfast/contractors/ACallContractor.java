@@ -72,20 +72,24 @@ public abstract class ACallContractor implements ICallContractor
 				throw new IllegalArgumentException("checkerSpecification is null");
 			}
 			Method[] declaredMethods = checkSpecification.getDeclaredMethods();
-			if(declaredMethods.length != 1)
+			if(declaredMethods.length <= 0)
 			{
-				throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' must have exactly 1 check-method - not " + declaredMethods.length);
+				throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' must have at least 1 check-method - not " + declaredMethods.length);
 			}
-			Method declaredMethod = declaredMethods[0];
-			NCheck checkAnnotation = declaredMethod.getAnnotation(NCheck.class);
-			if(null == checkAnnotation)
+			for(int index = 0; index < declaredMethods.length; ++index)
 			{
-				throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' must have its 1 check-method '" + declaredMethod + "' annotated with " + NCheck.class);
-			}
-			failSpecificationType = checkAnnotation.failSpecificationType();
-			if(null == failSpecificationType)
-			{
-				throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' method '" + declaredMethod + "' has failSpecificationType set to null");
+				Method declaredMethod = declaredMethods[index];
+				NCheck checkAnnotation = declaredMethod.getAnnotation(NCheck.class);
+				if(null == checkAnnotation)
+				{
+					throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' must have check-method '" + declaredMethod + "' annotated with " + NCheck.class);
+				}
+				
+				failSpecificationType = checkAnnotation.failSpecificationType();
+				if(null == failSpecificationType)
+				{
+					throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' method '" + declaredMethod + "' has failSpecificationType set to null");
+				}
 			}
 		}
 		
