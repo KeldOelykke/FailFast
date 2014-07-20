@@ -48,7 +48,7 @@ public interface IPrimitiveFloatEqualsAlmostFail extends IFail
 	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is equal or almost equal to value '%s'.")
-	void failFloatValueEquals(Object caller, String valueAName, String valueBName);
+	void failFloatValueEqualsAlmost(Object caller, String valueAName, String valueBName);
 
 	/**
 	 * Fails specified values, since they passed an equals-almost check.
@@ -65,6 +65,6 @@ public interface IPrimitiveFloatEqualsAlmostFail extends IFail
 	 *             if caller is null
 	 */
 	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is equal or almost equal to value '%s'. %s")
-	void failFloatValueEquals(Object caller, String valueAName, String valueBName, String message);
+	void failFloatValueEqualsAlmost(Object caller, String valueAName, String valueBName, String message);
 
 }

@@ -44,6 +44,10 @@ import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -410,9 +414,80 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName, message });
 	}
 	
-	
 	// PRIMITIVES - BOOLEAN - END ---------------------------------
 	
+	
+	// PRIMITIVES - FLOAT - START -------------------------------
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail#failFloatValueEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatValueEquals(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail#failFloatValueEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatValueEquals(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatValueNotEquals(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatValueNotEquals(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	
+	@Override
+	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	@Override
+	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	@Override
+	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	@Override
+	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	
+	// PRIMITIVES - FLOAT - END ---------------------------------
+
+	
+
 	/**
 	 * Default constructor.
 	 * <p>
@@ -424,6 +499,7 @@ public abstract class AFailer implements IFailer
 		super();
 	}
 	
+
 	/**
 	 * Recommended constructor receiving required references (manual constructor dependency injection).
 	 * <p>

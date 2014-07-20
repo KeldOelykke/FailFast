@@ -31,27 +31,30 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFa
  * Specifies an equals check for float allowing some relative difference.
  * <p>
  * This is an attempt on a better equals check than the traditional epsilon test
- * (doesn't support both tiny and huge numbers for 1 particular epsilon value). 
+ * (doesn't support both tiny and huge numbers for 1 particular epsilon value).
  * </p>
  * <p>
- * The idea is take the difference between A and B and look how big that is in 
+ * The idea is take the difference between A and B and look how big that is in
  * comparison to values of A and B.
  * </p>
  * <p>
- * A very simple implementation is to calculate rd = abs(B-A) / max(abs(A), abs(B)) 
- * and return true, if rd is less or equal to a specified allowed relative difference.
+ * A very simple implementation is to calculate rd = abs(B-A) / max(abs(A),
+ * abs(B), 0.00001f) and return true, if rd is less or equal to a specified
+ * allowed relative difference.
  * </p>
  * 
- * @see http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+ * @see http
+ *      ://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers
+ *      -2012-edition/
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveFloatEqualsAlmostCheck extends ICheck
+public interface IPrimitiveFloatEqualsAlmostCheck extends IPrimitiveFloatEqualsAlmostCheckProperties, ICheck
 {
 	/**
 	 * Checks if the values are equals (apart from a relative difference).
 	 * <p>
-	 * By default the allowed relative difference is 0.001 (0.1%)
+	 * The default allowed relative difference is 0.001f (0.1%) {link:IPrimitiveFloatEqualsAlmostCheckProperties}
 	 * </p>
 	 * 
 	 * @param caller
@@ -66,9 +69,10 @@ public interface IPrimitiveFloatEqualsAlmostCheck extends ICheck
 	 */
 	@NCheck(failSpecificationType = IPrimitiveFloatEqualsAlmostFail.class)
 	boolean isFloatValueEqualsAlmost(Object caller, float valueA, float valueB);
-	
+
 	/**
-	 * Checks if the values are equals (apart from specified allowed relative difference).
+	 * Checks if the values are equals (apart from specified allowed relative
+	 * difference).
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check

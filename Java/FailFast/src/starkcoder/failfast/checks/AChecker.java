@@ -39,6 +39,10 @@ import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsChe
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -51,6 +55,14 @@ import starkcoder.failfast.contractors.ICallContractor;
  * </p>
  * 
  * @author Keld Oelykke
+ */
+/**
+ * @author Keld Oelykke
+ *
+ */
+/**
+ * @author Keld Oelykke
+ *
  */
 public abstract class AChecker implements IChecker
 {
@@ -474,6 +486,171 @@ public abstract class AChecker implements IChecker
 
 	// PRIMITIVES - BOOLEANS - END
 	
+	
+	// PRIMITIVES - FLOATS - START
+	
+	
+	
+	// PRIMITIVES - FLOATS - END
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck#isFloatValueEquals(java.lang.Object, float, float)
+	 */
+	@Override
+	public boolean isFloatValueEquals(Object caller, float valueA, float valueB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (valueA == valueB)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsCheck#isFloatValueNotEquals(java.lang.Object, float, float)
+	 */
+	@Override
+	public boolean isFloatValueNotEquals(Object caller, float valueA,
+			float valueB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (valueA != valueB)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsCheck.class);
+			result = true;
+		}
+
+		return result;	
+	}
+
+	
+	private float floatValueEqualsAlmostDefaultAllowedRelativeDifference = 0.001f;
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultAllowedRelativeDifference()
+	 */
+	@Override
+	public float getFloatValueEqualsAlmostDefaultAllowedRelativeDifference()
+	{
+		return this.floatValueEqualsAlmostDefaultAllowedRelativeDifference;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultAllowedRelativeDifference(float)
+	 */
+	@Override
+	public void setFloatValueEqualsAlmostDefaultAllowedRelativeDifference(
+			float defaultAllowedRelativeDifference)
+	{
+		this.floatValueEqualsAlmostDefaultAllowedRelativeDifference = defaultAllowedRelativeDifference;
+	}
+
+	
+	private float floatValueEqualsAlmostDefaultMinimumDenominator = 0.00001f;
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultMinimumDenominator()
+	 */
+	@Override
+	public float getFloatValueEqualsAlmostDefaultMinimumDenominator()
+	{
+		return this.floatValueEqualsAlmostDefaultMinimumDenominator;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultMinimumDenominator(float)
+	 */
+	@Override
+	public void setFloatValueEqualsAlmostDefaultMinimumDenominator(
+			float defaultMinimumDenominator)
+	{
+		this.floatValueEqualsAlmostDefaultMinimumDenominator = defaultMinimumDenominator;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float)
+	 */
+	@Override
+	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
+			float valueB)
+	{
+		boolean result = false;
+
+		float defaultAllowedRelativeDifference = this.getFloatValueEqualsAlmostDefaultAllowedRelativeDifference();
+		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, defaultAllowedRelativeDifference);
+				
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float, float)
+	 */
+	@Override
+	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
+			float valueB, float allowedRelativeDifference)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		float defaultMinimumDenomiator = this.getFloatValueEqualsAlmostDefaultMinimumDenominator();
+		float relativeDifference = Math.abs(valueB-valueA) / Math.max(Math.max(valueA, valueB), defaultMinimumDenomiator);
+		if (relativeDifference <= allowedRelativeDifference)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsAlmostCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
+			float valueB)
+	{
+		boolean result = false;
+
+		float defaultAllowedRelativeDifference = this.getFloatValueEqualsAlmostDefaultAllowedRelativeDifference();
+		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, defaultAllowedRelativeDifference);
+				
+		return result;
+	}
+
+	@Override
+	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
+			float valueB, float allowedRelativeDifference)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		float defaultMinimumDenomiator = this.getFloatValueEqualsAlmostDefaultMinimumDenominator();
+		float relativeDifference = Math.abs(valueB-valueA) / Math.max(Math.max(valueA, valueB), defaultMinimumDenomiator);
+		if (allowedRelativeDifference < relativeDifference)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsAlmostCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
 
 	/**
 	 * Default constructor.
@@ -485,6 +662,7 @@ public abstract class AChecker implements IChecker
 	{
 		super();
 	}
+
 
 	/**
 	 * Recommended constructor receiving required references (manual constructor

@@ -47,8 +47,8 @@ public interface IPrimitiveFloatNotEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatNotEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal to value '%s'.")
-	void failFloatValueNotEquals(Object caller, String valueAName, String valueBName);
+	@NFail(checkerSpecificationType = IPrimitiveFloatNotEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal or almost equal to value '%s'.")
+	void failFloatValueNotEqualsAlmost(Object caller, String valueAName, String valueBName);
 
 	/**
 	 * Fails specified values, since they passed a not-equals-almost check.
@@ -64,7 +64,7 @@ public interface IPrimitiveFloatNotEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatNotEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal to value '%s'. %s")
-	void failFloatValueNotEquals(Object caller, String valueAName, String valueBName, String message);
+	@NFail(checkerSpecificationType = IPrimitiveFloatNotEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal or almost equal to value '%s'. %s")
+	void failFloatValueNotEqualsAlmost(Object caller, String valueAName, String valueBName, String message);
 
 }

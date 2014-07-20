@@ -24,6 +24,7 @@
 package starkcoder.failfast.checks.primitives;
 
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanChecker;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatChecker;
 
 /**
  * Specification grouping all primitive type check specifications.
@@ -34,7 +35,8 @@ import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanChecker;
  * @author Keld Oelykke
  */
 public interface IPrimitiveChecker extends 
-		IPrimitiveBooleanChecker
+		IPrimitiveBooleanChecker,
+		IPrimitiveFloatChecker
 {
 
 }

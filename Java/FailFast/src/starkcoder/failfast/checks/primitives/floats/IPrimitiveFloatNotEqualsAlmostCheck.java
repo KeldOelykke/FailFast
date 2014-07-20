@@ -36,12 +36,12 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmos
  *  
  * @author Keld Oelykke
  */
-public interface IPrimitiveFloatNotEqualsAlmostCheck extends ICheck
+public interface IPrimitiveFloatNotEqualsAlmostCheck extends IPrimitiveFloatEqualsAlmostCheckProperties, ICheck
 {
 	/**
 	 * Checks if the values are not-equals (apart from a relative difference).
 	 * <p>
-	 * By default the allowed relative difference is 0.001 (0.1%)
+	 * By default the allowed relative difference is 0.001 (0.1%) {link:IPrimitiveFloatEqualsAlmostCheckProperties}
 	 * </p>
 	 * 
 	 * @param caller

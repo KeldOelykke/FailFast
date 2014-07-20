@@ -24,6 +24,7 @@
 package starkcoder.failfast.fails.primitives;
 
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFailer;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatFailer;
 
 /**
  * Specification grouping all primitive type fail specifications.
@@ -34,7 +35,8 @@ import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFailer;
  * @author Keld Oelykke
  */
 public interface IPrimitiveFailer extends 
-		IPrimitiveBooleanFailer
+		IPrimitiveBooleanFailer,
+		IPrimitiveFloatFailer
 {
 
 }
