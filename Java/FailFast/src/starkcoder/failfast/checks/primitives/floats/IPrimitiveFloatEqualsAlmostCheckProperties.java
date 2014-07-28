@@ -50,23 +50,4 @@ public interface IPrimitiveFloatEqualsAlmostCheckProperties
 	public void setFloatValueEqualsAlmostDefaultAllowedRelativeDifference(
 			float defaultAllowedRelativeDifference);
 
-	/**
-	 * Default minimum denominator used by isFloatValueEqualsAlmost.
-	 * <p>
-	 * By default the minimum denominator is 0.00001f
-	 * </p>
-	 * 
-	 * @return default minimum denominator - default is 0.00001f
-	 */
-	public float getFloatValueEqualsAlmostDefaultMinimumDenominator();
-
-	/**
-	 * Changes the default minimum denominator used by isFloatValueEqualsAlmost.
-	 * 
-	 * @param defaultMinimumDenominator
-	 *            new value to set
-	 */
-	public void setFloatValueEqualsAlmostDefaultMinimumDenominator(
-			float defaultMinimumDenominator);
-
 }

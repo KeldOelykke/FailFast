@@ -91,7 +91,7 @@ public class FloatValueNotEqualsAlmostTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testFloatValueNotEqualsAlmostFailerCallerIsNull() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
+		float valueB = 0.1241f;
 		if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB))
 		{
 			failer.failFloatValueNotEqualsAlmost(null, "valueA", "valueB");
@@ -101,7 +101,7 @@ public class FloatValueNotEqualsAlmostTest {
 	@Test(expected=IllegalStateException.class)
 	public void testFloatValueFailerCallerIsWrong() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
+		float valueB = 0.1241f;
 		if(checker.isFloatValueNotEqualsAlmost(new String("Foo"), valueA, valueB))
 		{
 			failer.failFloatValueNotEqualsAlmost(new String("Bar"), "valueA", "valueB");
@@ -114,7 +114,7 @@ public class FloatValueNotEqualsAlmostTest {
 	@Test(expected=IllegalStateException.class)
 	public void testFloatValueNotEqualsAlmostMismatchCheckCheck() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
+		float valueB = 0.1241f;
 		if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB))
 		{
 			checker.isFloatValueNotEqualsAlmost(this, valueA, valueB);
@@ -139,7 +139,7 @@ public class FloatValueNotEqualsAlmostTest {
 	@Test(expected=IllegalStateException.class)
 	public void testFloatValueNotEqualsAlmostMismatchWrongFail() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
+		float valueB = 0.1241f;
 		if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB))
 		{
 			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB"); // wrong call
@@ -152,7 +152,7 @@ public class FloatValueNotEqualsAlmostTest {
 	@Test(expected=FailFastException.class)
 	public void testFloatValueNotEqualsAlmostFailNoMessage() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
+		float valueB = 0.1241f;
 		try
 		{
 			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB))
@@ -169,7 +169,7 @@ public class FloatValueNotEqualsAlmostTest {
 	
 	@Test(expected=FailFastException.class)
 	public void testFloatValueNotEqualsAlmostFailMessage() {
-		float valueA = 0.1234f;
+		float valueA = 0.1241f;
 		float valueB = 0.123f;
 		try
 		{
@@ -219,7 +219,7 @@ public class FloatValueNotEqualsAlmostTest {
 	
 	@Test(expected=FailFastException.class)
 	public void testFloatValueNotEqualsAlmostOverrideFailMessage() {
-		float valueA = 0.11f;
+		float valueA = 0.111f;
 		float valueB = 0.1f;
 		try
 		{

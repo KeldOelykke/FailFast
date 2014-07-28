@@ -558,26 +558,6 @@ public abstract class AChecker implements IChecker
 		this.floatValueEqualsAlmostDefaultAllowedRelativeDifference = defaultAllowedRelativeDifference;
 	}
 
-	
-	private float floatValueEqualsAlmostDefaultMinimumDenominator = 0.00001f;
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultMinimumDenominator()
-	 */
-	@Override
-	public float getFloatValueEqualsAlmostDefaultMinimumDenominator()
-	{
-		return this.floatValueEqualsAlmostDefaultMinimumDenominator;
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultMinimumDenominator(float)
-	 */
-	@Override
-	public void setFloatValueEqualsAlmostDefaultMinimumDenominator(
-			float defaultMinimumDenominator)
-	{
-		this.floatValueEqualsAlmostDefaultMinimumDenominator = defaultMinimumDenominator;
-	}
-
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float)
 	 */
@@ -607,8 +587,8 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 		
-		float defaultMinimumDenomiator = this.getFloatValueEqualsAlmostDefaultMinimumDenominator();
-		float relativeDifference = Math.abs(valueB-valueA) / Math.max(Math.max(valueA, valueB), defaultMinimumDenomiator);
+		float deltaAbs = Math.abs(valueB-valueA);
+		float relativeDifference =  deltaAbs / Math.max(Math.max(Math.abs(valueA), Math.abs(valueB)), 1f);
 		if (relativeDifference <= allowedRelativeDifference)
 		{
 			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsAlmostCheck.class);
@@ -641,8 +621,7 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 		
-		float defaultMinimumDenomiator = this.getFloatValueEqualsAlmostDefaultMinimumDenominator();
-		float relativeDifference = Math.abs(valueB-valueA) / Math.max(Math.max(valueA, valueB), defaultMinimumDenomiator);
+		float relativeDifference = Math.abs(valueB-valueA) / Math.max(Math.max(Math.abs(valueA), Math.abs(valueB)), 1f);
 		if (allowedRelativeDifference < relativeDifference)
 		{
 			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsAlmostCheck.class);

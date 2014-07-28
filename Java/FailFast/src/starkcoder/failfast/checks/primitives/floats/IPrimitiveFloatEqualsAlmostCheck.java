@@ -39,13 +39,11 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFa
  * </p>
  * <p>
  * A very simple implementation is to calculate rd = abs(B-A) / max(abs(A),
- * abs(B), 0.00001f) and return true, if rd is less or equal to a specified
+ * abs(B), 1) and return true, if rd is less or equal to a specified
  * allowed relative difference.
  * </p>
  * 
- * @see http
- *      ://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers
- *      -2012-edition/
+ * @see http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
  * 
  * @author Keld Oelykke
  */
