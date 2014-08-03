@@ -205,7 +205,7 @@ public class FloatValueEqualsAlmostTest {
 		float valueB = 0.12f;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, 0.01f))
+			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, 0.0011f))
 			{
 				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
 			}
@@ -217,12 +217,13 @@ public class FloatValueEqualsAlmostTest {
 		}
 	}
 	
+	@Test(expected=FailFastException.class)
 	public void testFloatValueEqualsAlmostOverrideFailMessage() {
 		float valueA = 0.11f;
 		float valueB = 0.1f;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, 0.1f))
+			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, 0.011f))
 			{
 				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB", "additional info");
 			}
