@@ -217,7 +217,6 @@ public class FloatValueEqualsAlmostTest {
 		}
 	}
 	
-	@Test(expected=FailFastException.class)
 	public void testFloatValueEqualsAlmostOverrideFailMessage() {
 		float valueA = 0.11f;
 		float valueB = 0.1f;
@@ -247,6 +246,53 @@ public class FloatValueEqualsAlmostTest {
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
+	@Test
+	public void testFloatValueEqualsAlmostOverrideNoFailTiny() {
+		float valueA = (float) Math.pow(1, -10);
+		float valueB = (float)(0.9 * Math.pow(1, -10));
+		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.09 * Math.pow(1, -10))))
+		{
+			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+		}
+		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testFloatValueEqualsAlmostOverrideFailTiny() {
+		float valueA = (float) Math.pow(1, -10);
+		float valueB = (float)(0.9 * Math.pow(1, -10));
+		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.11 * Math.pow(1, -10))))
+		{
+			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+		}
+		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+	
+	@Test
+	public void testFloatValueEqualsAlmostOverrideNoFailHuge() {
+		float valueA = (float) Math.pow(1, 10);
+		float valueB = (float)(0.9 * Math.pow(1, 10));
+		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.09 * Math.pow(1, 10))))
+		{
+			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+		}
+		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testFloatValueEqualsAlmostOverrideFailHuge() {
+		float valueA = (float) Math.pow(1, 10);
+		float valueB = (float)(0.9 * Math.pow(1, 10));
+		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.11 * Math.pow(1, 10))))
+		{
+			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+		}
+		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
 	
 	// 5th - corner cases
 	
@@ -270,7 +316,7 @@ public class FloatValueEqualsAlmostTest {
 	
 	@Test(expected=FailFastException.class)
 	public void testFloatValueEqualsAlmostFailAlmostZeroVsZero() {
-		float valueA = 0.001f;
+		float valueA = 0.00001f;
 		float valueB = 0f;
 		try
 		{
@@ -288,7 +334,7 @@ public class FloatValueEqualsAlmostTest {
 	
 	@Test(expected=FailFastException.class)
 	public void testFloatValueEqualsAlmostFailMinusAlmostZeroVsZero() {
-		float valueA = -0.001f;
+		float valueA = -0.00001f;
 		float valueB = 0f;
 		try
 		{

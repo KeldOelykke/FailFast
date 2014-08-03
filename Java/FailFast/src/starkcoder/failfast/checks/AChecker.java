@@ -539,23 +539,23 @@ public abstract class AChecker implements IChecker
 	}
 
 	
-	private float floatValueEqualsAlmostDefaultAllowedRelativeDifference = 0.001f;
+	private float floatValueEqualsAlmostDefaultAccuracy = 0.00001f;
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultAllowedRelativeDifference()
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultAccuracy()
 	 */
 	@Override
-	public float getFloatValueEqualsAlmostDefaultAllowedRelativeDifference()
+	public float getFloatValueEqualsAlmostDefaultAccuracy()
 	{
-		return this.floatValueEqualsAlmostDefaultAllowedRelativeDifference;
+		return this.floatValueEqualsAlmostDefaultAccuracy;
 	}
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultAllowedRelativeDifference(float)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultAccuracy(float)
 	 */
 	@Override
-	public void setFloatValueEqualsAlmostDefaultAllowedRelativeDifference(
-			float defaultAllowedRelativeDifference)
+	public void setFloatValueEqualsAlmostDefaultAccuracy(
+			float defaultAccuracy)
 	{
-		this.floatValueEqualsAlmostDefaultAllowedRelativeDifference = defaultAllowedRelativeDifference;
+		this.floatValueEqualsAlmostDefaultAccuracy = defaultAccuracy;
 	}
 
 	/* (non-Javadoc)
@@ -567,8 +567,8 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		float defaultAllowedRelativeDifference = this.getFloatValueEqualsAlmostDefaultAllowedRelativeDifference();
-		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, defaultAllowedRelativeDifference);
+		float defaultAccuracy = this.getFloatValueEqualsAlmostDefaultAccuracy();
+		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, defaultAccuracy);
 				
 		return result;
 	}
@@ -578,7 +578,7 @@ public abstract class AChecker implements IChecker
 	 */
 	@Override
 	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
-			float valueB, float allowedRelativeDifference)
+			float valueB, float accuracy)
 	{
 		boolean result = false;
 
@@ -587,12 +587,47 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 		
-		float deltaAbs = Math.abs(valueB-valueA);
-		float relativeDifference =  deltaAbs / Math.max(Math.max(Math.abs(valueA), Math.abs(valueB)), 1f);
-		if (relativeDifference <= allowedRelativeDifference)
+		if(valueA == valueB)
+		{
+			result = true;
+		}
+		else 
+		{
+			float absValueA = (valueA < 0f ? -valueA : valueA);
+			float absValueB = (valueB < 0f ? -valueB : valueB);
+			if(absValueA < absValueB)
+			{ // B has less precision, scale A up to B's precision
+				int exponentB = Math.getExponent(valueB);
+				float denominator = Math.scalb(1f, exponentB);
+				float mantissaAWithExponentB = valueA / denominator;
+				float mantissaBWithExponentB = valueB / denominator;
+				float mantissaDifference = mantissaBWithExponentB-mantissaAWithExponentB;
+				if(mantissaDifference < 0f)
+				{
+					mantissaDifference *= -1f;
+				}
+				float mantissaErrorTolerance = accuracy / denominator;
+				result = (mantissaDifference <= mantissaErrorTolerance);
+			}
+			else // absValueB < absValueA
+			{ // A has less precision, scale B up to A's precision
+				int exponentA = Math.getExponent(valueA);
+				float denominator = Math.scalb(1f, exponentA);
+				float mantissaBWithExponentA = valueB / denominator;
+				float mantissaAWithExponentA = valueA / denominator;
+				float mantissaDifference = mantissaAWithExponentA-mantissaBWithExponentA; 
+				if(mantissaDifference < 0f)
+				{
+					mantissaDifference *= -1f;
+				}
+				float mantissaAccuracy = accuracy / denominator;
+				result = (mantissaDifference <= mantissaAccuracy);
+			}
+		}
+
+		if(result)
 		{
 			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsAlmostCheck.class);
-			result = true;
 		}
 
 		return result;
@@ -604,15 +639,15 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		float defaultAllowedRelativeDifference = this.getFloatValueEqualsAlmostDefaultAllowedRelativeDifference();
-		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, defaultAllowedRelativeDifference);
+		float defaultAccuracy = this.getFloatValueEqualsAlmostDefaultAccuracy();
+		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, defaultAccuracy);
 				
 		return result;
 	}
 
 	@Override
 	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
-			float valueB, float allowedRelativeDifference)
+			float valueB, float accuracy)
 	{
 		boolean result = false;
 
@@ -621,16 +656,50 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 		
-		float relativeDifference = Math.abs(valueB-valueA) / Math.max(Math.max(Math.abs(valueA), Math.abs(valueB)), 1f);
-		if (allowedRelativeDifference < relativeDifference)
+		if(valueA != valueB)
+		{
+			float absValueA = (valueA < 0f ? -valueA : valueA);
+			float absValueB = (valueB < 0f ? -valueB : valueB);
+			if(absValueA < absValueB)
+			{ // B has less precision, scale A up to B's precision
+				int exponentB = Math.getExponent(valueB);
+				float denominator = Math.scalb(1f, exponentB);
+				float mantissaAWithExponentB = valueA / denominator;
+				float mantissaBWithExponentB = valueB / denominator;
+				float mantissaDifference = mantissaBWithExponentB-mantissaAWithExponentB;
+				if(mantissaDifference < 0f)
+				{
+					mantissaDifference *= -1f;
+				}
+				float mantissaErrorTolerance = accuracy / denominator;
+				result = (mantissaErrorTolerance < mantissaDifference);
+			}
+			else // absValueB < absValueA
+			{ // A has less precision, scale B up to A's precision
+				int exponentA = Math.getExponent(valueA);
+				float denominator = Math.scalb(1f, exponentA);
+				float mantissaBWithExponentA = valueB / denominator;
+				float mantissaAWithExponentA = valueA / denominator;
+				float mantissaDifference = mantissaAWithExponentA-mantissaBWithExponentA; 
+				if(mantissaDifference < 0f)
+				{
+					mantissaDifference *= -1f;
+				}
+				float mantissaAccuracy = accuracy / denominator;
+				result = (mantissaAccuracy < mantissaDifference);
+			}
+		}
+		// else false
+			
+		if (result)
 		{
 			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsAlmostCheck.class);
-			result = true;
 		}
 
 		return result;
 	}
 
+	
 	/**
 	 * Default constructor.
 	 * <p>
@@ -679,5 +748,5 @@ public abstract class AChecker implements IChecker
 		callContractor.pushContractWithCaller(caller, this,
 				checkerSpecification);
 	}
-
+	
 }

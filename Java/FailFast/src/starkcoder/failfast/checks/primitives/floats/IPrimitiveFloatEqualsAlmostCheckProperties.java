@@ -32,22 +32,22 @@ public interface IPrimitiveFloatEqualsAlmostCheckProperties
 {
 
 	/**
-	 * Default relative allowed difference used by isFloatValueEqualsAlmost.
+	 * Default accuracy used by isFloatValueEqualsAlmost.
 	 * <p>
-	 * By default the allowed relative difference is 0.001f (0.1%)
+	 * By default the accuracy is 0.00001f
 	 * </p>
 	 * 
-	 * @return default allowed relative difference - default is 0.001f (0.1%)
+	 * @return default accuracy - default is 0.00001f
 	 */
-	public float getFloatValueEqualsAlmostDefaultAllowedRelativeDifference();
+	public float getFloatValueEqualsAlmostDefaultAccuracy();
 
 	/**
-	 * Changes the default allowed relative difference used by isFloatValueEqualsAlmost.
+	 * Changes the default accuracy used by isFloatValueEqualsAlmost.
 	 * 
-	 * @param defaultRelativeDifference
+	 * @param defaultAccuracy
 	 *            new value to set
 	 */
-	public void setFloatValueEqualsAlmostDefaultAllowedRelativeDifference(
-			float defaultAllowedRelativeDifference);
+	public void setFloatValueEqualsAlmostDefaultAccuracy(
+			float defaultAccuracy);
 
 }

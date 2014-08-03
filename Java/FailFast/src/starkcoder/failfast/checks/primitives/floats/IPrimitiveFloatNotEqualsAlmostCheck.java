@@ -28,10 +28,9 @@ import starkcoder.failfast.checks.NCheck;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail;
 
 /**
- * Specifies a not-equals check for float allowing some relative difference.
+ * Specifies a not-equals check for float allowing some difference e.g. due to calculation errors.
  * <p>
- * This is an attempt to use a better equals check than the traditional epsilon test
- * - refer to {link:IPrimitiveFloatEqualsAlmostCheck} 
+ * Please refer to {link:IPrimitiveFloatEqualsAlmostCheck} for more details.
  * </p>
  *  
  * @author Keld Oelykke
@@ -39,9 +38,9 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmos
 public interface IPrimitiveFloatNotEqualsAlmostCheck extends IPrimitiveFloatEqualsAlmostCheckProperties, ICheck
 {
 	/**
-	 * Checks if the values are not-equals (apart from a relative difference).
+	 * Checks if the values are not-equals (within a default accuracy).
 	 * <p>
-	 * By default the allowed relative difference is 0.001 (0.1%) {link:IPrimitiveFloatEqualsAlmostCheckProperties}
+	 * By default the allowed relative difference is 0.00001 {link:IPrimitiveFloatEqualsAlmostCheckProperties}
 	 * </p>
 	 * 
 	 * @param caller
@@ -58,7 +57,7 @@ public interface IPrimitiveFloatNotEqualsAlmostCheck extends IPrimitiveFloatEqua
 	boolean isFloatValueNotEqualsAlmost(Object caller, float valueA, float valueB);
 	
 	/**
-	 * Checks if the values are not-equals (apart from specified allowed relative difference).
+	 * Checks if the values are not-equals (within a specified accuracy).
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
@@ -66,13 +65,13 @@ public interface IPrimitiveFloatNotEqualsAlmostCheck extends IPrimitiveFloatEqua
 	 *            value to equals check against value B
 	 * @param valueB
 	 *            argument to equals-method of value A
-	 * @param allowedRelativeDifference
-	 *            allowed relative difference between A and B
+	 * @param accuracy
+	 *            accuracy of A and B
 	 * @return true, if values are equals - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IPrimitiveFloatNotEqualsAlmostFail.class)
 	boolean isFloatValueNotEqualsAlmost(Object caller, float valueA, float valueB,
-			float allowedRelativeDifference);
+			float accuracy);
 }

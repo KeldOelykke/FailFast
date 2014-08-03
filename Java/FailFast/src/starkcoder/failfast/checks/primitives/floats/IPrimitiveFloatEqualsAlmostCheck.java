@@ -28,19 +28,23 @@ import starkcoder.failfast.checks.NCheck;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail;
 
 /**
- * Specifies an equals check for float allowing some relative difference.
+ * Specifies an equals check for float allowing some difference e.g. due to calculation errors.
  * <p>
  * This is an attempt on a better equals check than the traditional epsilon test
  * (doesn't support both tiny and huge numbers for 1 particular epsilon value).
  * </p>
  * <p>
- * The idea is take the difference between A and B and look how big that is in
- * comparison to values of A and B.
+ * This is also an attempt on a better equals check than the relative error test
+ * (doesn't support tiny numbers without an absolute epsilon test).
  * </p>
  * <p>
- * A very simple implementation is to calculate rd = abs(B-A) / max(abs(A),
- * abs(B), 1) and return true, if rd is less or equal to a specified
- * allowed relative difference.
+ * The goal is to get rid of both the absolute and relative epsilon values by using accuracy 
+ * of the mantissa aka number of significant digits we include in the check.
+ * </p>
+ * <p>
+ * The idea is to find the greatest exponent X of A and B, 
+ * calculate the mantissa difference between A and B (with exponent X) 
+ * and look how big that is in comparison to the mantissa of a specified accuracy (with exponent X).
  * </p>
  * 
  * @see http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
@@ -50,9 +54,9 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFa
 public interface IPrimitiveFloatEqualsAlmostCheck extends IPrimitiveFloatEqualsAlmostCheckProperties, ICheck
 {
 	/**
-	 * Checks if the values are equals (apart from a relative difference).
+	 * Checks if the values are equals (within a default accuracy).
 	 * <p>
-	 * The default allowed relative difference is 0.001f (0.1%) {link:IPrimitiveFloatEqualsAlmostCheckProperties}
+	 * The default accuracy is 0.00001f {link:IPrimitiveFloatEqualsAlmostCheckProperties}
 	 * </p>
 	 * 
 	 * @param caller
@@ -69,8 +73,7 @@ public interface IPrimitiveFloatEqualsAlmostCheck extends IPrimitiveFloatEqualsA
 	boolean isFloatValueEqualsAlmost(Object caller, float valueA, float valueB);
 
 	/**
-	 * Checks if the values are equals (apart from specified allowed relative
-	 * difference).
+	 * Checks if the values are equals (within a specified accuracy).
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
@@ -78,13 +81,13 @@ public interface IPrimitiveFloatEqualsAlmostCheck extends IPrimitiveFloatEqualsA
 	 *            value to equals check against value B
 	 * @param valueB
 	 *            argument to equals-method of value A
-	 * @param allowedRelativeDifference
-	 *            allowed relative difference between A and B
+	 * @param accuracy
+	 *            accuracy of A and B
 	 * @return true, if values are equals - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IPrimitiveFloatEqualsAlmostFail.class)
 	boolean isFloatValueEqualsAlmost(Object caller, float valueA, float valueB,
-			float allowedRelativeDifference);
+			float accuracy);
 }
