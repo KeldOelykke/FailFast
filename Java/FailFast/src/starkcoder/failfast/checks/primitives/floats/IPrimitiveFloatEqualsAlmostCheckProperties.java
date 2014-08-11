@@ -32,22 +32,41 @@ public interface IPrimitiveFloatEqualsAlmostCheckProperties
 {
 
 	/**
-	 * Default accuracy used by isFloatValueEqualsAlmost.
+	 * Default absolute epsilon used by isFloatValueEqualsAlmost.
 	 * <p>
-	 * By default the accuracy is 0.00001f
+	 * By default the absolute epsilon is 0.00001f
 	 * </p>
 	 * 
-	 * @return default accuracy - default is 0.00001f
+	 * @return default absolute epsilon - default is 0.00001f
 	 */
-	public float getFloatValueEqualsAlmostDefaultAccuracy();
+	public float getFloatValueEqualsAlmostDefaultAbsoluteEpsilon();
 
 	/**
-	 * Changes the default accuracy used by isFloatValueEqualsAlmost.
+	 * Changes the default absolute epsilon used by isFloatValueEqualsAlmost.
 	 * 
-	 * @param defaultAccuracy
+	 * @param defaultAbsoluteEpsilon
 	 *            new value to set
 	 */
-	public void setFloatValueEqualsAlmostDefaultAccuracy(
-			float defaultAccuracy);
+	public void setFloatValueEqualsAlmostDefaultAbsoluteEpsilon(
+			float defaultAbsoluteEpsilon);
+
+	/**
+	 * Default relative epsilon used by isFloatValueEqualsAlmost.
+	 * <p>
+	 * By default the relative epsilon is 0.000001f
+	 * </p>
+	 * 
+	 * @return default relative epsilon - default is 0.000001f
+	 */
+	public float getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+
+	/**
+	 * Changes the default relative epsilon used by isFloatValueEqualsAlmost.
+	 * 
+	 * @param defaultRelativeEpsilon
+	 *            new value to set
+	 */
+	public void setFloatValueEqualsAlmostDefaultRelativeEpsilon(
+			float defaultRelativeEpsilon);
 
 }

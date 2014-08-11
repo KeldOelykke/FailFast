@@ -538,24 +538,45 @@ public abstract class AChecker implements IChecker
 		return result;	
 	}
 
-	
-	private float floatValueEqualsAlmostDefaultAccuracy = 0.00001f;
+
+	private float floatValueEqualsAlmostDefaultAbsoluteEpsilon = 0.00001f;
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultAccuracy()
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultAbsoluteEpsilon()
 	 */
 	@Override
-	public float getFloatValueEqualsAlmostDefaultAccuracy()
+	public float getFloatValueEqualsAlmostDefaultAbsoluteEpsilon()
 	{
-		return this.floatValueEqualsAlmostDefaultAccuracy;
+		return this.floatValueEqualsAlmostDefaultAbsoluteEpsilon;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultAbsoluteEpsilon(float)
+	 */
+	@Override
+	public void setFloatValueEqualsAlmostDefaultAbsoluteEpsilon(
+			float defaultAbsoluteEpsilon)
+	{
+		this.floatValueEqualsAlmostDefaultAbsoluteEpsilon = Math.abs(defaultAbsoluteEpsilon);
+	}
+	
+
+	private float floatValueEqualsAlmostDefaultRelativeEpsilon = 0.000001f;
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultRelativeEpsilon()
+	 */
+	@Override
+	public float getFloatValueEqualsAlmostDefaultRelativeEpsilon()
+	{
+		return this.floatValueEqualsAlmostDefaultRelativeEpsilon;
 	}
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultAccuracy(float)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultRelativeEpsilon(float)
 	 */
 	@Override
-	public void setFloatValueEqualsAlmostDefaultAccuracy(
-			float defaultAccuracy)
+	public void setFloatValueEqualsAlmostDefaultRelativeEpsilon(
+			float defaultRelativeEpsilon)
 	{
-		this.floatValueEqualsAlmostDefaultAccuracy = defaultAccuracy;
+		this.floatValueEqualsAlmostDefaultRelativeEpsilon = Math.abs(defaultRelativeEpsilon);
 	}
 
 	/* (non-Javadoc)
@@ -567,8 +588,9 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		float defaultAccuracy = this.getFloatValueEqualsAlmostDefaultAccuracy();
-		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, defaultAccuracy);
+		float defaultAbsoluteEpsilon = this.getFloatValueEqualsAlmostDefaultAbsoluteEpsilon();
+		float defaultRelativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, defaultAbsoluteEpsilon, defaultRelativeEpsilon);
 				
 		return result;
 	}
@@ -578,7 +600,22 @@ public abstract class AChecker implements IChecker
 	 */
 	@Override
 	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
-			float valueB, float accuracy)
+			float valueB, float absoluteEpsilon)
+	{
+		boolean result = false;
+
+		float defaultRelativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, defaultRelativeEpsilon);
+				
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float, float, float)
+	 */
+	@Override
+	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
+			float valueB, float absoluteEpsilon, float relativeEpsilon)
 	{
 		boolean result = false;
 
@@ -593,36 +630,9 @@ public abstract class AChecker implements IChecker
 		}
 		else 
 		{
-			float absValueA = (valueA < 0f ? -valueA : valueA);
-			float absValueB = (valueB < 0f ? -valueB : valueB);
-			if(absValueA < absValueB)
-			{ // B has less precision, scale A up to B's precision
-				int exponentB = Math.getExponent(valueB);
-				float denominator = Math.scalb(1f, exponentB);
-				float mantissaAWithExponentB = valueA / denominator;
-				float mantissaBWithExponentB = valueB / denominator;
-				float mantissaDifference = mantissaBWithExponentB-mantissaAWithExponentB;
-				if(mantissaDifference < 0f)
-				{
-					mantissaDifference *= -1f;
-				}
-				float mantissaErrorTolerance = accuracy / denominator;
-				result = (mantissaDifference <= mantissaErrorTolerance);
-			}
-			else // absValueB < absValueA
-			{ // A has less precision, scale B up to A's precision
-				int exponentA = Math.getExponent(valueA);
-				float denominator = Math.scalb(1f, exponentA);
-				float mantissaBWithExponentA = valueB / denominator;
-				float mantissaAWithExponentA = valueA / denominator;
-				float mantissaDifference = mantissaAWithExponentA-mantissaBWithExponentA; 
-				if(mantissaDifference < 0f)
-				{
-					mantissaDifference *= -1f;
-				}
-				float mantissaAccuracy = accuracy / denominator;
-				result = (mantissaDifference <= mantissaAccuracy);
-			}
+			float lowB = (1f - Math.signum(valueA) * relativeEpsilon) * valueA - absoluteEpsilon;
+			float highB = (1f + Math.signum(valueA) * relativeEpsilon) * valueA + absoluteEpsilon;
+			result = (lowB <= valueB && valueB <= highB);
 		}
 
 		if(result)
@@ -633,21 +643,43 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float)
+	 */
 	@Override
 	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
 			float valueB)
 	{
 		boolean result = false;
 
-		float defaultAccuracy = this.getFloatValueEqualsAlmostDefaultAccuracy();
-		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, defaultAccuracy);
+		float absoluteEpsilon = this.getFloatValueEqualsAlmostDefaultAbsoluteEpsilon();
+		float relativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, relativeEpsilon);
+				
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float, float)
+	 */
+	@Override
+	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
+			float valueB, float absoluteEpsilon)
+	{
+		boolean result = false;
+
+		float relativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, relativeEpsilon);
 				
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float, float, float)
+	 */
 	@Override
 	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
-			float valueB, float accuracy)
+			float valueB, float absoluteEpsilon, float relativeEpsilon)
 	{
 		boolean result = false;
 
@@ -658,36 +690,9 @@ public abstract class AChecker implements IChecker
 		
 		if(valueA != valueB)
 		{
-			float absValueA = (valueA < 0f ? -valueA : valueA);
-			float absValueB = (valueB < 0f ? -valueB : valueB);
-			if(absValueA < absValueB)
-			{ // B has less precision, scale A up to B's precision
-				int exponentB = Math.getExponent(valueB);
-				float denominator = Math.scalb(1f, exponentB);
-				float mantissaAWithExponentB = valueA / denominator;
-				float mantissaBWithExponentB = valueB / denominator;
-				float mantissaDifference = mantissaBWithExponentB-mantissaAWithExponentB;
-				if(mantissaDifference < 0f)
-				{
-					mantissaDifference *= -1f;
-				}
-				float mantissaErrorTolerance = accuracy / denominator;
-				result = (mantissaErrorTolerance < mantissaDifference);
-			}
-			else // absValueB < absValueA
-			{ // A has less precision, scale B up to A's precision
-				int exponentA = Math.getExponent(valueA);
-				float denominator = Math.scalb(1f, exponentA);
-				float mantissaBWithExponentA = valueB / denominator;
-				float mantissaAWithExponentA = valueA / denominator;
-				float mantissaDifference = mantissaAWithExponentA-mantissaBWithExponentA; 
-				if(mantissaDifference < 0f)
-				{
-					mantissaDifference *= -1f;
-				}
-				float mantissaAccuracy = accuracy / denominator;
-				result = (mantissaAccuracy < mantissaDifference);
-			}
+			float lowB = (1f - Math.signum(valueA) * relativeEpsilon) * valueA - absoluteEpsilon;
+			float highB = (1f + Math.signum(valueA) * relativeEpsilon) * valueA + absoluteEpsilon;
+			result = (valueB < lowB ||  highB < valueB);
 		}
 		// else false
 			

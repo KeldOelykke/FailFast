@@ -205,7 +205,7 @@ public class FloatValueNotEqualsAlmostTest {
 		float valueB = 0.12f;
 		try
 		{
-			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.001f))
+			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.0001f))
 			{
 				failer.failFloatValueNotEqualsAlmost(this, "valueA", "valueB");
 			}

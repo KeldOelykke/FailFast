@@ -38,9 +38,10 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmos
 public interface IPrimitiveFloatNotEqualsAlmostCheck extends IPrimitiveFloatEqualsAlmostCheckProperties, ICheck
 {
 	/**
-	 * Checks if the values are not-equals (within a default accuracy).
+	 * Checks if the values are not-equals  (B is NOT within [L(A);U(A)]).
 	 * <p>
-	 * By default the allowed relative difference is 0.00001 {link:IPrimitiveFloatEqualsAlmostCheckProperties}
+	 * The default absolute epsilon is 0.00001f and the default relative epsilon is 0.000001f 
+	 * {link:IPrimitiveFloatEqualsAlmostCheckProperties}.
 	 * </p>
 	 * 
 	 * @param caller
@@ -49,7 +50,7 @@ public interface IPrimitiveFloatNotEqualsAlmostCheck extends IPrimitiveFloatEqua
 	 *            value to equals check against value B
 	 * @param valueB
 	 *            argument to equals-method of value A
-	 * @return true, if values are equals - otherwise false
+	 * @return true, if values are NOT almost equals - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
@@ -57,21 +58,43 @@ public interface IPrimitiveFloatNotEqualsAlmostCheck extends IPrimitiveFloatEqua
 	boolean isFloatValueNotEqualsAlmost(Object caller, float valueA, float valueB);
 	
 	/**
-	 * Checks if the values are not-equals (within a specified accuracy).
-	 * 
+	 * Checks if the values are not-equals (B is NOT within [L(A);U(A)]).
+	 * <p>
+	 * The default relative epsilon is 0.000001f {link:IPrimitiveFloatEqualsAlmostCheckProperties}.
+	 * </p>
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param valueA
 	 *            value to equals check against value B
 	 * @param valueB
 	 *            argument to equals-method of value A
-	 * @param accuracy
-	 *            accuracy of A and B
-	 * @return true, if values are equals - otherwise false
+	 * @param absoluteEpsilon
+	 *            disregarded absolute difference between A and B
+	 * @return true, if values are NOT almost equals - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IPrimitiveFloatNotEqualsAlmostFail.class)
 	boolean isFloatValueNotEqualsAlmost(Object caller, float valueA, float valueB,
-			float accuracy);
+			float absoluteEpsilon);
+	
+	/**
+	 * Checks if the values are not-equals (B is NOT within [L(A);U(A)]).
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to equals check against value B
+	 * @param valueB
+	 *            argument to equals-method of value A
+	 * @param absoluteEpsilon
+	 *            disregarded absolute difference between A and B
+	 * @param relativeEpsilon
+	 *            disregarded relative difference between A and B
+	 * @return true, if values are NOT almost equals - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IPrimitiveFloatNotEqualsAlmostFail.class)
+	boolean isFloatValueNotEqualsAlmost(Object caller, float valueA, float valueB,
+			float absoluteEpsilon, float relativeEpsilon);
 }

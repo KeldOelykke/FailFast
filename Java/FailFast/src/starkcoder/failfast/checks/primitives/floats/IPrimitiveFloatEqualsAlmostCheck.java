@@ -30,21 +30,22 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFa
 /**
  * Specifies an equals check for float allowing some difference e.g. due to calculation errors.
  * <p>
- * This is an attempt on a better equals check than the traditional epsilon test
- * (doesn't support both tiny and huge numbers for 1 particular epsilon value).
+ * This is an attempt on an equals check that supports both tiny numbers with an absolute epsilon test
+ * and large numbers with a relative epsilon test.
  * </p>
  * <p>
- * This is also an attempt on a better equals check than the relative error test
- * (doesn't support tiny numbers without an absolute epsilon test).
+ * The idea behind this is to find a lower-function - L(X) - and upper-function - U(X) - that for
+ * any X tells in which range Y is considered almost equal to X 
+  * </p>
+ * <p>
+ * For an absolute epsilon: L(X) = X - EPSILON_abs, U(x) = X + EPSILON_abs
+ * For a relative epsilon: L(X) = (1 - Sign(X) * EPSILON_rel) * X, U(X) =  (1 + Sign(X) * EPSILON_rel) * X
+ * (see https://github.com/KeldOelykke/FailFast/blob/master/Java/Docs/Images/absAndRelErrorFunctions.png).
  * </p>
  * <p>
- * The goal is to get rid of both the absolute and relative epsilon values by using accuracy 
- * of the mantissa aka number of significant digits we include in the check.
- * </p>
- * <p>
- * The idea is to find the greatest exponent X of A and B, 
- * calculate the mantissa difference between A and B (with exponent X) 
- * and look how big that is in comparison to the mantissa of a specified accuracy (with exponent X).
+ * Above combined gives: L(X) = (1 - Sign(X) * EPSILON_rel) * X - EPSILON_abs,
+ *  U(x) = (1 + Sign(X) * EPSILON_rel) * X + EPSILON_abs
+ * (see https://github.com/KeldOelykke/FailFast/blob/master/Java/Docs/Images/almostEqualZoneForXandY.png).
  * </p>
  * 
  * @see http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
@@ -54,9 +55,10 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFa
 public interface IPrimitiveFloatEqualsAlmostCheck extends IPrimitiveFloatEqualsAlmostCheckProperties, ICheck
 {
 	/**
-	 * Checks if the values are equals (within a default accuracy).
+	 * Checks if the values are almost equals (B is within [L(A);U(A)]).
 	 * <p>
-	 * The default accuracy is 0.00001f {link:IPrimitiveFloatEqualsAlmostCheckProperties}
+	 * The default absolute epsilon is 0.00001f and the default relative epsilon is 0.000001f 
+	 * {link:IPrimitiveFloatEqualsAlmostCheckProperties}.
 	 * </p>
 	 * 
 	 * @param caller
@@ -73,7 +75,10 @@ public interface IPrimitiveFloatEqualsAlmostCheck extends IPrimitiveFloatEqualsA
 	boolean isFloatValueEqualsAlmost(Object caller, float valueA, float valueB);
 
 	/**
-	 * Checks if the values are equals (within a specified accuracy).
+	 * Checks if the values are almost equals (B is within [L(A);U(A)]).
+	 * <p>
+	 * The default relative epsilon is 0.000001f {link:IPrimitiveFloatEqualsAlmostCheckProperties}.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
@@ -81,13 +86,34 @@ public interface IPrimitiveFloatEqualsAlmostCheck extends IPrimitiveFloatEqualsA
 	 *            value to equals check against value B
 	 * @param valueB
 	 *            argument to equals-method of value A
-	 * @param accuracy
-	 *            accuracy of A and B
-	 * @return true, if values are equals - otherwise false
+	 * @param absoluteEpsilon
+	 *            disregarded absolute difference between A and B
+	 * @return true, if values are almost equals - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IPrimitiveFloatEqualsAlmostFail.class)
 	boolean isFloatValueEqualsAlmost(Object caller, float valueA, float valueB,
-			float accuracy);
+			float absoluteEpsilon);
+
+	/**
+	 * Checks if the values are almost equals (B is within [L(A);U(A)]).
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to equals check against value B
+	 * @param valueB
+	 *            argument to equals-method of value A
+	 * @param absoluteEpsilon
+	 *            disregarded absolute difference between A and B
+	 * @param relativeEpsilon
+	 *            disregarded relative difference between A and B
+	 * @return true, if values are almost equals - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IPrimitiveFloatEqualsAlmostFail.class)
+	boolean isFloatValueEqualsAlmost(Object caller, float valueA, float valueB,
+			float absoluteEpsilon, float relativeEpsilon);
 }
