@@ -21,20 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.primitives.booleans;
+package starkcoder.failfast.checks.primitives.booleans;
+
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanDefaultFail;
 
 /**
- * Specification grouping all boolean fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting boolean.
- * </p>
+ * Specifies a default check for boolean.
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveBooleanFailer extends 
-	IPrimitiveBooleanEqualsFail, IPrimitiveBooleanNotEqualsFail,
-	IPrimitiveBooleanFalseFail, IPrimitiveBooleanTrueFail,
-	IPrimitiveBooleanDefaultFail, IPrimitiveBooleanNotDefaultFail
+public interface IPrimitiveBooleanDefaultCheck extends IPrimitiveBooleanDefaultProperties, ICheck
 {
-
+	/**
+	 * Checks if the value is default value (false).
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to default check
+	 * @return true, if value is default, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IPrimitiveBooleanDefaultFail.class)
+	boolean isBooleanValueDefault(Object caller, boolean valueA);
 }

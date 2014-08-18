@@ -40,8 +40,10 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanDefaultFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
+import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotDefaultFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail;
@@ -414,10 +416,35 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName, message });
 	}
 	
+	@Override
+	public void failBooleanValueDefault(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveBooleanDefaultFail.class, new Object[] { caller, valueAName });
+	}
+	@Override
+	public void failBooleanValueDefault(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveBooleanDefaultFail.class, new Object[] { caller, valueAName, message });
+	}
+	@Override
+	public void failBooleanValueNotDefault(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveBooleanNotDefaultFail.class, new Object[] { caller, valueAName });
+	}
+	@Override
+	public void failBooleanValueNotDefault(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveBooleanNotDefaultFail.class, new Object[] { caller, valueAName, message });
+	}
+	
+	
 	// PRIMITIVES - BOOLEAN - END ---------------------------------
 	
 	
 	// PRIMITIVES - FLOAT - START -------------------------------
+
 
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail#failFloatValueEquals(java.lang.Object, java.lang.String, java.lang.String)
@@ -458,24 +485,36 @@ public abstract class AFailer implements IFailer
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
 			String valueBName)
 	{
 		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
 	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
 			String valueBName, String message)
 	{
 		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
 	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
 			String valueBName)
 	{
 		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
 	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
 			String valueBName, String message)

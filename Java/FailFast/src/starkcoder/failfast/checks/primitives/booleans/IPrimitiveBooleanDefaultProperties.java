@@ -1,5 +1,4 @@
-/**
- * The MIT License (MIT)
+/* The MIT License (MIT)
  * 
  * Copyright (c) 2014 Keld Ølykke
  * 
@@ -21,20 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.primitives.booleans;
+package starkcoder.failfast.checks.primitives.booleans;
 
 /**
- * Specification grouping all boolean fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting boolean.
- * </p>
+ * Defines properties used by both {link:IPrimitiveBooleanDefaultCheck} and {link:IPrimitiveBooleanNotDefaultCheck}.
  * 
  * @author Keld Oelykke
+ *
  */
-public interface IPrimitiveBooleanFailer extends 
-	IPrimitiveBooleanEqualsFail, IPrimitiveBooleanNotEqualsFail,
-	IPrimitiveBooleanFalseFail, IPrimitiveBooleanTrueFail,
-	IPrimitiveBooleanDefaultFail, IPrimitiveBooleanNotDefaultFail
+public interface IPrimitiveBooleanDefaultProperties
 {
+
+	/**
+	 * Default boolean used by isBooleanValueDefault.
+	 * <p>
+	 * By default a boolean is false
+	 * </p>
+	 * 
+	 * @return default boolean - default is false
+	 */
+	public boolean getBooleanValueDefault();
+
+	/**
+	 * Changes the default value used by isBooleanValueDefault.
+	 * 
+	 * @param defaultAbsoluteEpsilon
+	 *            new value to set
+	 */
+	public void setBooleanValueDefault(
+			boolean defaultBooleanValue);
 
 }

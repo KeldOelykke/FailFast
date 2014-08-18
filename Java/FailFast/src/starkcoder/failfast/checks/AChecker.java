@@ -35,8 +35,10 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
+import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
+import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotDefaultCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck;
@@ -484,6 +486,70 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	
+	private boolean booleanValueDefault;
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultProperties#getBooleanValueDefault()
+	 */
+	@Override
+	public boolean getBooleanValueDefault()
+	{
+		return this.booleanValueDefault;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultProperties#setBooleanValueDefault(boolean)
+	 */
+	@Override
+	public void setBooleanValueDefault(boolean defaultBooleanValue)
+	{
+		this.booleanValueDefault = defaultBooleanValue;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotDefaultCheck#isBooleanValueNotDefault(java.lang.Object, boolean)
+	 */
+	@Override
+	public boolean isBooleanValueNotDefault(Object caller, boolean valueA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (valueA != this.getBooleanValueDefault())
+		{
+			this.pushContractWithCaller(caller, IPrimitiveBooleanNotDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck#isBooleanValueDefault(java.lang.Object, boolean)
+	 */
+	@Override
+	public boolean isBooleanValueDefault(Object caller, boolean valueA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (valueA == this.getBooleanValueDefault())
+		{
+			this.pushContractWithCaller(caller, IPrimitiveBooleanDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	
 	// PRIMITIVES - BOOLEANS - END
 	
 	
@@ -493,6 +559,8 @@ public abstract class AChecker implements IChecker
 	
 	// PRIMITIVES - FLOATS - END
 	
+
+
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck#isFloatValueEquals(java.lang.Object, float, float)
 	 */

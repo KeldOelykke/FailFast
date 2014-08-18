@@ -33,7 +33,8 @@ package starkcoder.failfast.checks.primitives.booleans;
  */
 public interface IPrimitiveBooleanChecker extends 
 		IPrimitiveBooleanEqualsCheck, IPrimitiveBooleanNotEqualsCheck,
-		IPrimitiveBooleanFalseCheck, IPrimitiveBooleanTrueCheck
+		IPrimitiveBooleanFalseCheck, IPrimitiveBooleanTrueCheck, 
+		IPrimitiveBooleanDefaultCheck, IPrimitiveBooleanNotDefaultCheck
 {
 
 }
