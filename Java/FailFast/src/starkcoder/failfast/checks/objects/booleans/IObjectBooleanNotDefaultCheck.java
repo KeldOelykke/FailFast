@@ -1,4 +1,5 @@
-/* The MIT License (MIT)
+/**
+ * The MIT License (MIT)
  * 
  * Copyright (c) 2014 Keld Ølykke
  * 
@@ -20,34 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.primitives.booleans;
+package starkcoder.failfast.checks.objects.booleans;
+
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotDefaultFail;
 
 /**
- * Defines properties used by both {link:IPrimitiveBooleanDefaultCheck} and {link:IPrimitiveBooleanNotDefaultCheck}.
+ * Specifies a not-default value check for Boolean.
  * 
  * @author Keld Oelykke
- *
  */
-public interface IPrimitiveBooleanDefaultProperties
+public interface IObjectBooleanNotDefaultCheck extends IObjectBooleanDefaultProperties, ICheck
 {
-
 	/**
-	 * Default boolean used by isBooleanValueDefault and isBooleanValueNotDefault.
-	 * <p>
-	 * By default a boolean is false
-	 * </p>
+	 * Checks if the Boolean does not reference a default value.
 	 * 
-	 * @return default boolean - default is false
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check
+	 * @return true, if referenced object does NOT have a default value, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
-	public boolean getBooleanValueDefault();
-
-	/**
-	 * Changes the default value used by isBooleanValueDefault and isBooleanValueNotDefault.
-	 * 
-	 * @param defaultBooleanValue
-	 *            new value to set
-	 */
-	public void setBooleanValueDefault(
-			boolean defaultBooleanValue);
-
+	@NCheck(failSpecificationType = IObjectBooleanNotDefaultFail.class)
+	boolean isBooleanNotDefault(Object caller, Boolean referenceA);
 }

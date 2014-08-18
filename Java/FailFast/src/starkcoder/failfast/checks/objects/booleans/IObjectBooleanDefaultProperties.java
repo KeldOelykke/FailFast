@@ -20,34 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.primitives.booleans;
+package starkcoder.failfast.checks.objects.booleans;
 
 /**
- * Defines properties used by both {link:IPrimitiveBooleanDefaultCheck} and {link:IPrimitiveBooleanNotDefaultCheck}.
+ * Defines properties used by both {link:IObjectBooleanDefaultCheck} and {link:IObjectBooleanNotDefaultCheck}.
  * 
  * @author Keld Oelykke
  *
  */
-public interface IPrimitiveBooleanDefaultProperties
+public interface IObjectBooleanDefaultProperties
 {
 
 	/**
-	 * Default boolean used by isBooleanValueDefault and isBooleanValueNotDefault.
+	 * Default Boolean used by isBooleanDefault and isBooleanNotDefault.
 	 * <p>
-	 * By default a boolean is false
+	 * By default a Boolean is Boolean.False
 	 * </p>
 	 * 
-	 * @return default boolean - default is false
+	 * @return default Boolean - default is Boolean.False
 	 */
-	public boolean getBooleanValueDefault();
+	public Boolean getBooleanDefault();
 
 	/**
-	 * Changes the default value used by isBooleanValueDefault and isBooleanValueNotDefault.
+	 * Changes the default object used by isBooleanDefault and isBooleanNotDefault.
 	 * 
-	 * @param defaultBooleanValue
-	 *            new value to set
+	 * @param defaultBoolean
+	 *            new default object to set
 	 */
-	public void setBooleanValueDefault(
-			boolean defaultBooleanValue);
+	public void setBooleanDefault(
+			Boolean defaultBoolean);
 
 }

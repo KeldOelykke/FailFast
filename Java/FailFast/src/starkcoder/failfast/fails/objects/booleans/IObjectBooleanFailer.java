@@ -35,7 +35,8 @@ package starkcoder.failfast.fails.objects.booleans;
 public interface IObjectBooleanFailer extends 
 		IObjectBooleanEqualsFail, IObjectBooleanNotEqualsFail,
 		IObjectBooleanNullFail, IObjectBooleanNotNullFail,
-		IObjectBooleanFalseFail, IObjectBooleanTrueFail
+		IObjectBooleanFalseFail, IObjectBooleanTrueFail,
+		IObjectBooleanDefaultFail, IObjectBooleanNotDefaultFail
 {
 
 }

@@ -34,7 +34,8 @@ package starkcoder.failfast.checks.objects.booleans;
 public interface IObjectBooleanChecker extends 
 	IObjectBooleanEqualsCheck, IObjectBooleanNotEqualsCheck,
 	IObjectBooleanNullCheck, IObjectBooleanNotNullCheck,
-	IObjectBooleanFalseCheck, IObjectBooleanTrueCheck
+	IObjectBooleanFalseCheck, IObjectBooleanTrueCheck,
+	IObjectBooleanDefaultCheck, IObjectBooleanNotDefaultCheck
 {
 
 }

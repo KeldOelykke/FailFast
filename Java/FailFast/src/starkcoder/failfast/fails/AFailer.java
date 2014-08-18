@@ -34,8 +34,10 @@ import starkcoder.failfast.fails.objects.IObjectNotNullFail;
 import starkcoder.failfast.fails.objects.IObjectNotSameFail;
 import starkcoder.failfast.fails.objects.IObjectNullFail;
 import starkcoder.failfast.fails.objects.IObjectSameFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanDefaultFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFalseFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotDefaultFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
@@ -334,6 +336,31 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IObjectBooleanTrueFail.class, new Object[] { caller, referenceAName, message });
 	}	
+	
+	
+	
+	@Override
+	public void failBooleanDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectBooleanDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failBooleanDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectBooleanDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failBooleanNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectBooleanNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failBooleanNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectBooleanNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
 	
 	
 	// OBJECTS - BOOLEAN - END ---------------------------------

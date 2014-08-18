@@ -29,8 +29,10 @@ import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
 import starkcoder.failfast.checks.objects.IObjectNotSameCheck;
 import starkcoder.failfast.checks.objects.IObjectNullCheck;
 import starkcoder.failfast.checks.objects.IObjectSameCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanDefaultCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanFalseCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotDefaultCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
@@ -391,10 +393,61 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	private Boolean booleanDefault = Boolean.FALSE;
+	@Override
+	public Boolean getBooleanDefault()
+	{
+		return this.booleanDefault;
+	}
+	@Override
+	public void setBooleanDefault(Boolean defaultBoolean)
+	{
+		this.booleanDefault = defaultBoolean;
+	}
+
+	@Override
+	public boolean isBooleanNotDefault(Object caller, Boolean referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (this.getBooleanDefault() != referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectBooleanNotDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isBooleanDefault(Object caller, Boolean referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (this.getBooleanDefault() == referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectBooleanDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	
+	
 	// OBJECTS - BOOLEANS - END
 
 	
 	// PRIMITIVES - BOOLEANS - START
+
 
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck#isObjectEquals(java.lang.Object, boolean, boolean)
