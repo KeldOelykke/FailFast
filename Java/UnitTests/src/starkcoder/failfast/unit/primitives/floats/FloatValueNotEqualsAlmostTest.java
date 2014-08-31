@@ -197,42 +197,7 @@ public class FloatValueNotEqualsAlmostTest {
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
-	
-	@Test(expected=FailFastException.class)
-	public void testFloatValueNotEqualsAlmostOverrideFailValuesNoMessage() {
-		float valueA = 0.121f;
-		float valueB = 0.12f;
-		try
-		{
-			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.0001f))
-			{
-				failer.failFloatValueNotEqualsAlmost(this, "valueA", valueA, "valueB", valueB);
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			throw failFastException;
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testFloatValueNotEqualsAlmostOverrideFailValuesMessage() {
-		float valueA = 0.111f;
-		float valueB = 0.1f;
-		try
-		{
-			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.01f))
-			{
-				failer.failFloatValueNotEqualsAlmost(this, "valueA", valueA, "valueB", valueB, "additional info");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			throw failFastException;
-		}
-	}
+
 
 	// 4tf - method override cases
 	
@@ -283,6 +248,40 @@ public class FloatValueNotEqualsAlmostTest {
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
-
 	
+	@Test(expected=FailFastException.class)
+	public void testFloatValueNotEqualsAlmostOverrideFailValuesNoMessage() {
+		float valueA = 0.121f;
+		float valueB = 0.12f;
+		try
+		{
+			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.0001f))
+			{
+				failer.failFloatValueNotEqualsAlmost(this, "valueA", valueA, "valueB", valueB);
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			throw failFastException;
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testFloatValueNotEqualsAlmostOverrideFailValuesMessage() {
+		float valueA = 0.111f;
+		float valueB = 0.1f;
+		try
+		{
+			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.01f))
+			{
+				failer.failFloatValueNotEqualsAlmost(this, "valueA", valueA, "valueB", valueB, "additional info");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			throw failFastException;
+		}
+	}	
 }
