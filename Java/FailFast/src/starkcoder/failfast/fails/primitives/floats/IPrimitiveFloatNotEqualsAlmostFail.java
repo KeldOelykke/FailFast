@@ -67,4 +67,44 @@ public interface IPrimitiveFloatNotEqualsAlmostFail extends IFail
 	@NFail(checkerSpecificationType = IPrimitiveFloatNotEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal or almost equal to value '%s'. %s")
 	void failFloatValueNotEqualsAlmost(Object caller, String valueAName, String valueBName, String message);
 
+	/**
+	 * Fails specified values, since they passed a not-equals-almost check.
+	 * 
+	 * @param caller
+	 *            object calling checker and then failer (if value check asserted)
+	 * @param valueAName
+	 *            name of value A to fail
+	 * @param valueA
+	 *            value A to fail
+	 * @param valueBName
+	 *            name of value B to fail
+	 * @param valueB
+	 *            value B to fail
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NFail(checkerSpecificationType = IPrimitiveFloatNotEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s'(%s) is NOT equal or almost equal to value '%s'(%s).")
+	void failFloatValueNotEqualsAlmost(Object caller, String valueAName, float valueA, String valueBName, float valueB);
+
+	/**
+	 * Fails specified values, since they passed a not-equals-almost check.
+	 * 
+	 * @param caller
+	 *            object calling checker and then failer (if value check asserted)
+	 * @param valueAName
+	 *            name of value A to fail
+	 * @param valueA
+	 *            value A to fail
+	 * @param valueBName
+	 *            name of value B to fail
+	 * @param valueB
+	 *            value B to fail
+	 * @param message
+	 *            additional information
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NFail(checkerSpecificationType = IPrimitiveFloatNotEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s'(%s) is NOT equal or almost equal to value '%s'(%s). %s")
+	void failFloatValueNotEqualsAlmost(Object caller, String valueAName, float valueA, String valueBName, float valueB, String message);
+
 }

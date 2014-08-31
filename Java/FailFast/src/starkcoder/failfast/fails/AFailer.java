@@ -510,7 +510,24 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
 	}
-	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, float, java.lang.String, float)
+	 */
+	@Override
+	public void failFloatValueNotEquals(Object caller, String valueAName,
+			float valueA, String valueBName, float valueB)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, float, java.lang.String, float, java.lang.String)
+	 */
+	@Override
+	public void failFloatValueNotEquals(Object caller, String valueAName,
+			float valueA, String valueBName, float valueB, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB, message });
+	}
 	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
@@ -531,6 +548,25 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
 	}
 	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float)
+	 */
+	@Override
+	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
+			float valueA, String valueBName, float valueB)
+	{
+		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float, java.lang.String)
+	 */
+	@Override
+	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
+			float valueA, String valueBName, float valueB, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB, message });
+	}
+	
+	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -547,6 +583,24 @@ public abstract class AFailer implements IFailer
 			String valueBName, String message)
 	{
 		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float)
+	 */
+	@Override
+	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
+			float valueA, String valueBName, float valueB)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float, java.lang.String)
+	 */
+	@Override
+	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
+			float valueA, String valueBName, float valueB, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB, message });
 	}
 	
 	
@@ -631,8 +685,19 @@ public abstract class AFailer implements IFailer
                         Class<?> argumentType = messageFormatArguments[j].getClass();
                         if (!parameterInfo.isAssignableFrom(argumentType))
                         {
-                            allParametersHaveMatchingType = false;
-                            break;
+                        	if(parameterInfo.isPrimitive())
+                        	{
+                        		if(!argumentType.getSimpleName().equalsIgnoreCase(parameterInfo.getSimpleName()))
+                        		{
+    	                            allParametersHaveMatchingType = false;
+    	                            break;
+                        		}
+                        	}
+                        	else
+                        	{
+	                            allParametersHaveMatchingType = false;
+	                            break;
+                        	}
                         }
                     }
                     if (allParametersHaveMatchingType)
