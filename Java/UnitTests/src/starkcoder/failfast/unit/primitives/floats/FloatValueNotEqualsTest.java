@@ -186,6 +186,18 @@ public class FloatValueNotEqualsTest {
 		}
 	}
 	
+	@Test
+	public void testFloatValueNotEqualsNoFail() {
+		float valueA = 0.1234f;
+		float valueB = valueA;
+		if(checker.isFloatValueNotEquals(this, valueA, valueB))
+		{
+			failer.failFloatValueNotEquals(this, "valueA", "valueB");
+		}
+		assertTrue("Expected valueA & valueB to pass the not-equals check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+
 	@Test(expected=FailFastException.class)
 	public void testFloatValueNotEqualsFailValues() {
 		float valueA = 0.1234f;
