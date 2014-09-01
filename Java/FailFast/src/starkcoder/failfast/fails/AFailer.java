@@ -48,8 +48,10 @@ import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotDefaultFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatDefaultFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotDefaultFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail;
 
@@ -528,6 +530,32 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB, message });
 	}
+	
+	
+	@Override
+	public void failFloatValueDefault(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveFloatDefaultFail.class, new Object[] { caller, valueAName });
+	}
+	@Override
+	public void failFloatValueDefault(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveFloatDefaultFail.class, new Object[] { caller, valueAName, message });
+	}
+	
+	@Override
+	public void failFloatValueNotDefault(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveFloatNotDefaultFail.class, new Object[] { caller, valueAName });
+	}
+	@Override
+	public void failFloatValueNotDefault(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveFloatNotDefaultFail.class, new Object[] { caller, valueAName, message });
+	}
+	
 	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)

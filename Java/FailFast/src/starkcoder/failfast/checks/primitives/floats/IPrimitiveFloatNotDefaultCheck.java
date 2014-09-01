@@ -21,20 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.primitives.floats;
+package starkcoder.failfast.checks.primitives.floats;
+
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotDefaultFail;
 
 /**
- * Specification grouping all float fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting float.
- * </p>
+ * Specifies a not-default check for float.
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveFloatFailer extends IPrimitiveFloatEqualsFail,
-		IPrimitiveFloatNotEqualsFail, IPrimitiveFloatEqualsAlmostFail,
-		IPrimitiveFloatNotEqualsAlmostFail, IPrimitiveFloatDefaultFail,
-		IPrimitiveFloatNotDefaultFail
+public interface IPrimitiveFloatNotDefaultCheck extends IPrimitiveFloatDefaultProperties, ICheck
 {
-
+	/**
+	 * Checks if the value is NOT default value (!0f).
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to default check
+	 * @return true, if value is NOT default, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IPrimitiveFloatNotDefaultFail.class)
+	boolean isFloatValueNotDefault(Object caller, float valueA);
 }

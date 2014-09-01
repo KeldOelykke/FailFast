@@ -43,8 +43,10 @@ import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseChec
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotDefaultCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotDefaultCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsCheck;
 import starkcoder.failfast.contractors.ICallContractor;
@@ -658,7 +660,71 @@ public abstract class AChecker implements IChecker
 
 		return result;	
 	}
+	
+	
+	private float floatValueDefault = 0f;
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultProperties#getFloatValueDefault()
+	 */
+	@Override
+	public float getFloatValueDefault()
+	{
+		return this.floatValueDefault;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultProperties#setFloatValueDefault(float)
+	 */
+	@Override
+	public void setFloatValueDefault(float defaultFloatValue)
+	{
+		this.floatValueDefault = defaultFloatValue;
+	}
+	
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultCheck#isFloatValueDefault(java.lang.Object, float)
+	 */
+	@Override
+	public boolean isFloatValueDefault(Object caller, float valueA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (this.getFloatValueDefault() == valueA)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotDefaultCheck#isFloatValueNotDefault(java.lang.Object, float)
+	 */
+	@Override
+	public boolean isFloatValueNotDefault(Object caller, float valueA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (this.getFloatValueDefault() != valueA)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatNotDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+
+	
 
 	private float floatValueEqualsAlmostDefaultAbsoluteEpsilon = 0.00001f;
 	/* (non-Javadoc)

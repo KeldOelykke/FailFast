@@ -46,6 +46,14 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="BooleanDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.booleans.BooleanDefaultTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="BooleanEqualsTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -59,6 +67,14 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="starkcoder.failfast.unit.objects.booleans.BooleanFalseTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="BooleanNotDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.booleans.BooleanNotDefaultTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
@@ -94,6 +110,14 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
+    <target name="BooleanValueDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueDefaultTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="BooleanValueEqualsTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -107,6 +131,14 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueFalseTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="BooleanValueNotDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueNotDefaultTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
@@ -326,8 +358,10 @@
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueTrueTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotEqualsTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
@@ -350,8 +384,10 @@
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotEqualsTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
@@ -381,42 +417,28 @@
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueTrueTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotEqualsTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
-    <target name="BooleanValueDefaultTest">
+    <target name="FloatValueDefaultTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueDefaultTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
-    <target name="BooleanValueNotDefaultTest">
+    <target name="FloatValueNotDefaultTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueNotDefaultTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="BooleanDefaultTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.booleans.BooleanDefaultTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="BooleanNotDefaultTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.booleans.BooleanNotDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotDefaultTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>

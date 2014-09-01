@@ -1,5 +1,4 @@
-/**
- * The MIT License (MIT)
+/* The MIT License (MIT)
  * 
  * Copyright (c) 2014 Keld Ølykke
  * 
@@ -21,20 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.primitives.floats;
+package starkcoder.failfast.checks.primitives.floats;
 
 /**
- * Specification grouping all float fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting float.
- * </p>
+ * Defines properties used by both {link:IPrimitiveFloatDefaultCheck} and {link:IPrimitiveFloatNotDefaultCheck}.
  * 
  * @author Keld Oelykke
+ *
  */
-public interface IPrimitiveFloatFailer extends IPrimitiveFloatEqualsFail,
-		IPrimitiveFloatNotEqualsFail, IPrimitiveFloatEqualsAlmostFail,
-		IPrimitiveFloatNotEqualsAlmostFail, IPrimitiveFloatDefaultFail,
-		IPrimitiveFloatNotDefaultFail
+public interface IPrimitiveFloatDefaultProperties
 {
+
+	/**
+	 * Default float used by isFloatValueDefault and isFloatValueNotDefault.
+	 * <p>
+	 * By default a float is 0f
+	 * </p>
+	 * 
+	 * @return default float - default is 0f
+	 */
+	public float getFloatValueDefault();
+
+	/**
+	 * Changes the default value used by isFloatValueDefault and isFloatValueNotDefault.
+	 * 
+	 * @param defaultFloatValue
+	 *            new value to set
+	 */
+	public void setFloatValueDefault(
+			float defaultFloatValue);
 
 }

@@ -33,7 +33,8 @@ package starkcoder.failfast.checks.primitives.floats;
  */
 public interface IPrimitiveFloatChecker extends IPrimitiveFloatEqualsCheck,
 		IPrimitiveFloatNotEqualsCheck, IPrimitiveFloatEqualsAlmostCheck,
-		IPrimitiveFloatNotEqualsAlmostCheck
+		IPrimitiveFloatNotEqualsAlmostCheck, IPrimitiveFloatDefaultCheck,
+		IPrimitiveFloatNotDefaultCheck
 {
 
 }
