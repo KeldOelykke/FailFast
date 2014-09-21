@@ -46,9 +46,15 @@ import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterEqualsCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessEqualsCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotDefaultCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck;
 import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatOutsideCheck;
+import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatWithinCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -61,14 +67,6 @@ import starkcoder.failfast.contractors.ICallContractor;
  * </p>
  * 
  * @author Keld Oelykke
- */
-/**
- * @author Keld Oelykke
- *
- */
-/**
- * @author Keld Oelykke
- *
  */
 public abstract class AChecker implements IChecker
 {
@@ -891,7 +889,173 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessCheck#isFloatValueLess(java.lang.Object, float, float)
+	 */
+	@Override
+	public boolean isFloatValueLess(Object caller, float valueA, float valueB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(valueA < valueB)
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatLessCheck.class);
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessEqualsCheck#isFloatValueLessEquals(java.lang.Object, float, float)
+	 */
+	@Override
+	public boolean isFloatValueLessEquals(Object caller, float valueA,
+			float valueB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(valueA <= valueB)
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatLessEqualsCheck.class);
+		}
+
+		return result;
+	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterCheck#isFloatValueGreater(java.lang.Object, float, float)
+	 */
+	@Override
+	public boolean isFloatValueGreater(Object caller, float valueA, float valueB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(valueA > valueB)
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterCheck.class);
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterEqualsCheck#isFloatValueGreaterEquals(java.lang.Object, float, float)
+	 */
+	@Override
+	public boolean isFloatValueGreaterEquals(Object caller, float valueA,
+			float valueB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(valueA >= valueB)
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterEqualsCheck.class);
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatOutsideCheck#isFloatValueOutside(java.lang.Object, float, float, float)
+	 */
+	@Override
+	public boolean isFloatValueOutside(Object caller, float valueA,
+			float valueMin, float valueMax)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(valueA < valueMin || valueMax < valueA)
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatOutsideCheck.class);
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatWithinCheck#isFloatValueWithin(java.lang.Object, float, float, float)
+	 */
+	@Override
+	public boolean isFloatValueWithin(Object caller, float valueA,
+			float valueMin, float valueMax)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(valueMin <= valueA && valueA <= valueMax)
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IPrimitiveFloatWithinCheck.class);
+		}
+
+		return result;
+	}
+
 	/**
 	 * Default constructor.
 	 * <p>

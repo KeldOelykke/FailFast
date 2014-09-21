@@ -34,7 +34,10 @@ package starkcoder.failfast.fails.primitives.floats;
 public interface IPrimitiveFloatFailer extends IPrimitiveFloatEqualsFail,
 		IPrimitiveFloatNotEqualsFail, IPrimitiveFloatEqualsAlmostFail,
 		IPrimitiveFloatNotEqualsAlmostFail, IPrimitiveFloatDefaultFail,
-		IPrimitiveFloatNotDefaultFail
+		IPrimitiveFloatNotDefaultFail,
+		IPrimitiveFloatLessFail, IPrimitiveFloatLessEqualsFail, 
+		IPrimitiveFloatGreaterFail, IPrimitiveFloatGreaterEqualsFail, 
+		IPrimitiveFloatWithinFail, IPrimitiveFloatOutsideFail
 {
 
 }

@@ -23,21 +23,31 @@
  */
 package starkcoder.failfast.checks.primitives.floats;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatGreaterFail;
+
 /**
- * Specification grouping all float check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting float.
- * </p>
+ * Specifies a greater check for float.
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveFloatChecker extends IPrimitiveFloatEqualsCheck,
-		IPrimitiveFloatNotEqualsCheck, IPrimitiveFloatEqualsAlmostCheck,
-		IPrimitiveFloatNotEqualsAlmostCheck, IPrimitiveFloatDefaultCheck,
-		IPrimitiveFloatNotDefaultCheck, 
-		IPrimitiveFloatLessCheck, IPrimitiveFloatLessEqualsCheck, 
-		IPrimitiveFloatGreaterCheck, IPrimitiveFloatGreaterEqualsCheck, 
-		IPrimitiveFloatWithinCheck, IPrimitiveFloatOutsideCheck
+public interface IPrimitiveFloatGreaterCheck extends ICheck
 {
+	/**
+	 * Checks if A > B.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to check against value B
+	 * @param valueB
+	 *            argument to check against value A
+	 * @return true, if A > B - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IPrimitiveFloatGreaterFail.class)
+	boolean isFloatValueGreater(Object caller, float valueA, float valueB);
 
 }

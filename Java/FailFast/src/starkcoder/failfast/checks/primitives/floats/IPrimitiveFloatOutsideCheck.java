@@ -23,21 +23,31 @@
  */
 package starkcoder.failfast.checks.primitives.floats;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatOutsideFail;
+
 /**
- * Specification grouping all float check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting float.
- * </p>
+ * Specifies a within check for float.
  * 
  * @author Keld Oelykke
  */
-public interface IPrimitiveFloatChecker extends IPrimitiveFloatEqualsCheck,
-		IPrimitiveFloatNotEqualsCheck, IPrimitiveFloatEqualsAlmostCheck,
-		IPrimitiveFloatNotEqualsAlmostCheck, IPrimitiveFloatDefaultCheck,
-		IPrimitiveFloatNotDefaultCheck, 
-		IPrimitiveFloatLessCheck, IPrimitiveFloatLessEqualsCheck, 
-		IPrimitiveFloatGreaterCheck, IPrimitiveFloatGreaterEqualsCheck, 
-		IPrimitiveFloatWithinCheck, IPrimitiveFloatOutsideCheck
+public interface IPrimitiveFloatOutsideCheck extends ICheck
 {
+	/**
+	 * Checks if A is outside [min;max].
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param valueA
+	 *            value to check against value B
+	 * @param valueB
+	 *            argument to check against value A
+	 * @return true, if A is outside [min;max] - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IPrimitiveFloatOutsideFail.class)
+	boolean isFloatValueOutside(Object caller, float valueA, float valueMin, float valueMax);
 
 }

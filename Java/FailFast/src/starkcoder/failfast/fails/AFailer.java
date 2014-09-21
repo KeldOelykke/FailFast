@@ -51,9 +51,15 @@ import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatDefaultFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatGreaterEqualsFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatGreaterFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatLessEqualsFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatLessFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotDefaultFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail;
 import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatOutsideFail;
+import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatWithinFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -632,10 +638,110 @@ public abstract class AFailer implements IFailer
 	}
 	
 	
+	@Override
+	public void failFloatValueGreater(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatGreaterFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	@Override
+	public void failFloatValueGreater(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatGreaterFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	@Override
+	public void failFloatValueGreaterEquals(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatGreaterEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	@Override
+	public void failFloatValueGreaterEquals(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatGreaterEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	@Override
+	public void failFloatValueLess(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatLessFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	@Override
+	public void failFloatValueLess(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatLessFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	@Override
+	public void failFloatValueLessEquals(Object caller, String valueAName,
+			String valueBName)
+	{
+		this.Throw(caller, IPrimitiveFloatLessEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+	}
+	@Override
+	public void failFloatValueLessEquals(Object caller, String valueAName,
+			String valueBName, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatLessEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+	}
+	
+	@Override
+	public void failFloatValueOutside(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName });
+	}
+	@Override
+	public void failFloatValueOutside(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, message });
+	}
+	@Override
+	public void failFloatValueOutside(Object caller, String valueAName,
+			float valueMin, float valueMax)
+	{
+		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, valueMin, valueMax });
+	}
+	@Override
+	public void failFloatValueOutside(Object caller, String valueAName,
+			float valueMin, float valueMax, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, valueMin, valueMax, message });
+	}
+	
+	@Override
+	public void failFloatValueWithin(Object caller, String valueAName)
+	{
+		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName });
+	}
+	@Override
+	public void failFloatValueWithin(Object caller, String valueAName,
+			String message)
+	{
+		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, message });
+	}
+	@Override
+	public void failFloatValueWithin(Object caller, String valueAName,
+			float valueMin, float valueMax)
+	{
+		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, valueMin, valueMax });
+	}
+	@Override
+	public void failFloatValueWithin(Object caller, String valueAName,
+			float valueMin, float valueMax, String message)
+	{
+		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, valueMin, valueMax, message });
+	}
+	
+	
 	// PRIMITIVES - FLOAT - END ---------------------------------
 
 	
-
 	/**
 	 * Default constructor.
 	 * <p>
