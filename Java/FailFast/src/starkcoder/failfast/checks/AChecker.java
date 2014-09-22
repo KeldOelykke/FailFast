@@ -1014,11 +1014,20 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 		
-		if(valueA < valueMin || valueMax < valueA)
+		if(valueMin <= valueMax)
 		{
-			result = true;
+			if(valueA < valueMin || valueMax < valueA)
+			{
+				result = true;
+			}
 		}
-		// else false
+		else
+		{ // valueMin > valueMax
+			if(valueA < valueMax || valueMin < valueA)
+			{
+				result = true;
+			}
+		}
 			
 		if (result)
 		{
@@ -1042,11 +1051,20 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 		
-		if(valueMin <= valueA && valueA <= valueMax)
+		if(valueMin <= valueMax)
 		{
-			result = true;
+			if(valueMin <= valueA && valueA <= valueMax)
+			{
+				result = true;
+			}
 		}
-		// else false
+		else
+		{ // valueMin > valueMax
+			if(valueMax <= valueA && valueA <= valueMin)
+			{
+				result = true;
+			}
+		}
 			
 		if (result)
 		{
