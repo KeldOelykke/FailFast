@@ -51,6 +51,8 @@ Builds, Tests & Jar
 
 https://keldoelykke.ci.cloudbees.com/job/FailFast/
 
+![Cloudbees is Cool!](http://cloudbees.prod.acquia-sites.com/sites/default/files/styles/large/public/Button-Built-on-CB-1.png)
+
 
 Dogma
 =====
@@ -78,3 +80,6 @@ Please help me change my opinions and this library, if you feel like it.
 
 Kind Regards,
 Keld Ølykke
+
+
+![You know it makes sense!](http://cloudbees.prod.acquia-sites.com/sites/default/files/styles/large/public/Button-Powered-by-CB.png)
