@@ -42,6 +42,12 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotDefaultFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotEqualsFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNullFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanDefaultFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
@@ -374,6 +380,92 @@ public abstract class AFailer implements IFailer
 	// OBJECTS - BOOLEAN - END ---------------------------------
 	
 	
+	
+	// OBJECTS - STRING - START ---------------------------------
+	
+	@Override
+	public void failStringNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failStringNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	
+	@Override
+	public void failStringNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failStringNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}	
+	
+	
+	@Override
+	public void failStringEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failStringEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	
+	@Override
+	public void failStringNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failStringNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+
+	
+	@Override
+	public void failStringDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failStringDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+
+	@Override
+	public void failStringNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failStringNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - STRING - END ---------------------------------
+	
+	
+	
 	// PRIMITIVES - BOOLEAN - START -------------------------------
 
 
@@ -386,6 +478,7 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IPrimitiveBooleanNotEqualsFail.class, new Object[] { caller, valueAName, valueBName });
 	}
+
 
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)

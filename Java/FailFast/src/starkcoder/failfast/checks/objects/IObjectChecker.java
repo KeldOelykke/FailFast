@@ -24,6 +24,7 @@
 package starkcoder.failfast.checks.objects;
 
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
+import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
 
 /**
  * Specification grouping all object check specifications.
@@ -35,7 +36,7 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
  */
 public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
 		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectBooleanChecker
+		IObjectBooleanChecker, IObjectStringChecker
 {
 
 }

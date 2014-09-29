@@ -37,6 +37,12 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNotDefaultCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNotEqualsCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNullCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
@@ -446,6 +452,158 @@ public abstract class AChecker implements IChecker
 	// OBJECTS - BOOLEANS - END
 
 	
+	// OBJECTS - STRINGS - START
+
+	private String stringDefault = new String();
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringDefaultProperties#getStringDefault()
+	 */
+	@Override
+	public String getStringDefault()
+	{
+		return this.stringDefault;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringDefaultProperties#setStringDefault(java.lang.String)
+	 */
+	@Override
+	public void setStringDefault(String defaultString)
+	{
+		this.stringDefault = defaultString;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck#isStringDefault(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public boolean isStringDefault(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (this.getStringDefault().equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, IObjectStringDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNotDefaultCheck#isStringNotDefault(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public boolean isStringNotDefault(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (!this.getStringDefault().equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotDefaultCheck.class);
+			result = true;
+		}
+
+		return result;
+	}	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck#isStringEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringEquals(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA.equals(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNotEqualsCheck#isStringNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringNotEquals(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (!referenceA.equals(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNullCheck#isStringNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public boolean isStringNull(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectStringNullCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNotNullCheck#isStringNotNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public boolean isStringNotNull(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotNullCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	// OBJECTS - STRINGS - END
+
+	
 	// PRIMITIVES - BOOLEANS - START
 
 
@@ -470,6 +628,8 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
+
+
 
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck#isObjectNotEquals(java.lang.Object, boolean, boolean)

@@ -21,22 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
-
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+package starkcoder.failfast.checks.objects.strings;
 
 /**
- * Specification grouping all object fail specifications.
+ * Specification grouping all String check specifications.
  * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
+ * This (or a derivative) should inherit all check methods targeting String.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectBooleanFailer, IObjectStringFailer
+public interface IObjectStringChecker extends 
+	IObjectStringEqualsCheck, IObjectStringNotEqualsCheck,
+	IObjectStringNullCheck, IObjectStringNotNullCheck,
+	IObjectStringDefaultCheck, IObjectStringNotDefaultCheck
 {
 
 }
