@@ -23,20 +23,20 @@
  */
 package starkcoder.failfast.fails.objects.strings;
 
-import starkcoder.failfast.checks.objects.strings.IObjectStringNotDefaultCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNullOrEmptyCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
 
 /**
- * Fail specification throwing an exception when a not-default check asserts.
+ * Fail specification throwing an exception when a null-or-empty check asserts.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectStringNotDefaultFail extends IFail
+public interface IObjectStringNullOrEmptyFail extends IFail
 {
 	/**
-	 * Fails specified reference, since its referenced value passed a not-default check.
+	 * Fails specified reference, since its referenced value passed a null-or-empty check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)
@@ -45,11 +45,11 @@ public interface IObjectStringNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value.")
-	void failStringNotDefault(Object caller, String referenceAName);
+	@NFail(checkerSpecificationType = IObjectStringNullOrEmptyCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' points to null or an empty value.")
+	void failStringNullOrEmpty(Object caller, String referenceAName);
 
 	/**
-	 * Fails specified reference, since its referenced value passed a not-default check.
+	 * Fails specified reference, since its referenced value passed a null-or-empty check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)
@@ -60,7 +60,7 @@ public interface IObjectStringNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value. %s")
-	void failStringNotDefault(Object caller, String referenceAName, String message);
+	@NFail(checkerSpecificationType = IObjectStringNullOrEmptyCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' points to null or an empty value. %s")
+	void failStringNullOrEmpty(Object caller, String referenceAName, String message);
 
 }

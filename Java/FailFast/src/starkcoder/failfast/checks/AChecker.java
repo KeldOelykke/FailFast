@@ -38,11 +38,15 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotDefaultCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNotEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotEqualsCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullAndNotEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNullCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNullOrEmptyCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
@@ -601,6 +605,92 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	private final static String stringEmpty = "";
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck#isStringEmpty(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public boolean isStringEmpty(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (stringEmpty.equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, IObjectStringEmptyCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNotEmptyCheck#isStringNotEmpty(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public boolean isStringNotEmpty(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (!stringEmpty.equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotEmptyCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	
+	@Override
+	public boolean isStringNullOrEmpty(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA || stringEmpty.equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, IObjectStringNullOrEmptyCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isStringNotNullAndNotEmpty(Object caller, String referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA && !stringEmpty.equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotNullAndNotEmptyCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	
+	
 	// OBJECTS - STRINGS - END
 
 	

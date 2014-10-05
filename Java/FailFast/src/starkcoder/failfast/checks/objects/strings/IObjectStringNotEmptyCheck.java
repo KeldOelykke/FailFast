@@ -21,23 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects.strings;
+package starkcoder.failfast.checks.objects.strings;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotEmptyFail;
 
 /**
- * Specification grouping all String fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting String.
- * </p>
+ * Specifies a not-empty check for String.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectStringFailer extends 
-		IObjectStringEqualsFail, IObjectStringNotEqualsFail,
-		IObjectStringNullFail, IObjectStringNotNullFail,
-		IObjectStringDefaultFail, IObjectStringNotDefaultFail,
-		IObjectStringEmptyFail, IObjectStringNotEmptyFail,
-		IObjectStringNullOrEmptyFail, IObjectStringNotNullAndNotEmptyFail
+public interface IObjectStringNotEmptyCheck extends ICheck
 {
-
+	/**
+	 * Checks if the String does not reference an empty string.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check
+	 * @return true, if referenced object does NOT have an empty string, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectStringNotEmptyFail.class)
+	boolean isStringNotEmpty(Object caller, String referenceA);
 }

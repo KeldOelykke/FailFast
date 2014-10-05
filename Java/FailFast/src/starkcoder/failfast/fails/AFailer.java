@@ -43,11 +43,15 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotDefaultFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotEqualsFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullAndNotEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNullFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNullOrEmptyFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanDefaultFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
@@ -462,13 +466,76 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail#failStringEmpty(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringEmpty(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringEmptyFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail#failStringEmpty(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringEmpty(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringEmptyFail.class, new Object[] { caller, referenceAName, message });
+	}
+
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotEmptyFail#failStringNotEmpty(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringNotEmpty(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNotEmptyFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotEmptyFail#failStringNotEmpty(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringNotEmpty(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNotEmptyFail.class, new Object[] { caller, referenceAName, message });
+	}
+
+	@Override
+	public void failStringNotNullAndNotEmpty(Object caller,
+			String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failStringNotNullAndNotEmpty(Object caller,
+			String referenceAName, String message)
+	{
+		this.Throw(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failStringNullOrEmpty(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failStringNullOrEmpty(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	
 	// OBJECTS - STRING - END ---------------------------------
 	
 	
 	
 	// PRIMITIVES - BOOLEAN - START -------------------------------
 
-
+	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
 	 */
