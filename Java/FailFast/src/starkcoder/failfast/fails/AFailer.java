@@ -52,6 +52,12 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullAndNotEmpty
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNullFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNullOrEmptyFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanDefaultFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
 import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
@@ -504,28 +510,156 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectStringNotEmptyFail.class, new Object[] { caller, referenceAName, message });
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotNullAndNotEmptyFail#failStringNotNullAndNotEmpty(java.lang.Object, java.lang.String)
+	 */
 	@Override
 	public void failStringNotNullAndNotEmpty(Object caller,
 			String referenceAName)
 	{
 		this.Throw(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName });
 	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotNullAndNotEmptyFail#failStringNotNullAndNotEmpty(java.lang.Object, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void failStringNotNullAndNotEmpty(Object caller,
 			String referenceAName, String message)
 	{
 		this.Throw(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName, message });
 	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNullOrEmptyFail#failStringNullOrEmpty(java.lang.Object, java.lang.String)
+	 */
 	@Override
 	public void failStringNullOrEmpty(Object caller, String referenceAName)
 	{
 		this.Throw(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName });
 	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNullOrEmptyFail#failStringNullOrEmpty(java.lang.Object, java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void failStringNullOrEmpty(Object caller, String referenceAName,
 			String message)
 	{
 		this.Throw(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail#failStringWithPrefix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithPrefix(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail#failStringWithPrefix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithPrefix(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail#failStringWithoutPrefix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutPrefix(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail#failStringWithoutPrefix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutPrefix(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail#failStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutPostfix(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail#failStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutPostfix(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail#failStringWithSubstring(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithSubstring(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail#failStringWithSubstring(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithSubstring(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail#failStringWithPostfix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithPostfix(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail#failStringWithPostfix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithPostfix(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail#failStringWithoutSubstring(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutSubstring(Object caller,
+			String referenceAName, String referenceBName)
+	{
+		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail#failStringWithoutSubstring(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutSubstring(Object caller,
+			String referenceAName, String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	

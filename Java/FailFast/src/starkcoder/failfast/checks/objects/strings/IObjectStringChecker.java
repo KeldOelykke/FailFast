@@ -36,7 +36,10 @@ public interface IObjectStringChecker extends
 	IObjectStringNullCheck, IObjectStringNotNullCheck,
 	IObjectStringDefaultCheck, IObjectStringNotDefaultCheck,
 	IObjectStringEmptyCheck, IObjectStringNotEmptyCheck,
-	IObjectStringNullOrEmptyCheck, IObjectStringNotNullAndNotEmptyCheck
+	IObjectStringNullOrEmptyCheck, IObjectStringNotNullAndNotEmptyCheck,
+	IObjectStringWithPrefixCheck, IObjectStringWithoutPrefixCheck,
+	IObjectStringWithSubstringCheck, IObjectStringWithoutSubstringCheck,
+	IObjectStringWithPostfixCheck, IObjectStringWithoutPostfixCheck
 {
 
 }

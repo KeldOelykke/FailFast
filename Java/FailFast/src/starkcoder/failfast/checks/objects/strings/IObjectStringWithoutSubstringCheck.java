@@ -21,27 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects.strings;
+package starkcoder.failfast.checks.objects.strings;
 
-
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail;
 
 /**
- * Specification grouping all String fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting String.
- * </p>
+ * Specifies a non-substring check for String.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectStringFailer extends 
-		IObjectStringEqualsFail, IObjectStringNotEqualsFail,
-		IObjectStringNullFail, IObjectStringNotNullFail,
-		IObjectStringDefaultFail, IObjectStringNotDefaultFail,
-		IObjectStringEmptyFail, IObjectStringNotEmptyFail,
-		IObjectStringNullOrEmptyFail, IObjectStringNotNullAndNotEmptyFail,
-		IObjectStringWithPrefixFail, IObjectStringWithoutPrefixFail,
-		IObjectStringWithSubstringFail, IObjectStringWithoutSubstringFail,
-		IObjectStringWithPostfixFail, IObjectStringWithoutPostfixFail
+public interface IObjectStringWithoutSubstringCheck extends ICheck
 {
-
+	/**
+	 * Checks if A does NOT contain B.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check for non-substring reference B
+	 * @param referenceB
+	 *            potential substring of reference A
+	 * @return true, if referenced B is NOT part of A - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectStringWithoutSubstringFail.class)
+	boolean isStringWithoutSubstring(Object caller, String referenceA, String referenceB);
 }

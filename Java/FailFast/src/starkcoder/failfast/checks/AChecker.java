@@ -47,6 +47,12 @@ import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullAndNotEmpt
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNullCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNullOrEmptyCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringWithPostfixCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringWithPrefixCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringWithSubstringCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPostfixCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPrefixCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringWithoutSubstringCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
 import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
@@ -690,13 +696,149 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPostfixCheck#isStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringWithoutPostfix(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA || !referenceA.endsWith(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringWithoutPostfixCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithPostfixCheck#isStringWithPostfix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringWithPostfix(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA && referenceA.endsWith(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringWithPostfixCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithSubstringCheck#isStringWithSubstring(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringWithSubstring(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA && 0 <= referenceA.indexOf(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringWithSubstringCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithoutSubstringCheck#isStringWithoutSubstring(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringWithoutSubstring(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA || referenceA.indexOf(referenceB) < 0)
+		{
+			this.pushContractWithCaller(caller, IObjectStringWithoutSubstringCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPrefixCheck#isStringWithoutPrefix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringWithoutPrefix(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA || !referenceA.startsWith(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringWithoutPrefixCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithPrefixCheck#isStringWithPrefix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringWithPrefix(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA && referenceA.startsWith(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringWithPrefixCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
 	
 	// OBJECTS - STRINGS - END
 
 	
+	
 	// PRIMITIVES - BOOLEANS - START
 
-
+	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck#isObjectEquals(java.lang.Object, boolean, boolean)
 	 */
