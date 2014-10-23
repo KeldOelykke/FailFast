@@ -426,6 +426,12 @@
             <test name="starkcoder.failfast.unit.objects.strings.StringNotNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNullOrEmptyTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithPostfixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithPrefixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithSubstringTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPostfixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPrefixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutSubstringTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueFalseTest" todir="${junit.output.dir}"/>
@@ -527,11 +533,27 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
+    <target name="StringNotNullAndNotEmptyTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringNotNullAndNotEmptyTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="StringNotNullTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNotNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringNullOrEmptyTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringNullOrEmptyTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
@@ -571,6 +593,12 @@
             <test name="starkcoder.failfast.unit.objects.strings.StringNotNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNullOrEmptyTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithPostfixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithPrefixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithSubstringTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPostfixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPrefixTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutSubstringTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.booleans.BooleanValueFalseTest" todir="${junit.output.dir}"/>
@@ -592,19 +620,51 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
-    <target name="StringNotNullAndNotEmptyTest">
+    <target name="StringWithPrefixTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.strings.StringNotNullAndNotEmptyTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithPrefixTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
-    <target name="StringNullOrEmptyTest">
+    <target name="StringWithoutPrefixTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.strings.StringNullOrEmptyTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPrefixTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringWithPostfixTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithPostfixTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringWithoutPostfixTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPostfixTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringWithSubstringTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithSubstringTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringWithoutSubstringTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringWithoutSubstringTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>

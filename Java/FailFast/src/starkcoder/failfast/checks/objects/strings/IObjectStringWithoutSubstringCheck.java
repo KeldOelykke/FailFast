@@ -36,6 +36,12 @@ public interface IObjectStringWithoutSubstringCheck extends ICheck
 {
 	/**
 	 * Checks if A does NOT contain B.
+	 * <p>
+	 * The empty string is a substring to all string instances.
+	 * </p>
+	 * <p>
+	 * null has no substrings and is not a substring.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check

@@ -36,6 +36,12 @@ public interface IObjectStringWithPostfixCheck extends ICheck
 {
 	/**
 	 * Checks if A ends with B.
+	 * <p>
+	 * The empty string is a postfix to all string instances.
+	 * </p>
+	 * <p>
+	 * null has no postfixes and is not a postfix.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check

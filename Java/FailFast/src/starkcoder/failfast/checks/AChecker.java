@@ -697,28 +697,6 @@ public abstract class AChecker implements IChecker
 	}
 	
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPostfixCheck#isStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public boolean isStringWithoutPostfix(Object caller, String referenceA,
-			String referenceB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA || !referenceA.endsWith(referenceB))
-		{
-			this.pushContractWithCaller(caller, IObjectStringWithoutPostfixCheck.class);
-			result = true;
-		}
-
-		return result;
-	}
-	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithPostfixCheck#isStringWithPostfix(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -732,9 +710,32 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (null != referenceA && referenceA.endsWith(referenceB))
+		if (null != referenceA && null != referenceB && referenceA.endsWith(referenceB))
 		{
 			this.pushContractWithCaller(caller, IObjectStringWithPostfixCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPostfixCheck#isStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringWithoutPostfix(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA || null == referenceB || !referenceA.endsWith(referenceB))
+		{
+			this.pushContractWithCaller(caller, IObjectStringWithoutPostfixCheck.class);
 			result = true;
 		}
 
@@ -755,7 +756,7 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (null != referenceA && 0 <= referenceA.indexOf(referenceB))
+		if (null != referenceA && null != referenceB && 0 <= referenceA.indexOf(referenceB))
 		{
 			this.pushContractWithCaller(caller, IObjectStringWithSubstringCheck.class);
 			result = true;
@@ -777,7 +778,7 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (null == referenceA || referenceA.indexOf(referenceB) < 0)
+		if (null == referenceA || null == referenceB || referenceA.indexOf(referenceB) < 0)
 		{
 			this.pushContractWithCaller(caller, IObjectStringWithoutSubstringCheck.class);
 			result = true;
@@ -800,7 +801,7 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (null == referenceA || !referenceA.startsWith(referenceB))
+		if (null == referenceA || null == referenceB || !referenceA.startsWith(referenceB))
 		{
 			this.pushContractWithCaller(caller, IObjectStringWithoutPrefixCheck.class);
 			result = true;
@@ -822,7 +823,7 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (null != referenceA && referenceA.startsWith(referenceB))
+		if (null != referenceA && null != referenceB && referenceA.startsWith(referenceB))
 		{
 			this.pushContractWithCaller(caller, IObjectStringWithPrefixCheck.class);
 			result = true;

@@ -35,7 +35,13 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail;
 public interface IObjectStringWithoutPrefixCheck extends ICheck
 {
 	/**
-	 * Checks if A does not start with B.
+	 * Checks if A does NOT start with B.
+	 * <p>
+	 * The empty string is a prefix to all string instances.
+	 * </p>
+	 * <p>
+	 * null has no prefixes and is not a prefix.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check

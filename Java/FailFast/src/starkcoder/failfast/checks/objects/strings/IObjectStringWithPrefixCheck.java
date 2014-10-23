@@ -36,6 +36,12 @@ public interface IObjectStringWithPrefixCheck extends ICheck
 {
 	/**
 	 * Checks if A starts with B.
+	 * <p>
+	 * The empty string is a prefix to all string instances.
+	 * </p>
+	 * <p>
+	 * null has no prefixes and is not a prefix.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
