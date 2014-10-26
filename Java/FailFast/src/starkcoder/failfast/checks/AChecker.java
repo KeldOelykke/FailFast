@@ -40,9 +40,11 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringMatchingCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotEqualsCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNotMatchingCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullAndNotEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNullCheck;
@@ -833,13 +835,60 @@ public abstract class AChecker implements IChecker
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNotMatchingCheck#isStringNotMatching(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringNotMatching(Object caller, String referenceA,
+			String regex)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA || null == regex || !referenceA.matches(regex))
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotMatchingCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringMatchingCheck#isStringMatching(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringMatching(Object caller, String referenceA,
+			String regex)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA && null != regex && referenceA.matches(regex))
+		{
+			this.pushContractWithCaller(caller, IObjectStringMatchingCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	
 	// OBJECTS - STRINGS - END
 
 	
 	
 	// PRIMITIVES - BOOLEANS - START
 
-	
+
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck#isObjectEquals(java.lang.Object, boolean, boolean)
 	 */

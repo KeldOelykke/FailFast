@@ -21,28 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects.strings;
+package starkcoder.failfast.checks.objects.strings;
 
-
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail;
 
 /**
- * Specification grouping all String fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting String.
- * </p>
+ * Specifies a non-regex check for String.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectStringFailer extends 
-		IObjectStringEqualsFail, IObjectStringNotEqualsFail,
-		IObjectStringNullFail, IObjectStringNotNullFail,
-		IObjectStringDefaultFail, IObjectStringNotDefaultFail,
-		IObjectStringEmptyFail, IObjectStringNotEmptyFail,
-		IObjectStringNullOrEmptyFail, IObjectStringNotNullAndNotEmptyFail,
-		IObjectStringWithPrefixFail, IObjectStringWithoutPrefixFail,
-		IObjectStringWithSubstringFail, IObjectStringWithoutSubstringFail,
-		IObjectStringWithPostfixFail, IObjectStringWithoutPostfixFail,
-		IObjectStringMatchingFail, IObjectStringNotMatchingFail
+public interface IObjectStringNotMatchingCheck extends ICheck
 {
-
+	/**
+	 * Checks if A does NOT match the regular expression.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check for match regex
+	 * @param regex
+	 *            the regular expression A is to be matched against
+	 * @return true, if A does NOT match regex - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectStringNotMatchingFail.class)
+	boolean isStringNotMatching(Object caller, String referenceA, String regex);
 }

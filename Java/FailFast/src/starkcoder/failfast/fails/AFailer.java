@@ -45,9 +45,11 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotEqualsFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullAndNotEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNullFail;
@@ -662,6 +664,44 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail#failStringMatching(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringMatching(Object caller, String referenceAName,
+			String regex)
+	{
+		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName, regex });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail#failStringMatching(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringMatching(Object caller, String referenceAName,
+			String regex, String message)
+	{
+		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName, regex, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail#failStringNotMatching(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringNotMatching(Object caller, String referenceAName,
+			String regex)
+	{
+		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName, regex });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail#failStringNotMatching(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failStringNotMatching(Object caller, String referenceAName,
+			String regex, String message)
+	{
+		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName, regex, message });
+	}
+	
+	
 	
 	// OBJECTS - STRING - END ---------------------------------
 	
@@ -669,6 +709,7 @@ public abstract class AFailer implements IFailer
 	
 	// PRIMITIVES - BOOLEAN - START -------------------------------
 
+	
 	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
