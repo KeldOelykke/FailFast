@@ -36,6 +36,15 @@ public interface IObjectStringNotMatchingCheck extends ICheck
 {
 	/**
 	 * Checks if A does NOT match the regular expression.
+	 * <p>
+	 * If A is null it can't be matched.
+	 * </p>
+	 * <p>
+	 * If regex is null A can't be matched
+	 * </p>
+	 * <p>
+	 * Empty A is matched by empty regex.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check

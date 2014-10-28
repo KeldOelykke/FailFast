@@ -1151,8 +1151,9 @@ public abstract class AFailer implements IFailer
                     for (int j = 0; j < parameterTypes.length; ++j)
                     {
                         Class<?> parameterInfo = parameterTypes[j];
-                        Class<?> argumentType = messageFormatArguments[j].getClass();
-                        if (!parameterInfo.isAssignableFrom(argumentType))
+                        Object messageFormatArgument = messageFormatArguments[j];
+                        Class<?> argumentType = (null == messageFormatArgument ? null : messageFormatArgument.getClass());
+                        if (null == argumentType || !parameterInfo.isAssignableFrom(argumentType))
                         {
                         	if(parameterInfo.isPrimitive())
                         	{
@@ -1161,6 +1162,10 @@ public abstract class AFailer implements IFailer
     	                            allParametersHaveMatchingType = false;
     	                            break;
                         		}
+                        	}
+                        	else if(null == messageFormatArgument)
+                        	{ // null matches all Object type parameters
+                        		
                         	}
                         	else
                         	{
