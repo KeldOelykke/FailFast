@@ -21,23 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
+package starkcoder.failfast.checks.objects.enums;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
-import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
-import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail;
 
 /**
- * Specification grouping all object check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
- * </p>
+ * Specifies an equals check for Enum.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectBooleanChecker, IObjectEnumChecker, IObjectStringChecker
+public interface IObjectEnumEqualsCheck extends ICheck
 {
-
+	/**
+	 * Checks if the Enums are equals.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to equals check against reference B
+	 * @param referenceB
+	 *            argument to equals-method of reference A
+	 * @return true, if referenced Enums are equals - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectEnumEqualsFail.class)
+	boolean isEnumEquals(Object caller, Enum<?> referenceA, Enum<?> referenceB);
 }

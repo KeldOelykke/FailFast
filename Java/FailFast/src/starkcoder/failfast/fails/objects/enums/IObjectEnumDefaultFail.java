@@ -21,22 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects.booleans;
+package starkcoder.failfast.fails.objects.enums;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotDefaultCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
 
 /**
- * Fail specification throwing an exception when a not-default check asserts.
+ * Fail specification throwing an exception when a default check asserts.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectBooleanNotDefaultFail extends IFail
+public interface IObjectEnumDefaultFail extends IFail
 {
 	/**
-	 * Fails specified reference, since its referenced value passed a not-default check.
+	 * Fails specified reference, since its referenced value passed a default check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)
@@ -45,11 +45,11 @@ public interface IObjectBooleanNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value.")
-	void failBooleanNotDefault(Object caller, String referenceAName);
+	@NFail(checkerSpecificationType = IObjectEnumDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' points to a default value.")
+	void failEnumDefault(Object caller, String referenceAName);
 
 	/**
-	 * Fails specified reference, since its referenced value passed a not-default check.
+	 * Fails specified reference, since its referenced value passed a default check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)
@@ -60,7 +60,7 @@ public interface IObjectBooleanNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value. %s")
-	void failBooleanNotDefault(Object caller, String referenceAName, String message);
+	@NFail(checkerSpecificationType = IObjectEnumDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' points to a default value. %s")
+	void failEnumDefault(Object caller, String referenceAName, String message);
 
 }

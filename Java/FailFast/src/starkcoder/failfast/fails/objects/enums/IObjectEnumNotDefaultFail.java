@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects.booleans;
+package starkcoder.failfast.fails.objects.enums;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotDefaultCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumNotDefaultCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
@@ -33,7 +33,7 @@ import starkcoder.failfast.fails.NFail;
  * 
  * @author Keld Oelykke
  */
-public interface IObjectBooleanNotDefaultFail extends IFail
+public interface IObjectEnumNotDefaultFail extends IFail
 {
 	/**
 	 * Fails specified reference, since its referenced value passed a not-default check.
@@ -45,8 +45,8 @@ public interface IObjectBooleanNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value.")
-	void failBooleanNotDefault(Object caller, String referenceAName);
+	@NFail(checkerSpecificationType = IObjectEnumNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value.")
+	void failEnumNotDefault(Object caller, String referenceAName);
 
 	/**
 	 * Fails specified reference, since its referenced value passed a not-default check.
@@ -60,7 +60,7 @@ public interface IObjectBooleanNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value. %s")
-	void failBooleanNotDefault(Object caller, String referenceAName, String message);
+	@NFail(checkerSpecificationType = IObjectEnumNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value. %s")
+	void failEnumNotDefault(Object caller, String referenceAName, String message);
 
 }

@@ -21,23 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
+package starkcoder.failfast.checks.objects.enums;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
-import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
-import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
 
 /**
- * Specification grouping all object check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
- * </p>
+ * Specifies a default value check for Enum.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectBooleanChecker, IObjectEnumChecker, IObjectStringChecker
+public interface IObjectEnumDefaultCheck extends IObjectEnumDefaultProperties, ICheck
 {
-
+	/**
+	 * Checks if the Enum reference a default value.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check
+	 * @return true, if referenced object has a default value, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectEnumDefaultFail.class)
+	boolean isEnumDefault(Object caller, Enum<?> referenceA);
 }

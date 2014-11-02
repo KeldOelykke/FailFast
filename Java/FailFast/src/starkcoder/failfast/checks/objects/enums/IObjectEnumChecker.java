@@ -21,23 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
+package starkcoder.failfast.checks.objects.enums;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
-import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
-import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
 
 /**
- * Specification grouping all object check specifications.
+ * Specification grouping all Enum check specifications.
  * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
+ * This (or a derivative) should inherit all check methods targeting Enum.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectBooleanChecker, IObjectEnumChecker, IObjectStringChecker
+public interface IObjectEnumChecker extends 
+	IObjectEnumEqualsCheck, IObjectEnumNotEqualsCheck,
+	IObjectEnumNullCheck, IObjectEnumNotNullCheck,
+	IObjectEnumDefaultCheck, IObjectEnumNotDefaultCheck
 {
 
 }

@@ -1,5 +1,4 @@
-/**
- * The MIT License (MIT)
+/* The MIT License (MIT)
  * 
  * Copyright (c) 2014 Keld Ølykke
  * 
@@ -21,23 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
-
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
-import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
-import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
+package starkcoder.failfast.checks.objects.enums;
 
 /**
- * Specification grouping all object check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
- * </p>
+ * Defines properties used by both {link:IObjectEnumDefaultCheck} and {link:IObjectEnumNotDefaultCheck}.
  * 
  * @author Keld Oelykke
+ *
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectBooleanChecker, IObjectEnumChecker, IObjectStringChecker
+public interface IObjectEnumDefaultProperties
 {
+
+	/**
+	 * Default Enum used by isEnumDefault and isEnumNotDefault.
+	 * <p>
+	 * By default the first entry of an Enum is the default.
+	 * </p>
+	 * <p>
+	 * Use setEnumDefault() to change the default Enum.
+	 * </p>
+	 * 
+	 * @return default Enum - default is Enum.False
+	 */
+	Enum<?> getEnumDefault(Class<? extends Enum<?>> enumType);
+
+	/**
+	 * Changes the default object used by isEnumDefault and isEnumNotDefault.
+	 * 
+	 * @param defaultEnum
+	 *            new default object to set
+	 */
+	void setEnumDefault(Enum<?> defaultEnum);
 
 }

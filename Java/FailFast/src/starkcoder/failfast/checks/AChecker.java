@@ -23,6 +23,8 @@
  */
 package starkcoder.failfast.checks;
 
+import java.util.HashMap;
+
 import starkcoder.failfast.checks.objects.IObjectEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
@@ -37,6 +39,10 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumNotEqualsCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumNotNullCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
@@ -460,13 +466,191 @@ public abstract class AChecker implements IChecker
 	}
 
 	
-	
 	// OBJECTS - BOOLEANS - END
 
+	
+	
+	// OBJECTS - ENUMS - START
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNotEqualsCheck#isEnumNotEquals(java.lang.Object, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public boolean isEnumNotEquals(Object caller, Enum<?> referenceA,
+			Enum<?> referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA != referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectEnumNotEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck#isEnumEquals(java.lang.Object, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public boolean isEnumEquals(Object caller, Enum<?> referenceA,
+			Enum<?> referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA == referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectEnumEqualsCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNotNullCheck#isEnumNotNull(java.lang.Object, java.lang.Enum)
+	 */
+	@Override
+	public boolean isEnumNotNull(Object caller, Enum<?> referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectEnumNotNullCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck#isEnumNull(java.lang.Object, java.lang.Enum)
+	 */
+	@Override
+	public boolean isEnumNull(Object caller, Enum<?> referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA)
+		{
+			this.pushContractWithCaller(caller, IObjectEnumNullCheck.class);
+			result = true;
+		}
+
+		return result;
+	}
+
+	@SuppressWarnings("rawtypes")
+	private HashMap<Class<? extends Enum>, Enum<?>> enumDefaults = new HashMap<Class<? extends Enum>, Enum<?>>();
+	@SuppressWarnings("rawtypes")
+	protected HashMap<Class<? extends Enum>, Enum<?>> getEnumDefaults()
+	{
+		return this.enumDefaults;
+	}
+	
+	@Override
+	public Enum<?> getEnumDefault(Class<? extends Enum<?>> enumType)
+	{
+		Enum<?> result = this.getEnumDefaults().get(enumType);
+		if(null == result)
+		{ // cache this to avoid repeated array creations
+			result = enumType.getEnumConstants()[0];
+			this.getEnumDefaults().put(enumType, result);
+		}
+		return result;
+	}
+
+	@Override
+	public void setEnumDefault(Enum<?> defaultEnum)
+	{
+		this.getEnumDefaults().put(defaultEnum.getClass(), defaultEnum);
+	}
+
+	@Override
+	public boolean isEnumNotDefault(Object caller, Enum<?> referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA)		
+		{
+			result = true;
+		}
+		else
+		{
+			Enum<?> enumDefault = this.getEnumDefault(referenceA.getDeclaringClass());
+			if(enumDefault != referenceA)
+			{
+				result = true;
+			}
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, IObjectEnumNotNullCheck.class);
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isEnumDefault(Object caller, Enum<?> referenceA)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != referenceA)
+		{
+			Enum<?> enumDefault = this.getEnumDefault(referenceA.getDeclaringClass());
+			if(enumDefault == referenceA)
+			{
+				this.pushContractWithCaller(caller, IObjectEnumEqualsCheck.class);
+				result = true;
+			}
+		}
+
+		return result;
+	}
+
+	
+	
+	// OBJECTS - ENUMS - END
+
+	
 	
 	// OBJECTS - STRINGS - START
 
 	private String stringDefault = new String();
+
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringDefaultProperties#getStringDefault()
 	 */

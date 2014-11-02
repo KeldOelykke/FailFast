@@ -21,46 +21,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects.booleans;
+package starkcoder.failfast.fails.objects.enums;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotDefaultCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
 
 /**
- * Fail specification throwing an exception when a not-default check asserts.
+ * Fail specification throwing an exception when an equals check asserts.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectBooleanNotDefaultFail extends IFail
+public interface IObjectEnumEqualsFail extends IFail
 {
 	/**
-	 * Fails specified reference, since its referenced value passed a not-default check.
+	 * Fails specified Enums, since they passed an equals check.
 	 * 
 	 * @param caller
-	 *            object calling checker and then failer (if reference check asserted)
+	 *            object calling checker and then failer (if Enum check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
+	 * @param referenceBName
+	 *            name of reference B to fail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value.")
-	void failBooleanNotDefault(Object caller, String referenceAName);
+	@NFail(checkerSpecificationType = IObjectEnumEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Enum '%s' is equal to Enum '%s'.")
+	void failEnumEquals(Object caller, String referenceAName, String referenceBName);
 
 	/**
-	 * Fails specified reference, since its referenced value passed a not-default check.
+	 * Fails specified Enums, since they passed an equals check.
 	 * 
 	 * @param caller
-	 *            object calling checker and then failer (if reference check asserted)
+	 *            object calling checker and then failer (if Enum check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
+	 * @param referenceBName
+	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value. %s")
-	void failBooleanNotDefault(Object caller, String referenceAName, String message);
+	@NFail(checkerSpecificationType = IObjectEnumEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Enum '%s' is equal to Enum '%s'. %s")
+	void failEnumEquals(Object caller, String referenceAName, String referenceBName, String message);
 
 }

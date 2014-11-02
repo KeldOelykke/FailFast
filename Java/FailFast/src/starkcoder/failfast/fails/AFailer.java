@@ -42,6 +42,12 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumNotDefaultFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumNotEqualsFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumNotNullFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
@@ -393,13 +399,136 @@ public abstract class AFailer implements IFailer
 	
 	
 	
+	// OBJECTS - ENUM - START ---------------------------------
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail#failEnumEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail#failEnumEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotEqualsFail#failEnumNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotEqualsFail#failEnumNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotNullFail#failEnumNotNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectEnumNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotNullFail#failEnumNotNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectEnumNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail#failEnumNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failEnumNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectEnumNullFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail#failEnumNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectEnumNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail#failEnumDefault(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failEnumDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectEnumDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail#failEnumDefault(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectEnumDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotDefaultFail#failEnumNotDefault(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectEnumNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotDefaultFail#failEnumNotDefault(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectEnumNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	
+	// OBJECTS - ENUM - END ---------------------------------
+	
+	
+	
 	// OBJECTS - STRING - START ---------------------------------
 	
+	
+	
+
 	@Override
 	public void failStringNull(Object caller, String referenceAName)
 	{
 		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName });
 	}
+
 	@Override
 	public void failStringNull(Object caller, String referenceAName,
 			String message)
