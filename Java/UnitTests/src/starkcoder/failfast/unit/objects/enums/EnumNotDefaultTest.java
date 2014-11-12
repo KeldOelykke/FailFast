@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.floats;
+package starkcoder.failfast.unit.objects.enums;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveFloatEqualsCheck} and {link:IPrimitiveFloatEqualsFail}.
+ * Fail-fast unit test of {link:IObjectEnumNotDefaultCheck} and {link:IObjectEnumNotDefaultFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatValueEqualsTest {
+public class EnumNotDefaultTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,32 +96,29 @@ public class FloatValueEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueEqualsCheckerCallerIsNull() {
-		float valueA = 0.123f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(null, valueA, valueB))
+	public void testEnumNotDefaultCheckerCallerIsNull() {
+		EFoo referenceA = EFoo.VALUE_B;
+		if(checker.isEnumNotDefault(null, referenceA))
 		{
-			failer.failFloatValueEquals(this, "valueA", "valueB");
+			failer.failEnumNotDefault(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueEqualsFailerCallerIsNull() {
-		float valueA = 0.123f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+	public void testEnumNotDefaultFailerCallerIsNull() {
+		EFoo referenceA = EFoo.VALUE_B;
+		if(checker.isEnumNotDefault(this, referenceA))
 		{
-			failer.failFloatValueEquals(null, "valueA", "valueB");
+			failer.failEnumNotDefault(null, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueFailerCallerIsWrong() {
-		float valueA = 0.123f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(new String("Foo"), valueA, valueB))
+	public void testEnumFailerCallerIsWrong() {
+		EFoo referenceA = EFoo.VALUE_B;
+		if(checker.isEnumNotDefault(new String("Foo"), referenceA))
 		{
-			failer.failFloatValueEquals(new String("Bar"), "valueA", "valueB");
+			failer.failEnumNotDefault(new String("Bar"), "referenceA");
 		}
 	}
 	
@@ -129,37 +126,34 @@ public class FloatValueEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchCheckCheck() {
-		float valueA = 0.123f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+	public void testEnumNotDefaultMismatchCheckCheck() {
+		EFoo referenceA = EFoo.VALUE_B;
+		if(checker.isEnumNotDefault(this, referenceA))
 		{
-			checker.isFloatValueEquals(this, valueA, valueB);
+			checker.isEnumNotDefault(this, referenceA);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchFail() {
-		failer.failFloatValueEquals(this, "valueA", "valueB");
+	public void testEnumNotDefaultMismatchFail() {
+		failer.failEnumNotDefault(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchWrongCheck() {
-		float valueA = 0.123f;
-		float valueB = 0.1234f;
-		if(checker.isFloatValueNotEquals(this, valueA, valueB)) // wrong call
+	public void testEnumNotDefaultMismatchWrongCheck() {
+		EFoo referenceA = EFoo.VALUE_A;
+		if(checker.isEnumDefault(this, referenceA)) // wrong call
 		{
-			failer.failFloatValueEquals(this, "valueA", "valueB");
+			failer.failEnumNotDefault(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchWrongFail() {
-		float valueA = 0.123f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+	public void testEnumNotDefaultMismatchWrongFail() {
+		EFoo referenceA = EFoo.VALUE_B;
+		if(checker.isEnumNotDefault(this, referenceA))
 		{
-			failer.failFloatValueNotEquals(this, "valueA", "valueB"); // wrong call
+			failer.failEnumDefault(this, "referenceA"); // wrong call
 		}
 	}
 	
@@ -167,14 +161,13 @@ public class FloatValueEqualsTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsFailNoMessage() {
-		float valueA = 0.123f;
-		float valueB = valueA;
+	public void testEnumNotDefaultFailNoMessage() {
+		EFoo referenceA = EFoo.VALUE_B;
 		try
 		{
-			if(checker.isFloatValueEquals(this, valueA, valueB))
+			if(checker.isEnumNotDefault(this, referenceA))
 			{
-				failer.failFloatValueEquals(this, "valueA", "valueB");
+				failer.failEnumNotDefault(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -187,14 +180,13 @@ public class FloatValueEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsFailMessage() {
-		float valueA = 0.1234f;
-		float valueB = valueA;
+	public void testEnumNotDefaultFailMessage() {
+		EFoo referenceA = EFoo.VALUE_B;
 		try
 		{
-			if(checker.isFloatValueEquals(this, valueA, valueB))
+			if(checker.isEnumNotDefault(this, referenceA))
 			{
-				failer.failFloatValueEquals(this, "valueA", "valueB", "Extra info goes here");
+				failer.failEnumNotDefault(this, "referenceA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -206,16 +198,85 @@ public class FloatValueEqualsTest {
 		}
 	}
 	
-	@Test
-	public void testFloatValueEqualsNoFail() {
-		float valueA = 0.1234f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+	@Test(expected=FailFastException.class)
+	public void testEnumNullFail() {
+		EFoo referenceA = null;
+		try
 		{
-			failer.failFloatValueEquals(this, "valueA", "valueB");
+			if(checker.isEnumNotDefault(this, referenceA))
+			{
+				failer.failEnumNotDefault(this, "referenceA");
+			}
 		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+
+	@Test
+	public void testEnumDefaultNoFail() {
+		EFoo referenceA = EFoo.VALUE_A;
+		if(checker.isEnumNotDefault(this, referenceA))
+		{
+			failer.failEnumNotDefault(this, "referenceA");
+		}
+		assertTrue("Expected referenceA not to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+	
+	@Test
+	public void testEnumDefaultChangedNoFail() {
+		EFoo referenceA = EFoo.VALUE_B;
+		checker.setEnumDefault(referenceA);
+		if(checker.isEnumNotDefault(this, referenceA))
+		{
+			failer.failEnumNotDefault(this, "referenceA");
+		}
+		assertTrue("Expected valueA not to pass the check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+	
+	@Test
+	public void testEnumChanged2DefaultNoFail() {
+		EFoo referenceA = EFoo.VALUE_B;
+		EBar referenceB = EBar.VALUE_A;
+		checker.setEnumDefault(referenceA);
+		checker.setEnumDefault(referenceB);
+		{
+			if(checker.isEnumNotDefault(this, referenceB))
+			{
+				failer.failEnumNotDefault(this, "referenceB");
+			}
+		}
+		assertTrue("Expected referenceA not to pass the check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+
+	
+	@Test(expected=FailFastException.class)
+	public void testEnumChanged2DefaultFail() {
+		EFoo referenceA = EFoo.VALUE_A;
+		EBar referenceB = EBar.VALUE_A;
+		checker.setEnumDefault(referenceA);
+		checker.setEnumDefault(EBar.VALUE_B);
+		try
+		{
+			if(checker.isEnumNotDefault(this, referenceB))
+			{
+				failer.failEnumNotDefault(this, "referenceB");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
 	}
 
 }

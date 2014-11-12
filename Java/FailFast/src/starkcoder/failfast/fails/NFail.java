@@ -38,7 +38,57 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface NFail
 {
+	/**
+	 * The Checker specification type with check-methods that must be used with the annotated fail-method.
+	 * 
+	 * @return Checker specification type that matches this Failer attribute
+	 */
 	public Class<?> checkerSpecificationType();
+	
+	/**
+	 * Type of exception to throw on failure.
+	 * 
+	 * @return Type of exception to throw
+	 */
 	public Class<? extends FailFastException> failExceptionType();
+	
+	/**
+	 * Exception message formatting string for thrown exception.
+	 * 
+	 * <p>
+	 * failMessageArguments is used to produce an Object[] with this.
+	 * </p>
+	 * <p>
+	 * An example could be "%s: %s(%s) and %s(%s) are NOT equals".
+	 * </p>
+	 * 
+	 * @return Exception message formatting string.
+	 */
 	public String failMessageFormat();
+	
+	/**
+	 * Comma-separated list of ids of checker-call and failer-call arguments supplied by either user or implementation.
+	 * 
+	 * <p>
+	 * This list determines the order and content of an Object[] used with failMessageFormat.
+	 * </p>
+	 * <p>
+	 * Checker-call argument ids are cu0, cu1, cu2, ... e.g. cu0 being caller, cu1 being referenceA
+	 * </p>
+	 * <p>
+	 * Failer-call argument ids are fu0, fu1, fu2, ... e.g. fu0 being caller, fu1 being "referenceA"
+	 * </p>
+	 * <p>
+	 * An example could be "cu0,fu1,cu1,fu2,cu2" to map caller and 2 arguments (both name and value) to failMessageFormat
+	 * </p>
+	 * <p>
+	 * Checker-implementation argument ids are cx0, cx1, cx2, ... e.g. cx0 being default value used in checker
+	 * </p>
+	 * <p>
+	 * Failer-implementation argument ids are fx0, fx1, cx2, ... e.g. fx0 being current time supplied by failer
+	 * </p>
+	 * 
+	 * @return Comma-separated list of ids of checker-call and failer-call arguments supplied by either user or implementation.
+	 */
+	public String failMessageArguments();
 }

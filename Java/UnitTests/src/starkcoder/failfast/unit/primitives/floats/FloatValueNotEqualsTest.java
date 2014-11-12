@@ -29,7 +29,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import starkcoder.failfast.FailFast;
 import starkcoder.failfast.IFailFast;
@@ -51,6 +54,20 @@ public class FloatValueNotEqualsTest {
 
 	private IChecker checker;
 	private IFailer failer;
+	private String toString = null;
+	
+	@Override
+	public String toString() {
+		return this.toString;
+	}
+
+	@Rule
+	public TestWatcher watcher = new TestWatcher() {
+	   protected void starting(Description description) {
+		   toString = description.getTestClass().getSimpleName() + "." + description.getMethodName();
+	   }
+	};
+
 	
 	/**
 	 * @throws java.lang.Exception
@@ -164,7 +181,9 @@ public class FloatValueNotEqualsTest {
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -176,13 +195,15 @@ public class FloatValueNotEqualsTest {
 		{
 			if(checker.isFloatValueNotEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueNotEquals(this, "valueA", "valueB", "additional info");
+				failer.failFloatValueNotEquals(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -216,7 +237,7 @@ public class FloatValueNotEqualsTest {
 		float valueB = -valueA;
 		if(checker.isFloatValueNotEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueNotEquals(this, "valueA", valueA, "valueB", valueB, "additional info");
+			failer.failFloatValueNotEquals(this, "valueA", valueA, "valueB", valueB, "Extra info goes here");
 		}
 		assertTrue("Expected valueA & valueB to pass the not-equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());

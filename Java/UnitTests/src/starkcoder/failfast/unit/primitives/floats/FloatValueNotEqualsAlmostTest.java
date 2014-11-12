@@ -29,7 +29,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import starkcoder.failfast.FailFast;
 import starkcoder.failfast.IFailFast;
@@ -51,6 +54,20 @@ public class FloatValueNotEqualsAlmostTest {
 
 	private IChecker checker;
 	private IFailer failer;
+	private String toString = null;
+	
+	@Override
+	public String toString() {
+		return this.toString;
+	}
+
+	@Rule
+	public TestWatcher watcher = new TestWatcher() {
+	   protected void starting(Description description) {
+		   toString = description.getTestClass().getSimpleName() + "." + description.getMethodName();
+	   }
+	};
+
 	
 	/**
 	 * @throws java.lang.Exception
@@ -163,7 +180,9 @@ public class FloatValueNotEqualsAlmostTest {
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -175,13 +194,15 @@ public class FloatValueNotEqualsAlmostTest {
 		{
 			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB))
 			{
-				failer.failFloatValueNotEqualsAlmost(this, "valueA", "valueB", "additional info");
+				failer.failFloatValueNotEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -215,7 +236,9 @@ public class FloatValueNotEqualsAlmostTest {
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -227,13 +250,15 @@ public class FloatValueNotEqualsAlmostTest {
 		{
 			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.01f))
 			{
-				failer.failFloatValueNotEqualsAlmost(this, "valueA", "valueB", "additional info");
+				failer.failFloatValueNotEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -263,7 +288,9 @@ public class FloatValueNotEqualsAlmostTest {
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -275,13 +302,15 @@ public class FloatValueNotEqualsAlmostTest {
 		{
 			if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB, 0.01f))
 			{
-				failer.failFloatValueNotEqualsAlmost(this, "valueA", valueA, "valueB", valueB, "additional info");
+				failer.failFloatValueNotEqualsAlmost(this, "valueA", valueA, "valueB", valueB, "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}	
 }

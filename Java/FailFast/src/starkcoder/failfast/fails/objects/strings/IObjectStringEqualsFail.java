@@ -67,4 +67,44 @@ public interface IObjectStringEqualsFail extends IFail
 	@NFail(checkerSpecificationType = IObjectStringEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' is equal to String '%s'. %s")
 	void failStringEquals(Object caller, String referenceAName, String referenceBName, String message);
 
+	/**
+	 * Fails specified Strings, since they passed an equals check.
+	 * 
+	 * @param caller
+	 *            object calling checker and then failer (if String check asserted)
+	 * @param referenceAName
+	 *            name of reference A to fail
+	 * @param referenceA
+	 *            reference A to fail
+	 * @param referenceBName
+	 *            name of reference B to fail
+	 * @param referenceB
+	 *            reference B to fail
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NFail(checkerSpecificationType = IObjectStringEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s'(%s) is equal to String '%s'(%s).")
+	void failStringEquals(Object caller, String referenceAName, String referenceA, String referenceBName, String referenceB);
+
+	/**
+	 * Fails specified Strings, since they passed an equals check.
+	 * 
+	 * @param caller
+	 *            object calling checker and then failer (if String check asserted)
+	 * @param referenceAName
+	 *            name of reference A to fail
+	 * @param referenceA
+	 *            reference A to fail
+	 * @param referenceBName
+	 *            name of reference B to fail
+	 * @param referenceB
+	 *            reference B to fail
+	 * @param message
+	 *            additional information
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NFail(checkerSpecificationType = IObjectStringEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s'(%s) is equal to String '%s'(%s). %s")
+	void failStringEquals(Object caller, String referenceAName, String referenceA, String referenceBName, String referenceB, String message);
+
 }

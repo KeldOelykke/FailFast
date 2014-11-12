@@ -29,7 +29,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import starkcoder.failfast.FailFast;
 import starkcoder.failfast.IFailFast;
@@ -51,6 +54,20 @@ public class StringMatchingTest {
 
 	private IChecker checker;
 	private IFailer failer;
+	private String toString = null;
+	
+	@Override
+	public String toString() {
+		return this.toString;
+	}
+
+	@Rule
+	public TestWatcher watcher = new TestWatcher() {
+	   protected void starting(Description description) {
+		   toString = description.getTestClass().getSimpleName() + "." + description.getMethodName();
+	   }
+	};
+
 	
 	/**
 	 * @throws java.lang.Exception
@@ -220,7 +237,9 @@ public class StringMatchingTest {
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -266,7 +285,9 @@ public class StringMatchingTest {
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -278,13 +299,15 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex, "additional info");
+				failer.failStringMatching(this, "referenceA", regex, "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 
@@ -302,7 +325,9 @@ public class StringMatchingTest {
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	
@@ -314,13 +339,15 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex, "additional info");
+				failer.failStringMatching(this, "referenceA", regex, "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
 		{
 			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
 			throw failFastException;
+
 		}
 	}
 	

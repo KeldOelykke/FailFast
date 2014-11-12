@@ -45,7 +45,10 @@ public interface IObjectBooleanNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' is null.")
+	@NFail(checkerSpecificationType = IObjectBooleanNullCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Boolean '%s'(%s) is null.",
+			failMessageArguments = "fu0, fu1, cu1")
 	void failBooleanNull(Object caller, String referenceAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IObjectBooleanNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' is null. %s")
+	@NFail(checkerSpecificationType = IObjectBooleanNullCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Boolean '%s'(%s) is null. %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2")
 	void failBooleanNull(Object caller, String referenceAName, String message);
 
 }

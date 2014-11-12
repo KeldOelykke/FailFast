@@ -26,6 +26,8 @@ package starkcoder.failfast.fails;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Locale;
 
 import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.objects.IObjectEqualsFail;
@@ -562,6 +564,19 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
+	@Override
+	public void failStringEquals(Object caller, String referenceAName,
+			String referenceA, String referenceBName, String referenceB)
+	{
+		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB });
+	}
+	@Override
+	public void failStringEquals(Object caller, String referenceAName,
+			String referenceA, String referenceBName, String referenceB,
+			String message)
+	{
+		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB, message });
+	}
 	
 	
 	@Override
@@ -576,7 +591,20 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
-
+	@Override
+	public void failStringNotEquals(Object caller, String referenceAName,
+			String referenceA, String referenceBName, String referenceB)
+	{
+		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB });
+	}
+	@Override
+	public void failStringNotEquals(Object caller, String referenceAName,
+			String referenceA, String referenceBName, String referenceB,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB, message });
+	}
+	
 	
 	@Override
 	public void failStringDefault(Object caller, String referenceAName)
@@ -1239,16 +1267,26 @@ public abstract class AFailer implements IFailer
 		}
 	}
 	
-    protected void Throw(Object caller, Class<? extends IFail> failerSpecificationType, Object[] messageFormatArguments)
+	protected final static Object[] EmptyObjectArray = new Object[]{};
+    protected void Throw(Object caller, Class<? extends IFail> failerSpecificationType, Object[] failerArguments)
+    {
+    	this.Throw(caller, failerSpecificationType, failerArguments, EmptyObjectArray);
+    }
+    
+    protected void Throw(Object caller, Class<? extends IFail> failerSpecificationType, Object[] failerArguments, Object[] failerExtraArguments)
     {
         if (null == caller)
         {
             throw new IllegalArgumentException("caller is null");
         }
 
-        NFail failAnnotation = this.LookupFailAnnotation(failerSpecificationType, messageFormatArguments);
-        String message = String.format(failAnnotation.failMessageFormat(), messageFormatArguments);
-        this.popContractWithCaller(caller, failerSpecificationType);
+        NFail failAnnotation = this.LookupFailAnnotation(failerSpecificationType, failerArguments);
+        SimpleEntry<Object[], Object[]> entry = this.popContractWithCaller(caller, failerSpecificationType);
+        Object[] checkerArguments = entry.getKey();
+        Object[] checkerExtraArguments = entry.getValue();
+//        String message = this.formatMessage(failerSpecificationType, failAnnotation, checkerArguments, failerArguments);
+//        String message = String.format(failAnnotation.failMessageFormat(), failerArguments);
+        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
         FailFastException exception = this.constructFailException(failAnnotation.failExceptionType(), message);
         if(null == this.getFailFastExceptionOrNull())
         { // remember first exception
@@ -1257,7 +1295,7 @@ public abstract class AFailer implements IFailer
         throw exception;
     }
 
-    protected NFail LookupFailAnnotation(Class<?> failSpecificationType, Object[] messageFormatArguments)
+	protected NFail LookupFailAnnotation(Class<?> failSpecificationType, Object[] messageFormatArguments)
     {
     	NFail result = null;
 
@@ -1332,16 +1370,155 @@ public abstract class AFailer implements IFailer
         return result;
     }
     
-    protected void popContractWithCaller(Object caller, Class<? extends IFail> failSpecification)
+    protected SimpleEntry<Object[], Object[]> popContractWithCaller(Object caller, Class<? extends IFail> failSpecification)
     {
+    	SimpleEntry<Object[], Object[]> result = null;
+    	
     	ICallContractor callContractor = this.getCallContractor();
     	if(null == callContractor)
     	{
     		throw new IllegalStateException("CallContractor must be set before using this failer.");
     	}
     	// fail call requires a checker call from caller
-    	callContractor.popContractWithCaller(caller, this, failSpecification);
+    	result = callContractor.popContractWithCaller(caller, this, failSpecification);
+    	
+    	return result;
     }
+
+    protected String constructFailMessage(
+			Class<? extends IFail> failerSpecificationType,
+			NFail failAnnotation, 
+			Object[] checkerUserArguments,
+			Object[] checkerExtraArguments,
+			Object[] failerUserArguments,
+			Object[] failerExtraArguments)
+	{
+    	String result = null;
+    	
+    	Object[] messageArgumentObjects = null;
+    	{ // build arguments
+    		String failMessageArguments = failAnnotation.failMessageArguments();
+    		String[] messageArguments = failMessageArguments.split(",");
+    		messageArgumentObjects = new Object[messageArguments.length];
+    		for(int index = 0; index < messageArguments.length; ++index)
+    		{
+    			String messageArgument = messageArguments[index].trim();
+    			String messageArgumentLower = messageArgument.toLowerCase(Locale.US);
+    			if(messageArgumentLower.length() < 3)
+    			{
+    	            throw new IllegalArgumentException(failerSpecificationType + " has annotation " + failAnnotation + " with failMessageArguments ' with illegal entry '" + messageArguments[index] +"' (arg#" + index + ")");
+    			}
+       			boolean isCheckerUserArgument = false;
+       			boolean isCheckerExtraArgument = false;
+       			boolean isFailerUserArgument = false;
+       			boolean isFailerExtraArgument = false;
+    			{
+       				char c0 = messageArgumentLower.charAt(0);
+       				char c1 = messageArgumentLower.charAt(1);
+	    			switch(c0)
+	    			{
+	      				case 'c':
+	    				{
+	    					switch(c1)
+	    					{
+	    	      				case 'u':
+	    	    				{
+	    	    					isCheckerUserArgument = true;
+	    	    				}
+	    	    				break;
+	    	      				case 'x':
+	    	    				{
+	    	    					isCheckerExtraArgument = true;
+	    	    				}
+	    	    				break;
+			    				default:
+			    				{
+			    	   	            throw new IllegalArgumentException(failerSpecificationType + " has annotation " + failAnnotation + " with failMessageArguments ' with illegal entry '" + messageArguments[index] +"' (arg#" + index + "). Symbol '" + c1 + "' was unexpected.");
+			    	   	       	}
+	    					}
+	    				}
+	    				break;
+	      				case 'f':
+	    				{
+	    					switch(c1)
+	    					{
+	    	      				case 'u':
+	    	    				{
+	    	    					isFailerUserArgument = true;
+	    	    				}
+	    	    				break;
+	    	      				case 'x':
+	    	    				{
+	    	    					isFailerExtraArgument = true;
+	    	    				}
+	    	    				break;
+			    				default:
+			    				{
+			    	   	            throw new IllegalArgumentException(failerSpecificationType + " has annotation " + failAnnotation + " with failMessageArguments ' with illegal entry '" + messageArguments[index] +"' (arg#" + index + "). Symbol '" + c1 + "' was unexpected.");
+			    	   	       	}
+	    					}
+	    				}
+	    				break;
+	    				default:
+	    				{
+	    	   	            throw new IllegalArgumentException(failerSpecificationType + " has annotation " + failAnnotation + " with failMessageArguments ' with illegal entry '" + messageArguments[index] +"' (arg#" + index + "). Symbol '" + c0 + "' was unexpected.");
+	    	   	       	}
+	    			}
+    			}
+    			
+				int argumentIndex = -1;
+    			{
+    				String argumentIndexString = messageArgumentLower.substring(2);
+    				try
+    				{
+        				argumentIndex = Integer.parseInt(argumentIndexString);
+    				}
+    				catch(NumberFormatException e)
+    				{
+    	   	            throw new IllegalArgumentException(failerSpecificationType + " has annotation " + failAnnotation + " with failMessageArguments ' with illegal entry '" + messageArguments[index] +"' (arg#" + index + "). Postfix '" + argumentIndexString + "' could not be parsed as an integer.");
+    				}
+    			}
+    			
+    			Object[] argumentsReference = null;
+    			if(isCheckerUserArgument)
+    			{
+    				argumentsReference = checkerUserArguments;
+    			}
+    			else if(isCheckerExtraArgument)
+    			{
+    				argumentsReference = checkerExtraArguments;
+    			}
+    			else if(isFailerUserArgument)
+    			{
+    				argumentsReference = failerUserArguments;
+    			}
+    			else if(isFailerExtraArgument)
+    			{
+    				argumentsReference = failerExtraArguments;
+    			}
+    			else
+    			{
+   	   	            throw new IllegalStateException(failerSpecificationType + " has annotation " + failAnnotation + " with failMessageArguments ' with entry '" + messageArguments[index] +"' (arg#" + index + ") causing unexpected problems.");
+    			}
+    			
+    			if(argumentsReference.length <= argumentIndex)
+    			{
+   	   	            throw new IllegalArgumentException(failerSpecificationType + " has annotation " + failAnnotation + " with failMessageArguments ' with entry '" + messageArguments[index] +"' (arg#" + index + ") that tries to index arguments array with length " + argumentsReference.length +".");
+    			}
+    			else
+    			{
+    				Object argument = argumentsReference[argumentIndex];
+        			messageArgumentObjects[index] = argument;
+    			}
+    		}
+    	}
+    	
+    	{ // format arguments into string
+    		result = String.format(failAnnotation.failMessageFormat(), messageArgumentObjects);
+    	}
+    	
+		return result;
+	}
 
     protected FailFastException constructFailException(Class<? extends FailFastException> exceptionType, String message)
     {

@@ -45,7 +45,10 @@ public interface IObjectNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null.")
+	@NFail(checkerSpecificationType = IObjectNotNullCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Object '%s'(%s) is NOT null.",
+			failMessageArguments = "fu0, fu1, cu1")
 	void failObjectNotNull(Object caller, String referenceName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IObjectNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectNotNullCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT null. %s")
+	@NFail(checkerSpecificationType = IObjectNotNullCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Object '%s'(%s) is NOT null. %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2")
 	void failObjectNotNull(Object caller, String referenceName, String message);
 
 }

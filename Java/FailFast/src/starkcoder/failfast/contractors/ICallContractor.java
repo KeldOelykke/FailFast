@@ -23,6 +23,8 @@
  */
 package starkcoder.failfast.contractors;
 
+import java.util.AbstractMap.SimpleEntry;
+
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.IChecker;
 import starkcoder.failfast.fails.IFail;
@@ -55,9 +57,13 @@ public interface ICallContractor
 	 *            checker that was called and asserted
 	 * @param checkSpecification
 	 *            check specification type inheriting ICheck
+	 * @param checkArguments
+	 * 			  user supplied check arguments for failer output
+	 * @param checkExtraArguments 
+	 * 			  implementation supplied check arguments for failer output
 	 */
 	void pushContractWithCaller(Object caller, IChecker assertingChecker,
-			Class<? extends ICheck> checkSpecification);
+			Class<? extends ICheck> checkSpecification, Object[] checkArguments, Object[] checkExtraArguments);
 
 	/**
 	 * Ends a contract between caller and call contractor.
@@ -72,7 +78,8 @@ public interface ICallContractor
 	 *            failer that was called to throw an exception
 	 * @param failSpecification
 	 *            fail specification type inhering by IFail
+	 * @return checker pushed user arguments and extra arguments
 	 */
-	void popContractWithCaller(Object caller, IFailer throwingFailer,
+	SimpleEntry<Object[], Object[]> popContractWithCaller(Object caller, IFailer throwingFailer,
 			Class<? extends IFail> failSpecification);
 }

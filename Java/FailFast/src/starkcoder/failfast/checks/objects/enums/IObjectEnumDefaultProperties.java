@@ -32,23 +32,26 @@ public interface IObjectEnumDefaultProperties
 {
 
 	/**
-	 * Default Enum used by isEnumDefault and isEnumNotDefault.
+	 * Default enum entry in enumType used by isEnumDefault and isEnumNotDefault.
 	 * <p>
-	 * By default the first entry of an Enum is the default.
+	 * This is backed by a class-enum Map (empty by default).
 	 * </p>
 	 * <p>
-	 * Use setEnumDefault() to change the default Enum.
+	 * By default the first entry of an Enum is used.
+	 * </p>
+	 * <p>
+	 * Use setEnumDefault() to change the default enum returned by this method.
 	 * </p>
 	 * 
-	 * @return default Enum - default is Enum.False
+	 * @return default Enum - first entry in enumType or entry specified using setEnumDefault
 	 */
 	Enum<?> getEnumDefault(Class<? extends Enum<?>> enumType);
 
 	/**
-	 * Changes the default object used by isEnumDefault and isEnumNotDefault.
+	 * Changes the default enum entry used by isEnumDefault and isEnumNotDefault (enum type is derived from argument).
 	 * 
 	 * @param defaultEnum
-	 *            new default object to set
+	 *            enum entry to use as default enum for that enum type
 	 */
 	void setEnumDefault(Enum<?> defaultEnum);
 

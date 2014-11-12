@@ -39,7 +39,9 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumNotDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotNullCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck;
@@ -144,7 +146,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == reference)
 		{
-			this.pushContractWithCaller(caller, IObjectNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectNullCheck.class, new Object[] { caller, reference });
 			result = true;
 		}
 
@@ -170,7 +172,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != reference)
 		{
-			this.pushContractWithCaller(caller, IObjectNotNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectNotNullCheck.class, new Object[] { caller, reference });
 			result = true;
 		}
 
@@ -198,7 +200,7 @@ public abstract class AChecker implements IChecker
 		if ((null == referenceA && null == referenceB)
 				|| (null != referenceA && referenceA.equals(referenceB)))
 		{
-			this.pushContractWithCaller(caller, IObjectEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -226,7 +228,7 @@ public abstract class AChecker implements IChecker
 		if ((null == referenceA && null != referenceB)
 				|| (null != referenceA && !referenceA.equals(referenceB)))
 		{
-			this.pushContractWithCaller(caller, IObjectNotEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -250,7 +252,7 @@ public abstract class AChecker implements IChecker
 
 		if (referenceA == referenceB)
 		{
-			this.pushContractWithCaller(caller, IObjectSameCheck.class);
+			this.pushContractWithCaller(caller, IObjectSameCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -273,7 +275,7 @@ public abstract class AChecker implements IChecker
 
 		if (referenceA != referenceB)
 		{
-			this.pushContractWithCaller(caller, IObjectNotSameCheck.class);
+			this.pushContractWithCaller(caller, IObjectNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -302,7 +304,7 @@ public abstract class AChecker implements IChecker
 
 		if (referenceA == referenceB)
 		{
-			this.pushContractWithCaller(caller, IObjectBooleanEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectBooleanEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -325,7 +327,7 @@ public abstract class AChecker implements IChecker
 
 		if (referenceA != referenceB)
 		{
-			this.pushContractWithCaller(caller, IObjectBooleanNotEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectBooleanNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -344,7 +346,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectBooleanNotNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectBooleanNotNullCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -362,7 +364,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectBooleanNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectBooleanNullCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -383,9 +385,9 @@ public abstract class AChecker implements IChecker
 		}
 		if (null != referenceA)
 		{
-			if (!referenceA.booleanValue())
+			if (referenceA.equals(Boolean.FALSE))
 			{
-				this.pushContractWithCaller(caller, IObjectBooleanFalseCheck.class);
+				this.pushContractWithCaller(caller, IObjectBooleanFalseCheck.class, new Object[] { caller, referenceA }, new Object[] { Boolean.FALSE });
 				result = true;
 			}
 		}
@@ -407,9 +409,9 @@ public abstract class AChecker implements IChecker
 		}
 		if (null != referenceA)
 		{
-			if (referenceA.booleanValue())
+			if (referenceA.equals(Boolean.TRUE))
 			{
-				this.pushContractWithCaller(caller, IObjectBooleanTrueCheck.class);
+				this.pushContractWithCaller(caller, IObjectBooleanTrueCheck.class, new Object[] { caller, referenceA }, new Object[] { Boolean.TRUE });
 				result = true;
 			}
 		}
@@ -440,7 +442,7 @@ public abstract class AChecker implements IChecker
 		}
 		if (this.getBooleanDefault() != referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectBooleanNotDefaultCheck.class);
+			this.pushContractWithCaller(caller, IObjectBooleanNotDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { this.getBooleanDefault() });
 			result = true;
 		}
 
@@ -458,7 +460,7 @@ public abstract class AChecker implements IChecker
 		}
 		if (this.getBooleanDefault() == referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectBooleanDefaultCheck.class);
+			this.pushContractWithCaller(caller, IObjectBooleanDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { this.getBooleanDefault() });
 			result = true;
 		}
 
@@ -488,7 +490,7 @@ public abstract class AChecker implements IChecker
 
 		if (referenceA != referenceB)
 		{
-			this.pushContractWithCaller(caller, IObjectEnumNotEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectEnumNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -511,7 +513,7 @@ public abstract class AChecker implements IChecker
 
 		if (referenceA == referenceB)
 		{
-			this.pushContractWithCaller(caller, IObjectEnumEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectEnumEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -533,7 +535,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectEnumNotNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectEnumNotNullCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -555,7 +557,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectEnumNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectEnumNullCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -576,8 +578,12 @@ public abstract class AChecker implements IChecker
 		Enum<?> result = this.getEnumDefaults().get(enumType);
 		if(null == result)
 		{ // cache this to avoid repeated array creations
-			result = enumType.getEnumConstants()[0];
-			this.getEnumDefaults().put(enumType, result);
+			Enum<?>[] enumConstants = enumType.getEnumConstants();
+			if(null != enumConstants && 0 < enumConstants.length)
+			{
+				result = enumConstants[0];
+				this.getEnumDefaults().put(enumType, result);
+			}
 		}
 		return result;
 	}
@@ -598,13 +604,14 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
+		Enum<?> enumDefault = null;
 		if (null == referenceA)		
 		{
 			result = true;
 		}
 		else
 		{
-			Enum<?> enumDefault = this.getEnumDefault(referenceA.getDeclaringClass());
+			enumDefault = this.getEnumDefault(referenceA.getDeclaringClass());
 			if(enumDefault != referenceA)
 			{
 				result = true;
@@ -612,7 +619,7 @@ public abstract class AChecker implements IChecker
 		}
 		if(result)
 		{
-			this.pushContractWithCaller(caller, IObjectEnumNotNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectEnumNotDefaultCheck.class, new Object[] { caller, referenceA, enumDefault });
 		}
 
 		return result;
@@ -633,7 +640,7 @@ public abstract class AChecker implements IChecker
 			Enum<?> enumDefault = this.getEnumDefault(referenceA.getDeclaringClass());
 			if(enumDefault == referenceA)
 			{
-				this.pushContractWithCaller(caller, IObjectEnumEqualsCheck.class);
+				this.pushContractWithCaller(caller, IObjectEnumDefaultCheck.class, new Object[] { caller, referenceA, enumDefault });
 				result = true;
 			}
 		}
@@ -680,9 +687,10 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-		if (this.getStringDefault().equals(referenceA))
+		String stringDefault = this.getStringDefault();
+		if (stringDefault.equals(referenceA))
 		{
-			this.pushContractWithCaller(caller, IObjectStringDefaultCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringDefaultCheck.class, new Object[] { caller, referenceA, stringDefault });
 			result = true;
 		}
 
@@ -700,9 +708,10 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-		if (!this.getStringDefault().equals(referenceA))
+		String stringDefault = this.getStringDefault(); 
+		if (!stringDefault.equals(referenceA))
 		{
-			this.pushContractWithCaller(caller, IObjectStringNotDefaultCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNotDefaultCheck.class, new Object[] { caller, referenceA, stringDefault });
 			result = true;
 		}
 
@@ -725,7 +734,7 @@ public abstract class AChecker implements IChecker
 
 		if (referenceA.equals(referenceB))
 		{
-			this.pushContractWithCaller(caller, IObjectStringEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -747,7 +756,7 @@ public abstract class AChecker implements IChecker
 
 		if (!referenceA.equals(referenceB))
 		{
-			this.pushContractWithCaller(caller, IObjectStringNotEqualsCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -769,7 +778,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectStringNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNullCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -790,7 +799,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA)
 		{
-			this.pushContractWithCaller(caller, IObjectStringNotNullCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNotNullCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -814,7 +823,7 @@ public abstract class AChecker implements IChecker
 
 		if (stringEmpty.equals(referenceA))
 		{
-			this.pushContractWithCaller(caller, IObjectStringEmptyCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringEmptyCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -836,7 +845,7 @@ public abstract class AChecker implements IChecker
 
 		if (!stringEmpty.equals(referenceA))
 		{
-			this.pushContractWithCaller(caller, IObjectStringNotEmptyCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNotEmptyCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -856,7 +865,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA || stringEmpty.equals(referenceA))
 		{
-			this.pushContractWithCaller(caller, IObjectStringNullOrEmptyCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNullOrEmptyCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -875,7 +884,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA && !stringEmpty.equals(referenceA))
 		{
-			this.pushContractWithCaller(caller, IObjectStringNotNullAndNotEmptyCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNotNullAndNotEmptyCheck.class, new Object[] { caller, referenceA });
 			result = true;
 		}
 
@@ -898,7 +907,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA && null != referenceB && referenceA.endsWith(referenceB))
 		{
-			this.pushContractWithCaller(caller, IObjectStringWithPostfixCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringWithPostfixCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -921,7 +930,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA || null == referenceB || !referenceA.endsWith(referenceB))
 		{
-			this.pushContractWithCaller(caller, IObjectStringWithoutPostfixCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringWithoutPostfixCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -944,7 +953,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA && null != referenceB && 0 <= referenceA.indexOf(referenceB))
 		{
-			this.pushContractWithCaller(caller, IObjectStringWithSubstringCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringWithSubstringCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -966,7 +975,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA || null == referenceB || referenceA.indexOf(referenceB) < 0)
 		{
-			this.pushContractWithCaller(caller, IObjectStringWithoutSubstringCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringWithoutSubstringCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -989,7 +998,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA || null == referenceB || !referenceA.startsWith(referenceB))
 		{
-			this.pushContractWithCaller(caller, IObjectStringWithoutPrefixCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringWithoutPrefixCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -1011,7 +1020,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA && null != referenceB && referenceA.startsWith(referenceB))
 		{
-			this.pushContractWithCaller(caller, IObjectStringWithPrefixCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringWithPrefixCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
 		}
 
@@ -1035,7 +1044,7 @@ public abstract class AChecker implements IChecker
 
 		if (null == referenceA || null == regex || !referenceA.matches(regex))
 		{
-			this.pushContractWithCaller(caller, IObjectStringNotMatchingCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringNotMatchingCheck.class, new Object[] { caller, referenceA, regex });
 			result = true;
 		}
 
@@ -1058,7 +1067,7 @@ public abstract class AChecker implements IChecker
 
 		if (null != referenceA && null != regex && referenceA.matches(regex))
 		{
-			this.pushContractWithCaller(caller, IObjectStringMatchingCheck.class);
+			this.pushContractWithCaller(caller, IObjectStringMatchingCheck.class, new Object[] { caller, referenceA, regex });
 			result = true;
 		}
 
@@ -1088,7 +1097,7 @@ public abstract class AChecker implements IChecker
 
 		if (valueA == valueB)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanEqualsCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveBooleanEqualsCheck.class, new Object[] { caller, valueA, valueB });
 			result = true;
 		}
 
@@ -1113,7 +1122,7 @@ public abstract class AChecker implements IChecker
 
 		if (valueA != valueB)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanNotEqualsCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveBooleanNotEqualsCheck.class, new Object[] { caller, valueA, valueB });
 			result = true;
 		}
 
@@ -1136,7 +1145,7 @@ public abstract class AChecker implements IChecker
 
 		if (!valueA)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanFalseCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveBooleanFalseCheck.class, new Object[] { caller, valueA });
 			result = true;
 		}
 
@@ -1158,7 +1167,7 @@ public abstract class AChecker implements IChecker
 
 		if (valueA)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanTrueCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveBooleanTrueCheck.class, new Object[] { caller, valueA });
 			result = true;
 		}
 
@@ -1196,10 +1205,10 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-
-		if (valueA != this.getBooleanValueDefault())
+		boolean booleanDefault = this.getBooleanValueDefault();
+		if (valueA != booleanDefault)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanNotDefaultCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveBooleanNotDefaultCheck.class, new Object[] { caller, valueA, booleanDefault });
 			result = true;
 		}
 
@@ -1219,9 +1228,10 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (valueA == this.getBooleanValueDefault())
+		boolean booleanDefault = this.getBooleanValueDefault();
+		if (valueA == booleanDefault)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanDefaultCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveBooleanDefaultCheck.class, new Object[] { caller, valueA, booleanDefault });
 			result = true;
 		}
 
@@ -1255,7 +1265,7 @@ public abstract class AChecker implements IChecker
 
 		if (valueA == valueB)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsCheck.class, new Object[] { caller, valueA, valueB });
 			result = true;
 		}
 
@@ -1278,7 +1288,7 @@ public abstract class AChecker implements IChecker
 
 		if (valueA != valueB)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsCheck.class, new Object[] { caller, valueA, valueB });
 			result = true;
 		}
 
@@ -1317,9 +1327,10 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-		if (this.getFloatValueDefault() == valueA)
+		float floatValueDefault = this.getFloatValueDefault();
+		if (floatValueDefault == valueA)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatDefaultCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatDefaultCheck.class, new Object[] { caller, valueA, floatValueDefault });
 			result = true;
 		}
 
@@ -1338,9 +1349,10 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-		if (this.getFloatValueDefault() != valueA)
+		float floatValueDefault = this.getFloatValueDefault();
+		if (floatValueDefault != valueA)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatNotDefaultCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatNotDefaultCheck.class, new Object[] { caller, valueA, floatValueDefault });
 			result = true;
 		}
 
@@ -1448,7 +1460,7 @@ public abstract class AChecker implements IChecker
 
 		if(result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsAlmostCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsAlmostCheck.class, new Object[] { caller, valueA, valueB, absoluteEpsilon, relativeEpsilon });
 		}
 
 		return result;
@@ -1509,7 +1521,7 @@ public abstract class AChecker implements IChecker
 			
 		if (result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsAlmostCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsAlmostCheck.class, new Object[] { caller, valueA, valueB, absoluteEpsilon, relativeEpsilon });
 		}
 
 		return result;
@@ -1537,7 +1549,7 @@ public abstract class AChecker implements IChecker
 			
 		if (result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatLessCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatLessCheck.class, new Object[] { caller, valueA, valueB });
 		}
 
 		return result;
@@ -1565,7 +1577,7 @@ public abstract class AChecker implements IChecker
 			
 		if (result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatLessEqualsCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatLessEqualsCheck.class, new Object[] { caller, valueA, valueB });
 		}
 
 		return result;
@@ -1592,7 +1604,7 @@ public abstract class AChecker implements IChecker
 			
 		if (result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterCheck.class, new Object[] { caller, valueA, valueB });
 		}
 
 		return result;
@@ -1620,7 +1632,7 @@ public abstract class AChecker implements IChecker
 			
 		if (result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterEqualsCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterEqualsCheck.class, new Object[] { caller, valueA, valueB });
 		}
 
 		return result;
@@ -1657,7 +1669,7 @@ public abstract class AChecker implements IChecker
 			
 		if (result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatOutsideCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatOutsideCheck.class, new Object[] { caller, valueA, valueMin, valueMax });
 		}
 
 		return result;
@@ -1694,7 +1706,7 @@ public abstract class AChecker implements IChecker
 			
 		if (result)
 		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatWithinCheck.class);
+			this.pushContractWithCaller(caller, IPrimitiveFloatWithinCheck.class, new Object[] { caller, valueA, valueMin, valueMax });
 		}
 
 		return result;
@@ -1733,9 +1745,17 @@ public abstract class AChecker implements IChecker
 			this.setCallContractor(callContractor);
 		}
 	}
+	
+	protected final static Object[] EmptyObjectArray = new Object[]{};
 
 	protected void pushContractWithCaller(Object caller,
-			Class<? extends ICheck> checkerSpecification)
+			Class<? extends ICheck> checkerSpecification, Object[] checkArguments)
+	{
+		this.pushContractWithCaller(caller, checkerSpecification, checkArguments, EmptyObjectArray);
+	}
+	
+	protected void pushContractWithCaller(Object caller,
+			Class<? extends ICheck> checkerSpecification, Object[] checkArguments, Object[] checkExtraArguments)
 	{
 		ICallContractor callContractor = this.getCallContractor();
 		if (null == callContractor)
@@ -1746,7 +1766,7 @@ public abstract class AChecker implements IChecker
 
 		// require a fail call from caller
 		callContractor.pushContractWithCaller(caller, this,
-				checkerSpecification);
+				checkerSpecification, checkArguments, checkExtraArguments);
 	}
 	
 }

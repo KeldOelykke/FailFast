@@ -47,7 +47,10 @@ public interface IObjectNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectNotSameCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT same as object '%s'.")
+	@NFail(checkerSpecificationType = IObjectNotSameCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Object '%s'(%s) is NOT same as object '%s'(%s).",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
 	void failObjectNotSame(Object caller, String referenceAName, String referenceBName);
 
 	/**
@@ -64,7 +67,10 @@ public interface IObjectNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectNotSameCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Object '%s' is NOT same as object '%s'. %s")
+	@NFail(checkerSpecificationType = IObjectNotSameCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Object '%s'(%s) is NOT same as object '%s'(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")
 	void failObjectNotSame(Object caller, String referenceAName, String referenceBName, String message);
 
 }
