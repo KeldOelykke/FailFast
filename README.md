@@ -40,6 +40,16 @@ In such moments I try a search for a fail-fast library, but I can't seem to find
 
 Clearly, that is no good to anyone, so here is one.
 
+State
+========
+
+The 1st major version of this library will only support a construct with a check & fail-pair (see http://starkcoder.blogspot.dk/2013/06/how-could-failfast-library-work.html).
+
+Confidence in the current design is getting high now, though it still needs some tests to prove that
+the check & fail-methods can be altered from another jar e.g. replaced and extended.
+
+The scope of the 1st major version is check & fail-pairs that can handle primitives and basic objects from the standard library. Since each type seems to require around 10(+/-4) method pairs (see wiki link below), it takes a while to get the implementation complete; 2015 seems reasonable.
+
 Examples
 ========
 
