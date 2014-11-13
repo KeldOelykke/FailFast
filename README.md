@@ -49,7 +49,7 @@ https://github.com/KeldOelykke/FailFast/wiki
 Builds, Tests & Jar
 ===================
 
-https://keldoelykke.ci.cloudbees.com/job/FailFast/
+https://keldoelykke.ci.cloudbees.com/job/FailFast/ (Sorry this is broken, sign up to free program for this project failed in practice. I might have to find another cloud-based build system.)
 
 ![Cloudbees is Cool!](http://cloudbees.prod.acquia-sites.com/sites/default/files/styles/large/public/Button-Built-on-CB-1.png)
 
