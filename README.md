@@ -46,7 +46,8 @@ State
 The 1st major version of this library will only support a construct with a check & fail-pair (see http://starkcoder.blogspot.dk/2013/06/how-could-failfast-library-work.html).
 
 Confidence in the current design is getting high now, though it still needs some tests to prove that
-the check & fail-methods can be "managed" from another jar e.g. replaced and/or extended. Inheritance should take care of most, but it is unknown whether the failer-annotations can be modified e.g. to change failer-output formatting. 
+ - the check & fail-methods can be "managed" from another jar e.g. replaced and/or extended. Inheritance should take care of most, but it is unknown whether the failer-annotations can be modified e.g. to change failer-output formatting, and
+ - support for arrays and collections is possible.
 
 The scope of the 1st major version is check & fail-pairs that can handle primitives and basic objects from the standard library. Since each type seems to require around 10(+/-4) method pairs (see wiki link below), it takes a while to get the implementation complete; 2015 seems reasonable.
 
