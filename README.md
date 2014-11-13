@@ -23,7 +23,7 @@ If this either makes no sense to you, or you just is not convinced, please visit
 Target Audience
 ===============
 
-Object-Oriented software developers using Java/C#.
+Object-Oriented software developers using Java (... and maybe other languages e.g. C# in the future).
 
 
 Goal
