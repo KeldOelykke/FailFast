@@ -35,7 +35,7 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail;
 public interface IObjectStringWithPrefixCheck extends ICheck
 {
 	/**
-	 * Checks if A starts with B.
+	 * Checks if A starts with prefix.
 	 * <p>
 	 * The empty string is a prefix to all string instances.
 	 * </p>
@@ -47,12 +47,12 @@ public interface IObjectStringWithPrefixCheck extends ICheck
 	 *            end-user instance initiating the check
 	 * @param referenceA
 	 *            reference to check for prefix reference B
-	 * @param referenceB
+	 * @param prefix
 	 *            potential prefix of reference A
-	 * @return true, if referenced B is prefix of A - otherwise false
+	 * @return true, if referenced prefix is a prefix of A - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectStringWithPrefixFail.class)
-	boolean isStringWithPrefix(Object caller, String referenceA, String referenceB);
+	boolean isStringWithPrefix(Object caller, String referenceA, String prefix);
 }

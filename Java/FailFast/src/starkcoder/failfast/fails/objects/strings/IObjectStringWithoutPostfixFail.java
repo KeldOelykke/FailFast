@@ -42,13 +42,14 @@ public interface IObjectStringWithoutPostfixFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithoutPostfixCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' does NOT end with String '%s'.")
-	void failStringWithoutPostfix(Object caller, String referenceAName, String referenceBName);
+	@NFail(checkerSpecificationType = IObjectStringWithoutPostfixCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) does NOT have postfix(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cu2")
+	void failStringWithoutPostfix(Object caller, String referenceAName);
 
 	/**
 	 * Fails specified Strings, since they passed a non-postfix check.
@@ -57,14 +58,15 @@ public interface IObjectStringWithoutPostfixFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithoutPostfixCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' does NOT end with String '%s'. %s")
-	void failStringWithoutPostfix(Object caller, String referenceAName, String referenceBName, String message);
+	@NFail(checkerSpecificationType = IObjectStringWithoutPostfixCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) does NOT have postfix(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cu2, fu2")
+	void failStringWithoutPostfix(Object caller, String referenceAName, String message);
 
 }

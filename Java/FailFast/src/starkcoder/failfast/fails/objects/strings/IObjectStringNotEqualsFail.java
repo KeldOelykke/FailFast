@@ -47,7 +47,10 @@ public interface IObjectStringNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' is NOT equal to String '%s'.")
+	@NFail(checkerSpecificationType = IObjectStringNotEqualsCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT equal to String '%s'(%s).",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
 	void failStringNotEquals(Object caller, String referenceAName, String referenceBName);
 
 	/**
@@ -64,46 +67,10 @@ public interface IObjectStringNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' is NOT equal to String '%s'. %s")
+	@NFail(checkerSpecificationType = IObjectStringNotEqualsCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT equal to String '%s'(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")
 	void failStringNotEquals(Object caller, String referenceAName, String referenceBName, String message);
 
-	/**
-	 * Fails specified Strings, since they passed a not-equals check.
-	 * 
-	 * @param caller
-	 *            object calling checker and then failer (if String check asserted)
-	 * @param referenceA
-	 *            reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
-	 * @param referenceB
-	 *            reference B to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
-	 * @throws IllegalArgumentException
-	 *             if caller is null
-	 */
-	@NFail(checkerSpecificationType = IObjectStringNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s'(%s) is NOT equal to String '%s'(%s).")
-	void failStringNotEquals(Object caller, String referenceAName, String referenceA, String referenceBName, String referenceB);
-
-	/**
-	 * Fails specified Strings, since they passed a not-equals check.
-	 * 
-	 * @param caller
-	 *            object calling checker and then failer (if String check asserted)
-	 * @param referenceA
-	 *            reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
-	 * @param referenceB
-	 *            reference B to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
-	 * @param message
-	 *            additional information
-	 * @throws IllegalArgumentException
-	 *             if caller is null
-	 */
-	@NFail(checkerSpecificationType = IObjectStringNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s'(%s) is NOT equal to String '%s'(%s). %s")
-	void failStringNotEquals(Object caller, String referenceAName, String referenceA, String referenceBName, String referenceB, String message);
 }

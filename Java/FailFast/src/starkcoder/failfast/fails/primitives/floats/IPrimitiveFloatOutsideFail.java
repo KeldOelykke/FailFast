@@ -47,7 +47,10 @@ public interface IPrimitiveFloatOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatOutsideCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is outside [min;max].")
+	@NFail(checkerSpecificationType = IPrimitiveFloatOutsideCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is outside float range [%s;%s].",
+			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
 	void failFloatValueOutside(Object caller, String valueAName);
 
 	/**
@@ -64,47 +67,10 @@ public interface IPrimitiveFloatOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatOutsideCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is outside [min;max]. %s")
+	@NFail(checkerSpecificationType = IPrimitiveFloatOutsideCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is outside float range [%s;%s]. %s.",
+			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			
 	void failFloatValueOutside(Object caller, String valueAName, String message);
-
-	/**
-	 * Fails specified values, since they passed a outside check.
-	 * 
-	 * @param caller
-	 *            object calling checker and then failer (if value check asserted)
-	 * @param valueAName
-	 *            name of value A to fail
-	 * @param valueBName
-	 *            name of value B to fail
-	 * @param valueMin
-	 *            min value to fail
-	 * @param valueMax
-	 *            max value to fail
-	 * @throws IllegalArgumentException
-	 *             if caller is null
-	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatOutsideCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is outside [%s;%s].")
-	void failFloatValueOutside(Object caller, String valueAName, float valueMin, float valueMax);
-
-	/**
-	 * Fails specified values, since they passed a outside check.
-	 * 
-	 * @param caller
-	 *            object calling checker and then failer (if value check asserted)
-	 * @param valueAName
-	 *            name of value A to fail
-	 * @param valueBName
-	 *            name of value B to fail
-	 * @param valueMin
-	 *            min value to fail
-	 * @param valueMax
-	 *            max value to fail
-	 * @param message
-	 *            additional information
-	 * @throws IllegalArgumentException
-	 *             if caller is null
-	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatOutsideCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is outside [%s;%s]. %s")
-	void failFloatValueOutside(Object caller, String valueAName, float valueMin, float valueMax, String message);
 
 }

@@ -45,7 +45,10 @@ public interface IObjectStringNotNullAndNotEmptyFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotNullAndNotEmptyCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to null and NOT to an empty value.")
+	@NFail(checkerSpecificationType = IObjectStringNotNullAndNotEmptyCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT null and NOT empty(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")
 	void failStringNotNullAndNotEmpty(Object caller, String referenceAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IObjectStringNotNullAndNotEmptyFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotNullAndNotEmptyCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to null and NOT to an empty value. %s")
+	@NFail(checkerSpecificationType = IObjectStringNotNullAndNotEmptyCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT null and NOT empty(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
 	void failStringNotNullAndNotEmpty(Object caller, String referenceAName, String message);
 
 }

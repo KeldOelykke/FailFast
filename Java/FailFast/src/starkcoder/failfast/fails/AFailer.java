@@ -564,19 +564,6 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
-	@Override
-	public void failStringEquals(Object caller, String referenceAName,
-			String referenceA, String referenceBName, String referenceB)
-	{
-		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB });
-	}
-	@Override
-	public void failStringEquals(Object caller, String referenceAName,
-			String referenceA, String referenceBName, String referenceB,
-			String message)
-	{
-		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB, message });
-	}
 	
 	
 	@Override
@@ -590,21 +577,7 @@ public abstract class AFailer implements IFailer
 			String referenceBName, String message)
 	{
 		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	@Override
-	public void failStringNotEquals(Object caller, String referenceAName,
-			String referenceA, String referenceBName, String referenceB)
-	{
-		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB });
-	}
-	@Override
-	public void failStringNotEquals(Object caller, String referenceAName,
-			String referenceA, String referenceBName, String referenceB,
-			String message)
-	{
-		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceA, referenceBName, referenceB, message });
-	}
-	
+	}	
 	
 	@Override
 	public void failStringDefault(Object caller, String referenceAName)
@@ -708,154 +681,138 @@ public abstract class AFailer implements IFailer
 	
 	
 	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail#failStringWithPrefix(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringWithPrefix(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail#failStringWithPrefix(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringWithPrefix(Object caller, String referenceAName,
-			String referenceBName)
+	public void failStringWithPrefix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail#failStringWithPrefix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failStringWithPrefix(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail#failStringWithoutPrefix(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutPrefix(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName });
+	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail#failStringWithoutPrefix(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringWithoutPrefix(Object caller, String referenceAName,
-			String referenceBName)
+	public void failStringWithoutPrefix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail#failStringWithoutPrefix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failStringWithoutPrefix(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail#failStringWithoutPostfix(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutPostfix(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName });
+	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail#failStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringWithoutPostfix(Object caller, String referenceAName,
-			String referenceBName)
+	public void failStringWithoutPostfix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail#failStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failStringWithoutPostfix(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail#failStringWithSubstring(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringWithSubstring(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName });
+	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail#failStringWithSubstring(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringWithSubstring(Object caller, String referenceAName,
-			String referenceBName)
+	public void failStringWithSubstring(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail#failStringWithSubstring(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failStringWithSubstring(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail#failStringWithPostfix(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringWithPostfix(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName });
+	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail#failStringWithPostfix(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringWithPostfix(Object caller, String referenceAName,
-			String referenceBName)
+	public void failStringWithPostfix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail#failStringWithPostfix(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failStringWithPostfix(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail#failStringWithoutSubstring(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringWithoutSubstring(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName });
+	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail#failStringWithoutSubstring(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringWithoutSubstring(Object caller,
-			String referenceAName, String referenceBName)
+	public void failStringWithoutSubstring(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail#failStringWithoutSubstring(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failStringWithoutSubstring(Object caller,
-			String referenceAName, String referenceBName, String message)
-	{
-		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail#failStringMatching(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failStringMatching(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName });
+	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail#failStringMatching(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringMatching(Object caller, String referenceAName,
-			String regex)
+	public void failStringMatching(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName, regex });
+		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName, message });
 	}
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail#failStringMatching(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail#failStringNotMatching(java.lang.Object, java.lang.String)
 	 */
 	@Override
-	public void failStringMatching(Object caller, String referenceAName,
-			String regex, String message)
+	public void failStringNotMatching(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName, regex, message });
+		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail#failStringNotMatching(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failStringNotMatching(Object caller, String referenceAName,
-			String regex)
+	public void failStringNotMatching(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName, regex });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail#failStringNotMatching(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failStringNotMatching(Object caller, String referenceAName,
-			String regex, String message)
-	{
-		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName, regex, message });
+		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	
@@ -1010,25 +967,6 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
 	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, float, java.lang.String, float)
-	 */
-	@Override
-	public void failFloatValueNotEquals(Object caller, String valueAName,
-			float valueA, String valueBName, float valueB)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, float, java.lang.String, float, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueNotEquals(Object caller, String valueAName,
-			float valueA, String valueBName, float valueB, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB, message });
-	}
-	
 	
 	@Override
 	public void failFloatValueDefault(Object caller, String valueAName)
@@ -1073,24 +1011,6 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
 	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float)
-	 */
-	@Override
-	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
-			float valueA, String valueBName, float valueB)
-	{
-		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
-			float valueA, String valueBName, float valueB, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB, message });
-	}
 	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
@@ -1109,24 +1029,6 @@ public abstract class AFailer implements IFailer
 			String valueBName, String message)
 	{
 		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float)
-	 */
-	@Override
-	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
-			float valueA, String valueBName, float valueB)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, float, java.lang.String, float, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
-			float valueA, String valueBName, float valueB, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueA, valueBName, valueB, message });
 	}
 	
 	
@@ -1193,18 +1095,6 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, message });
 	}
-	@Override
-	public void failFloatValueOutside(Object caller, String valueAName,
-			float valueMin, float valueMax)
-	{
-		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, valueMin, valueMax });
-	}
-	@Override
-	public void failFloatValueOutside(Object caller, String valueAName,
-			float valueMin, float valueMax, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, valueMin, valueMax, message });
-	}
 	
 	@Override
 	public void failFloatValueWithin(Object caller, String valueAName)
@@ -1216,18 +1106,6 @@ public abstract class AFailer implements IFailer
 			String message)
 	{
 		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, message });
-	}
-	@Override
-	public void failFloatValueWithin(Object caller, String valueAName,
-			float valueMin, float valueMax)
-	{
-		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, valueMin, valueMax });
-	}
-	@Override
-	public void failFloatValueWithin(Object caller, String valueAName,
-			float valueMin, float valueMax, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, valueMin, valueMax, message });
 	}
 	
 	

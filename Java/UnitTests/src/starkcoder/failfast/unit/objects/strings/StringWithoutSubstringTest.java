@@ -98,30 +98,30 @@ public class StringWithoutSubstringTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testStringWithoutSubstringCheckerCallerIsNull() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutSubstring(null, referenceA, referenceB))
+		String substring = "xyz";
+		if(checker.isStringWithoutSubstring(null, referenceA, substring))
 		{
-			failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+			failer.failStringWithoutSubstring(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testStringWithoutSubstringFailerCallerIsNull() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+		String substring = "xyz";
+		if(checker.isStringWithoutSubstring(this, referenceA, substring))
 		{
-			failer.failStringWithoutSubstring(null, "referenceA", "referenceB");
+			failer.failStringWithoutSubstring(null, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringFailerCallerIsWrong() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutSubstring(new String("Foo"), referenceA, referenceB))
+		String substring = "xyz";
+		if(checker.isStringWithoutSubstring(new String("Foo"), referenceA, substring))
 		{
-			failer.failStringWithoutSubstring(new String("Bar"), "referenceA", "referenceB");
+			failer.failStringWithoutSubstring(new String("Bar"), "referenceA");
 		}
 	}
 	
@@ -131,35 +131,35 @@ public class StringWithoutSubstringTest {
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutSubstringMismatchCheckCheck() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+		String substring = "xyz";
+		if(checker.isStringWithoutSubstring(this, referenceA, substring))
 		{
-			checker.isStringWithoutSubstring(this, referenceA, referenceB);
+			checker.isStringWithoutSubstring(this, referenceA, substring);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutSubstringMismatchFail() {
-		failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+		failer.failStringWithoutSubstring(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutSubstringMismatchWrongCheck() {
 		String referenceA = "okay";
-		String referenceB = "ka";
-		if(checker.isStringWithSubstring(this, referenceA, referenceB)) // wrong call
+		String substring = "ka";
+		if(checker.isStringWithSubstring(this, referenceA, substring)) // wrong call
 		{
-			failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+			failer.failStringWithoutSubstring(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutSubstringMismatchWrongFail() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+		String substring = "xyz";
+		if(checker.isStringWithoutSubstring(this, referenceA, substring))
 		{
-			failer.failStringWithSubstring(this, "referenceA", "referenceB"); // wrong call
+			failer.failStringWithSubstring(this, "referenceA"); // wrong call
 		}
 	}
 	
@@ -169,12 +169,12 @@ public class StringWithoutSubstringTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNullWithNullSubstringFail() {
 		String referenceA = null;
-		String referenceB = null;
+		String substring = null;
 		try
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+				failer.failStringWithoutSubstring(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -189,12 +189,12 @@ public class StringWithoutSubstringTest {
 	@Test(expected=FailFastException.class)
 	public void testStringEmptyWithNullSubstringFail() {
 		String referenceA = "";
-		String referenceB = null;
+		String substring = null;
 		try
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+				failer.failStringWithoutSubstring(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -209,12 +209,12 @@ public class StringWithoutSubstringTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNonEmptyWithNullSubstringFail() {
 		String referenceA = "okay";
-		String referenceB = null;
+		String substring = null;
 		try
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+				failer.failStringWithoutSubstring(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -230,12 +230,12 @@ public class StringWithoutSubstringTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNullWithEmptySubstringFail() {
 		String referenceA = null;
-		String referenceB = "";
+		String substring = "";
 		try
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+				failer.failStringWithoutSubstring(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -250,40 +250,40 @@ public class StringWithoutSubstringTest {
 	@Test
 	public void testStringEmptyWithEmptySubstringNoFail() {
 		String referenceA = "";
-		String referenceB = "";
+		String substring = "";
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+				failer.failStringWithoutSubstring(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & substring to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithEmptySubstringFail() {
 		String referenceA = "okay";
-		String referenceB = "";
+		String substring = "";
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+				failer.failStringWithoutSubstring(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & substring to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test(expected=FailFastException.class)
 	public void testStringNonEmptyWithNonMatchingSubstringFailMessage() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
+		String substring = "xyz";
 		try
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB", "addition info");
+				failer.failStringWithoutSubstring(this, "referenceA", "addition info");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -298,56 +298,56 @@ public class StringWithoutSubstringTest {
 	@Test
 	public void testStringNonEmptyWithMatchingPrefixNoFail() {
 		String referenceA = "okay";
-		String referenceB = "ka";
+		String substring = "ka";
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB");
+				failer.failStringWithoutSubstring(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & substring to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithMatchingSubstringNoFail() {
 		String referenceA = "okay";
-		String referenceB = "ka";
+		String substring = "ka";
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB", "Extra info goes here");
+				failer.failStringWithoutSubstring(this, "referenceA", "Extra info goes here");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & substring to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithMatchingPostfixNoFail() {
 		String referenceA = "okay";
-		String referenceB = "ay";
+		String substring = "ay";
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB", "Extra info goes here");
+				failer.failStringWithoutSubstring(this, "referenceA", "Extra info goes here");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & substring to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithSelfSubstringNoFail() {
 		String referenceA = "okay";
-		String referenceB = referenceA;
+		String substring = referenceA;
 		{
-			if(checker.isStringWithoutSubstring(this, referenceA, referenceB))
+			if(checker.isStringWithoutSubstring(this, referenceA, substring))
 			{
-				failer.failStringWithoutSubstring(this, "referenceA", "referenceB", "Extra info goes here");
+				failer.failStringWithoutSubstring(this, "referenceA", "Extra info goes here");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & substring to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	

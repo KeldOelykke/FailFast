@@ -47,7 +47,10 @@ public interface IPrimitiveFloatGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatGreaterCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is greater than value '%s'.")
+	@NFail(checkerSpecificationType = IPrimitiveFloatGreaterCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is greater than float '%s'(%s).",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
 	void failFloatValueGreater(Object caller, String valueAName, String valueBName);
 
 	/**
@@ -64,7 +67,10 @@ public interface IPrimitiveFloatGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatGreaterCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is greater than value '%s'. %s")
+	@NFail(checkerSpecificationType = IPrimitiveFloatGreaterCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is greater than float '%s'(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")
 	void failFloatValueGreater(Object caller, String valueAName, String valueBName, String message);
 
 }

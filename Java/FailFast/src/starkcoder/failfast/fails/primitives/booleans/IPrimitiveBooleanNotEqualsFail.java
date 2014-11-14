@@ -47,7 +47,10 @@ public interface IPrimitiveBooleanNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal to value '%s'.")
+	@NFail(checkerSpecificationType = IPrimitiveBooleanNotEqualsCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: boolean '%s'(%s) is NOT equal to boolean '%s'(%s).",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
 	void failBooleanValueNotEquals(Object caller, String valueAName, String valueBName);
 
 	/**
@@ -64,7 +67,10 @@ public interface IPrimitiveBooleanNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanNotEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT equal to value '%s'. %s")
+	@NFail(checkerSpecificationType = IPrimitiveBooleanNotEqualsCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: boolean '%s'(%s) is NOT equal to boolean '%s'(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")
 	void failBooleanValueNotEquals(Object caller, String valueAName, String valueBName, String message);
 
 }

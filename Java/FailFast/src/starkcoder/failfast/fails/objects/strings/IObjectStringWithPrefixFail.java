@@ -42,13 +42,14 @@ public interface IObjectStringWithPrefixFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithPrefixCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' starts with String '%s'.")
-	void failStringWithPrefix(Object caller, String referenceAName, String referenceBName);
+	@NFail(checkerSpecificationType = IObjectStringWithPrefixCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) has prefix(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cu2")
+	void failStringWithPrefix(Object caller, String referenceAName);
 
 	/**
 	 * Fails specified Strings, since they passed a prefix check.
@@ -57,14 +58,15 @@ public interface IObjectStringWithPrefixFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithPrefixCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' starts with String '%s'. %s")
-	void failStringWithPrefix(Object caller, String referenceAName, String referenceBName, String message);
+	@NFail(checkerSpecificationType = IObjectStringWithPrefixCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) has prefix(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cu2, fu2")
+	void failStringWithPrefix(Object caller, String referenceAName, String message);
 
 }

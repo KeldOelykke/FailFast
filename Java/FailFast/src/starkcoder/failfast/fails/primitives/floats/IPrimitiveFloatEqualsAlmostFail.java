@@ -47,7 +47,10 @@ public interface IPrimitiveFloatEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is equal or almost equal to value '%s'.")
+	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is equal or almost equal to float '%s'(%s) - it is within range [%s;%s].",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, cx2, cx3")			
 	void failFloatValueEqualsAlmost(Object caller, String valueAName, String valueBName);
 
 	/**
@@ -64,47 +67,9 @@ public interface IPrimitiveFloatEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is equal or almost equal to value '%s'. %s")
+	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is equal or almost equal to float '%s'(%s) - it is within range [%s;%s]. %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, cx2, cx3, fu3")	
 	void failFloatValueEqualsAlmost(Object caller, String valueAName, String valueBName, String message);
-
-	/**
-	 * Fails specified values, since they passed an equals-almost check.
-	 * 
-	 * @param caller
-	 *            object calling checker and then failer (if value check asserted)
-	 * @param valueAName
-	 *            name of value A to fail
-	 * @param valueA
-	 *            value A to fail
-	 * @param valueBName
-	 *            name of value B to fail
-	 * @param valueB
-	 *            value B to fail
-	 * @throws IllegalArgumentException
-	 *             if caller is null
-	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s'(%s) is equal or almost equal to value '%s'(%s).")
-	void failFloatValueEqualsAlmost(Object caller, String valueAName, float valueA, String valueBName, float valueB);
-
-	/**
-	 * Fails specified values, since they passed an equals-almost check.
-	 * 
-	 * @param caller
-	 *            object calling checker and then failer (if value check asserted)
-	 * @param valueAName
-	 *            name of value A to fail
-	 * @param valueA
-	 *            value A to fail
-	 * @param valueBName
-	 *            name of value B to fail
-	 * @param valueB
-	 *            value B to fail
-	 * @param message
-	 *            additional information
-	 * @throws IllegalArgumentException
-	 *             if caller is null
-	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatEqualsAlmostCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s'(%s) is equal or almost equal to value '%s'(%s). %s")
-	void failFloatValueEqualsAlmost(Object caller, String valueAName, float valueA, String valueBName, float valueB, String message);
-
 }

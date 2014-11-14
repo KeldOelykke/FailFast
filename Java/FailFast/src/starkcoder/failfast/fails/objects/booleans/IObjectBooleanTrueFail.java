@@ -47,7 +47,7 @@ public interface IObjectBooleanTrueFail extends IFail
 	 */
 	@NFail(checkerSpecificationType = IObjectBooleanTrueCheck.class,
 			failExceptionType = FailFastException.class, 
-			failMessageFormat = "%s: Boolean '%s'(%s) equals 'Boolean.True'(%s).",
+			failMessageFormat = "%s: Boolean '%s'(%s) is equal to 'Boolean.True'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, cx0")
 	void failBooleanTrue(Object caller, String referenceAName);
 
@@ -65,7 +65,7 @@ public interface IObjectBooleanTrueFail extends IFail
 	 */
 	@NFail(checkerSpecificationType = IObjectBooleanTrueCheck.class,
 			failExceptionType = FailFastException.class, 
-			failMessageFormat = "%s: Boolean '%s'(%s) equals 'Boolean.True'(%s). %s.",
+			failMessageFormat = "%s: Boolean '%s'(%s) is equal to 'Boolean.True'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
 	void failBooleanTrue(Object caller, String referenceAName, String message);
 

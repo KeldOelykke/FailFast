@@ -29,4 +29,9 @@ package starkcoder.failfast.unit.objects.enums;
  */
 public enum EBar {
 	VALUE_A, VALUE_B;
+
+	@Override
+	public String toString() {
+		return this.getDeclaringClass().getSimpleName() + "." + super.toString();
+	}
 }

@@ -42,13 +42,14 @@ public interface IObjectStringMatchingFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param regex
-	 *            the regular expression A was matched against
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringMatchingCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' matches the regular expression '%s'.")
-	void failStringMatching(Object caller, String referenceAName, String regex);
+	@NFail(checkerSpecificationType = IObjectStringMatchingCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is a match(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")
+	void failStringMatching(Object caller, String referenceAName);
 
 	/**
 	 * Fails specified String, since it passed a regex check.
@@ -57,14 +58,15 @@ public interface IObjectStringMatchingFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param regex
-	 *            the regular expression A was matched against
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringMatchingCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' matches the regular expression '%s'. %s")
-	void failStringMatching(Object caller, String referenceAName, String regex, String message);
+	@NFail(checkerSpecificationType = IObjectStringMatchingCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is a match(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
+	void failStringMatching(Object caller, String referenceAName, String message);
 
 }

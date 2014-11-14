@@ -207,46 +207,6 @@ public class StringNotEqualsTest {
 		}
 	}
 
-	@Test(expected=FailFastException.class)
-	public void testStringNotEqualsFailValuesNoMessage() {
-		String referenceA = "";
-		String referenceB = "foo";
-		try
-		{
-			if(checker.isStringNotEquals(this, referenceA, referenceB))
-			{
-				failer.failStringNotEquals(this, "referenceA", referenceA, "referenceB", referenceB);
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testStringNotEqualsFailValuesAndMessage() {
-		String referenceA = "foo";
-		String referenceB = "";
-		try
-		{
-			if(checker.isStringNotEquals(this, referenceA, referenceB))
-			{
-				failer.failStringNotEquals(this, "referenceA", referenceA, "referenceB", referenceB, "Extra info goes here");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
-	
 	@Test
 	public void testStringNotEqualsNoFail() {
 		String referenceA = "foo";

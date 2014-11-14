@@ -98,30 +98,30 @@ public class StringWithoutPostfixTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testStringWithoutPostfixCheckerCallerIsNull() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPostfix(null, referenceA, referenceB))
+		String postfix = "xyz";
+		if(checker.isStringWithoutPostfix(null, referenceA, postfix))
 		{
-			failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+			failer.failStringWithoutPostfix(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testStringWithoutPostfixFailerCallerIsNull() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+		String postfix = "xyz";
+		if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 		{
-			failer.failStringWithoutPostfix(null, "referenceA", "referenceB");
+			failer.failStringWithoutPostfix(null, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringFailerCallerIsWrong() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPostfix(new String("Foo"), referenceA, referenceB))
+		String postfix = "xyz";
+		if(checker.isStringWithoutPostfix(new String("Foo"), referenceA, postfix))
 		{
-			failer.failStringWithoutPostfix(new String("Bar"), "referenceA", "referenceB");
+			failer.failStringWithoutPostfix(new String("Bar"), "referenceA");
 		}
 	}
 	
@@ -131,35 +131,35 @@ public class StringWithoutPostfixTest {
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPostfixMismatchCheckCheck() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+		String postfix = "xyz";
+		if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 		{
-			checker.isStringWithoutPostfix(this, referenceA, referenceB);
+			checker.isStringWithoutPostfix(this, referenceA, postfix);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPostfixMismatchFail() {
-		failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+		failer.failStringWithoutPostfix(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPostfixMismatchWrongCheck() {
 		String referenceA = "okay";
-		String referenceB = "ay";
-		if(checker.isStringWithPostfix(this, referenceA, referenceB)) // wrong call
+		String postfix = "ay";
+		if(checker.isStringWithPostfix(this, referenceA, postfix)) // wrong call
 		{
-			failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+			failer.failStringWithoutPostfix(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPostfixMismatchWrongFail() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+		String postfix = "xyz";
+		if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 		{
-			failer.failStringWithPostfix(this, "referenceA", "referenceB"); // wrong call
+			failer.failStringWithPostfix(this, "referenceA"); // wrong call
 		}
 	}
 	
@@ -169,12 +169,12 @@ public class StringWithoutPostfixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNullWithNullPostfixFail() {
 		String referenceA = null;
-		String referenceB = null;
+		String postfix = null;
 		try
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPostfix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -189,12 +189,12 @@ public class StringWithoutPostfixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringEmptyWithNullPostfixFail() {
 		String referenceA = "";
-		String referenceB = null;
+		String postfix = null;
 		try
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPostfix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -209,12 +209,12 @@ public class StringWithoutPostfixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNonEmptyWithNullPostfixFail() {
 		String referenceA = "okay";
-		String referenceB = null;
+		String postfix = null;
 		try
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPostfix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -230,12 +230,12 @@ public class StringWithoutPostfixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNullWithEmptyPostfixFail() {
 		String referenceA = null;
-		String referenceB = "";
+		String postfix = "";
 		try
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPostfix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -250,40 +250,40 @@ public class StringWithoutPostfixTest {
 	@Test
 	public void testStringEmptyWithEmptyPostfixNoFail() {
 		String referenceA = "";
-		String referenceB = "";
+		String postfix = "";
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPostfix(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & postfix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithEmptyPostfixFail() {
 		String referenceA = "okay";
-		String referenceB = "";
+		String postfix = "";
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPostfix(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & postfix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test(expected=FailFastException.class)
 	public void testStringNonEmptyWithNonMatchingPostfixFailMessage() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
+		String postfix = "xyz";
 		try
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB", "addition info");
+				failer.failStringWithoutPostfix(this, "referenceA", "addition info");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -298,42 +298,42 @@ public class StringWithoutPostfixTest {
 	@Test
 	public void testStringNonEmptyWithMatchingPostfixNoFail() {
 		String referenceA = "okay";
-		String referenceB = "y";
+		String postfix = "y";
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPostfix(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & postfix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithMatchingPostfix2NoFail() {
 		String referenceA = "okay";
-		String referenceB = "ay";
+		String postfix = "ay";
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB", "Extra info goes here");
+				failer.failStringWithoutPostfix(this, "referenceA", "Extra info goes here");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & postfix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithSelfPostfixNoFail() {
 		String referenceA = "okay";
-		String referenceB = referenceA;
+		String postfix = referenceA;
 		{
-			if(checker.isStringWithoutPostfix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPostfix(this, referenceA, postfix))
 			{
-				failer.failStringWithoutPostfix(this, "referenceA", "referenceB", "Extra info goes here");
+				failer.failStringWithoutPostfix(this, "referenceA", "Extra info goes here");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & postfix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	

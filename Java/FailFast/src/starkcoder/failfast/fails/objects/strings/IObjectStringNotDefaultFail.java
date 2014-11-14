@@ -45,7 +45,10 @@ public interface IObjectStringNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value.")
+	@NFail(checkerSpecificationType = IObjectStringNotDefaultCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT default(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")
 	void failStringNotDefault(Object caller, String referenceAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IObjectStringNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value. %s")
+	@NFail(checkerSpecificationType = IObjectStringNotDefaultCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT default(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
 	void failStringNotDefault(Object caller, String referenceAName, String message);
 
 }

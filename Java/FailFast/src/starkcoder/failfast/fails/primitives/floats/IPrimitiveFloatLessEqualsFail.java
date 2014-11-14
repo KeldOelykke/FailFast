@@ -47,7 +47,10 @@ public interface IPrimitiveFloatLessEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatLessEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is less or equals to value '%s'.")
+	@NFail(checkerSpecificationType = IPrimitiveFloatLessEqualsCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is less than or equal to float '%s'(%s).",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
 	void failFloatValueLessEquals(Object caller, String valueAName, String valueBName);
 
 	/**
@@ -64,7 +67,10 @@ public interface IPrimitiveFloatLessEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatLessEqualsCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is less or equals to value '%s'. %s")
+	@NFail(checkerSpecificationType = IPrimitiveFloatLessEqualsCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is less than or equal to float '%s'(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")
 	void failFloatValueLessEquals(Object caller, String valueAName, String valueBName, String message);
 
 }

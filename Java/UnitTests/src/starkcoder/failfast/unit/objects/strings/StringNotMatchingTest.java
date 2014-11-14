@@ -101,7 +101,7 @@ public class StringNotMatchingTest {
 		String regex = "[cayo]{4}";
 		if(checker.isStringNotMatching(null, referenceA, regex))
 		{
-			failer.failStringNotMatching(this, "referenceA", regex);
+			failer.failStringNotMatching(this, "referenceA");
 		}
 	}
 	
@@ -111,7 +111,7 @@ public class StringNotMatchingTest {
 		String regex = "[cayo]{4}";
 		if(checker.isStringNotMatching(this, referenceA, regex))
 		{
-			failer.failStringNotMatching(null, "referenceA", regex);
+			failer.failStringNotMatching(null, "referenceA");
 		}
 	}
 	
@@ -121,7 +121,7 @@ public class StringNotMatchingTest {
 		String regex = "[cayo]{4}";
 		if(checker.isStringNotMatching(new String("Foo"), referenceA, regex))
 		{
-			failer.failStringNotMatching(new String("Bar"), "referenceA", regex);
+			failer.failStringNotMatching(new String("Bar"), "referenceA");
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class StringNotMatchingTest {
 		String regex = "[kayo]{4}";
 		if(checker.isStringMatching(this, referenceA, regex)) // wrong call
 		{
-			failer.failStringNotMatching(this, "referenceA", regex);
+			failer.failStringNotMatching(this, "referenceA");
 		}
 	}
 	
@@ -159,7 +159,7 @@ public class StringNotMatchingTest {
 		String regex = "[cayo]{4}";
 		if(checker.isStringNotMatching(this, referenceA, regex))
 		{
-			failer.failStringMatching(this, "referenceA", regex); // wrong call
+			failer.failStringMatching(this, "referenceA"); // wrong call
 		}
 	}
 	
@@ -174,7 +174,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -194,7 +194,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -214,7 +214,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -235,7 +235,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -254,7 +254,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -269,7 +269,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -289,7 +289,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -308,7 +308,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -322,7 +322,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex, "Extra info goes here");
+				failer.failStringNotMatching(this, "referenceA", "Extra info goes here");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -336,7 +336,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex);
+				failer.failStringNotMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -350,7 +350,7 @@ public class StringNotMatchingTest {
 		{
 			if(checker.isStringNotMatching(this, referenceA, regex))
 			{
-				failer.failStringNotMatching(this, "referenceA", regex, "Extra info goes here");
+				failer.failStringNotMatching(this, "referenceA", "Extra info goes here");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);

@@ -101,7 +101,7 @@ public class StringMatchingTest {
 		String regex = "[kayo]{4}";
 		if(checker.isStringMatching(null, referenceA, regex))
 		{
-			failer.failStringMatching(this, "referenceA", regex);
+			failer.failStringMatching(this, "referenceA");
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class StringMatchingTest {
 		String regex = "[cayo]";
 		if(checker.isStringNotMatching(this, referenceA, regex)) // wrong call
 		{
-			failer.failStringMatching(this, "referenceA", regex);
+			failer.failStringMatching(this, "referenceA");
 		}
 	}
 	
@@ -159,7 +159,7 @@ public class StringMatchingTest {
 		String regex = "[kayo]{4}";
 		if(checker.isStringMatching(this, referenceA, regex))
 		{
-			failer.failStringNotMatching(this, "referenceA", regex); // wrong call
+			failer.failStringNotMatching(this, "referenceA"); // wrong call
 		}
 	}
 	
@@ -173,7 +173,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -187,7 +187,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -201,7 +201,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -216,7 +216,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -231,7 +231,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -250,7 +250,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -264,7 +264,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		assertTrue("Expected referenceA & regex to pass the check", true);
@@ -279,7 +279,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -299,7 +299,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex, "Extra info goes here");
+				failer.failStringMatching(this, "referenceA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -319,7 +319,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex);
+				failer.failStringMatching(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -339,7 +339,7 @@ public class StringMatchingTest {
 		{
 			if(checker.isStringMatching(this, referenceA, regex))
 			{
-				failer.failStringMatching(this, "referenceA", regex, "Extra info goes here");
+				failer.failStringMatching(this, "referenceA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)

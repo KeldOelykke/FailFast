@@ -45,7 +45,10 @@ public interface IPrimitiveFloatNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT default.")
+	@NFail(checkerSpecificationType = IPrimitiveFloatNotDefaultCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: float '%s'(%s) is NOT default(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")			
 	void failFloatValueNotDefault(Object caller, String valueAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IPrimitiveFloatNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveFloatNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT default. %s")
+	@NFail(checkerSpecificationType = IPrimitiveFloatNotDefaultCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: boolean '%s'(%s) is NOT default(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")			
 	void failFloatValueNotDefault(Object caller, String valueAName, String message);
 
 }

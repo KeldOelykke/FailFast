@@ -35,7 +35,7 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail;
 public interface IObjectStringWithoutPrefixCheck extends ICheck
 {
 	/**
-	 * Checks if A does NOT start with B.
+	 * Checks if A does NOT start with prefix.
 	 * <p>
 	 * The empty string is a prefix to all string instances.
 	 * </p>
@@ -47,12 +47,12 @@ public interface IObjectStringWithoutPrefixCheck extends ICheck
 	 *            end-user instance initiating the check
 	 * @param referenceA
 	 *            reference to check for non-prefix reference B
-	 * @param referenceB
+	 * @param prefix
 	 *            potential prefix of reference A
-	 * @return true, if referenced B is NOT a prefix of A - otherwise false
+	 * @return true, if referenced prefix is NOT a prefix of A - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectStringWithoutPrefixFail.class)
-	boolean isStringWithoutPrefix(Object caller, String referenceA, String referenceB);
+	boolean isStringWithoutPrefix(Object caller, String referenceA, String prefix);
 }

@@ -42,13 +42,14 @@ public interface IObjectStringWithoutSubstringFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithoutSubstringCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' does NOT contain String '%s'.")
-	void failStringWithoutSubstring(Object caller, String referenceAName, String referenceBName);
+	@NFail(checkerSpecificationType = IObjectStringWithoutSubstringCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) does NOT have substring(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cu2")
+	void failStringWithoutSubstring(Object caller, String referenceAName);
 
 	/**
 	 * Fails specified Strings, since they passed a non-substring check.
@@ -57,14 +58,15 @@ public interface IObjectStringWithoutSubstringFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithoutSubstringCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' does NOT contain String '%s'. %s")
-	void failStringWithoutSubstring(Object caller, String referenceAName, String referenceBName, String message);
+	@NFail(checkerSpecificationType = IObjectStringWithoutSubstringCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) does NOT have substring(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cu2, fu2")
+	void failStringWithoutSubstring(Object caller, String referenceAName, String message);
 
 }

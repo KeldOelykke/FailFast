@@ -45,7 +45,10 @@ public interface IPrimitiveBooleanTrueFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanTrueCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is true.")
+	@NFail(checkerSpecificationType = IPrimitiveBooleanTrueCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: boolean '%s'(%s) is equal to true(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")
 	void failBooleanValueTrue(Object caller, String valueAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IPrimitiveBooleanTrueFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanTrueCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is true. %s")
+	@NFail(checkerSpecificationType = IPrimitiveBooleanTrueCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: boolean '%s'(%s) is equal to true(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
 	void failBooleanValueTrue(Object caller, String valueAName, String message);
 
 }

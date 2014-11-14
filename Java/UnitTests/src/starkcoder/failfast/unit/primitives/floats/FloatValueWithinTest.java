@@ -227,47 +227,6 @@ public class FloatValueWithinTest {
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 
-	@Test(expected=FailFastException.class)
-	public void testFloatValueWithinFailValuesAndNoMessage() {
-		float valueA = 0.123f;
-		float valueMin = -valueA;
-		float valueMax = valueA;
-		try
-		{
-			if(checker.isFloatValueWithin(this, valueA, valueMin, valueMax))
-			{
-				failer.failFloatValueWithin(this, "valueA", valueMin, valueMax);
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testFloatValueWithinFailValuesAndMessage() {
-		float valueA = -0.123f;
-		float valueMin = valueA;
-		float valueMax = -valueA;
-		try
-		{
-			if(checker.isFloatValueWithin(this, valueA, valueMin, valueMax))
-			{
-				failer.failFloatValueWithin(this, "valueA", valueMin, valueMax, "Extra info goes here");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
 	
 	// 4th - corner cases
 	

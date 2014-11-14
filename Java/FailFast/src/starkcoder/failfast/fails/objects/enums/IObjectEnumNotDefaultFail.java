@@ -45,7 +45,10 @@ public interface IObjectEnumNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEnumNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value.")
+	@NFail(checkerSpecificationType = IObjectEnumNotDefaultCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Enum '%s'(%s) is NOT default(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")
 	void failEnumNotDefault(Object caller, String referenceAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IObjectEnumNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEnumNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' does NOT point to a default value. %s")
+	@NFail(checkerSpecificationType = IObjectEnumNotDefaultCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: Enum '%s'(%s) is NOT default(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
 	void failEnumNotDefault(Object caller, String referenceAName, String message);
 
 }

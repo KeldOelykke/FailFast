@@ -42,13 +42,14 @@ public interface IObjectStringNotMatchingFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param regex
-	 *            the regular expression A was matched against
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotMatchingCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' does NOT match the regular expression '%s'.")
-	void failStringNotMatching(Object caller, String referenceAName, String regex);
+	@NFail(checkerSpecificationType = IObjectStringNotMatchingCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT a match(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")
+	void failStringNotMatching(Object caller, String referenceAName);
 
 	/**
 	 * Fails specified String, since it did NOT pass a regex check.
@@ -57,14 +58,15 @@ public interface IObjectStringNotMatchingFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param regex
-	 *            the regular expression A was matched against
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotMatchingCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' does NOT match the regular expression '%s'. %s")
-	void failStringNotMatching(Object caller, String referenceAName, String regex, String message);
+	@NFail(checkerSpecificationType = IObjectStringNotMatchingCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is NOT a match(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
+	void failStringNotMatching(Object caller, String referenceAName, String message);
 
 }

@@ -45,7 +45,10 @@ public interface IPrimitiveBooleanNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT default.")
+	@NFail(checkerSpecificationType = IPrimitiveBooleanNotDefaultCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: boolean '%s'(%s) is NOT default(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")			
 	void failBooleanValueNotDefault(Object caller, String valueAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IPrimitiveBooleanNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IPrimitiveBooleanNotDefaultCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Value '%s' is NOT default. %s")
+	@NFail(checkerSpecificationType = IPrimitiveBooleanNotDefaultCheck.class,
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: boolean '%s'(%s) is NOT default(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")			
 	void failBooleanValueNotDefault(Object caller, String valueAName, String message);
 
 }

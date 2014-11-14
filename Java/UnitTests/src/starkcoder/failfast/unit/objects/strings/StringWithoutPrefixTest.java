@@ -98,30 +98,30 @@ public class StringWithoutPrefixTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testStringWithoutPrefixCheckerCallerIsNull() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPrefix(null, referenceA, referenceB))
+		String prefix = "xyz";
+		if(checker.isStringWithoutPrefix(null, referenceA, prefix))
 		{
-			failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+			failer.failStringWithoutPrefix(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testStringWithoutPrefixFailerCallerIsNull() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+		String prefix = "xyz";
+		if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 		{
-			failer.failStringWithoutPrefix(null, "referenceA", "referenceB");
+			failer.failStringWithoutPrefix(null, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringFailerCallerIsWrong() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPrefix(new String("Foo"), referenceA, referenceB))
+		String prefix = "xyz";
+		if(checker.isStringWithoutPrefix(new String("Foo"), referenceA, prefix))
 		{
-			failer.failStringWithoutPrefix(new String("Bar"), "referenceA", "referenceB");
+			failer.failStringWithoutPrefix(new String("Bar"), "referenceA");
 		}
 	}
 	
@@ -131,35 +131,35 @@ public class StringWithoutPrefixTest {
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPrefixMismatchCheckCheck() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+		String prefix = "xyz";
+		if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 		{
-			checker.isStringWithoutPrefix(this, referenceA, referenceB);
+			checker.isStringWithoutPrefix(this, referenceA, prefix);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPrefixMismatchFail() {
-		failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+		failer.failStringWithoutPrefix(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPrefixMismatchWrongCheck() {
 		String referenceA = "okay";
-		String referenceB = "ok";
-		if(checker.isStringWithPrefix(this, referenceA, referenceB)) // wrong call
+		String prefix = "ok";
+		if(checker.isStringWithPrefix(this, referenceA, prefix)) // wrong call
 		{
-			failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+			failer.failStringWithoutPrefix(this, "referenceA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testStringWithoutPrefixMismatchWrongFail() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
-		if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+		String prefix = "xyz";
+		if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 		{
-			failer.failStringWithPrefix(this, "referenceA", "referenceB"); // wrong call
+			failer.failStringWithPrefix(this, "referenceA"); // wrong call
 		}
 	}
 	
@@ -169,12 +169,12 @@ public class StringWithoutPrefixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNullWithNullPrefixFail() {
 		String referenceA = null;
-		String referenceB = null;
+		String prefix = null;
 		try
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPrefix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -189,12 +189,12 @@ public class StringWithoutPrefixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringEmptyWithNullPrefixFail() {
 		String referenceA = "";
-		String referenceB = null;
+		String prefix = null;
 		try
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPrefix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -209,12 +209,12 @@ public class StringWithoutPrefixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNonEmptyWithNullPrefixFail() {
 		String referenceA = "okay";
-		String referenceB = null;
+		String prefix = null;
 		try
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPrefix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -230,12 +230,12 @@ public class StringWithoutPrefixTest {
 	@Test(expected=FailFastException.class)
 	public void testStringNullWithEmptyPrefixFail() {
 		String referenceA = null;
-		String referenceB = "";
+		String prefix = "";
 		try
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPrefix(this, "referenceA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -250,40 +250,40 @@ public class StringWithoutPrefixTest {
 	@Test
 	public void testStringEmptyWithEmptyPrefixNoFail() {
 		String referenceA = "";
-		String referenceB = "";
+		String prefix = "";
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPrefix(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & prefix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithEmptyPrefixFail() {
 		String referenceA = "okay";
-		String referenceB = "";
+		String prefix = "";
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPrefix(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & prefix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test(expected=FailFastException.class)
 	public void testStringNonEmptyWithNonMatchingPrefixFailMessage() {
 		String referenceA = "okay";
-		String referenceB = "xyz";
+		String prefix = "xyz";
 		try
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB", "addition info");
+				failer.failStringWithoutPrefix(this, "referenceA", "addition info");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -298,42 +298,42 @@ public class StringWithoutPrefixTest {
 	@Test
 	public void testStringNonEmptyWithMatchingPrefixNoFail() {
 		String referenceA = "okay";
-		String referenceB = "o";
+		String prefix = "o";
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB");
+				failer.failStringWithoutPrefix(this, "referenceA");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & prefix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithMatchingPrefix2NoFail() {
 		String referenceA = "okay";
-		String referenceB = "ok";
+		String prefix = "ok";
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB", "Extra info goes here");
+				failer.failStringWithoutPrefix(this, "referenceA", "Extra info goes here");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & prefix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
 	public void testStringNonEmptyWithSelfPrefixNoFail() {
 		String referenceA = "okay";
-		String referenceB = referenceA;
+		String prefix = referenceA;
 		{
-			if(checker.isStringWithoutPrefix(this, referenceA, referenceB))
+			if(checker.isStringWithoutPrefix(this, referenceA, prefix))
 			{
-				failer.failStringWithoutPrefix(this, "referenceA", "referenceB", "Extra info goes here");
+				failer.failStringWithoutPrefix(this, "referenceA", "Extra info goes here");
 			}
 		}
-		assertTrue("Expected referenceA & referenceB to pass the check", true);
+		assertTrue("Expected referenceA & prefix to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	

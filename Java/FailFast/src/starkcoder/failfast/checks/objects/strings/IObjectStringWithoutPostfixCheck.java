@@ -35,7 +35,7 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail
 public interface IObjectStringWithoutPostfixCheck extends ICheck
 {
 	/**
-	 * Checks if A does not end with B.
+	 * Checks if A does not end with postfix.
 	 * <p>
 	 * The empty string is a postfix to all string instances.
 	 * </p>
@@ -47,12 +47,12 @@ public interface IObjectStringWithoutPostfixCheck extends ICheck
 	 *            end-user instance initiating the check
 	 * @param referenceA
 	 *            reference to check for non-postfix reference B
-	 * @param referenceB
+	 * @param postfix
 	 *            potential postfix of reference A
-	 * @return true, if referenced B is NOT a postfix of A - otherwise false
+	 * @return true, if referenced postfix is NOT a postfix of A - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectStringWithoutPostfixFail.class)
-	boolean isStringWithoutPostfix(Object caller, String referenceA, String referenceB);
+	boolean isStringWithoutPostfix(Object caller, String referenceA, String postfix);
 }

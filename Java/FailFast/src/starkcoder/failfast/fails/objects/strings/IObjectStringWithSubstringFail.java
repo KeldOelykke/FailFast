@@ -42,13 +42,14 @@ public interface IObjectStringWithSubstringFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithSubstringCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' contains String '%s'.")
-	void failStringWithSubstring(Object caller, String referenceAName, String referenceBName);
+	@NFail(checkerSpecificationType = IObjectStringWithSubstringCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) has substring(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cu2")
+	void failStringWithSubstring(Object caller, String referenceAName);
 
 	/**
 	 * Fails specified Strings, since they passed a substring check.
@@ -57,14 +58,15 @@ public interface IObjectStringWithSubstringFail extends IFail
 	 *            object calling checker and then failer (if String check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringWithSubstringCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: String '%s' contains String '%s'. %s")
-	void failStringWithSubstring(Object caller, String referenceAName, String referenceBName, String message);
+	@NFail(checkerSpecificationType = IObjectStringWithSubstringCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) has substring(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cu2, fu2")
+	void failStringWithSubstring(Object caller, String referenceAName, String message);
 
 }

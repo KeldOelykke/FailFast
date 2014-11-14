@@ -45,7 +45,10 @@ public interface IObjectStringNullOrEmptyFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNullOrEmptyCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' points to null or an empty value.")
+	@NFail(checkerSpecificationType = IObjectStringNullOrEmptyCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is null or empty(%s).",
+			failMessageArguments = "fu0, fu1, cu1, cx0")
 	void failStringNullOrEmpty(Object caller, String referenceAName);
 
 	/**
@@ -60,7 +63,10 @@ public interface IObjectStringNullOrEmptyFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNullOrEmptyCheck.class, failExceptionType = FailFastException.class, failMessageFormat = "%s: Reference '%s' points to null or an empty value. %s")
+	@NFail(checkerSpecificationType = IObjectStringNullOrEmptyCheck.class, 
+			failExceptionType = FailFastException.class, 
+			failMessageFormat = "%s: String '%s'(%s) is null or empty(%s). %s.",
+			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")
 	void failStringNullOrEmpty(Object caller, String referenceAName, String message);
 
 }

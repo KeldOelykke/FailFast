@@ -35,7 +35,7 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFa
 public interface IObjectStringWithoutSubstringCheck extends ICheck
 {
 	/**
-	 * Checks if A does NOT contain B.
+	 * Checks if A does NOT contain substring.
 	 * <p>
 	 * The empty string is a substring to all string instances.
 	 * </p>
@@ -47,12 +47,12 @@ public interface IObjectStringWithoutSubstringCheck extends ICheck
 	 *            end-user instance initiating the check
 	 * @param referenceA
 	 *            reference to check for non-substring reference B
-	 * @param referenceB
+	 * @param substring
 	 *            potential substring of reference A
-	 * @return true, if referenced B is NOT part of A - otherwise false
+	 * @return true, if referenced substring is NOT part of A - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectStringWithoutSubstringFail.class)
-	boolean isStringWithoutSubstring(Object caller, String referenceA, String referenceB);
+	boolean isStringWithoutSubstring(Object caller, String referenceA, String substring);
 }
