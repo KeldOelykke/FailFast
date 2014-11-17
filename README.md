@@ -45,6 +45,8 @@ State
 
 The 1st major version of this library will only support a construct with a check & fail-pair (see http://starkcoder.blogspot.dk/2013/06/how-could-failfast-library-work.html).
 
+If you think the check & fail-pair construct is odd, you might want to checkout the spot contractor pattern (http://yoawsconsult.blogspot.dk/2012/11/spot-contractor-software-pattern.html). The pattern enforces correctness and performance.
+
 Confidence in the current design is getting high now, though it still needs some tests to prove that
  - the check & fail-methods can be "managed" from another jar e.g. replaced and/or extended. Inheritance should take care of most, but it is unknown whether the failer-annotations can be modified e.g. to change failer-output formatting, and
  - support for arrays and collections is possible.
