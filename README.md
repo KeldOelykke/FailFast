@@ -51,7 +51,7 @@ Confidence in the current design is getting high now, though it still needs some
  - the check & fail-methods can be "managed" from another jar e.g. replaced and/or extended. Inheritance should take care of most, but it is unknown whether the failer-annotations can be modified e.g. to change failer-output formatting, and
  - support for arrays and collections is possible.
 
-The scope of the 1st major version is check & fail-pairs that can handle primitives and basic objects from the standard library. Since each type seems to require around 10(+/-4) method pairs (see wiki link below), it takes a while to get the implementation complete; 2015 seems reasonable.
+The scope of the 1st major version is check & fail-pairs that can handle primitives and basic objects from the standard library. Since each type seems to require around 10(+/-4) method pairs (see wiki link below), it takes a while to get the implementation complete. The 8 primitives are byte, short, int, long, float, double, boolean and char with corresponding Object representations (8 more). Object types are Object, String, Enum and UUID for sure. In total this gives a list of at least 200 check & fail-pairs (20 (8+8+4) types times 10(+/-4) methods), so with the 5 current types supported progress is about 25%.
 
 Examples
 ========
