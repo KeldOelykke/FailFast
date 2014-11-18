@@ -37,14 +37,18 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanFalseCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotDefaultCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotSameCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
+import starkcoder.failfast.checks.objects.booleans.IObjectBooleanSameCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotNullCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumNotSameCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumSameCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
@@ -55,8 +59,10 @@ import starkcoder.failfast.checks.objects.strings.IObjectStringNotEqualsCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotMatchingCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullAndNotEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotNullCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringNotSameCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNullCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNullOrEmptyCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringSameCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringWithPostfixCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringWithPrefixCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringWithSubstringCheck;
@@ -288,6 +294,53 @@ public abstract class AChecker implements IChecker
 	
 	// OBJECTS - BOOLEANS - START
 	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotSameCheck#isBooleanNotSame(java.lang.Object, java.lang.Boolean, java.lang.Boolean)
+	 */
+	@Override
+	public boolean isBooleanNotSame(Object caller, Boolean referenceA,
+			Boolean referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA != referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectBooleanNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanSameCheck#isBooleanSame(java.lang.Object, java.lang.Boolean, java.lang.Boolean)
+	 */
+	@Override
+	public boolean isBooleanSame(Object caller, Boolean referenceA,
+			Boolean referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA == referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectBooleanSameCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}	
+	
+	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanEqualsCheck#isBooleanEquals(java.lang.Object, java.lang.Boolean, java.lang.Boolean)
 	 */
@@ -302,7 +355,8 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (referenceA == referenceB)
+		if ((null == referenceA && null == referenceB)
+			|| (null != referenceA && referenceA.equals(referenceB)))
 		{
 			this.pushContractWithCaller(caller, IObjectBooleanEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
@@ -310,7 +364,6 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
-
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotEqualsCheck#isBooleanNotEquals(java.lang.Object, java.lang.Boolean, java.lang.Boolean)
 	 */
@@ -325,7 +378,8 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (referenceA != referenceB)
+		if ((null == referenceA && null != referenceB)
+			|| (null != referenceA && !referenceA.equals(referenceB)))
 		{
 			this.pushContractWithCaller(caller, IObjectBooleanNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
@@ -334,6 +388,9 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotNullCheck#isBooleanNotNull(java.lang.Object, java.lang.Boolean)
+	 */
 	@Override
 	public boolean isBooleanNotNull(Object caller, Boolean referenceA)
 	{
@@ -352,6 +409,9 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck#isBooleanNull(java.lang.Object, java.lang.Boolean)
+	 */
 	@Override
 	public boolean isBooleanNull(Object caller, Boolean referenceA)
 	{
@@ -420,17 +480,26 @@ public abstract class AChecker implements IChecker
 	}
 
 	private Boolean booleanDefault = Boolean.FALSE;
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanDefaultProperties#getBooleanDefault()
+	 */
 	@Override
 	public Boolean getBooleanDefault()
 	{
 		return this.booleanDefault;
 	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanDefaultProperties#setBooleanDefault(java.lang.Boolean)
+	 */
 	@Override
 	public void setBooleanDefault(Boolean defaultBoolean)
 	{
 		this.booleanDefault = defaultBoolean;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotDefaultCheck#isBooleanNotDefault(java.lang.Object, java.lang.Boolean)
+	 */
 	@Override
 	public boolean isBooleanNotDefault(Object caller, Boolean referenceA)
 	{
@@ -448,7 +517,9 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
-
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanDefaultCheck#isBooleanDefault(java.lang.Object, java.lang.Boolean)
+	 */
 	@Override
 	public boolean isBooleanDefault(Object caller, Boolean referenceA)
 	{
@@ -474,6 +545,46 @@ public abstract class AChecker implements IChecker
 	
 	// OBJECTS - ENUMS - START
 
+	@Override
+	public boolean isEnumNotSame(Object caller, Enum<?> referenceA,
+			Enum<?> referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA != referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectEnumNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isEnumSame(Object caller, Enum<?> referenceA,
+			Enum<?> referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA == referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectEnumSameCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}
+
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNotEqualsCheck#isEnumNotEquals(java.lang.Object, java.lang.Enum, java.lang.Enum)
 	 */
@@ -488,7 +599,8 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (referenceA != referenceB)
+		if ((null == referenceA && null != referenceB)
+				|| (null != referenceA && !referenceA.equals(referenceB)))
 		{
 			this.pushContractWithCaller(caller, IObjectEnumNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
@@ -511,7 +623,8 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (referenceA == referenceB)
+		if ((null == referenceA && null == referenceB)
+				|| (null != referenceA && referenceA.equals(referenceB)))
 		{
 			this.pushContractWithCaller(caller, IObjectEnumEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
 			result = true;
@@ -656,6 +769,93 @@ public abstract class AChecker implements IChecker
 	
 	// OBJECTS - STRINGS - START
 
+	@Override
+	public boolean isStringNotSame(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA != referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isStringSame(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA == referenceB)
+		{
+			this.pushContractWithCaller(caller, IObjectStringSameCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck#isStringEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringEquals(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if ((null == referenceA && null == referenceB)
+				|| (null != referenceA && referenceA.equals(referenceB)))
+		{
+			this.pushContractWithCaller(caller, IObjectStringEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNotEqualsCheck#isStringNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isStringNotEquals(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if ((null == referenceA && null != referenceB)
+				|| (null != referenceA && !referenceA.equals(referenceB)))
+		{
+			this.pushContractWithCaller(caller, IObjectStringNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
+			result = true;
+		}
+
+		return result;
+	}
+	
 	private String stringDefault = new String();
 
 	/* (non-Javadoc)
@@ -718,50 +918,7 @@ public abstract class AChecker implements IChecker
 		return result;
 	}	
 	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck#isStringEquals(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public boolean isStringEquals(Object caller, String referenceA,
-			String referenceB)
-	{
-		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA.equals(referenceB))
-		{
-			this.pushContractWithCaller(caller, IObjectStringEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
-
-		return result;
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNotEqualsCheck#isStringNotEquals(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public boolean isStringNotEquals(Object caller, String referenceA,
-			String referenceB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (!referenceA.equals(referenceB))
-		{
-			this.pushContractWithCaller(caller, IObjectStringNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
-
-		return result;
-	}
 
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.strings.IObjectStringNullCheck#isStringNull(java.lang.Object, java.lang.String)

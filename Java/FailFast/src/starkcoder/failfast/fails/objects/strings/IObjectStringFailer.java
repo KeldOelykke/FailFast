@@ -34,15 +34,16 @@ package starkcoder.failfast.fails.objects.strings;
  * @author Keld Oelykke
  */
 public interface IObjectStringFailer extends 
-		IObjectStringEqualsFail, IObjectStringNotEqualsFail,
-		IObjectStringNullFail, IObjectStringNotNullFail,
-		IObjectStringDefaultFail, IObjectStringNotDefaultFail,
-		IObjectStringEmptyFail, IObjectStringNotEmptyFail,
-		IObjectStringNullOrEmptyFail, IObjectStringNotNullAndNotEmptyFail,
-		IObjectStringWithPrefixFail, IObjectStringWithoutPrefixFail,
-		IObjectStringWithSubstringFail, IObjectStringWithoutSubstringFail,
-		IObjectStringWithPostfixFail, IObjectStringWithoutPostfixFail,
-		IObjectStringMatchingFail, IObjectStringNotMatchingFail
+	IObjectStringSameFail, IObjectStringNotSameFail,
+	IObjectStringEqualsFail, IObjectStringNotEqualsFail,
+	IObjectStringNullFail, IObjectStringNotNullFail,
+	IObjectStringDefaultFail, IObjectStringNotDefaultFail,
+	IObjectStringEmptyFail, IObjectStringNotEmptyFail,
+	IObjectStringNullOrEmptyFail, IObjectStringNotNullAndNotEmptyFail,
+	IObjectStringWithPrefixFail, IObjectStringWithoutPrefixFail,
+	IObjectStringWithSubstringFail, IObjectStringWithoutSubstringFail,
+	IObjectStringWithPostfixFail, IObjectStringWithoutPostfixFail,
+	IObjectStringMatchingFail, IObjectStringNotMatchingFail
 {
 
 }

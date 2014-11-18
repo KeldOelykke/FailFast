@@ -33,6 +33,7 @@ package starkcoder.failfast.fails.objects.enums;
  * @author Keld Oelykke
  */
 public interface IObjectEnumFailer extends 
+	IObjectEnumSameFail, IObjectEnumNotSameFail,
 	IObjectEnumEqualsFail, IObjectEnumNotEqualsFail,
 	IObjectEnumNullFail, IObjectEnumNotNullFail,
 	IObjectEnumDefaultFail, IObjectEnumNotDefaultFail

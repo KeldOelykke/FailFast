@@ -32,6 +32,7 @@ package starkcoder.failfast.checks.objects.strings;
  * @author Keld Oelykke
  */
 public interface IObjectStringChecker extends 
+	IObjectStringSameCheck, IObjectStringNotSameCheck,
 	IObjectStringEqualsCheck, IObjectStringNotEqualsCheck,
 	IObjectStringNullCheck, IObjectStringNotNullCheck,
 	IObjectStringDefaultCheck, IObjectStringNotDefaultCheck,

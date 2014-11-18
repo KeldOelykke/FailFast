@@ -42,14 +42,18 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFalseFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotDefaultFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotSameFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanSameFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotDefaultFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotEqualsFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotNullFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
@@ -60,8 +64,10 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringNotEqualsFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullAndNotEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotNullFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringNotSameFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNullFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNullOrEmptyFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringSameFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail;
@@ -269,6 +275,43 @@ public abstract class AFailer implements IFailer
 	// OBJECTS - BOOLEAN - START -------------------------------
 
 	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotSameFail#failBooleanNotSame(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectBooleanNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotSameFail#failBooleanNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectBooleanNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanSameFail#failBooleanSame(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectBooleanSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanSameFail#failBooleanSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failBooleanSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectBooleanSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail#failBooleanNotEquals(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
@@ -403,7 +446,44 @@ public abstract class AFailer implements IFailer
 	
 	// OBJECTS - ENUM - START ---------------------------------
 	
-	
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail#failEnumSame(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail#failEnumSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail#failEnumNotSame(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail#failEnumNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failEnumNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+		
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail#failEnumEquals(java.lang.Object, java.lang.String, java.lang.String)
 	 */
@@ -526,31 +606,29 @@ public abstract class AFailer implements IFailer
 	
 
 	@Override
-	public void failStringNull(Object caller, String referenceAName)
+	public void failStringNotSame(Object caller, String referenceAName,
+			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName });
-	}
-
-	@Override
-	public void failStringNull(Object caller, String referenceAName,
-			String message)
-	{
-		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName, message });
-	}
-	
-	
-	@Override
-	public void failStringNotNull(Object caller, String referenceAName)
-	{
-		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName });
+		this.Throw(caller, IObjectStringNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
-	public void failStringNotNull(Object caller, String referenceAName,
-			String message)
+	public void failStringNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName, message });
-	}	
-	
+		this.Throw(caller, IObjectStringNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failStringSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failStringSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
 	
 	@Override
 	public void failStringEquals(Object caller, String referenceAName,
@@ -578,6 +656,34 @@ public abstract class AFailer implements IFailer
 	{
 		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}	
+	
+	@Override
+	public void failStringNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName });
+	}
+
+	@Override
+	public void failStringNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	
+	@Override
+	public void failStringNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failStringNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}	
+	
+
 	
 	@Override
 	public void failStringDefault(Object caller, String referenceAName)

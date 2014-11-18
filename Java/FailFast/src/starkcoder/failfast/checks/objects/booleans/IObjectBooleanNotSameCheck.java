@@ -21,22 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects.enums;
+package starkcoder.failfast.checks.objects.booleans;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotSameFail;
 
 /**
- * Specification grouping all Enum check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Enum.
- * </p>
+ * Specifies a reference check for Boolean.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectEnumChecker extends 
-	IObjectEnumSameCheck, IObjectEnumNotSameCheck,
-	IObjectEnumEqualsCheck, IObjectEnumNotEqualsCheck,
-	IObjectEnumNullCheck, IObjectEnumNotNullCheck,
-	IObjectEnumDefaultCheck, IObjectEnumNotDefaultCheck
+public interface IObjectBooleanNotSameCheck extends ICheck
 {
-
+	/**
+	 * Checks if the references are not the same (using !=) including both not nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check using != against reference B
+	 * @param referenceB
+	 *            argument to check using != of reference A
+	 * @return true, if references are not the same (using !=) - including both not nulls - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectBooleanNotSameFail.class)
+	boolean isBooleanNotSame(Object caller, Boolean referenceA, Boolean referenceB);
 }

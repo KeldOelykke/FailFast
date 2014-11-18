@@ -23,20 +23,30 @@
  */
 package starkcoder.failfast.checks.objects.enums;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail;
 
 /**
- * Specification grouping all Enum check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Enum.
- * </p>
+ * Specifies a reference check for Enum.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectEnumChecker extends 
-	IObjectEnumSameCheck, IObjectEnumNotSameCheck,
-	IObjectEnumEqualsCheck, IObjectEnumNotEqualsCheck,
-	IObjectEnumNullCheck, IObjectEnumNotNullCheck,
-	IObjectEnumDefaultCheck, IObjectEnumNotDefaultCheck
+public interface IObjectEnumSameCheck extends ICheck
 {
-
+	/**
+	 * Checks if the references are the same (using ==) or both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check using == against reference B
+	 * @param referenceB
+	 *            argument to check using == of reference A
+	 * @return true, if references are the same (using ==) - including both nulls - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectEnumSameFail.class)
+	boolean isEnumSame(Object caller, Enum<?> referenceA, Enum<?> referenceB);
 }
