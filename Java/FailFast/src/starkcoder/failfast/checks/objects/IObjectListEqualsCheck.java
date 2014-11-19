@@ -21,26 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.checks.objects;
 
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+import java.util.List;
+
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.IObjectListEqualsFail;
 
 /**
- * Specification grouping all object fail specifications.
+ * Specifies an equals check for Object list.
  * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
+ * List checks are tiny bit more memory friendly than Collection checks, 
+ * since allocation of an Enumerator can be avoided.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayEqualsFail, 
-		IObjectListEqualsFail, 
-		IObjectCollectionEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectStringFailer
+public interface IObjectListEqualsCheck extends ICheck
 {
-
+	/**
+	 * Checks if the referenced object pairs are equals or both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            list reference to equals check against reference B
+	 * @param referenceB
+	 *            arguments to equals-methods of reference A
+	 * @return true, if referenced objects are equals - including null pairs - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectListEqualsFail.class)
+	boolean isObjectListEquals(Object caller, List<Object> referenceA, List<Object> referenceB);
 }

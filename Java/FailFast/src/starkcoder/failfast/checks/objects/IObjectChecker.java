@@ -37,6 +37,9 @@ import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
  */
 public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
 		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
+		IObjectArrayEqualsCheck, 
+		IObjectListEqualsCheck,
+		IObjectCollectionEqualsCheck,
 		IObjectBooleanChecker, IObjectEnumChecker, IObjectStringChecker
 {
 

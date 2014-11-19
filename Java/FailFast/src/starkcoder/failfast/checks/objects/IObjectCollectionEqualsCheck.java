@@ -21,26 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.checks.objects;
 
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+import java.util.Collection;
+
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail;
 
 /**
- * Specification grouping all object fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
- * </p>
+ * Specifies an equals check for Object collection.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayEqualsFail, 
-		IObjectListEqualsFail, 
-		IObjectCollectionEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectStringFailer
+public interface IObjectCollectionEqualsCheck extends ICheck
 {
-
+	/**
+	 * Checks if the referenced object pairs are equals or both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            array reference to equals check against reference B
+	 * @param referenceB
+	 *            arguments to equals-methods of reference A
+	 * @return true, if referenced objects are equals - including null pairs - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectCollectionEqualsFail.class)
+	boolean isObjectCollectionEquals(Object caller, Collection<Object> referenceA, Collection<Object> referenceB);
 }

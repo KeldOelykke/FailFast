@@ -30,7 +30,10 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Locale;
 
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.fails.objects.IObjectArrayEqualsFail;
+import starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectEqualsFail;
+import starkcoder.failfast.fails.objects.IObjectListEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectNotEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectNotNullFail;
 import starkcoder.failfast.fails.objects.IObjectNotSameFail;
@@ -269,10 +272,70 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectArrayEqualsFail#failObjectArrayEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectArrayEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectArrayEqualsFail#failObjectArrayEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectArrayEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectListEqualsFail#failObjectListEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectListEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectListEqualsFail#failObjectListEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectListEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail#failObjectCollectionEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectCollectionEquals(Object caller,
+			String referenceAName, String referenceBName)
+	{
+		this.Throw(caller, IObjectCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail#failObjectCollectionEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failObjectCollectionEquals(Object caller,
+			String referenceAName, String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	
 	// OBJECTS - END ---------------------------------
 
 	
 	// OBJECTS - BOOLEAN - START -------------------------------
+
+
 
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotSameFail#failBooleanNotSame(java.lang.Object, java.lang.String, java.lang.String)

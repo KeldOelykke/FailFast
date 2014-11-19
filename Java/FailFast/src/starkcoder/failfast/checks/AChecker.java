@@ -23,9 +23,15 @@
  */
 package starkcoder.failfast.checks;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
+import starkcoder.failfast.checks.objects.IObjectArrayEqualsCheck;
+import starkcoder.failfast.checks.objects.IObjectCollectionEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectEqualsCheck;
+import starkcoder.failfast.checks.objects.IObjectListEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
 import starkcoder.failfast.checks.objects.IObjectNotSameCheck;
@@ -288,13 +294,149 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.IObjectArrayEqualsCheck#isObjectArrayEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
+	 */
+	@Override
+	public boolean isObjectArrayEquals(Object caller, Object[] referenceA,
+			Object[] referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.length == referenceB.length)
+		{
+			boolean result_ = true;
+			for(int index = 0; index < referenceA.length; ++index)
+			{
+				Object a = referenceA[index];
+				Object b = referenceB[index];
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					result_ = false;
+					break;
+				}
+			}
+			result = result_;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, IObjectArrayEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { (null == referenceA ? null : referenceA.length), (null == referenceB ? null : referenceB.length) });
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.IObjectListEqualsCheck#isObjectListEquals(java.lang.Object, java.util.List, java.util.List)
+	 */
+	@Override
+	public boolean isObjectListEquals(Object caller, List<Object> referenceA,
+			List<Object> referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.size() == referenceB.size())
+		{
+			boolean result_ = true;
+			for(int index = 0; index < referenceA.size(); ++index)
+			{
+				Object a = referenceA.get(index);
+				Object b = referenceB.get(index);
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					result_ = false;
+					break;
+				}
+			}
+			result = result_;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, IObjectListEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { (null == referenceA ? null : referenceA.size()), (null == referenceB ? null : referenceB.size()) });
+		}
+
+		return result;
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.IObjectCollectionEqualsCheck#isObjectCollectionEquals(java.lang.Object, java.util.Collection, java.util.Collection)
+	 */
+	@Override
+	public boolean isObjectCollectionEquals(Object caller,
+			Collection<Object> referenceA, Collection<Object> referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.size() == referenceB.size())
+		{
+			boolean result_ = true;
+			Iterator<Object> iteratorA = referenceA.iterator();
+			Iterator<Object> iteratorB = referenceB.iterator();
+//			int index = -1;
+			while(iteratorA.hasNext() && iteratorB.hasNext())
+			{
+//				++index;
+				Object a = iteratorA.next();
+				Object b = iteratorB.next();
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					result_ = false;
+					break;
+				}
+			}
+			result = result_;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, IObjectCollectionEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { (null == referenceA ? null : referenceA.size()), (null == referenceB ? null : referenceB.size()) });
+		}
+
+		return result;
+	}
+
 	// OBJECTS - END
 	
 	
 	
 	// OBJECTS - BOOLEANS - START
 	
-	
+
+
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotSameCheck#isBooleanNotSame(java.lang.Object, java.lang.Boolean, java.lang.Boolean)
 	 */
