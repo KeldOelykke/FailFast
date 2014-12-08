@@ -37,9 +37,8 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
  */
 public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
 		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayEqualsFail, 
-		IObjectListEqualsFail, 
-		IObjectCollectionEqualsFail,
+		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
+		IObjectsEqualsFail, IObjectsNotEqualsFail,
 		IObjectBooleanFailer, IObjectEnumFailer, IObjectStringFailer
 {
 

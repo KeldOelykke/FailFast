@@ -23,6 +23,7 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -357,11 +358,43 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
+    <target name="ObjectArrayEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectArrayEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectCollectionEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectCollectionEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectCollectionEqualsTest.testObjectCollectionEquals0And1NoFail">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectCollectionEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="ObjectEqualsTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="starkcoder.failfast.unit.objects.ObjectEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectListEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectListEqualsTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
@@ -493,16 +526,29 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
+    <target name="ObjectsEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="src (1)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectArrayEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectCollectionEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectListEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotSameTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.booleans.BooleanDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.booleans.BooleanEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.booleans.BooleanFalseTest" todir="${junit.output.dir}"/>
@@ -598,12 +644,17 @@
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectArrayEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectCollectionEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectListEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotSameTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsNotEqualsTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
@@ -878,12 +929,17 @@
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectArrayEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectCollectionEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectListEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNotSameTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.ObjectSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.booleans.BooleanDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.booleans.BooleanEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.booleans.BooleanFalseTest" todir="${junit.output.dir}"/>
@@ -940,6 +996,22 @@
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueOutsideTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.primitives.floats.FloatValueWithinTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectsNotEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsNotEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectsNotEqualsTest.testObjectsArrayNotEqualsNullAndEmptyFailNoMessage">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectsNotEqualsTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>

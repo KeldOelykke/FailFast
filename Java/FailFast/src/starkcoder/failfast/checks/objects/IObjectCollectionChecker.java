@@ -23,23 +23,22 @@
  */
 package starkcoder.failfast.checks.objects;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
-import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
-import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
 
 /**
- * Specification grouping all object check specifications.
+ * Specification grouping all object collection check specifications.
  * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
+ * This (or a derivative) should inherit all check methods targeting Collection<Object>.
+ * </p>
+ * <p>
+ * Collections are iterated using enumerators (can be avoided with lists and arrays). 
+ * </p>
+ * <p>
+ * Due to enumerator allocations collections usually add a little memory pressure for the GC.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectArrayChecker, IObjectListChecker, IObjectCollectionChecker,
-		IObjectsEqualsCheck, IObjectsNotEqualsCheck,
-		IObjectBooleanChecker, IObjectEnumChecker, IObjectStringChecker
+public interface IObjectCollectionChecker extends IObjectCollectionEqualsCheck
 {
 
 }

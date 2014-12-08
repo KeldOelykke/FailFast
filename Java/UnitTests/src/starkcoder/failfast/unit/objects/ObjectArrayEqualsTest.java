@@ -46,7 +46,7 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IObjectArrayEqualsCheck} and {link:IObjectArrayEqualsFail}.
+ * Fail-fast unit test of {link:IObjectsEqualsCheck} and {link:IObjectsEqualsFail}.
  * 
  * @author Keld Oelykke
  */
@@ -96,17 +96,17 @@ public class ObjectArrayEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testObjectArrayEqualsCheckerCallerIsNull() {
+	public void testObjectsEqualsCheckerCallerIsNull() {
 		Object[] referenceA = null;
 		Object[] referenceB = null;
-		if(checker.isObjectArrayEquals(null, referenceA, referenceB))
+		if(checker.isObjectsEquals(null, referenceA, referenceB))
 		{
-			failer.failObjectArrayEquals(this, "referenceA", "referenceB");
+			failer.failObjectsEquals(this, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testObjectArrayEqualsFailerCallerIsNull() {
+	public void testObjectsEqualsFailerCallerIsNull() {
 		Object[] referenceA = null;
 		Object[] referenceB = null;
 		if(checker.isObjectArrayEquals(this, referenceA, referenceB))
@@ -252,6 +252,46 @@ public class ObjectArrayEqualsTest {
 	public void testObjectArrayEqualsWithSameFailMessage() {
 		Object[] referenceA = new Object[]{ "a", "b" };
 		Object[] referenceB = referenceA;
+		try
+		{
+			if(checker.isObjectArrayEquals(this, referenceA, referenceB))
+			{
+				failer.failObjectArrayEquals(this, "referenceA", "referenceB", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectArrayEqualsWithStringArrayAndObjectArraySameFailMessage() {
+		String[] referenceA = new String[]{ "a", "b" };
+		Object[] referenceB = referenceA;
+		try
+		{
+			if(checker.isObjectArrayEquals(this, referenceA, referenceB))
+			{
+				failer.failObjectArrayEquals(this, "referenceA", "referenceB", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectArrayEqualsWithStringArrayAndObjectArrayFailMessage() {
+		String[] referenceA = new String[]{ "a", "b" };
+		Object[] referenceB = new String[]{ "a", "b" };
 		try
 		{
 			if(checker.isObjectArrayEquals(this, referenceA, referenceB))

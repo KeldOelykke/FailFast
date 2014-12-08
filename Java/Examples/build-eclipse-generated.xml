@@ -58,6 +58,18 @@
             <classpath refid="Examples.classpath"/>
         </junit>
     </target>
+    <target name="Examples">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.multithreaded.MainExceptionHandlerThreadedTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerPassiveTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerReactiveTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.abstractclass.EntitiesWithMyFailFastTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.reference2failfast.staticclass.SMyFailFastTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
     <target name="MainExceptionHandlerPassiveTest.testApplicationMainLoop">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">

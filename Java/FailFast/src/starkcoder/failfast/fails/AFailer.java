@@ -39,6 +39,8 @@ import starkcoder.failfast.fails.objects.IObjectNotNullFail;
 import starkcoder.failfast.fails.objects.IObjectNotSameFail;
 import starkcoder.failfast.fails.objects.IObjectNullFail;
 import starkcoder.failfast.fails.objects.IObjectSameFail;
+import starkcoder.failfast.fails.objects.IObjectsEqualsFail;
+import starkcoder.failfast.fails.objects.IObjectsNotEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanDefaultFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanEqualsFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFalseFail;
@@ -330,11 +332,43 @@ public abstract class AFailer implements IFailer
 	}
 	
 	
+	// OBJECT - END ---------------------------------
+	
+	
+	// OBJECTS - BEGIN ---------------------------------
+	
+	@Override
+	public void failObjectsEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectsEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failObjectsEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectsEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failObjectsNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectsNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failObjectsNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectsNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	
 	// OBJECTS - END ---------------------------------
 
 	
+	
 	// OBJECTS - BOOLEAN - START -------------------------------
-
 
 
 	/* (non-Javadoc)
@@ -1561,7 +1595,8 @@ public abstract class AFailer implements IFailer
     	}
     	
     	{ // format arguments into string
-    		result = String.format(failAnnotation.failMessageFormat(), messageArgumentObjects);
+    		String format = failAnnotation.failMessageFormat();
+    		result = String.format(format, messageArgumentObjects);
     	}
     	
 		return result;
