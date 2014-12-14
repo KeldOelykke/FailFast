@@ -28,6 +28,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import starkcoder.failfast.checks.generics.collections.IGenericCollectionEqualsCheck;
+import starkcoder.failfast.checks.generics.collections.IGenericCollectionNotEqualsCheck;
+import starkcoder.failfast.checks.generics.lists.IGenericListEqualsCheck;
+import starkcoder.failfast.checks.generics.lists.IGenericListNotEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectArrayEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectCollectionEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectEqualsCheck;
@@ -138,9 +142,70 @@ public abstract class AChecker implements IChecker
 		this.callContractor = callContractor;
 	}
 
+
+	// GENERIC COLLECTION - START
+
+	@Override
+	public boolean isGenericCollectionEquals(Object caller,
+			Collection<?> referenceA, Collection<?> referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericCollectionEqualsImplementation(caller, referenceA, referenceB, IGenericCollectionEqualsCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isGenericCollectionNotEquals(Object caller,
+			Collection<?> referenceA, Collection<?> referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericCollectionNotEqualsImplementation(caller, referenceA, referenceB, IGenericCollectionNotEqualsCheck.class);
+
+		return result;
+	}
+	
+	// GENERIC COLLECTION - END
+
+	
+
+	// GENERIC LIST - START
+
+	
+	@Override
+	public boolean isGenericListEquals(Object caller, List<?> referenceA,
+			List<?> referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericListEqualsImplementation(caller, referenceA, referenceB, IGenericListEqualsCheck.class);
+
+		return result;
+	}
+	
+
+	@Override
+	public boolean isGenericListNotEquals(Object caller, List<?> referenceA,
+			List<?> referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericListNotEqualsImplementation(caller, referenceA, referenceB, IGenericListNotEqualsCheck.class);
+
+		return result;
+
+	}
+
+	
+	// GENERIC LIST - END
+
+	
 	
 	// OBJECTS - START
 	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -306,37 +371,8 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA && null == referenceB)
-		{
-			result = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.length == referenceB.length)
-		{
-			boolean result_ = true;
-			for(int index = 0; index < referenceA.length; ++index)
-			{
-				Object a = referenceA[index];
-				Object b = referenceB[index];
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					result_ = false;
-					break;
-				}
-			}
-			result = result_;
-		}
-		if(result)
-		{
-			this.pushContractWithCaller(caller, IObjectArrayEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { (null == referenceA ? null : referenceA.length), (null == referenceB ? null : referenceB.length) });
-		}
-
+		result = this.isArrayEqualsImplementation(caller, referenceA, referenceB, IObjectArrayEqualsCheck.class);
+		
 		return result;
 	}
 
@@ -348,37 +384,8 @@ public abstract class AChecker implements IChecker
 			List<Object> referenceB)
 	{
 		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA && null == referenceB)
-		{
-			result = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.size() == referenceB.size())
-		{
-			boolean result_ = true;
-			for(int index = 0; index < referenceA.size(); ++index)
-			{
-				Object a = referenceA.get(index);
-				Object b = referenceB.get(index);
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					result_ = false;
-					break;
-				}
-			}
-			result = result_;
-		}
-		if(result)
-		{
-			this.pushContractWithCaller(caller, IObjectListEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { (null == referenceA ? null : referenceA.size()), (null == referenceB ? null : referenceB.size()) });
-		}
+		
+		result = this.isGenericListEqualsImplementation(caller, referenceA, referenceB, IObjectListEqualsCheck.class);
 
 		return result;
 	}
@@ -392,41 +399,8 @@ public abstract class AChecker implements IChecker
 			Collection<Object> referenceA, Collection<Object> referenceB)
 	{
 		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA && null == referenceB)
-		{
-			result = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.size() == referenceB.size())
-		{
-			boolean result_ = true;
-			Iterator<Object> iteratorA = referenceA.iterator();
-			Iterator<Object> iteratorB = referenceB.iterator();
-//			int index = -1;
-			while(iteratorA.hasNext() && iteratorB.hasNext())
-			{
-//				++index;
-				Object a = iteratorA.next();
-				Object b = iteratorB.next();
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					result_ = false;
-					break;
-				}
-			}
-			result = result_;
-		}
-		if(result)
-		{
-			this.pushContractWithCaller(caller, IObjectCollectionEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { (null == referenceA ? null : referenceA.size()), (null == referenceB ? null : referenceB.size()) });
-		}
+		
+		result = this.isGenericCollectionEqualsImplementation(caller, referenceA, referenceB, IObjectCollectionEqualsCheck.class);
 
 		return result;
 	}
@@ -443,67 +417,8 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA && null == referenceB)
-		{
-			result = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.length == referenceB.length)
-		{
-			boolean result_ = true;
-			for(int index = 0; index < referenceA.length; ++index)
-			{
-				Object a = referenceA[index];
-				Object b = referenceB[index];
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					result_ = false;
-					break;
-				}
-			}
-			result = result_;
-		}
-		if(result)
-		{
-			int size = 0;
-			String toString = null;
-			if(null != referenceA)
-			{
-				size = referenceA.length;
-				String sUp = "[";
-				String sDown = "]";
-				for(int up = 0, down = referenceA.length-1; up <= down; ++up, --down)
-				{
-					Object a = referenceA[up];
-					Object b = referenceB[down];
-					if(up == down)
-					{
-						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
-						break;
-					}
-					else if(5 < up)
-					{
-						sUp += ", ..., ";
-						break;
-					}
-					else
-					{
-						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
-						sDown = ", " + (b == null ? "null" : b.toString()) + sDown;
-					}
-				}
-				toString = sUp + sDown;
-			}
-			
-			this.pushContractWithCaller(caller, IObjectsEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { size, toString });
-		}
-
+		result = this.isArrayEqualsImplementation(caller, referenceA, referenceB, IObjectsEqualsCheck.class);
+		
 		return result;
 	}
 	@Override
@@ -511,67 +426,8 @@ public abstract class AChecker implements IChecker
 			List<Object> referenceB)
 	{
 		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA && null == referenceB)
-		{
-			result = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.size() == referenceB.size())
-		{
-			boolean result_ = true;
-			for(int index = 0; index < referenceA.size(); ++index)
-			{
-				Object a = referenceA.get(index);
-				Object b = referenceB.get(index);
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					result_ = false;
-					break;
-				}
-			}
-			result = result_;
-		}
-		if(result)
-		{
-			int size = 0;
-			String toString = null;
-			if(null != referenceA)
-			{
-				size = referenceA.size();
-				String sUp = "[";
-				String sDown = "]";
-				for(int up = 0, down = referenceA.size()-1; up <= down; ++up, --down)
-				{
-					Object a = referenceA.get(up);
-					Object b = referenceB.get(down);
-					if(up == down)
-					{
-						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
-						break;
-					}
-					else if(5 < up)
-					{
-						sUp += ", ...";
-						break;
-					}
-					else
-					{
-						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
-						sDown = ", " + (b == null ? "null" : b.toString()) + sDown;
-					}
-				}
-				toString = sUp + sDown;
-			}
-			
-			this.pushContractWithCaller(caller, IObjectsEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { size, toString });
-		}
+		
+		result = this.isGenericListEqualsImplementation(caller, referenceA, referenceB, IObjectsEqualsCheck.class);
 
 		return result;
 	}
@@ -580,76 +436,8 @@ public abstract class AChecker implements IChecker
 			Collection<Object> referenceA, Collection<Object> referenceB)
 	{
 		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA && null == referenceB)
-		{
-			result = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.size() == referenceB.size())
-		{
-			boolean result_ = true;
-			Iterator<Object> iteratorA = referenceA.iterator();
-			Iterator<Object> iteratorB = referenceB.iterator();
-//			int index = -1;
-			while(iteratorA.hasNext() && iteratorB.hasNext())
-			{
-//				++index;
-				Object a = iteratorA.next();
-				Object b = iteratorB.next();
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					result_ = false;
-					break;
-				}
-			}
-			result = result_;
-		}
-		if(result)
-		{
-			int size = 0;
-			String toString = null;
-			if(null != referenceA)
-			{
-				int index = 0;
-				size = referenceA.size();
-				String sUp = "[";
-				Iterator<Object> iteratorA = referenceA.iterator();
-				while(iteratorA.hasNext())
-				{
-					Object a = iteratorA.next();
-					if(size <= 10)
-					{
-						sUp += (index == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
-					}
-					else
-					{
-						if(index < 5)
-						{
-							sUp += (index == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
-						}
-						else if(index == 5)
-						{
-							sUp += ", ...";
-						}
-						else if(size-index < 5)
-						{
-							sUp += ", " + (a == null ? "null" : a.toString());
-						}
-					}
-					++index;
-				}
-				toString = sUp + "]";
-			}
-			
-			this.pushContractWithCaller(caller, IObjectsEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { size, toString });
-		}
+		
+		result = this.isGenericCollectionEqualsImplementation(caller, referenceA, referenceB, IObjectsEqualsCheck.class);
 
 		return result;
 	}	
@@ -658,131 +446,31 @@ public abstract class AChecker implements IChecker
 	public boolean isObjectsNotEquals(Object caller, Object[] referenceA,
 			Object[] referenceB)
 	{
-		boolean isEquals = false;
+		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		int index = 0;
-		Object a = null;
-		Object b = null;
-		if (null == referenceA && null == referenceB)
-		{
-			isEquals = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.length == referenceB.length)
-		{
-			boolean isEquals_ = true;
-			for(index = 0; index < referenceA.length; ++index)
-			{
-				a = referenceA[index];
-				b = referenceB[index];
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					isEquals_ = false;
-					break;
-				}
-			}
-			isEquals = isEquals_;
-		}
-		if(!isEquals)
-		{
-			this.pushContractWithCaller(caller, IObjectsNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { index, a, b });
-		}
-
-		return !isEquals;
+		result = this.isArrayNotEqualsImplementation(caller, referenceA, referenceB, IObjectsNotEqualsCheck.class);
+		
+		return result;
 	}
 	@Override
 	public boolean isObjectsNotEquals(Object caller, List<Object> referenceA,
 			List<Object> referenceB)
 	{
-		boolean isEquals = false;
+		boolean result = false;
+		
+		result = this.isGenericListNotEqualsImplementation(caller, referenceA, referenceB, IObjectsNotEqualsCheck.class);
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		int index = 0;
-		Object a = null;
-		Object b = null;
-		if (null == referenceA && null == referenceB)
-		{
-			isEquals = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.size() == referenceB.size())
-		{
-			boolean isEquals_ = true;
-			for(index = 0; index < referenceA.size(); ++index)
-			{
-				a = referenceA.get(index);
-				b = referenceB.get(index);
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					isEquals_ = false;
-					break;
-				}
-			}
-			isEquals = isEquals_;
-		}
-		if(!isEquals)
-		{
-			this.pushContractWithCaller(caller, IObjectsNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { index, a, b });
-		}
-
-		return !isEquals;
+		return result;
 	}
 	@Override
 	public boolean isObjectsNotEquals(Object caller,
 			Collection<Object> referenceA, Collection<Object> referenceB)
 	{
-		boolean isEquals = false;
-	
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-	
-		int index = 0;
-		Object a = null;
-		Object b = null;
-		if (null == referenceA && null == referenceB)
-		{
-			isEquals = true;
-		}
-		else if(null != referenceA && null != referenceA
-			&& referenceA.size() == referenceB.size())
-		{
-			boolean isEquals_ = true;
-			Iterator<Object> iteratorA = referenceA.iterator();
-			Iterator<Object> iteratorB = referenceB.iterator();
-	//		int index = -1;
-			while(iteratorA.hasNext() && iteratorB.hasNext())
-			{
-				a = iteratorA.next();
-				b = iteratorB.next();
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
-				{
-					isEquals_ = false;
-					break;
-				}
-				++index;
-			}
-			isEquals = isEquals_;
-		}
-		if(!isEquals)
-		{
-			this.pushContractWithCaller(caller, IObjectsNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { index, a, b });
-		}
-	
-		return !isEquals;
+		boolean result = false;
+		
+		result = this.isGenericCollectionNotEqualsImplementation(caller, referenceA, referenceB, IObjectsNotEqualsCheck.class);
+
+		return result;
 	}
 	
 	// OBJECTS - END
@@ -2427,4 +2115,356 @@ public abstract class AChecker implements IChecker
 				checkerSpecification, checkArguments, checkExtraArguments);
 	}
 	
+	
+	protected boolean isGenericListEqualsImplementation(Object caller, List<?> referenceA,
+			List<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.size() == referenceB.size())
+		{
+			boolean result_ = true;
+			for(int index = 0; index < referenceA.size(); ++index)
+			{
+				Object a = referenceA.get(index);
+				Object b = referenceB.get(index);
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					result_ = false;
+					break;
+				}
+			}
+			result = result_;
+		}
+		if(result)
+		{
+			int size = 0;
+			String toString = null;
+			if(null != referenceA)
+			{
+				size = referenceA.size();
+				String sUp = "[";
+				String sDown = "]";
+				for(int up = 0, down = referenceA.size()-1; up <= down; ++up, --down)
+				{
+					Object a = referenceA.get(up);
+					Object b = referenceB.get(down);
+					if(up == down)
+					{
+						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
+						break;
+					}
+					else if(5 < up)
+					{
+						sUp += ", ...";
+						break;
+					}
+					else
+					{
+						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
+						sDown = ", " + (b == null ? "null" : b.toString()) + sDown;
+					}
+				}
+				toString = sUp + sDown;
+			}
+			
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB }, new Object[] { size, toString });
+		}
+
+		return result;
+	}
+	
+	protected boolean isGenericListNotEqualsImplementation(Object caller, List<?> referenceA,
+			List<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean isEquals = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		int index = 0;
+		Object a = null;
+		Object b = null;
+		if (null == referenceA && null == referenceB)
+		{
+			isEquals = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.size() == referenceB.size())
+		{
+			boolean isEquals_ = true;
+			for(index = 0; index < referenceA.size(); ++index)
+			{
+				a = referenceA.get(index);
+				b = referenceB.get(index);
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					isEquals_ = false;
+					break;
+				}
+			}
+			isEquals = isEquals_;
+		}
+		if(!isEquals)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB }, new Object[] { index, a, b });
+		}
+
+		return !isEquals;
+	}
+	
+	
+	
+	protected boolean isGenericCollectionEqualsImplementation(Object caller,
+			Collection<?> referenceA, Collection<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.size() == referenceB.size())
+		{
+			boolean result_ = true;
+			Iterator<?> iteratorA = referenceA.iterator();
+			Iterator<?> iteratorB = referenceB.iterator();
+//			int index = -1;
+			while(iteratorA.hasNext() && iteratorB.hasNext())
+			{
+//				++index;
+				Object a = iteratorA.next();
+				Object b = iteratorB.next();
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					result_ = false;
+					break;
+				}
+			}
+			result = result_;
+		}
+		if(result)
+		{
+			int size = 0;
+			String toString = null;
+			if(null != referenceA)
+			{
+				int index = 0;
+				size = referenceA.size();
+				String sUp = "[";
+				Iterator<?> iteratorA = referenceA.iterator();
+				while(iteratorA.hasNext())
+				{
+					Object a = iteratorA.next();
+					if(size <= 10)
+					{
+						sUp += (index == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
+					}
+					else
+					{
+						if(index < 5)
+						{
+							sUp += (index == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
+						}
+						else if(index == 5)
+						{
+							sUp += ", ...";
+						}
+						else if(size-index < 5)
+						{
+							sUp += ", " + (a == null ? "null" : a.toString());
+						}
+					}
+					++index;
+				}
+				toString = sUp + "]";
+			}
+			
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB }, new Object[] { size, toString });
+		}
+
+		return result;
+	}	
+
+	protected boolean isGenericCollectionNotEqualsImplementation(Object caller,
+			Collection<?> referenceA, Collection<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean isEquals = false;
+	
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+	
+		int index = 0;
+		Object a = null;
+		Object b = null;
+		if (null == referenceA && null == referenceB)
+		{
+			isEquals = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.size() == referenceB.size())
+		{
+			boolean isEquals_ = true;
+			Iterator<?> iteratorA = referenceA.iterator();
+			Iterator<?> iteratorB = referenceB.iterator();
+	//		int index = -1;
+			while(iteratorA.hasNext() && iteratorB.hasNext())
+			{
+				a = iteratorA.next();
+				b = iteratorB.next();
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					isEquals_ = false;
+					break;
+				}
+				++index;
+			}
+			isEquals = isEquals_;
+		}
+		if(!isEquals)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB }, new Object[] { index, a, b });
+		}
+	
+		return !isEquals;
+	}
+	
+	
+	
+	
+	protected <E> boolean isArrayEqualsImplementation(Object caller, E[] referenceA,
+			E[] referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.length == referenceB.length)
+		{
+			boolean result_ = true;
+			for(int index = 0; index < referenceA.length; ++index)
+			{
+				Object a = referenceA[index];
+				Object b = referenceB[index];
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					result_ = false;
+					break;
+				}
+			}
+			result = result_;
+		}
+		if(result)
+		{
+			int size = 0;
+			String toString = null;
+			if(null != referenceA)
+			{
+				size = referenceA.length;
+				String sUp = "[";
+				String sDown = "]";
+				for(int up = 0, down = referenceA.length-1; up <= down; ++up, --down)
+				{
+					Object a = referenceA[up];
+					Object b = referenceB[down];
+					if(up == down)
+					{
+						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
+						break;
+					}
+					else if(5 < up)
+					{
+						sUp += ", ..., ";
+						break;
+					}
+					else
+					{
+						sUp += (up == 0 ? "" : ", ") + (a == null ? "null" : a.toString());
+						sDown = ", " + (b == null ? "null" : b.toString()) + sDown;
+					}
+				}
+				toString = sUp + sDown;
+			}
+			
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB }, new Object[] { size, toString });
+		}
+
+		return result;
+	}
+	
+	public <E> boolean isArrayNotEqualsImplementation(Object caller, E[] referenceA,
+			E[] referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean isEquals = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		int index = 0;
+		Object a = null;
+		Object b = null;
+		if (null == referenceA && null == referenceB)
+		{
+			isEquals = true;
+		}
+		else if(null != referenceA && null != referenceA
+			&& referenceA.length == referenceB.length)
+		{
+			boolean isEquals_ = true;
+			for(index = 0; index < referenceA.length; ++index)
+			{
+				a = referenceA[index];
+				b = referenceB[index];
+				if(!(null == a && null == b
+					|| null != a && a.equals(b)))
+				{
+					isEquals_ = false;
+					break;
+				}
+			}
+			isEquals = isEquals_;
+		}
+		if(!isEquals)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB }, new Object[] { index, a, b });
+		}
+
+		return !isEquals;
+	}
+
 }

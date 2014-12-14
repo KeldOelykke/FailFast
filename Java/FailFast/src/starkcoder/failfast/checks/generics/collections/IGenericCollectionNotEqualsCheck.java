@@ -21,27 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails;
+package starkcoder.failfast.checks.generics.collections;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-import starkcoder.failfast.fails.generics.IGenericsFailer;
-import starkcoder.failfast.fails.objects.IObjectFailer;
-import starkcoder.failfast.fails.primitives.IPrimitiveFailer;
+import java.util.Collection;
+
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.generics.collections.IGenericCollectionNotEqualsFail;
 
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
- * Implementations of this should be extensible (not final).
+ * Specifies a not-equals check for generic collection.
  * 
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, 
-	IObjectFailer, IPrimitiveFailer, IGenericsFailer
+public interface IGenericCollectionNotEqualsCheck extends ICheck
 {
+	/**
+	 * Checks if the referenced element pairs are not equals and not both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            list reference to equals check against reference B
+	 * @param referenceB
+	 *            arguments to equals-methods of reference A
+	 * @return true, if referenced elements are equals - including null pairs - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IGenericCollectionNotEqualsFail.class)
+	boolean isGenericCollectionNotEquals(Object caller, Collection<?> referenceA, Collection<?> referenceB);
 }

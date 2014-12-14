@@ -21,27 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails;
+package starkcoder.failfast.fails.generics;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-import starkcoder.failfast.fails.generics.IGenericsFailer;
-import starkcoder.failfast.fails.objects.IObjectFailer;
-import starkcoder.failfast.fails.primitives.IPrimitiveFailer;
+import starkcoder.failfast.fails.generics.collections.IGenericCollectionFailer;
+import starkcoder.failfast.fails.generics.lists.IGenericListFailer;
 
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
- * Implementations of this should be extensible (not final).
+ * Specification grouping all generics fail specifications.
+ * <p>
+ * This (or a derivative) should inherit all fail methods targeting generics.
+ * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, 
-	IObjectFailer, IPrimitiveFailer, IGenericsFailer
+public interface IGenericsFailer extends IGenericListFailer, IGenericCollectionFailer
 {
+
 }

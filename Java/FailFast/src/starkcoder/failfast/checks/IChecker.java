@@ -23,6 +23,7 @@
  */
 package starkcoder.failfast.checks;
 
+import starkcoder.failfast.checks.generics.IGenericsChecker;
 import starkcoder.failfast.checks.objects.IObjectChecker;
 import starkcoder.failfast.checks.primitives.IPrimitiveChecker;
 import starkcoder.failfast.contractors.ICallContractorReference;
@@ -37,7 +38,8 @@ import starkcoder.failfast.contractors.ICallContractorReference;
  * </p>
  * @author Keld Oelykke
  */
-public interface IChecker extends ICallContractorReference, IObjectChecker, IPrimitiveChecker
+public interface IChecker extends ICallContractorReference, 
+	IObjectChecker, IPrimitiveChecker, IGenericsChecker
 {
 
 }

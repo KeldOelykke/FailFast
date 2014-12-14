@@ -21,27 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails;
+package starkcoder.failfast.checks.generics.lists;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-import starkcoder.failfast.fails.generics.IGenericsFailer;
-import starkcoder.failfast.fails.objects.IObjectFailer;
-import starkcoder.failfast.fails.primitives.IPrimitiveFailer;
+import java.util.List;
+
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.generics.lists.IGenericListEqualsFail;
 
 /**
- * Failer specification.
- * 
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
- * 
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * 
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * 
- * Implementations of this should be extensible (not final).
+ * Specifies an equals check for generic list.
+ * <p>
+ * List checks are tiny bit more memory friendly than Collection checks, 
+ * since allocation of an Enumerator can be avoided.
+ * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, 
-	IObjectFailer, IPrimitiveFailer, IGenericsFailer
+public interface IGenericListEqualsCheck extends ICheck
 {
+	/**
+	 * Checks if the referenced element pairs are equals or both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            list reference to equals check against reference B
+	 * @param referenceB
+	 *            arguments to equals-methods of reference A
+	 * @return true, if referenced elements are equals - including null pairs - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IGenericListEqualsFail.class)
+	boolean isGenericListEquals(Object caller, List<?> referenceA, List<?> referenceB);
 }

@@ -30,6 +30,10 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Locale;
 
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.fails.generics.collections.IGenericCollectionEqualsFail;
+import starkcoder.failfast.fails.generics.collections.IGenericCollectionNotEqualsFail;
+import starkcoder.failfast.fails.generics.lists.IGenericListEqualsFail;
+import starkcoder.failfast.fails.generics.lists.IGenericListNotEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectArrayEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectEqualsFail;
@@ -155,6 +159,69 @@ public abstract class AFailer implements IFailer
 		this.failFastExceptionOrNull = failFastExceptionOrNull;
 	}
 
+	
+	// GENERIC COLLECTION - START -------------------------------
+	
+	@Override
+	public void failGenericCollectionEquals(Object caller,
+			String referenceAName, String referenceBName)
+	{
+		this.Throw(caller, IGenericCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericCollectionEquals(Object caller,
+			String referenceAName, String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failGenericCollectionNotEquals(Object caller,
+			String referenceAName, String referenceBName)
+	{
+		this.Throw(caller, IGenericCollectionNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericCollectionNotEquals(Object caller,
+			String referenceAName, String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericCollectionNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	// GENERIC COLLECTION - END -------------------------------
+	
+
+	
+	// GENERIC LIST - START -------------------------------
+	
+	@Override
+	public void failGenericListEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IGenericListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericListEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failGenericListNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IGenericListNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericListNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericListNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	// GENERIC LIST - END -------------------------------
+	
+	
 	
 	// OBJECTS - START -------------------------------
 	
