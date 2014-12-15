@@ -30,6 +30,8 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Locale;
 
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.fails.generics.arrays.IGenericArrayEqualsFail;
+import starkcoder.failfast.fails.generics.arrays.IGenericArrayNotEqualsFail;
 import starkcoder.failfast.fails.generics.collections.IGenericCollectionEqualsFail;
 import starkcoder.failfast.fails.generics.collections.IGenericCollectionNotEqualsFail;
 import starkcoder.failfast.fails.generics.lists.IGenericListEqualsFail;
@@ -158,6 +160,36 @@ public abstract class AFailer implements IFailer
 	{
 		this.failFastExceptionOrNull = failFastExceptionOrNull;
 	}
+
+	
+	// GENERIC ARRAY - START -------------------------------
+
+	@Override
+	public void failGenericArrayEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IGenericArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericArrayEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failGenericArrayNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IGenericArrayNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericArrayNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericArrayNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	// GENERIC ARRAY - END -------------------------------
 
 	
 	// GENERIC COLLECTION - START -------------------------------

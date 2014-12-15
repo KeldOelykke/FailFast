@@ -21,22 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.generics;
+package starkcoder.failfast.checks.generics.arrays;
 
-import starkcoder.failfast.checks.generics.arrays.IGenericArrayChecker;
-import starkcoder.failfast.checks.generics.collections.IGenericCollectionChecker;
-import starkcoder.failfast.checks.generics.lists.IGenericListChecker;
 
 
 /**
- * Specification grouping all generics check specifications.
+ * Specification grouping all generic array check specifications.
  * <p>
- * This (or a derivative) should inherit all check methods targeting generics.
+ * This (or a derivative) should inherit all check methods targeting E[].
+ * </p>
+ * <p>
+ * Lists are iterated using indices. 
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IGenericsChecker extends IGenericArrayChecker, IGenericListChecker, IGenericCollectionChecker
+public interface IGenericArrayChecker extends 
+	IGenericArrayEqualsCheck, IGenericArrayNotEqualsCheck
 {
 
 }

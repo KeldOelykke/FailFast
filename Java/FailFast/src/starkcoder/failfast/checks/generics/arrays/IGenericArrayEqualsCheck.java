@@ -21,22 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.generics;
+package starkcoder.failfast.checks.generics.arrays;
 
-import starkcoder.failfast.checks.generics.arrays.IGenericArrayChecker;
-import starkcoder.failfast.checks.generics.collections.IGenericCollectionChecker;
-import starkcoder.failfast.checks.generics.lists.IGenericListChecker;
-
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.generics.arrays.IGenericArrayEqualsFail;
 
 /**
- * Specification grouping all generics check specifications.
+ * Specifies an equals check for generic array.
  * <p>
- * This (or a derivative) should inherit all check methods targeting generics.
+ * Array checks are tiny bit more memory friendly than Collection checks, 
+ * since allocation of an Enumerator can be avoided.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IGenericsChecker extends IGenericArrayChecker, IGenericListChecker, IGenericCollectionChecker
+public interface IGenericArrayEqualsCheck extends ICheck
 {
-
+	/**
+	 * Checks if the referenced element pairs are equals or both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            array reference to equals check against reference B
+	 * @param referenceB
+	 *            arguments to equals-methods of reference A
+	 * @return true, if referenced elements are equals - including null pairs - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IGenericArrayEqualsFail.class)
+	<E> boolean isGenericArrayEquals(Object caller, E[] referenceA, E[] referenceB);
 }

@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import starkcoder.failfast.checks.generics.arrays.IGenericArrayEqualsCheck;
+import starkcoder.failfast.checks.generics.arrays.IGenericArrayNotEqualsCheck;
 import starkcoder.failfast.checks.generics.collections.IGenericCollectionEqualsCheck;
 import starkcoder.failfast.checks.generics.collections.IGenericCollectionNotEqualsCheck;
 import starkcoder.failfast.checks.generics.lists.IGenericListEqualsCheck;
@@ -141,6 +143,32 @@ public abstract class AChecker implements IChecker
 	{
 		this.callContractor = callContractor;
 	}
+
+	// GENERIC ARRAY - START
+
+	@Override
+	public <E> boolean isGenericArrayEquals(Object caller, E[] referenceA,
+			E[] referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericArrayEqualsImplementation(caller, referenceA, referenceB, IGenericArrayEqualsCheck.class);
+		
+		return result;
+	}
+
+	@Override
+	public <E> boolean isGenericArrayNotEquals(Object caller, E[] referenceA,
+			E[] referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericArrayNotEqualsImplementation(caller, referenceA, referenceB, IGenericArrayNotEqualsCheck.class);
+		
+		return result;
+	}
+	
+	// GENERIC ARRAY - END
 
 
 	// GENERIC COLLECTION - START
@@ -371,7 +399,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		result = this.isArrayEqualsImplementation(caller, referenceA, referenceB, IObjectArrayEqualsCheck.class);
+		result = this.isGenericArrayEqualsImplementation(caller, referenceA, referenceB, IObjectArrayEqualsCheck.class);
 		
 		return result;
 	}
@@ -417,7 +445,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		result = this.isArrayEqualsImplementation(caller, referenceA, referenceB, IObjectsEqualsCheck.class);
+		result = this.isGenericArrayEqualsImplementation(caller, referenceA, referenceB, IObjectsEqualsCheck.class);
 		
 		return result;
 	}
@@ -448,7 +476,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		result = this.isArrayNotEqualsImplementation(caller, referenceA, referenceB, IObjectsNotEqualsCheck.class);
+		result = this.isGenericArrayNotEqualsImplementation(caller, referenceA, referenceB, IObjectsNotEqualsCheck.class);
 		
 		return result;
 	}
@@ -2356,7 +2384,7 @@ public abstract class AChecker implements IChecker
 	
 	
 	
-	protected <E> boolean isArrayEqualsImplementation(Object caller, E[] referenceA,
+	protected <E> boolean isGenericArrayEqualsImplementation(Object caller, E[] referenceA,
 			E[] referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean result = false;
@@ -2425,7 +2453,7 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 	
-	public <E> boolean isArrayNotEqualsImplementation(Object caller, E[] referenceA,
+	protected <E> boolean isGenericArrayNotEqualsImplementation(Object caller, E[] referenceA,
 			E[] referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean isEquals = false;
