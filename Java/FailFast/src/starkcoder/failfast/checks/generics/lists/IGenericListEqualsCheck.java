@@ -46,13 +46,13 @@ public interface IGenericListEqualsCheck extends ICheck
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
-	 *            list reference to equals check against reference B
+	 *            reference to equals check against reference B
 	 * @param referenceB
-	 *            arguments to equals-methods of reference A
+	 *            reference to equals check against reference A
 	 * @return true, if referenced elements are equals - including null pairs - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IGenericListEqualsFail.class)
-	boolean isGenericListEquals(Object caller, List<?> referenceA, List<?> referenceB);
+	<A,B> boolean isGenericListEquals(Object caller, List<A> referenceA, List<B> referenceB);
 }

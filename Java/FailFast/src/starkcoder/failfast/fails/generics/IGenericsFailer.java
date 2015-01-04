@@ -26,6 +26,7 @@ package starkcoder.failfast.fails.generics;
 import starkcoder.failfast.fails.generics.arrays.IGenericArrayFailer;
 import starkcoder.failfast.fails.generics.collections.IGenericCollectionFailer;
 import starkcoder.failfast.fails.generics.lists.IGenericListFailer;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectFailer;
 
 /**
  * Specification grouping all generics fail specifications.
@@ -35,7 +36,7 @@ import starkcoder.failfast.fails.generics.lists.IGenericListFailer;
  * 
  * @author Keld Oelykke
  */
-public interface IGenericsFailer extends IGenericArrayFailer, IGenericListFailer, IGenericCollectionFailer
+public interface IGenericsFailer extends IGenericObjectFailer, IGenericArrayFailer, IGenericListFailer, IGenericCollectionFailer
 {
 
 }

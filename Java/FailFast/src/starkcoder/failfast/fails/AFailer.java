@@ -36,6 +36,12 @@ import starkcoder.failfast.fails.generics.collections.IGenericCollectionEqualsFa
 import starkcoder.failfast.fails.generics.collections.IGenericCollectionNotEqualsFail;
 import starkcoder.failfast.fails.generics.lists.IGenericListEqualsFail;
 import starkcoder.failfast.fails.generics.lists.IGenericListNotEqualsFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectEqualsFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectNotEqualsFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectNotNullFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectNotSameFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectNullFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectSameFail;
 import starkcoder.failfast.fails.objects.IObjectArrayEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectEqualsFail;
@@ -162,6 +168,89 @@ public abstract class AFailer implements IFailer
 	}
 
 	
+	// GENERIC OBJECT - START -------------------------------
+
+	
+	@Override
+	public void failGenericObjectNull(Object caller, String referenceName)
+	{
+		this.Throw(caller, IGenericObjectNullFail.class, new Object[] { caller, referenceName });
+	}
+	@Override
+	public void failGenericObjectNull(Object caller, String referenceName,
+			String message)
+	{
+		this.Throw(caller, IGenericObjectNullFail.class, new Object[] { caller, referenceName, message });
+	}
+	
+	@Override
+	public void failGenericObjectNotNull(Object caller, String referenceName)
+	{
+		this.Throw(caller, IGenericObjectNotNullFail.class, new Object[] { caller, referenceName });
+	}
+	@Override
+	public void failGenericObjectNotNull(Object caller, String referenceName,
+			String message)
+	{
+		this.Throw(caller, IGenericObjectNotNullFail.class, new Object[] { caller, referenceName, message });
+	}
+	
+	@Override
+	public void failGenericObjectSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IGenericObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericObjectSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failGenericObjectNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IGenericObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericObjectNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+
+	
+	@Override
+	public void failGenericObjectEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IGenericObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericObjectEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+
+	@Override
+	public void failGenericObjectNotEquals(Object caller,
+			String referenceAName, String referenceBName)
+	{
+		this.Throw(caller, IGenericObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failGenericObjectNotEquals(Object caller,
+			String referenceAName, String referenceBName, String message)
+	{
+		this.Throw(caller, IGenericObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	// GENERIC OBJECT - END -------------------------------
+
+
 	// GENERIC ARRAY - START -------------------------------
 
 	@Override

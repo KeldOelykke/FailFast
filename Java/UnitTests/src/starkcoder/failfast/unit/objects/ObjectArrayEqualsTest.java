@@ -355,5 +355,17 @@ public class ObjectArrayEqualsTest {
 		assertTrue("Expected referenceA & referenceB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
+	
+	@Test
+	public void testStringArrayAndObjectArrayEquals1ObjectAnd1ObjectNoFail() {
+		String[] referenceA = new String[]{ "" };
+		Object[] referenceB = new Object[]{ new Object() };
+		if(checker.isObjectArrayEquals(this, referenceA, referenceB))
+		{
+			failer.failObjectArrayEquals(this, "referenceA", "referenceB");
+		}
+		assertTrue("Expected referenceA & referenceB to pass the equals check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
 
 }

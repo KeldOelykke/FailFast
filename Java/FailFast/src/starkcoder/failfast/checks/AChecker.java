@@ -34,6 +34,12 @@ import starkcoder.failfast.checks.generics.collections.IGenericCollectionEqualsC
 import starkcoder.failfast.checks.generics.collections.IGenericCollectionNotEqualsCheck;
 import starkcoder.failfast.checks.generics.lists.IGenericListEqualsCheck;
 import starkcoder.failfast.checks.generics.lists.IGenericListNotEqualsCheck;
+import starkcoder.failfast.checks.generics.objects.IGenericObjectEqualsCheck;
+import starkcoder.failfast.checks.generics.objects.IGenericObjectNotEqualsCheck;
+import starkcoder.failfast.checks.generics.objects.IGenericObjectNotNullCheck;
+import starkcoder.failfast.checks.generics.objects.IGenericObjectNotSameCheck;
+import starkcoder.failfast.checks.generics.objects.IGenericObjectNullCheck;
+import starkcoder.failfast.checks.generics.objects.IGenericObjectSameCheck;
 import starkcoder.failfast.checks.objects.IObjectArrayEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectCollectionEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectEqualsCheck;
@@ -144,11 +150,105 @@ public abstract class AChecker implements IChecker
 		this.callContractor = callContractor;
 	}
 
+	// GENERIC OBJECT - START
+
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNullCheck#isGenericObjectNull(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public <A> boolean isGenericObjectNull(Object caller, A reference)
+	{
+		boolean result = false;
+		
+		result = this.isGenericObjectNullImplementation(caller, reference, IGenericObjectNullCheck.class);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotNullCheck#isGenericObjectNotNull(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public <A> boolean isGenericObjectNotNull(Object caller, A reference)
+	{
+		boolean result = false;
+		
+		result = this.isGenericObjectNotNullImplementation(caller, reference, IGenericObjectNotNullCheck.class);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectSameCheck#isGenericObjectSame(java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public boolean isGenericObjectSame(Object caller, Object referenceA,
+			Object referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IGenericObjectSameCheck.class);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotSameCheck#isGenericObjectNotSame(java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public <A, B> boolean isGenericObjectNotSame(Object caller, A referenceA,
+			B referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IGenericObjectNotSameCheck.class);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectEqualsCheck#isGenericObjectEquals(java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public <A,B> boolean isGenericObjectEquals(Object caller, A referenceA,
+			B referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IGenericObjectEqualsCheck.class);
+		
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotEqualsCheck#isGenericObjectNotEquals(java.lang.Object, java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	public <A,B> boolean isGenericObjectNotEquals(Object caller, A referenceA,
+			B referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IGenericObjectNotEqualsCheck.class);
+		
+		return result;
+	}
+
+	
+	
+	// GENERIC OBJECT - END
+
+	
+	
 	// GENERIC ARRAY - START
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.arrays.IGenericArrayEqualsCheck#isGenericArrayEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
+	 */
 	@Override
-	public <E> boolean isGenericArrayEquals(Object caller, E[] referenceA,
-			E[] referenceB)
+	public <A,B> boolean isGenericArrayEquals(Object caller, A[] referenceA,
+			B[] referenceB)
 	{
 		boolean result = false;
 
@@ -157,9 +257,12 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.arrays.IGenericArrayNotEqualsCheck#isGenericArrayNotEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
+	 */
 	@Override
-	public <E> boolean isGenericArrayNotEquals(Object caller, E[] referenceA,
-			E[] referenceB)
+	public <A,B> boolean isGenericArrayNotEquals(Object caller, A[] referenceA,
+			B[] referenceB)
 	{
 		boolean result = false;
 
@@ -173,9 +276,12 @@ public abstract class AChecker implements IChecker
 
 	// GENERIC COLLECTION - START
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.collections.IGenericCollectionEqualsCheck#isGenericCollectionEquals(java.lang.Object, java.util.Collection, java.util.Collection)
+	 */
 	@Override
-	public boolean isGenericCollectionEquals(Object caller,
-			Collection<?> referenceA, Collection<?> referenceB)
+	public <A,B> boolean isGenericCollectionEquals(Object caller,
+			Collection<A> referenceA, Collection<B> referenceB)
 	{
 		boolean result = false;
 		
@@ -184,9 +290,12 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.collections.IGenericCollectionNotEqualsCheck#isGenericCollectionNotEquals(java.lang.Object, java.util.Collection, java.util.Collection)
+	 */
 	@Override
-	public boolean isGenericCollectionNotEquals(Object caller,
-			Collection<?> referenceA, Collection<?> referenceB)
+	public <A,B> boolean isGenericCollectionNotEquals(Object caller,
+			Collection<A> referenceA, Collection<B> referenceB)
 	{
 		boolean result = false;
 		
@@ -202,9 +311,12 @@ public abstract class AChecker implements IChecker
 	// GENERIC LIST - START
 
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.lists.IGenericListEqualsCheck#isGenericListEquals(java.lang.Object, java.util.List, java.util.List)
+	 */
 	@Override
-	public boolean isGenericListEquals(Object caller, List<?> referenceA,
-			List<?> referenceB)
+	public <A,B> boolean isGenericListEquals(Object caller, List<A> referenceA,
+			List<B> referenceB)
 	{
 		boolean result = false;
 		
@@ -214,9 +326,12 @@ public abstract class AChecker implements IChecker
 	}
 	
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.generics.lists.IGenericListNotEqualsCheck#isGenericListNotEquals(java.lang.Object, java.util.List, java.util.List)
+	 */
 	@Override
-	public boolean isGenericListNotEquals(Object caller, List<?> referenceA,
-			List<?> referenceB)
+	public <A,B> boolean isGenericListNotEquals(Object caller, List<A> referenceA,
+			List<B> referenceB)
 	{
 		boolean result = false;
 		
@@ -225,7 +340,6 @@ public abstract class AChecker implements IChecker
 		return result;
 
 	}
-
 	
 	// GENERIC LIST - END
 
@@ -246,16 +360,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == reference)
-		{
-			this.pushContractWithCaller(caller, IObjectNullCheck.class, new Object[] { caller, reference });
-			result = true;
-		}
+		result = this.isGenericObjectNullImplementation(caller, reference, IObjectNullCheck.class);
 
 		return result;
 	}
@@ -272,16 +377,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null != reference)
-		{
-			this.pushContractWithCaller(caller, IObjectNotNullCheck.class, new Object[] { caller, reference });
-			result = true;
-		}
+		result = this.isGenericObjectNotNullImplementation(caller, reference, IObjectNotNullCheck.class);
 
 		return result;
 	}
@@ -299,17 +395,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null == referenceB)
-				|| (null != referenceA && referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectEqualsCheck.class);
 
 		return result;
 	}
@@ -327,17 +413,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null != referenceB)
-				|| (null != referenceA && !referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectNotEqualsCheck.class);
 
 		return result;
 	}
@@ -352,16 +428,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA == referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectSameCheck.class);
 
 		return result;
 	}
@@ -375,16 +442,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA != referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectNotSameCheck.class);
 
 		return result;
 	}
@@ -2144,8 +2202,148 @@ public abstract class AChecker implements IChecker
 	}
 	
 	
-	protected boolean isGenericListEqualsImplementation(Object caller, List<?> referenceA,
-			List<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	protected <A,B> boolean isGenericObjectEqualsImplementation(Object caller, A referenceA,
+			B referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceB
+			&& referenceA.equals(referenceB) && referenceB.equals(referenceA)) // agree to be equals
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+	
+	protected <A,B> boolean isGenericObjectNotEqualsImplementation(Object caller, A referenceA,
+			B referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null != referenceB)
+		{
+			result = true;
+		}
+		else if (null != referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(!(referenceA.equals(referenceB) && referenceB.equals(referenceA))) // not only a mirror check
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+	
+	
+	protected <A,B> boolean isGenericObjectSameImplementation(Object caller, A referenceA,
+			B referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA == referenceB)
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+	
+	protected <A,B> boolean isGenericObjectNotSameImplementation(Object caller, A referenceA,
+			B referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (referenceA != referenceB)
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+	
+	
+	protected <A> boolean isGenericObjectNullImplementation(Object caller, A reference, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == reference)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, reference });
+			result = true;
+		}
+
+		return result;
+	}
+	
+	protected <A> boolean isGenericObjectNotNullImplementation(Object caller, A reference, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null != reference)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, reference });
+			result = true;
+		}
+
+		return result;
+	}
+
+	
+	protected <A,B> boolean isGenericListEqualsImplementation(Object caller, List<A> referenceA,
+			List<B> referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean result = false;
 
@@ -2166,8 +2364,8 @@ public abstract class AChecker implements IChecker
 			{
 				Object a = referenceA.get(index);
 				Object b = referenceB.get(index);
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
+				if(!((null == a && null == b)
+					|| (null != a && null != b && a.equals(b) && b.equals(a)))) // agree to be equals
 				{
 					result_ = false;
 					break;
@@ -2213,8 +2411,8 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 	
-	protected boolean isGenericListNotEqualsImplementation(Object caller, List<?> referenceA,
-			List<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	protected <A,B> boolean isGenericListNotEqualsImplementation(Object caller, List<A> referenceA,
+			List<B> referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean isEquals = false;
 
@@ -2238,8 +2436,8 @@ public abstract class AChecker implements IChecker
 			{
 				a = referenceA.get(index);
 				b = referenceB.get(index);
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
+				if(!((null == a && null == b)
+					|| (null != a && null != b && a.equals(b) && b.equals(a)))) // agree to be equals
 				{
 					isEquals_ = false;
 					break;
@@ -2257,8 +2455,8 @@ public abstract class AChecker implements IChecker
 	
 	
 	
-	protected boolean isGenericCollectionEqualsImplementation(Object caller,
-			Collection<?> referenceA, Collection<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	protected <A,B> boolean isGenericCollectionEqualsImplementation(Object caller,
+			Collection<A> referenceA, Collection<B> referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean result = false;
 
@@ -2283,8 +2481,8 @@ public abstract class AChecker implements IChecker
 //				++index;
 				Object a = iteratorA.next();
 				Object b = iteratorB.next();
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
+				if(!((null == a && null == b)
+					|| (null != a && null != b && a.equals(b) && b.equals(a)))) // agree to be equals
 				{
 					result_ = false;
 					break;
@@ -2335,8 +2533,8 @@ public abstract class AChecker implements IChecker
 		return result;
 	}	
 
-	protected boolean isGenericCollectionNotEqualsImplementation(Object caller,
-			Collection<?> referenceA, Collection<?> referenceB, Class<? extends ICheck> checkerSpecification)
+	protected <A,B> boolean isGenericCollectionNotEqualsImplementation(Object caller,
+			Collection<A> referenceA, Collection<B> referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean isEquals = false;
 	
@@ -2363,8 +2561,8 @@ public abstract class AChecker implements IChecker
 			{
 				a = iteratorA.next();
 				b = iteratorB.next();
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
+				if(!((null == a && null == b)
+					|| (null != a && null != b && a.equals(b) && b.equals(a)))) // agree to be equals
 				{
 					isEquals_ = false;
 					break;
@@ -2381,11 +2579,10 @@ public abstract class AChecker implements IChecker
 		return !isEquals;
 	}
 	
+
 	
-	
-	
-	protected <E> boolean isGenericArrayEqualsImplementation(Object caller, E[] referenceA,
-			E[] referenceB, Class<? extends ICheck> checkerSpecification)
+	protected <A,B> boolean isGenericArrayEqualsImplementation(Object caller, A[] referenceA,
+			B[] referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean result = false;
 
@@ -2406,8 +2603,8 @@ public abstract class AChecker implements IChecker
 			{
 				Object a = referenceA[index];
 				Object b = referenceB[index];
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
+				if(!((null == a && null == b)
+					|| (null != a && null != b && a.equals(b) && b.equals(a)))) // agree to be equals
 				{
 					result_ = false;
 					break;
@@ -2453,8 +2650,8 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 	
-	protected <E> boolean isGenericArrayNotEqualsImplementation(Object caller, E[] referenceA,
-			E[] referenceB, Class<? extends ICheck> checkerSpecification)
+	protected <A,B> boolean isGenericArrayNotEqualsImplementation(Object caller, A[] referenceA,
+			B[] referenceB, Class<? extends ICheck> checkerSpecification)
 	{
 		boolean isEquals = false;
 
@@ -2478,8 +2675,8 @@ public abstract class AChecker implements IChecker
 			{
 				a = referenceA[index];
 				b = referenceB[index];
-				if(!(null == a && null == b
-					|| null != a && a.equals(b)))
+				if(!((null == a && null == b)
+					|| (null != a && null != b && a.equals(b) && b.equals(a)))) // agree to be equals
 				{
 					isEquals_ = false;
 					break;

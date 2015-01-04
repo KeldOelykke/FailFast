@@ -21,27 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.generics.collections;
-
-import java.util.Collection;
+package starkcoder.failfast.checks.generics.objects;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.generics.collections.IGenericCollectionEqualsFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectEqualsFail;
 
 /**
- * Specifies an equals check for generic collection.
- * <p>
- * List checks are tiny bit more memory friendly than Collection checks, 
- * since allocation of an Enumerator can be avoided.
- * </p>
+ * Specifies an equals check for a generic object.
  * 
  * @author Keld Oelykke
  */
-public interface IGenericCollectionEqualsCheck extends ICheck
+public interface IGenericObjectEqualsCheck extends ICheck
 {
 	/**
-	 * Checks if the referenced element pairs are equals or both nulls.
+	 * Checks if the referenced objects are both nulls or equals using both equals methods.
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
@@ -49,10 +43,10 @@ public interface IGenericCollectionEqualsCheck extends ICheck
 	 *            reference to equals check against reference B
 	 * @param referenceB
 	 *            reference to equals check against reference A
-	 * @return true, if referenced elements are equals - including null pairs - otherwise false
+	 * @return true, if referenced objects are equals - including nulls - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NCheck(failSpecificationType = IGenericCollectionEqualsFail.class)
-	<A,B> boolean isGenericCollectionEquals(Object caller, Collection<A> referenceA, Collection<B> referenceB);
+	@NCheck(failSpecificationType = IGenericObjectEqualsFail.class)
+	<A,B> boolean isGenericObjectEquals(Object caller, A referenceA, B referenceB);
 }

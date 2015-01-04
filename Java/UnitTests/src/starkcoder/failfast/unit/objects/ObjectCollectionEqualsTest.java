@@ -378,5 +378,19 @@ public class ObjectCollectionEqualsTest {
 		assertTrue("Expected referenceA & referenceB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
+	
+//	@Test
+//	public void testObjectCollectionEquals0And1NoFail_() {
+//		Collection<Integer> referenceA = new HashSet<Integer>();
+//		referenceA.add(new Integer(0));
+//		Collection<Object> referenceB = new TreeSet<Object>();
+//		referenceB.add(new Integer(1));
+//		if(checker.isGenericCollectionEquals(this, referenceA, referenceB))
+//		{
+//			failer.failGenericCollectionEquals(this, "referenceA", "referenceB");
+//		}
+//		assertTrue("Expected referenceA & referenceB to pass the equals check", true);
+//		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+//	}
 
 }

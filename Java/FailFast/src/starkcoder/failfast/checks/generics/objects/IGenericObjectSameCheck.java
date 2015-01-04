@@ -21,38 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.generics.collections;
-
-import java.util.Collection;
+package starkcoder.failfast.checks.generics.objects;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.generics.collections.IGenericCollectionEqualsFail;
+import starkcoder.failfast.fails.generics.objects.IGenericObjectSameFail;
 
 /**
- * Specifies an equals check for generic collection.
- * <p>
- * List checks are tiny bit more memory friendly than Collection checks, 
- * since allocation of an Enumerator can be avoided.
- * </p>
+ * Specifies a reference check for generic objects.
  * 
  * @author Keld Oelykke
  */
-public interface IGenericCollectionEqualsCheck extends ICheck
+public interface IGenericObjectSameCheck extends ICheck
 {
 	/**
-	 * Checks if the referenced element pairs are equals or both nulls.
+	 * Checks if the references are the same (using ==) or both nulls.
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
-	 *            reference to equals check against reference B
+	 *            reference to check using == against reference B
 	 * @param referenceB
-	 *            reference to equals check against reference A
-	 * @return true, if referenced elements are equals - including null pairs - otherwise false
+	 *            reference checked using == by reference A
+	 * @return true, if references are the same (using ==) - including both nulls - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NCheck(failSpecificationType = IGenericCollectionEqualsFail.class)
-	<A,B> boolean isGenericCollectionEquals(Object caller, Collection<A> referenceA, Collection<B> referenceB);
+	@NCheck(failSpecificationType = IGenericObjectSameFail.class)
+	boolean isGenericObjectSame(Object caller, Object referenceA, Object referenceB);
 }

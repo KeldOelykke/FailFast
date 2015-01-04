@@ -26,6 +26,7 @@ package starkcoder.failfast.checks.generics;
 import starkcoder.failfast.checks.generics.arrays.IGenericArrayChecker;
 import starkcoder.failfast.checks.generics.collections.IGenericCollectionChecker;
 import starkcoder.failfast.checks.generics.lists.IGenericListChecker;
+import starkcoder.failfast.checks.generics.objects.IGenericObjectChecker;
 
 
 /**
@@ -36,7 +37,7 @@ import starkcoder.failfast.checks.generics.lists.IGenericListChecker;
  * 
  * @author Keld Oelykke
  */
-public interface IGenericsChecker extends IGenericArrayChecker, IGenericListChecker, IGenericCollectionChecker
+public interface IGenericsChecker extends IGenericObjectChecker, IGenericArrayChecker, IGenericListChecker, IGenericCollectionChecker
 {
 
 }

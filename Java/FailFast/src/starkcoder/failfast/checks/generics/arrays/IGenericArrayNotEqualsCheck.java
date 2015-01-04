@@ -40,13 +40,13 @@ public interface IGenericArrayNotEqualsCheck extends ICheck
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
-	 *            array reference to equals check against reference B
+	 *            reference to equals check against reference B
 	 * @param referenceB
-	 *            arguments to equals-methods of reference A
-	 * @return true, if referenced elements are equals - including null pairs - otherwise false
+	 *            reference to equals check against reference A
+	 * @return true, if referenced elements are not equals - and not null pairs - otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IGenericArrayNotEqualsFail.class)
-	<E> boolean isGenericArrayNotEquals(Object caller, E[] referenceA, E[] referenceB);
+	<A,B> boolean isGenericArrayNotEquals(Object caller, A[] referenceA, B[] referenceB);
 }

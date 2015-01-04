@@ -28,7 +28,7 @@ package starkcoder.failfast.checks.generics.arrays;
 /**
  * Specification grouping all generic array check specifications.
  * <p>
- * This (or a derivative) should inherit all check methods targeting E[].
+ * This (or a derivative) should inherit all check methods targeting object arrays.
  * </p>
  * <p>
  * Lists are iterated using indices. 
