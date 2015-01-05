@@ -198,15 +198,23 @@ public class EnumDefaultTest {
 		}
 	}
 	
-	@Test
-	public void testEnumNullNoFail() {
+	@Test(expected=IllegalArgumentException.class)
+	public void testEnumNullFail() {
 		EFoo referenceA = null;
-		if(checker.isEnumDefault(this, referenceA))
+		try
 		{
-			failer.failEnumDefault(this, "referenceA");
+			if(checker.isEnumDefault(this, referenceA))
+			{
+				failer.failEnumDefault(this, "referenceA");
+			}
 		}
-		assertTrue("Expected referenceA not to pass the check", true);
-		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
 	}
 	
 	@Test

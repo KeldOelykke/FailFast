@@ -575,16 +575,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA != referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectBooleanNotSameCheck.class);
 
 		return result;
 	}
@@ -599,16 +590,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA == referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectBooleanSameCheck.class);
 
 		return result;
 	}	
@@ -623,17 +605,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null == referenceB)
-			|| (null != referenceA && referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectBooleanEqualsCheck.class);
 
 		return result;
 	}
@@ -646,17 +618,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null != referenceB)
-			|| (null != referenceA && !referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectBooleanNotEqualsCheck.class);
 
 		return result;
 	}
@@ -669,16 +631,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null != referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanNotNullCheck.class, new Object[] { caller, referenceA });
-			result = true;
-		}
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectBooleanNotNullCheck.class);
 
 		return result;
 	}
@@ -690,16 +643,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanNullCheck.class, new Object[] { caller, referenceA });
-			result = true;
-		}
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectBooleanNullCheck.class);
 
 		return result;
 	}
@@ -778,15 +722,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		if (this.getBooleanDefault() != referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanNotDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { this.getBooleanDefault() });
-			result = true;
-		}
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getBooleanDefault(), IObjectBooleanNotDefaultCheck.class);
 
 		return result;
 	}
@@ -798,15 +734,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		if (this.getBooleanDefault() == referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectBooleanDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { this.getBooleanDefault() });
-			result = true;
-		}
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getBooleanDefault(), IObjectBooleanDefaultCheck.class);
 
 		return result;
 	}
@@ -824,16 +752,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA != referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectEnumNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectEnumNotSameCheck.class);
 
 		return result;
 	}
@@ -844,16 +763,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA == referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectEnumSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectEnumSameCheck.class);
 
 		return result;
 	}
@@ -867,17 +777,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null != referenceB)
-				|| (null != referenceA && !referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectEnumNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectEnumNotEqualsCheck.class);
 
 		return result;
 	}
@@ -891,17 +791,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null == referenceB)
-				|| (null != referenceA && referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectEnumEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectEnumEqualsCheck.class);
 
 		return result;
 	}
@@ -914,16 +804,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null != referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectEnumNotNullCheck.class, new Object[] { caller, referenceA });
-			result = true;
-		}
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectEnumNotNullCheck.class);
 
 		return result;
 	}
@@ -936,16 +817,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectEnumNullCheck.class, new Object[] { caller, referenceA });
-			result = true;
-		}
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectEnumNullCheck.class);
 
 		return result;
 	}
@@ -989,24 +861,12 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
+		if (null == referenceA) // can't derive Class from null
+		{
+			throw new IllegalArgumentException("referenceA is null");
+		}
 
-		Enum<?> enumDefault = null;
-		if (null == referenceA)		
-		{
-			result = true;
-		}
-		else
-		{
-			enumDefault = this.getEnumDefault(referenceA.getDeclaringClass());
-			if(enumDefault != referenceA)
-			{
-				result = true;
-			}
-		}
-		if(result)
-		{
-			this.pushContractWithCaller(caller, IObjectEnumNotDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { enumDefault });
-		}
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getEnumDefault(referenceA.getDeclaringClass()), IObjectEnumNotDefaultCheck.class);
 
 		return result;
 	}
@@ -1020,16 +880,12 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-
-		if (null != referenceA)
+		if (null == referenceA) // can't derive Class from null
 		{
-			Enum<?> enumDefault = this.getEnumDefault(referenceA.getDeclaringClass());
-			if(enumDefault == referenceA)
-			{
-				this.pushContractWithCaller(caller, IObjectEnumDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { enumDefault });
-				result = true;
-			}
+			throw new IllegalArgumentException("referenceA is null");
 		}
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getEnumDefault(referenceA.getDeclaringClass()), IObjectEnumDefaultCheck.class);
 
 		return result;
 	}
@@ -1048,16 +904,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA != referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectStringNotSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectStringNotSameCheck.class);
 
 		return result;
 	}
@@ -1068,16 +915,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (referenceA == referenceB)
-		{
-			this.pushContractWithCaller(caller, IObjectStringSameCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectStringSameCheck.class);
 
 		return result;
 	}
@@ -1091,17 +929,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null == referenceB)
-				|| (null != referenceA && referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectStringEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectStringEqualsCheck.class);
 
 		return result;
 	}
@@ -1114,17 +942,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if ((null == referenceA && null != referenceB)
-				|| (null != referenceA && !referenceA.equals(referenceB)))
-		{
-			this.pushContractWithCaller(caller, IObjectStringNotEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-			result = true;
-		}
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectStringNotEqualsCheck.class);
 
 		return result;
 	}
@@ -1156,16 +974,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		String stringDefault = this.getStringDefault();
-		if (stringDefault.equals(referenceA))
-		{
-			this.pushContractWithCaller(caller, IObjectStringDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { stringDefault });
-			result = true;
-		}
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getStringDefault(), IObjectStringDefaultCheck.class);
 
 		return result;
 	}
@@ -1177,16 +986,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		String stringDefault = this.getStringDefault(); 
-		if (!stringDefault.equals(referenceA))
-		{
-			this.pushContractWithCaller(caller, IObjectStringNotDefaultCheck.class, new Object[] { caller, referenceA }, new Object[] { stringDefault });
-			result = true;
-		}
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getStringDefault(), IObjectStringNotDefaultCheck.class);
 
 		return result;
 	}	
@@ -1201,16 +1001,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null == referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectStringNullCheck.class, new Object[] { caller, referenceA });
-			result = true;
-		}
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectStringNullCheck.class);
 
 		return result;
 	}
@@ -1222,16 +1013,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (null != referenceA)
-		{
-			this.pushContractWithCaller(caller, IObjectStringNotNullCheck.class, new Object[] { caller, referenceA });
-			result = true;
-		}
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectStringNotNullCheck.class);
 
 		return result;
 	}
@@ -1995,7 +1777,7 @@ public abstract class AChecker implements IChecker
 			float valueB)
 	{
 		boolean result = false;
-
+		
 		if (null == caller)
 		{
 			throw new IllegalArgumentException("caller is null");
@@ -2239,20 +2021,19 @@ public abstract class AChecker implements IChecker
 			throw new IllegalArgumentException("caller is null");
 		}
 
-		if (null == referenceA && null != referenceB)
+		boolean equals = false;
+		if (null == referenceA && null == referenceB)
+		{
+			equals = true;
+		}
+		else if(null != referenceA && null != referenceB 
+			&& referenceA.equals(referenceB) && referenceB.equals(referenceA)) // not only a mirror check
+		{
+			equals = true;
+		}
+		if(!equals)
 		{
 			result = true;
-		}
-		else if (null != referenceA && null == referenceB)
-		{
-			result = true;
-		}
-		else if(!(referenceA.equals(referenceB) && referenceB.equals(referenceA))) // not only a mirror check
-		{
-			result = true;
-		}
-		if(result)
-		{
 			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
 		}
 
@@ -2304,6 +2085,41 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 	
+	
+	protected <A> boolean isGenericObjectDefaultImplementation(Object caller, A referenceA, A referenceDefault, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (referenceDefault.equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA }, new Object[] { referenceDefault });
+			result = true;
+		}
+
+		return result;
+	}
+	
+	protected <A> boolean isGenericObjectNotDefaultImplementation(Object caller, A referenceA, A referenceDefault, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		if (!referenceDefault.equals(referenceA))
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA }, new Object[] { referenceDefault });
+			result = true;
+		}
+
+		return result;
+	}
+
 	
 	protected <A> boolean isGenericObjectNullImplementation(Object caller, A reference, Class<? extends ICheck> checkerSpecification)
 	{

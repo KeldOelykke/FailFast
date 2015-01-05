@@ -35,7 +35,7 @@ import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail;
 public interface IPrimitiveFloatNotEqualsCheck extends ICheck
 {
 	/**
-	 * Checks if the values are not equals.
+	 * Checks if the values are not equals (using !=).
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check

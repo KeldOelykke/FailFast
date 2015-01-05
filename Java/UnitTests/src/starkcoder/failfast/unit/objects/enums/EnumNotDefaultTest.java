@@ -198,7 +198,7 @@ public class EnumNotDefaultTest {
 		}
 	}
 	
-	@Test(expected=FailFastException.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void testEnumNullFail() {
 		EFoo referenceA = null;
 		try
