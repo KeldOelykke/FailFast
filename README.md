@@ -48,10 +48,9 @@ The 1st major version of this library will only support a construct with a check
 If you think the check & fail-pair construct is odd, you might want to checkout the spot contractor pattern (http://yoawsconsult.blogspot.dk/2012/11/spot-contractor-software-pattern.html). The pattern enforces correctness and performance.
 
 Confidence in the current design is getting high now, though it still needs some tests to prove that
- - the check & fail-methods can be "managed" from another jar e.g. replaced and/or extended. Inheritance should take care of most, but it is unknown whether the failer-annotations can be modified e.g. to change failer-output formatting, and
- - support for arrays and collections is possible.
+the check & fail-methods can be "managed" from another jar e.g. replaced and/or extended. Inheritance should take care of most, but it is unknown whether the failer-annotations can be modified e.g. to change failer-output formatting.
 
-The scope of the 1st major version is check & fail-pairs that can handle primitives and a few basic object types from the standard library. Since each type seems to require around 10(+/-4) method pairs (see wiki link below), it takes a while to get the implementation complete. The 8 primitives are byte, short, int, long, float, double, boolean and char with corresponding Object representations (8 more). Additional Object types are Object, String, Enum and UUID. In total this gives a list of at least 20 types to support, so with the 6 types currently supported the library implementation is about 30% complete.
+The scope of the 1st major version is check & fail-pairs that can handle objects wrapping primitives and a few basic object types from the standard library. Since each type seems to require around 10(+/-4) method pairs (see wiki link below), it takes a while to get the implementation complete. The 8 primitives are byte, short, int, long, float, double, boolean and char. Implementation is first done via the primitives' wrapping Objects (Byte, Short, etc.). Later on the primitives might be directly implemented to avoid boxing performance penalties. Additional Object types are Object, String, Enum and UUID. In total this gives a list of at least 20 types to support, so with the 6 types currently supported the library implementation is about 30% complete.
 
 Examples
 ========
@@ -62,9 +61,7 @@ https://github.com/KeldOelykke/FailFast/wiki
 Builds, Tests & Jar
 ===================
 
-https://keldoelykke.ci.cloudbees.com/job/FailFast/ (Sorry this is broken, sign up to free program for this project failed in practice. I might have to find another cloud-based build system.)
-
-![Cloudbees is Cool!](http://cloudbees.prod.acquia-sites.com/sites/default/files/styles/large/public/Button-Built-on-CB-1.png)
+(To Be Defined)
 
 
 Dogma
@@ -95,4 +92,3 @@ Kind Regards,
 Keld Ølykke
 
 
-![You know it makes sense!](http://cloudbees.prod.acquia-sites.com/sites/default/files/styles/large/public/Button-Powered-by-CB.png)
