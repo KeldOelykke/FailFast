@@ -28,22 +28,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import starkcoder.failfast.checks.generics.arrays.IGenericArrayEqualsCheck;
-import starkcoder.failfast.checks.generics.arrays.IGenericArrayNotEqualsCheck;
-import starkcoder.failfast.checks.generics.collections.IGenericCollectionEqualsCheck;
-import starkcoder.failfast.checks.generics.collections.IGenericCollectionNotEqualsCheck;
-import starkcoder.failfast.checks.generics.lists.IGenericListEqualsCheck;
-import starkcoder.failfast.checks.generics.lists.IGenericListNotEqualsCheck;
-import starkcoder.failfast.checks.generics.objects.IGenericObjectEqualsCheck;
-import starkcoder.failfast.checks.generics.objects.IGenericObjectNotEqualsCheck;
-import starkcoder.failfast.checks.generics.objects.IGenericObjectNotNullCheck;
-import starkcoder.failfast.checks.generics.objects.IGenericObjectNotSameCheck;
-import starkcoder.failfast.checks.generics.objects.IGenericObjectNullCheck;
-import starkcoder.failfast.checks.generics.objects.IGenericObjectSameCheck;
 import starkcoder.failfast.checks.objects.IObjectArrayEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectCollectionEqualsCheck;
+import starkcoder.failfast.checks.objects.IObjectDefaultCheck;
 import starkcoder.failfast.checks.objects.IObjectEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectListEqualsCheck;
+import starkcoder.failfast.checks.objects.IObjectNotDefaultCheck;
 import starkcoder.failfast.checks.objects.IObjectNotEqualsCheck;
 import starkcoder.failfast.checks.objects.IObjectNotNullCheck;
 import starkcoder.failfast.checks.objects.IObjectNotSameCheck;
@@ -69,6 +59,22 @@ import starkcoder.failfast.checks.objects.enums.IObjectEnumNotNullCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotSameCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumSameCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatDefaultCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatEqualsAlmostCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatEqualsCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatGreaterCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatLessCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatLessOrEqualsCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatNotDefaultCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatNotEqualsAlmostCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatNotEqualsCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatNotNullCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatNotSameCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatNullCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatOutsideCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatSameCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatWithinCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
@@ -89,24 +95,6 @@ import starkcoder.failfast.checks.objects.strings.IObjectStringWithSubstringChec
 import starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPostfixCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringWithoutPrefixCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringWithoutSubstringCheck;
-import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck;
-import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck;
-import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck;
-import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotDefaultCheck;
-import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck;
-import starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterEqualsCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessEqualsCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotDefaultCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatOutsideCheck;
-import starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatWithinCheck;
 import starkcoder.failfast.contractors.ICallContractor;
 
 /**
@@ -150,213 +138,209 @@ public abstract class AChecker implements IChecker
 		this.callContractor = callContractor;
 	}
 
-	// GENERIC OBJECT - START
+//	// GENERIC OBJECT - START
+//
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNullCheck#isGenericObjectNull(java.lang.Object, java.lang.Object)
+//	 */
+//	@Override
+//	public <A extends Object> boolean isGenericObjectNull(Object caller, A reference)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericObjectNullImplementation(caller, reference, IGenericObjectNullCheck.class);
+//		
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotNullCheck#isGenericObjectNotNull(java.lang.Object, java.lang.Object)
+//	 */
+//	@Override
+//	public <A> boolean isGenericObjectNotNull(Object caller, A reference)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericObjectNotNullImplementation(caller, reference, IGenericObjectNotNullCheck.class);
+//		
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectSameCheck#isGenericObjectSame(java.lang.Object, java.lang.Object, java.lang.Object)
+//	 */
+//	@Override
+//	public boolean isGenericObjectSame(Object caller, Object referenceA,
+//			Object referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IGenericObjectSameCheck.class);
+//		
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotSameCheck#isGenericObjectNotSame(java.lang.Object, java.lang.Object, java.lang.Object)
+//	 */
+//	@Override
+//	public <A, B> boolean isGenericObjectNotSame(Object caller, A referenceA,
+//			B referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IGenericObjectNotSameCheck.class);
+//		
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectEqualsCheck#isGenericObjectEquals(java.lang.Object, java.lang.Object, java.lang.Object)
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericObjectEquals(Object caller, A referenceA,
+//			B referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IGenericObjectEqualsCheck.class);
+//		
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotEqualsCheck#isGenericObjectNotEquals(java.lang.Object, java.lang.Object, java.lang.Object)
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericObjectNotEquals(Object caller, A referenceA,
+//			B referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IGenericObjectNotEqualsCheck.class);
+//		
+//		return result;
+//	}
+//
+//	
+//	
+//	// GENERIC OBJECT - END
 
 	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNullCheck#isGenericObjectNull(java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public <A> boolean isGenericObjectNull(Object caller, A reference)
-	{
-		boolean result = false;
-		
-		result = this.isGenericObjectNullImplementation(caller, reference, IGenericObjectNullCheck.class);
-		
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotNullCheck#isGenericObjectNotNull(java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public <A> boolean isGenericObjectNotNull(Object caller, A reference)
-	{
-		boolean result = false;
-		
-		result = this.isGenericObjectNotNullImplementation(caller, reference, IGenericObjectNotNullCheck.class);
-		
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectSameCheck#isGenericObjectSame(java.lang.Object, java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public boolean isGenericObjectSame(Object caller, Object referenceA,
-			Object referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IGenericObjectSameCheck.class);
-		
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotSameCheck#isGenericObjectNotSame(java.lang.Object, java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public <A, B> boolean isGenericObjectNotSame(Object caller, A referenceA,
-			B referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IGenericObjectNotSameCheck.class);
-		
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectEqualsCheck#isGenericObjectEquals(java.lang.Object, java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public <A,B> boolean isGenericObjectEquals(Object caller, A referenceA,
-			B referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IGenericObjectEqualsCheck.class);
-		
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.objects.IGenericObjectNotEqualsCheck#isGenericObjectNotEquals(java.lang.Object, java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public <A,B> boolean isGenericObjectNotEquals(Object caller, A referenceA,
-			B referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IGenericObjectNotEqualsCheck.class);
-		
-		return result;
-	}
-
 	
-	
-	// GENERIC OBJECT - END
-
-	
-	
-	// GENERIC ARRAY - START
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.arrays.IGenericArrayEqualsCheck#isGenericArrayEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
-	 */
-	@Override
-	public <A,B> boolean isGenericArrayEquals(Object caller, A[] referenceA,
-			B[] referenceB)
-	{
-		boolean result = false;
-
-		result = this.isGenericArrayEqualsImplementation(caller, referenceA, referenceB, IGenericArrayEqualsCheck.class);
-		
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.arrays.IGenericArrayNotEqualsCheck#isGenericArrayNotEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
-	 */
-	@Override
-	public <A,B> boolean isGenericArrayNotEquals(Object caller, A[] referenceA,
-			B[] referenceB)
-	{
-		boolean result = false;
-
-		result = this.isGenericArrayNotEqualsImplementation(caller, referenceA, referenceB, IGenericArrayNotEqualsCheck.class);
-		
-		return result;
-	}
-	
-	// GENERIC ARRAY - END
-
-
-	// GENERIC COLLECTION - START
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.collections.IGenericCollectionEqualsCheck#isGenericCollectionEquals(java.lang.Object, java.util.Collection, java.util.Collection)
-	 */
-	@Override
-	public <A,B> boolean isGenericCollectionEquals(Object caller,
-			Collection<A> referenceA, Collection<B> referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericCollectionEqualsImplementation(caller, referenceA, referenceB, IGenericCollectionEqualsCheck.class);
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.collections.IGenericCollectionNotEqualsCheck#isGenericCollectionNotEquals(java.lang.Object, java.util.Collection, java.util.Collection)
-	 */
-	@Override
-	public <A,B> boolean isGenericCollectionNotEquals(Object caller,
-			Collection<A> referenceA, Collection<B> referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericCollectionNotEqualsImplementation(caller, referenceA, referenceB, IGenericCollectionNotEqualsCheck.class);
-
-		return result;
-	}
-	
-	// GENERIC COLLECTION - END
-
-	
-
-	// GENERIC LIST - START
-
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.lists.IGenericListEqualsCheck#isGenericListEquals(java.lang.Object, java.util.List, java.util.List)
-	 */
-	@Override
-	public <A,B> boolean isGenericListEquals(Object caller, List<A> referenceA,
-			List<B> referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericListEqualsImplementation(caller, referenceA, referenceB, IGenericListEqualsCheck.class);
-
-		return result;
-	}
-	
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.generics.lists.IGenericListNotEqualsCheck#isGenericListNotEquals(java.lang.Object, java.util.List, java.util.List)
-	 */
-	@Override
-	public <A,B> boolean isGenericListNotEquals(Object caller, List<A> referenceA,
-			List<B> referenceB)
-	{
-		boolean result = false;
-		
-		result = this.isGenericListNotEqualsImplementation(caller, referenceA, referenceB, IGenericListNotEqualsCheck.class);
-
-		return result;
-
-	}
-	
-	// GENERIC LIST - END
+//	// GENERIC ARRAY - START
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.arrays.IGenericArrayEqualsCheck#isGenericArrayEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericArrayEquals(Object caller, A[] referenceA,
+//			B[] referenceB)
+//	{
+//		boolean result = false;
+//
+//		result = this.isGenericArrayEqualsImplementation(caller, referenceA, referenceB, IGenericArrayEqualsCheck.class);
+//		
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.arrays.IGenericArrayNotEqualsCheck#isGenericArrayNotEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericArrayNotEquals(Object caller, A[] referenceA,
+//			B[] referenceB)
+//	{
+//		boolean result = false;
+//
+//		result = this.isGenericArrayNotEqualsImplementation(caller, referenceA, referenceB, IGenericArrayNotEqualsCheck.class);
+//		
+//		return result;
+//	}
+//	
+//	// GENERIC ARRAY - END
+//
+//
+//	// GENERIC COLLECTION - START
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.collections.IGenericCollectionEqualsCheck#isGenericCollectionEquals(java.lang.Object, java.util.Collection, java.util.Collection)
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericCollectionEquals(Object caller,
+//			Collection<A> referenceA, Collection<B> referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericCollectionEqualsImplementation(caller, referenceA, referenceB, IGenericCollectionEqualsCheck.class);
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.collections.IGenericCollectionNotEqualsCheck#isGenericCollectionNotEquals(java.lang.Object, java.util.Collection, java.util.Collection)
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericCollectionNotEquals(Object caller,
+//			Collection<A> referenceA, Collection<B> referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericCollectionNotEqualsImplementation(caller, referenceA, referenceB, IGenericCollectionNotEqualsCheck.class);
+//
+//		return result;
+//	}
+//	
+//	// GENERIC COLLECTION - END
+//
+//	
+//
+//	// GENERIC LIST - START
+//
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.lists.IGenericListEqualsCheck#isGenericListEquals(java.lang.Object, java.util.List, java.util.List)
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericListEquals(Object caller, List<A> referenceA,
+//			List<B> referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericListEqualsImplementation(caller, referenceA, referenceB, IGenericListEqualsCheck.class);
+//
+//		return result;
+//	}
+//	
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.generics.lists.IGenericListNotEqualsCheck#isGenericListNotEquals(java.lang.Object, java.util.List, java.util.List)
+//	 */
+//	@Override
+//	public <A,B> boolean isGenericListNotEquals(Object caller, List<A> referenceA,
+//			List<B> referenceB)
+//	{
+//		boolean result = false;
+//		
+//		result = this.isGenericListNotEqualsImplementation(caller, referenceA, referenceB, IGenericListNotEqualsCheck.class);
+//
+//		return result;
+//
+//	}
+//	
+//	// GENERIC LIST - END
 
 	
 	
 	// OBJECTS - START
 	
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * starkcoder.failfast.checks.objects.IObjectNullCheck#isObjectNull(java
-	 * .lang.Object, java.lang.Object)
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.IObjectNullCheck#isObjectNull(java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public boolean isObjectNull(Object caller, Object reference)
+	public <A extends Object> boolean isObjectNull(Object caller, A reference)
 	{
 		boolean result = false;
 
@@ -373,7 +357,7 @@ public abstract class AChecker implements IChecker
 	 * (java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public boolean isObjectNotNull(Object caller, Object reference)
+	public <A extends Object> boolean isObjectNotNull(Object caller, A reference)
 	{
 		boolean result = false;
 
@@ -390,8 +374,8 @@ public abstract class AChecker implements IChecker
 	 * java.lang.Object, java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public boolean isObjectEquals(Object caller, Object referenceA,
-			Object referenceB)
+	public <A extends Object, B extends Object> boolean isObjectEquals(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -408,8 +392,8 @@ public abstract class AChecker implements IChecker
 	 * (java.lang.Object, java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public boolean isObjectNotEquals(Object caller, Object referenceA,
-			Object referenceB)
+	public <A extends Object, B extends Object> boolean isObjectNotEquals(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -423,8 +407,8 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.IObjectSameCheck#isObjectSame(java.lang.Object, java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public boolean isObjectSame(Object caller, Object referenceA,
-			Object referenceB)
+	public <A extends Object, B extends Object> boolean isObjectSame(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -437,8 +421,8 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.IObjectNotSameCheck#isObjectNotSame(java.lang.Object, java.lang.Object, java.lang.Object)
 	 */
 	@Override
-	public boolean isObjectNotSame(Object caller, Object referenceA,
-			Object referenceB)
+	public <A extends Object, B extends Object> boolean isObjectNotSame(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -447,13 +431,45 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	private Object objectDefault = new Object();
+	@Override
+	public Object getObjectDefault()
+	{
+		return this.objectDefault;
+	}
+	@Override
+	public void setObjectDefault(Object defaultObject)
+	{
+		this.objectDefault = defaultObject;
+	}
+
 	
+	@Override
+	public <A> boolean isObjectDefault(Object caller, A referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getObjectDefault(), IObjectDefaultCheck.class);
+
+		return result;
+	}
+	@Override
+	public <A> boolean isObjectNotDefault(Object caller, A referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getObjectDefault(), IObjectNotDefaultCheck.class);
+
+		return result;
+	}
+
+
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.checks.objects.IObjectArrayEqualsCheck#isObjectArrayEquals(java.lang.Object, java.lang.Object[], java.lang.Object[])
 	 */
 	@Override
-	public boolean isObjectArrayEquals(Object caller, Object[] referenceA,
-			Object[] referenceB)
+	public <A extends Object, B extends Object> boolean isObjectArrayEquals(Object caller, A[] referenceA,
+			B[] referenceB)
 	{
 		boolean result = false;
 
@@ -466,8 +482,8 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.IObjectListEqualsCheck#isObjectListEquals(java.lang.Object, java.util.List, java.util.List)
 	 */
 	@Override
-	public boolean isObjectListEquals(Object caller, List<Object> referenceA,
-			List<Object> referenceB)
+	public <A extends Object, B extends Object> boolean isObjectListEquals(Object caller, List<A> referenceA,
+			List<B> referenceB)
 	{
 		boolean result = false;
 		
@@ -481,8 +497,8 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.IObjectCollectionEqualsCheck#isObjectCollectionEquals(java.lang.Object, java.util.Collection, java.util.Collection)
 	 */
 	@Override
-	public boolean isObjectCollectionEquals(Object caller,
-			Collection<Object> referenceA, Collection<Object> referenceB)
+	public <A extends Object, B extends Object> boolean isObjectCollectionEquals(Object caller,
+			Collection<A> referenceA, Collection<B> referenceB)
 	{
 		boolean result = false;
 		
@@ -891,9 +907,443 @@ public abstract class AChecker implements IChecker
 	}
 
 	
-	
 	// OBJECTS - ENUMS - END
 
+	
+	
+	// OBJECTS - FLOATS - START
+
+	@Override
+	public boolean isFloatNotSame(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectFloatNotSameCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isFloatSame(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectFloatSameCheck.class);
+
+		return result;
+	}	
+	
+	@Override
+	public boolean isFloatEquals(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectFloatEqualsCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isFloatNotEquals(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectFloatNotEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isFloatNotNull(Object caller, Float referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectFloatNotNullCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isFloatNull(Object caller, Float referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectFloatNullCheck.class);
+
+		return result;
+	}
+	
+	private Float floatDefault = 0f;
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatDefaultProperties#getFloatDefault()
+	 */
+	@Override
+	public Float getFloatDefault()
+	{
+		return this.floatDefault;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatDefaultProperties#setFloatDefault(java.lang.Float)
+	 */
+	@Override
+	public void setFloatDefault(Float defaultFloat)
+	{
+		this.floatDefault = defaultFloat;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatDefaultCheck#isFloatDefault(java.lang.Object, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatDefault(Object caller, Float referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getFloatDefault(), IObjectFloatDefaultCheck.class);
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatNotDefaultCheck#isFloatNotDefault(java.lang.Object, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatNotDefault(Object caller, Float referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getFloatDefault(), IObjectFloatNotDefaultCheck.class);
+
+		return result;
+	}
+
+	private Float floatEqualsAlmostDefaultAbsoluteEpsilon = 0.00001f;
+	@Override
+	public Float getFloatEqualsAlmostDefaultAbsoluteEpsilon()
+	{
+		return this.floatEqualsAlmostDefaultAbsoluteEpsilon;
+	}
+	@Override
+	public void setFloatEqualsAlmostDefaultAbsoluteEpsilon(
+			Float defaultAbsoluteEpsilon)
+	{
+		this.floatEqualsAlmostDefaultAbsoluteEpsilon = Math.abs(defaultAbsoluteEpsilon);
+	}
+	
+	private Float floatEqualsAlmostDefaultRelativeEpsilon = 0.000001f;
+	@Override
+	public Float getFloatEqualsAlmostDefaultRelativeEpsilon()
+	{
+		return this.floatEqualsAlmostDefaultRelativeEpsilon;
+	}
+	@Override
+	public void setFloatEqualsAlmostDefaultRelativeEpsilon(
+			Float defaultRelativeEpsilon)
+	{
+		this.floatEqualsAlmostDefaultRelativeEpsilon = Math.abs(defaultRelativeEpsilon);
+	}	
+	
+	@Override
+	public boolean isFloatEqualsAlmost(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+
+		Float defaultAbsoluteEpsilon = this.getFloatEqualsAlmostDefaultAbsoluteEpsilon();
+		Float defaultRelativeEpsilon = this.getFloatEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatEqualsAlmost(caller, referenceA, referenceB, defaultAbsoluteEpsilon, defaultRelativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isFloatEqualsAlmost(Object caller, Float referenceA,
+			Float referenceB, Float absoluteEpsilon)
+	{
+		boolean result = false;
+
+		Float defaultRelativeEpsilon = this.getFloatEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatEqualsAlmost(caller, referenceA, referenceB, absoluteEpsilon, defaultRelativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isFloatEqualsAlmost(Object caller, Float referenceA,
+			Float referenceB, Float absoluteEpsilon, Float relativeEpsilon)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		Float lowB = null;
+		Float highB = null;
+		if(referenceA == referenceB)
+		{
+			result = true;
+		}
+		else 
+		{
+			lowB = (1f - Math.signum(referenceA) * relativeEpsilon) * referenceA - absoluteEpsilon;
+			highB = (1f + Math.signum(referenceA) * relativeEpsilon) * referenceA + absoluteEpsilon;
+			result = (lowB <= referenceB && referenceB <= highB);
+		}
+
+		if(result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatEqualsAlmostCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isFloatNotEqualsAlmost(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+
+		Float absoluteEpsilon = this.getFloatEqualsAlmostDefaultAbsoluteEpsilon();
+		Float relativeEpsilon = this.getFloatEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatNotEqualsAlmost(caller, referenceA, referenceB, absoluteEpsilon, relativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isFloatNotEqualsAlmost(Object caller, Float referenceA,
+			Float referenceB, Float absoluteEpsilon)
+	{
+		boolean result = false;
+
+		Float relativeEpsilon = this.getFloatEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isFloatNotEqualsAlmost(caller, referenceA, referenceB, absoluteEpsilon, relativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isFloatNotEqualsAlmost(Object caller, Float referenceA,
+			Float referenceB, Float absoluteEpsilon, Float relativeEpsilon)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		Float lowB = null;
+		Float highB = null;
+		if(referenceA != referenceB)
+		{
+			lowB = (1f - Math.signum(referenceA) * relativeEpsilon) * referenceA - absoluteEpsilon;
+			highB = (1f + Math.signum(referenceA) * relativeEpsilon) * referenceA + absoluteEpsilon;
+			result = (referenceB < lowB ||  highB < referenceB);
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatNotEqualsAlmostCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatLessCheck#isFloatLess(java.lang.Object, java.lang.Float, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatLess(Object caller, Float referenceA, Float referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(null != referenceA && null != referenceB && referenceA.compareTo(referenceB) < 0)
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatLessCheck.class, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatLessOrEqualsCheck#isFloatLessOrEquals(java.lang.Object, java.lang.Float, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatLessOrEquals(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+		
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if((null == referenceA && null == referenceB)
+			|| (null != referenceA && null != referenceB && referenceA.compareTo(referenceB) <= 0))
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatLessOrEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatGreaterCheck#isFloatGreater(java.lang.Object, java.lang.Float, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatGreater(Object caller, Float referenceA, Float referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(null != referenceA && null != referenceB && 0 < referenceA.compareTo(referenceB))
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatGreaterCheck.class, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatGreaterOrEqualsCheck#isFloatGreaterOrEquals(java.lang.Object, java.lang.Float, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatGreaterOrEquals(Object caller, Float referenceA,
+			Float referenceB)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if((null == referenceA && null == referenceB)
+			|| (null != referenceA && null != referenceB && 0 <= referenceA.compareTo(referenceB)))
+		{
+			result = true;
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatGreaterOrEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatOutsideCheck#isFloatOutside(java.lang.Object, java.lang.Float, java.lang.Float, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatOutside(Object caller, Float referenceA,
+			Float referenceMin, Float referenceMax)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(null != referenceA && null != referenceMin && null != referenceMax)
+		{
+			if(referenceMin.compareTo(referenceMax) <= 0)
+			{
+				if(referenceA.compareTo(referenceMin) < 0 || 0 < referenceA.compareTo(referenceMax))
+				{
+					result = true;
+				}
+			}
+			else
+			{ // referenceMin > referenceMax
+				if(referenceA.compareTo(referenceMax) < 0 || 0 < referenceA.compareTo(referenceMin))
+				{
+					result = true;
+				}
+			}
+		}
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatOutsideCheck.class, new Object[] { caller, referenceA, referenceMin, referenceMax });
+		}
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatWithinCheck#isFloatWithin(java.lang.Object, java.lang.Float, java.lang.Float, java.lang.Float)
+	 */
+	@Override
+	public boolean isFloatWithin(Object caller, Float referenceA,
+			Float referenceMin, Float referenceMax)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		if(null != referenceA && null != referenceMin && null != referenceMax)
+		{
+			if(referenceMin.compareTo(referenceMax) <= 0)
+			{
+				if(0 <= referenceA.compareTo(referenceMin) && referenceA.compareTo(referenceMax) <= 0)
+				{
+					result = true;
+				}
+			}
+			else
+			{ // referenceMin > referenceMax
+				if(0 <= referenceA.compareTo(referenceMax) && referenceA.compareTo(referenceMin) <= 0)
+				{
+					result = true;
+				}
+			}
+		}
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectFloatWithinCheck.class, new Object[] { caller, referenceA, referenceMin, referenceMax });
+		}
+
+		return result;
+	}
+	
+	
+	// OBJECTS - FLOATS - END
 	
 	
 	// OBJECTS - STRINGS - START
@@ -1291,640 +1741,640 @@ public abstract class AChecker implements IChecker
 
 	
 	
-	// PRIMITIVES - BOOLEANS - START
-
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck#isObjectEquals(java.lang.Object, boolean, boolean)
-	 */
-	@Override
-	public boolean isBooleanValueEquals(Object caller, boolean valueA, boolean valueB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (valueA == valueB)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanEqualsCheck.class, new Object[] { caller, valueA, valueB });
-			result = true;
-		}
-
-		return result;
-	}
-
-
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck#isObjectNotEquals(java.lang.Object, boolean, boolean)
-	 */
-	@Override
-	public boolean isBooleanValueNotEquals(Object caller, boolean valueA,
-			boolean valueB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (valueA != valueB)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanNotEqualsCheck.class, new Object[] { caller, valueA, valueB });
-			result = true;
-		}
-
-		return result;
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck#isBooleanValueFalse(java.lang.Object, boolean)
-	 */
-	@Override
-	public boolean isBooleanValueFalse(Object caller, boolean valueA)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		boolean booleanFalse = false;
-		if (booleanFalse == valueA)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanFalseCheck.class, new Object[] { caller, valueA }, new Object[] { booleanFalse });
-			result = true;
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck#isBooleanValueTrue(java.lang.Object, boolean)
-	 */
-	@Override
-	public boolean isBooleanValueTrue(Object caller, boolean valueA)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		boolean booleanTrue = true;
-		if (booleanTrue == valueA)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanTrueCheck.class, new Object[] { caller, valueA }, new Object[] { booleanTrue });
-			result = true;
-		}
-
-		return result;
-	}
-
-	
-	private boolean booleanValueDefault;
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultProperties#getBooleanValueDefault()
-	 */
-	@Override
-	public boolean getBooleanValueDefault()
-	{
-		return this.booleanValueDefault;
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultProperties#setBooleanValueDefault(boolean)
-	 */
-	@Override
-	public void setBooleanValueDefault(boolean defaultBooleanValue)
-	{
-		this.booleanValueDefault = defaultBooleanValue;
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotDefaultCheck#isBooleanValueNotDefault(java.lang.Object, boolean)
-	 */
-	@Override
-	public boolean isBooleanValueNotDefault(Object caller, boolean valueA)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		boolean booleanDefault = this.getBooleanValueDefault();
-		if (valueA != booleanDefault)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanNotDefaultCheck.class, new Object[] { caller, valueA}, new Object[] { booleanDefault });
-			result = true;
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck#isBooleanValueDefault(java.lang.Object, boolean)
-	 */
-	@Override
-	public boolean isBooleanValueDefault(Object caller, boolean valueA)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		boolean booleanDefault = this.getBooleanValueDefault();
-		if (valueA == booleanDefault)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveBooleanDefaultCheck.class, new Object[] { caller, valueA }, new Object[] { booleanDefault });
-			result = true;
-		}
-
-		return result;
-	}
-
-	
-	// PRIMITIVES - BOOLEANS - END
+//	// PRIMITIVES - BOOLEANS - START
+//
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanEqualsCheck#isObjectEquals(java.lang.Object, boolean, boolean)
+//	 */
+//	@Override
+//	public boolean isBooleanValueEquals(Object caller, boolean valueA, boolean valueB)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//
+//		if (valueA == valueB)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveBooleanEqualsCheck.class, new Object[] { caller, valueA, valueB });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//
+//
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotEqualsCheck#isObjectNotEquals(java.lang.Object, boolean, boolean)
+//	 */
+//	@Override
+//	public boolean isBooleanValueNotEquals(Object caller, boolean valueA,
+//			boolean valueB)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//
+//		if (valueA != valueB)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveBooleanNotEqualsCheck.class, new Object[] { caller, valueA, valueB });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//	
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanFalseCheck#isBooleanValueFalse(java.lang.Object, boolean)
+//	 */
+//	@Override
+//	public boolean isBooleanValueFalse(Object caller, boolean valueA)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//
+//		boolean booleanFalse = false;
+//		if (booleanFalse == valueA)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveBooleanFalseCheck.class, new Object[] { caller, valueA }, new Object[] { booleanFalse });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanTrueCheck#isBooleanValueTrue(java.lang.Object, boolean)
+//	 */
+//	@Override
+//	public boolean isBooleanValueTrue(Object caller, boolean valueA)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//
+//		boolean booleanTrue = true;
+//		if (booleanTrue == valueA)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveBooleanTrueCheck.class, new Object[] { caller, valueA }, new Object[] { booleanTrue });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//
+//	
+//	private boolean booleanValueDefault;
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultProperties#getBooleanValueDefault()
+//	 */
+//	@Override
+//	public boolean getBooleanValueDefault()
+//	{
+//		return this.booleanValueDefault;
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultProperties#setBooleanValueDefault(boolean)
+//	 */
+//	@Override
+//	public void setBooleanValueDefault(boolean defaultBooleanValue)
+//	{
+//		this.booleanValueDefault = defaultBooleanValue;
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanNotDefaultCheck#isBooleanValueNotDefault(java.lang.Object, boolean)
+//	 */
+//	@Override
+//	public boolean isBooleanValueNotDefault(Object caller, boolean valueA)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		boolean booleanDefault = this.getBooleanValueDefault();
+//		if (valueA != booleanDefault)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveBooleanNotDefaultCheck.class, new Object[] { caller, valueA}, new Object[] { booleanDefault });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.booleans.IPrimitiveBooleanDefaultCheck#isBooleanValueDefault(java.lang.Object, boolean)
+//	 */
+//	@Override
+//	public boolean isBooleanValueDefault(Object caller, boolean valueA)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//
+//		boolean booleanDefault = this.getBooleanValueDefault();
+//		if (valueA == booleanDefault)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveBooleanDefaultCheck.class, new Object[] { caller, valueA }, new Object[] { booleanDefault });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//
+//	
+//	// PRIMITIVES - BOOLEANS - END
 	
 	
 	// PRIMITIVES - FLOATS - START
 	
 	
 	
-	// PRIMITIVES - FLOATS - END
-	
-
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck#isFloatValueEquals(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueEquals(Object caller, float valueA, float valueB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (valueA == valueB)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsCheck.class, new Object[] { caller, valueA, valueB });
-			result = true;
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsCheck#isFloatValueNotEquals(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueNotEquals(Object caller, float valueA,
-			float valueB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-
-		if (valueA != valueB)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsCheck.class, new Object[] { caller, valueA, valueB });
-			result = true;
-		}
-
-		return result;	
-	}
-	
-	
-	private float floatValueDefault = 0f;
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultProperties#getFloatValueDefault()
-	 */
-	@Override
-	public float getFloatValueDefault()
-	{
-		return this.floatValueDefault;
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultProperties#setFloatValueDefault(float)
-	 */
-	@Override
-	public void setFloatValueDefault(float defaultFloatValue)
-	{
-		this.floatValueDefault = defaultFloatValue;
-	}
-	
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultCheck#isFloatValueDefault(java.lang.Object, float)
-	 */
-	@Override
-	public boolean isFloatValueDefault(Object caller, float valueA)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		float floatValueDefault = this.getFloatValueDefault();
-		if (floatValueDefault == valueA)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatDefaultCheck.class, new Object[] { caller, valueA}, new Object[] { floatValueDefault });
-			result = true;
-		}
-
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotDefaultCheck#isFloatValueNotDefault(java.lang.Object, float)
-	 */
-	@Override
-	public boolean isFloatValueNotDefault(Object caller, float valueA)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		float floatValueDefault = this.getFloatValueDefault();
-		if (floatValueDefault != valueA)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatNotDefaultCheck.class, new Object[] { caller, valueA}, new Object[] { floatValueDefault });
-			result = true;
-		}
-
-		return result;
-	}
-
-
-	
-
-	private float floatValueEqualsAlmostDefaultAbsoluteEpsilon = 0.00001f;
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultAbsoluteEpsilon()
-	 */
-	@Override
-	public float getFloatValueEqualsAlmostDefaultAbsoluteEpsilon()
-	{
-		return this.floatValueEqualsAlmostDefaultAbsoluteEpsilon;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultAbsoluteEpsilon(float)
-	 */
-	@Override
-	public void setFloatValueEqualsAlmostDefaultAbsoluteEpsilon(
-			float defaultAbsoluteEpsilon)
-	{
-		this.floatValueEqualsAlmostDefaultAbsoluteEpsilon = Math.abs(defaultAbsoluteEpsilon);
-	}
-	
-
-	private float floatValueEqualsAlmostDefaultRelativeEpsilon = 0.000001f;
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultRelativeEpsilon()
-	 */
-	@Override
-	public float getFloatValueEqualsAlmostDefaultRelativeEpsilon()
-	{
-		return this.floatValueEqualsAlmostDefaultRelativeEpsilon;
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultRelativeEpsilon(float)
-	 */
-	@Override
-	public void setFloatValueEqualsAlmostDefaultRelativeEpsilon(
-			float defaultRelativeEpsilon)
-	{
-		this.floatValueEqualsAlmostDefaultRelativeEpsilon = Math.abs(defaultRelativeEpsilon);
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
-			float valueB)
-	{
-		boolean result = false;
-
-		float defaultAbsoluteEpsilon = this.getFloatValueEqualsAlmostDefaultAbsoluteEpsilon();
-		float defaultRelativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
-		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, defaultAbsoluteEpsilon, defaultRelativeEpsilon);
-				
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float, float)
-	 */
-	@Override
-	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
-			float valueB, float absoluteEpsilon)
-	{
-		boolean result = false;
-
-		float defaultRelativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
-		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, defaultRelativeEpsilon);
-				
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float, float, float)
-	 */
-	@Override
-	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
-			float valueB, float absoluteEpsilon, float relativeEpsilon)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		float lowB = (1f - Math.signum(valueA) * relativeEpsilon) * valueA - absoluteEpsilon;
-		float highB = (1f + Math.signum(valueA) * relativeEpsilon) * valueA + absoluteEpsilon;
-		if(valueA == valueB)
-		{
-			result = true;
-		}
-		else 
-		{
-			result = (lowB <= valueB && valueB <= highB);
-		}
-
-		if(result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsAlmostCheck.class, new Object[] { caller, valueA, valueB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
-			float valueB)
-	{
-		boolean result = false;
-
-		float absoluteEpsilon = this.getFloatValueEqualsAlmostDefaultAbsoluteEpsilon();
-		float relativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
-		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, relativeEpsilon);
-				
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float, float)
-	 */
-	@Override
-	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
-			float valueB, float absoluteEpsilon)
-	{
-		boolean result = false;
-
-		float relativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
-		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, relativeEpsilon);
-				
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float, float, float)
-	 */
-	@Override
-	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
-			float valueB, float absoluteEpsilon, float relativeEpsilon)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		float lowB = (1f - Math.signum(valueA) * relativeEpsilon) * valueA - absoluteEpsilon;
-		float highB = (1f + Math.signum(valueA) * relativeEpsilon) * valueA + absoluteEpsilon;
-		if(valueA != valueB)
-		{
-			result = (valueB < lowB ||  highB < valueB);
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsAlmostCheck.class, new Object[] { caller, valueA, valueB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
-		}
-
-		return result;
-	}
-
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessCheck#isFloatValueLess(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueLess(Object caller, float valueA, float valueB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(valueA < valueB)
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatLessCheck.class, new Object[] { caller, valueA, valueB });
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessEqualsCheck#isFloatValueLessEquals(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueLessEquals(Object caller, float valueA,
-			float valueB)
-	{
-		boolean result = false;
-		
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(valueA <= valueB)
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatLessEqualsCheck.class, new Object[] { caller, valueA, valueB });
-		}
-
-		return result;
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterCheck#isFloatValueGreater(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueGreater(Object caller, float valueA, float valueB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(valueA > valueB)
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterCheck.class, new Object[] { caller, valueA, valueB });
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterEqualsCheck#isFloatValueGreaterEquals(java.lang.Object, float, float)
-	 */
-	@Override
-	public boolean isFloatValueGreaterEquals(Object caller, float valueA,
-			float valueB)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(valueA >= valueB)
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterEqualsCheck.class, new Object[] { caller, valueA, valueB });
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatOutsideCheck#isFloatValueOutside(java.lang.Object, float, float, float)
-	 */
-	@Override
-	public boolean isFloatValueOutside(Object caller, float valueA,
-			float valueMin, float valueMax)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(valueMin <= valueMax)
-		{
-			if(valueA < valueMin || valueMax < valueA)
-			{
-				result = true;
-			}
-		}
-		else
-		{ // valueMin > valueMax
-			if(valueA < valueMax || valueMin < valueA)
-			{
-				result = true;
-			}
-		}
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatOutsideCheck.class, new Object[] { caller, valueA, valueMin, valueMax });
-		}
-
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatWithinCheck#isFloatValueWithin(java.lang.Object, float, float, float)
-	 */
-	@Override
-	public boolean isFloatValueWithin(Object caller, float valueA,
-			float valueMin, float valueMax)
-	{
-		boolean result = false;
-
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(valueMin <= valueMax)
-		{
-			if(valueMin <= valueA && valueA <= valueMax)
-			{
-				result = true;
-			}
-		}
-		else
-		{ // valueMin > valueMax
-			if(valueMax <= valueA && valueA <= valueMin)
-			{
-				result = true;
-			}
-		}
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IPrimitiveFloatWithinCheck.class, new Object[] { caller, valueA, valueMin, valueMax });
-		}
-
-		return result;
-	}
+//	// PRIMITIVES - FLOATS - END
+//	
+//
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsCheck#isFloatValueEquals(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueEquals(Object caller, float valueA, float valueB)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//
+//		if (valueA == valueB)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsCheck.class, new Object[] { caller, valueA, valueB });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsCheck#isFloatValueNotEquals(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueNotEquals(Object caller, float valueA,
+//			float valueB)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//
+//		if (valueA != valueB)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsCheck.class, new Object[] { caller, valueA, valueB });
+//			result = true;
+//		}
+//
+//		return result;	
+//	}
+//	
+//	
+//	private float floatValueDefault = 0f;
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultProperties#getFloatValueDefault()
+//	 */
+//	@Override
+//	public float getFloatValueDefault()
+//	{
+//		return this.floatValueDefault;
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultProperties#setFloatValueDefault(float)
+//	 */
+//	@Override
+//	public void setFloatValueDefault(float defaultFloatValue)
+//	{
+//		this.floatValueDefault = defaultFloatValue;
+//	}
+//	
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatDefaultCheck#isFloatValueDefault(java.lang.Object, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueDefault(Object caller, float valueA)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		float floatValueDefault = this.getFloatValueDefault();
+//		if (floatValueDefault == valueA)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatDefaultCheck.class, new Object[] { caller, valueA}, new Object[] { floatValueDefault });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotDefaultCheck#isFloatValueNotDefault(java.lang.Object, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueNotDefault(Object caller, float valueA)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		float floatValueDefault = this.getFloatValueDefault();
+//		if (floatValueDefault != valueA)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatNotDefaultCheck.class, new Object[] { caller, valueA}, new Object[] { floatValueDefault });
+//			result = true;
+//		}
+//
+//		return result;
+//	}
+//
+//
+//	
+//
+//	private float floatValueEqualsAlmostDefaultAbsoluteEpsilon = 0.00001f;
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultAbsoluteEpsilon()
+//	 */
+//	@Override
+//	public float getFloatValueEqualsAlmostDefaultAbsoluteEpsilon()
+//	{
+//		return this.floatValueEqualsAlmostDefaultAbsoluteEpsilon;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultAbsoluteEpsilon(float)
+//	 */
+//	@Override
+//	public void setFloatValueEqualsAlmostDefaultAbsoluteEpsilon(
+//			float defaultAbsoluteEpsilon)
+//	{
+//		this.floatValueEqualsAlmostDefaultAbsoluteEpsilon = Math.abs(defaultAbsoluteEpsilon);
+//	}
+//	
+//
+//	private float floatValueEqualsAlmostDefaultRelativeEpsilon = 0.000001f;
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#getFloatValueEqualsAlmostDefaultRelativeEpsilon()
+//	 */
+//	@Override
+//	public float getFloatValueEqualsAlmostDefaultRelativeEpsilon()
+//	{
+//		return this.floatValueEqualsAlmostDefaultRelativeEpsilon;
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheckProperties#setFloatValueEqualsAlmostDefaultRelativeEpsilon(float)
+//	 */
+//	@Override
+//	public void setFloatValueEqualsAlmostDefaultRelativeEpsilon(
+//			float defaultRelativeEpsilon)
+//	{
+//		this.floatValueEqualsAlmostDefaultRelativeEpsilon = Math.abs(defaultRelativeEpsilon);
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
+//			float valueB)
+//	{
+//		boolean result = false;
+//
+//		float defaultAbsoluteEpsilon = this.getFloatValueEqualsAlmostDefaultAbsoluteEpsilon();
+//		float defaultRelativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+//		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, defaultAbsoluteEpsilon, defaultRelativeEpsilon);
+//				
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
+//			float valueB, float absoluteEpsilon)
+//	{
+//		boolean result = false;
+//
+//		float defaultRelativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+//		result = this.isFloatValueEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, defaultRelativeEpsilon);
+//				
+//		return result;
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatEqualsAlmostCheck#isFloatValueEqualsAlmost(java.lang.Object, float, float, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueEqualsAlmost(Object caller, float valueA,
+//			float valueB, float absoluteEpsilon, float relativeEpsilon)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		float lowB = (1f - Math.signum(valueA) * relativeEpsilon) * valueA - absoluteEpsilon;
+//		float highB = (1f + Math.signum(valueA) * relativeEpsilon) * valueA + absoluteEpsilon;
+//		if(valueA == valueB)
+//		{
+//			result = true;
+//		}
+//		else 
+//		{
+//			result = (lowB <= valueB && valueB <= highB);
+//		}
+//
+//		if(result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatEqualsAlmostCheck.class, new Object[] { caller, valueA, valueB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
+//			float valueB)
+//	{
+//		boolean result = false;
+//
+//		float absoluteEpsilon = this.getFloatValueEqualsAlmostDefaultAbsoluteEpsilon();
+//		float relativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+//		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, relativeEpsilon);
+//				
+//		return result;
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
+//			float valueB, float absoluteEpsilon)
+//	{
+//		boolean result = false;
+//
+//		float relativeEpsilon = this.getFloatValueEqualsAlmostDefaultRelativeEpsilon();
+//		result = this.isFloatValueNotEqualsAlmost(caller, valueA, valueB, absoluteEpsilon, relativeEpsilon);
+//				
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatNotEqualsAlmostCheck#isFloatValueNotEqualsAlmost(java.lang.Object, float, float, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueNotEqualsAlmost(Object caller, float valueA,
+//			float valueB, float absoluteEpsilon, float relativeEpsilon)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		float lowB = (1f - Math.signum(valueA) * relativeEpsilon) * valueA - absoluteEpsilon;
+//		float highB = (1f + Math.signum(valueA) * relativeEpsilon) * valueA + absoluteEpsilon;
+//		if(valueA != valueB)
+//		{
+//			result = (valueB < lowB ||  highB < valueB);
+//		}
+//		// else false
+//			
+//		if (result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatNotEqualsAlmostCheck.class, new Object[] { caller, valueA, valueB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
+//		}
+//
+//		return result;
+//	}
+//
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessCheck#isFloatValueLess(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueLess(Object caller, float valueA, float valueB)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		if(valueA < valueB)
+//		{
+//			result = true;
+//		}
+//		// else false
+//			
+//		if (result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatLessCheck.class, new Object[] { caller, valueA, valueB });
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatLessEqualsCheck#isFloatValueLessEquals(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueLessEquals(Object caller, float valueA,
+//			float valueB)
+//	{
+//		boolean result = false;
+//		
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		if(valueA <= valueB)
+//		{
+//			result = true;
+//		}
+//		// else false
+//			
+//		if (result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatLessEqualsCheck.class, new Object[] { caller, valueA, valueB });
+//		}
+//
+//		return result;
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterCheck#isFloatValueGreater(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueGreater(Object caller, float valueA, float valueB)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		if(valueA > valueB)
+//		{
+//			result = true;
+//		}
+//		// else false
+//			
+//		if (result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterCheck.class, new Object[] { caller, valueA, valueB });
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatGreaterEqualsCheck#isFloatValueGreaterEquals(java.lang.Object, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueGreaterEquals(Object caller, float valueA,
+//			float valueB)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		if(valueA >= valueB)
+//		{
+//			result = true;
+//		}
+//		// else false
+//			
+//		if (result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatGreaterEqualsCheck.class, new Object[] { caller, valueA, valueB });
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatOutsideCheck#isFloatValueOutside(java.lang.Object, float, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueOutside(Object caller, float valueA,
+//			float valueMin, float valueMax)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		if(valueMin <= valueMax)
+//		{
+//			if(valueA < valueMin || valueMax < valueA)
+//			{
+//				result = true;
+//			}
+//		}
+//		else
+//		{ // valueMin > valueMax
+//			if(valueA < valueMax || valueMin < valueA)
+//			{
+//				result = true;
+//			}
+//		}
+//			
+//		if (result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatOutsideCheck.class, new Object[] { caller, valueA, valueMin, valueMax });
+//		}
+//
+//		return result;
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.checks.primitives.floats.IPrimitiveFloatWithinCheck#isFloatValueWithin(java.lang.Object, float, float, float)
+//	 */
+//	@Override
+//	public boolean isFloatValueWithin(Object caller, float valueA,
+//			float valueMin, float valueMax)
+//	{
+//		boolean result = false;
+//
+//		if (null == caller)
+//		{
+//			throw new IllegalArgumentException("caller is null");
+//		}
+//		
+//		if(valueMin <= valueMax)
+//		{
+//			if(valueMin <= valueA && valueA <= valueMax)
+//			{
+//				result = true;
+//			}
+//		}
+//		else
+//		{ // valueMin > valueMax
+//			if(valueMax <= valueA && valueA <= valueMin)
+//			{
+//				result = true;
+//			}
+//		}
+//			
+//		if (result)
+//		{
+//			this.pushContractWithCaller(caller, IPrimitiveFloatWithinCheck.class, new Object[] { caller, valueA, valueMin, valueMax });
+//		}
+//
+//		return result;
+//	}
 
 	/**
 	 * Default constructor.

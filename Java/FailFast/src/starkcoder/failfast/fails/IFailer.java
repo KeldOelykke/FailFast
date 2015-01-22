@@ -24,9 +24,7 @@
 package starkcoder.failfast.fails;
 
 import starkcoder.failfast.contractors.ICallContractorReference;
-import starkcoder.failfast.fails.generics.IGenericsFailer;
 import starkcoder.failfast.fails.objects.IObjectFailer;
-import starkcoder.failfast.fails.primitives.IPrimitiveFailer;
 
 /**
  * Failer specification.
@@ -42,6 +40,8 @@ import starkcoder.failfast.fails.primitives.IPrimitiveFailer;
  * @author Keld Oelykke
  */
 public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, 
-	IObjectFailer, IPrimitiveFailer, IGenericsFailer
+	IObjectFailer 
+	//IPrimitiveFailer, -- TODO: make this to avoid boxing/unboxing penalties?
+	//IGenericsFailer -- TODO: determine whether this is needed at all?
 {
 }

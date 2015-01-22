@@ -48,5 +48,5 @@ public interface IObjectArrayEqualsCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectArrayEqualsFail.class)
-	boolean isObjectArrayEquals(Object caller, Object[] referenceA, Object[] referenceB);
+	<A extends Object, B extends Object> boolean isObjectArrayEquals(Object caller, A[] referenceA, B[] referenceB);
 }

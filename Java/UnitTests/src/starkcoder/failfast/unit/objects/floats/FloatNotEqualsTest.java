@@ -1,3 +1,4 @@
+package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -21,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveFloatGreaterCheck} and {link:IPrimitiveFloatGreaterFail}.
+ * Fail-fast unit test of {link:IObjectFloatNotEqualsCheck} and {link:IObjectFloatNotEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatValueGreaterTest {
+public class FloatNotEqualsTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,32 +96,33 @@ public class FloatValueGreaterTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueGreaterCheckerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueGreater(null, valueA, valueB))
+	public void testFloatNotEqualsCheckerCallerIsNull() {
+		float valueA = 0.123f;
+		float valueB = 0.1234f;
+		if(checker.isFloatNotEquals(null, valueA, valueB))
 		{
-			failer.failFloatValueGreater(this, "valueA", "valueB");
+			failer.failFloatNotEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueGreaterFailerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueGreater(this, valueA, valueB))
+	public void testFloatNotEqualsFailerCallerIsNull() {
+		float valueA = 0.123f;
+		float valueB = 0.1234f;
+		if(checker.isFloatNotEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueGreater(null, "valueA", "valueB");
+			failer.failFloatNotEquals(null, "valueA", "valueB");
 		}
+
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueFailerCallerIsWrong() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueGreater(new String("Foo"), valueA, valueB))
+	public void testFloatNotEqualsFailerCallerIsWrong() {
+		float valueA = 0.123f;
+		float valueB = 0.1234f;
+		if(checker.isFloatNotEquals(new String("Foo"), valueA, valueB))
 		{
-			failer.failFloatValueGreater(new String("Bar"), "valueA", "valueB");
+			failer.failFloatNotEquals(new String("Bar"), "valueA", "valueB");
 		}
 	}
 	
@@ -129,37 +130,37 @@ public class FloatValueGreaterTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueGreaterMismatchCheckCheck() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueGreater(this, valueA, valueB))
+	public void testFloatNotEqualsMismatchCheckCheck() {
+		float valueA = 0.123f;
+		float valueB = 0.1234f;
+		if(checker.isFloatNotEquals(this, valueA, valueB))
 		{
-			checker.isFloatValueGreater(this, valueA, valueB);
+			checker.isFloatNotEquals(this, valueA, valueB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueGreaterMismatchFail() {
-		failer.failFloatValueGreater(this, "valueA", "valueB");
+	public void testFloatNotEqualsMismatchFail() {
+		failer.failFloatNotEquals(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueGreaterMismatchWrongCheck() {
-		float valueA = 0.122f;
+	public void testFloatNotEqualsMismatchWrongCheck() {
+		float valueA = 0.123f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueLess(this, valueA, valueB)) // wrong call
+		if(checker.isFloatEquals(this, valueA, valueB)) // wrong call
 		{
-			failer.failFloatValueGreater(this, "valueA", "valueB");
+			failer.failFloatNotEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueGreaterMismatchWrongFail() {
+	public void testFloatNotEqualsMismatchWrongFail() {
 		float valueA = 0.123f;
-		float valueB = 0.122f;
-		if(checker.isFloatValueGreater(this, valueA, valueB))
+		float valueB = 0.1234f;
+		if(checker.isFloatNotEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueLess(this, "valueA", "valueB"); // wrong call
+			failer.failFloatEquals(this, "valueA", "valueB"); // wrong call
 		}
 	}
 	
@@ -167,14 +168,14 @@ public class FloatValueGreaterTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueGreaterFailNoMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testFloatNotEqualsFailNoMessage() {
+		float valueA = 0.123f;
+		float valueB = 0.1234f;
 		try
 		{
-			if(checker.isFloatValueGreater(this, valueA, valueB))
+			if(checker.isFloatNotEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueGreater(this, "valueA", "valueB");
+				failer.failFloatNotEquals(this, "valueA", "valueB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -187,14 +188,14 @@ public class FloatValueGreaterTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueGreaterFailMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testFloatNotEqualsFailMessage() {
+		float valueA = 0.1234f;
+		float valueB = 0.123f;
 		try
 		{
-			if(checker.isFloatValueGreater(this, valueA, valueB))
+			if(checker.isFloatNotEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueGreater(this, "valueA", "valueB", "Extra info goes here");
+				failer.failFloatNotEquals(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -207,14 +208,14 @@ public class FloatValueGreaterTest {
 	}
 	
 	@Test
-	public void testFloatValueGreaterNoFail() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueGreater(this, valueA, valueB))
+	public void testFloatNotEqualsNoFail() {
+		float valueA = 0.1234f;
+		float valueB = valueA;
+		if(checker.isFloatNotEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueGreater(this, "valueA", "valueB");
+			failer.failFloatNotEquals(this, "valueA", "valueB");
 		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertTrue("Expected valueA & valueB to pass the not-equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

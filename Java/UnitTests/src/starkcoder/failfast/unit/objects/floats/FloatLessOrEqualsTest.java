@@ -1,3 +1,4 @@
+package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -21,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveFloatEqualsCheck} and {link:IPrimitiveFloatEqualsFail}.
+ * Fail-fast unit test of {link:IObjectFloatLessOrEqualsCheck} and {link:IObjectFloatLessOrEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatValueEqualsTest {
+public class FloatLessOrEqualsTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,32 +96,32 @@ public class FloatValueEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueEqualsCheckerCallerIsNull() {
-		float valueA = 0.123f;
+	public void testFloatLessOrEqualsCheckerCallerIsNull() {
+		float valueA = 0.122f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(null, valueA, valueB))
+		if(checker.isFloatLessOrEquals(null, valueA, valueB))
 		{
-			failer.failFloatValueEquals(this, "valueA", "valueB");
+			failer.failFloatLessOrEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueEqualsFailerCallerIsNull() {
-		float valueA = 0.123f;
+	public void testFloatLessOrEqualsFailerCallerIsNull() {
+		float valueA = 0.122f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+		if(checker.isFloatLessOrEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueEquals(null, "valueA", "valueB");
+			failer.failFloatLessOrEquals(null, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueFailerCallerIsWrong() {
-		float valueA = 0.123f;
+	public void testFloatFailerCallerIsWrong() {
+		float valueA = 0.122f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(new String("Foo"), valueA, valueB))
+		if(checker.isFloatLessOrEquals(new String("Foo"), valueA, valueB))
 		{
-			failer.failFloatValueEquals(new String("Bar"), "valueA", "valueB");
+			failer.failFloatLessOrEquals(new String("Bar"), "valueA", "valueB");
 		}
 	}
 	
@@ -129,37 +129,37 @@ public class FloatValueEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchCheckCheck() {
-		float valueA = 0.123f;
+	public void testFloatLessOrEqualsMismatchCheckCheck() {
+		float valueA = 0.122f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+		if(checker.isFloatLessOrEquals(this, valueA, valueB))
 		{
-			checker.isFloatValueEquals(this, valueA, valueB);
+			checker.isFloatLessOrEquals(this, valueA, valueB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchFail() {
-		failer.failFloatValueEquals(this, "valueA", "valueB");
+	public void testFloatLessOrEqualsMismatchFail() {
+		failer.failFloatLessOrEquals(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchWrongCheck() {
-		float valueA = 0.123f;
-		float valueB = 0.1234f;
-		if(checker.isFloatValueNotEquals(this, valueA, valueB)) // wrong call
+	public void testFloatLessOrEqualsMismatchWrongCheck() {
+		float valueA = 0.124f;
+		float valueB = 0.123f;
+		if(checker.isFloatGreater(this, valueA, valueB)) // wrong call
 		{
-			failer.failFloatValueEquals(this, "valueA", "valueB");
+			failer.failFloatLessOrEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsMismatchWrongFail() {
+	public void testFloatLessOrEqualsMismatchWrongFail() {
 		float valueA = 0.123f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+		float valueB = 0.124f;
+		if(checker.isFloatLessOrEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueNotEquals(this, "valueA", "valueB"); // wrong call
+			failer.failFloatGreater(this, "valueA", "valueB"); // wrong call
 		}
 	}
 	
@@ -167,14 +167,14 @@ public class FloatValueEqualsTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsFailNoMessage() {
-		float valueA = 0.123f;
-		float valueB = valueA;
+	public void testFloatLessFailNoMessage() {
+		float valueA = -0.123f;
+		float valueB = 0.123f;
 		try
 		{
-			if(checker.isFloatValueEquals(this, valueA, valueB))
+			if(checker.isFloatLessOrEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueEquals(this, "valueA", "valueB");
+				failer.failFloatLessOrEquals(this, "valueA", "valueB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -187,14 +187,54 @@ public class FloatValueEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsFailMessage() {
-		float valueA = 0.1234f;
-		float valueB = valueA;
+	public void testFloatLessFailMessage() {
+		float valueA = 0.123f;
+		float valueB = 0.124f;
 		try
 		{
-			if(checker.isFloatValueEquals(this, valueA, valueB))
+			if(checker.isFloatLessOrEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueEquals(this, "valueA", "valueB", "Extra info goes here");
+				failer.failFloatLessOrEquals(this, "valueA", "valueB", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testFloatEqualsFailNoMessage() {
+		float valueA = 0.124f;
+		float valueB = 0.124f;
+		try
+		{
+			if(checker.isFloatLessOrEquals(this, valueA, valueB))
+			{
+				failer.failFloatLessOrEquals(this, "valueA", "valueB");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testFloatEqualsFailMessage() {
+		float valueA = -0.124f;
+		float valueB = -0.124f;
+		try
+		{
+			if(checker.isFloatLessOrEquals(this, valueA, valueB))
+			{
+				failer.failFloatLessOrEquals(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -207,12 +247,12 @@ public class FloatValueEqualsTest {
 	}
 	
 	@Test
-	public void testFloatValueEqualsNoFail() {
-		float valueA = 0.1234f;
+	public void testFloatLessOrEqualsNoFail() {
+		float valueA = 0.124f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB))
+		if(checker.isFloatLessOrEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueEquals(this, "valueA", "valueB");
+			failer.failFloatLessOrEquals(this, "valueA", "valueB");
 		}
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());

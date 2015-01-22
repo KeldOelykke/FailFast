@@ -46,5 +46,5 @@ public interface IGenericObjectNullCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IGenericObjectNullFail.class)
-	<A> boolean isGenericObjectNull(Object caller, A reference);
+	<A extends Object> boolean isGenericObjectNull(Object caller, A reference);
 }

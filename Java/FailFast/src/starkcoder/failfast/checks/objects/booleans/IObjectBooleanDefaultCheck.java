@@ -28,20 +28,20 @@ import starkcoder.failfast.checks.NCheck;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanDefaultFail;
 
 /**
- * Specifies a default value check for Boolean.
+ * Specifies a default check for Boolean.
  * 
  * @author Keld Oelykke
  */
 public interface IObjectBooleanDefaultCheck extends IObjectBooleanDefaultProperties, ICheck
 {
 	/**
-	 * Checks if the Boolean reference a default value.
+	 * Checks if the reference is equal to the registered default Float.
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
 	 *            reference to check
-	 * @return true, if referenced object has a default value, otherwise false
+	 * @return true, if reference equals default, otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */

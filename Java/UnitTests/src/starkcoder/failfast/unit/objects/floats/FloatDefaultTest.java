@@ -1,3 +1,4 @@
+package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -21,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveFloatNotDefaultCheck} and {link:IPrimitiveFloatTrueFail}.
+ * Fail-fast unit test of {link:IObjectFloatDefaultCheck} and {link:IObjectFloatDefaultFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatValueNotDefaultTest {
+public class FloatDefaultTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,29 +96,29 @@ public class FloatValueNotDefaultTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueNotDefaultCheckerCallerIsNull() {
-		float valueA = 1f;
-		if(checker.isFloatValueNotDefault(null, valueA))
+	public void testFloatDefaultCheckerCallerIsNull() {
+		float valueA = 0f;
+		if(checker.isFloatDefault(null, valueA))
 		{
-			failer.failFloatValueNotDefault(this, "valueA");
+			failer.failFloatDefault(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueNotDefaultFailerCallerIsNull() {
-		float valueA = 1f;
-		if(checker.isFloatValueNotDefault(this, valueA))
+	public void testFloatDefaultFailerCallerIsNull() {
+		float valueA = 0f;
+		if(checker.isFloatDefault(this, valueA))
 		{
-			failer.failFloatValueNotDefault(null, "valueA");
+			failer.failFloatDefault(null, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueFailerCallerIsWrong() {
-		float valueA = 1f;
-		if(checker.isFloatValueNotDefault(new String("Foo"), valueA))
+	public void testFloatFailerCallerIsWrong() {
+		float valueA = 0f;
+		if(checker.isFloatDefault(new String("Foo"), valueA))
 		{
-			failer.failFloatValueNotDefault(new String("Bar"), "valueA");
+			failer.failFloatDefault(new String("Bar"), "valueA");
 		}
 	}
 	
@@ -126,34 +126,34 @@ public class FloatValueNotDefaultTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotDefaultMismatchCheckCheck() {
-		float valueA = 1f;
-		if(checker.isFloatValueNotDefault(this, valueA))
+	public void testFloatDefaultMismatchCheckCheck() {
+		float valueA = 0f;
+		if(checker.isFloatDefault(this, valueA))
 		{
-			checker.isFloatValueNotDefault(this, valueA);
+			checker.isFloatDefault(this, valueA);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotDefaultMismatchFail() {
-		failer.failFloatValueNotDefault(this, "valueA");
+	public void testFloatDefaultMismatchFail() {
+		failer.failFloatDefault(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotDefaultMismatchWrongCheck() {
-		float valueA = 0f;
-		if(checker.isFloatValueDefault(this, valueA)) // wrong call
+	public void testFloatDefaultMismatchWrongCheck() {
+		float valueA = 1f;
+		if(checker.isFloatNotDefault(this, valueA)) // wrong call
 		{
-			failer.failFloatValueNotDefault(this, "valueA");
+			failer.failFloatDefault(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotDefaultMismatchWrongFail() {
-		float valueA = 1f;
-		if(checker.isFloatValueNotDefault(this, valueA))
+	public void testFloatDefaultMismatchWrongFail() {
+		float valueA = 0f;
+		if(checker.isFloatDefault(this, valueA))
 		{
-			failer.failFloatValueDefault(this, "valueA"); // wrong call
+			failer.failFloatNotDefault(this, "valueA"); // wrong call
 		}
 	}
 	
@@ -161,13 +161,13 @@ public class FloatValueNotDefaultTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueNotDefaultFailNoMessage() {
-		float valueA = 1f;
+	public void testFloatDefaultFailNoMessage() {
+		float valueA = 0f;
 		try
 		{
-			if(checker.isFloatValueNotDefault(this, valueA))
+			if(checker.isFloatDefault(this, valueA))
 			{
-				failer.failFloatValueNotDefault(this, "valueA");
+				failer.failFloatDefault(this, "valueA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -180,13 +180,13 @@ public class FloatValueNotDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueNotDefaultFailMessage() {
-		float valueA = 1f;
+	public void testFloatDefaultFailMessage() {
+		float valueA = 0f;
 		try
 		{
-			if(checker.isFloatValueNotDefault(this, valueA))
+			if(checker.isFloatDefault(this, valueA))
 			{
-				failer.failFloatValueNotDefault(this, "valueA", "Extra info goes here");
+				failer.failFloatDefault(this, "valueA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -199,26 +199,34 @@ public class FloatValueNotDefaultTest {
 	}
 	
 	@Test
-	public void testFloatValueDefaultNoFail() {
-		float valueA = 0f;
-		if(checker.isFloatValueNotDefault(this, valueA))
+	public void testFloatNotDefaultNoFail() {
+		float valueA = 1f;
+		if(checker.isFloatDefault(this, valueA))
 		{
-			failer.failFloatValueNotDefault(this, "valueA");
+			failer.failFloatDefault(this, "valueA");
 		}
 		assertTrue("Expected valueA not to pass the check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
-	@Test
-	public void testFloatValueDefaultChangedNoFail() {
+	@Test(expected=FailFastException.class)
+	public void testFloatChangedDefaultFail() {
 		float valueA = 1f;
-		checker.setFloatValueDefault(valueA);
-		if(checker.isFloatValueNotDefault(this, valueA))
+		checker.setFloatDefault(valueA);
+		try
 		{
-			failer.failFloatValueNotDefault(this, "valueA");
+			if(checker.isFloatDefault(this, valueA))
+			{
+				failer.failFloatDefault(this, "valueA");
+			}
 		}
-		assertTrue("Expected valueA not to pass the check", true);
-		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
 	}
 
 }

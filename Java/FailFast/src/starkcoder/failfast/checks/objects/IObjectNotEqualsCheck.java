@@ -48,5 +48,5 @@ public interface IObjectNotEqualsCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectNotEqualsFail.class)
-	boolean isObjectNotEquals(Object caller, Object referenceA, Object referenceB);
+	<A extends Object, B extends Object> boolean isObjectNotEquals(Object caller, A referenceA, B referenceB);
 }

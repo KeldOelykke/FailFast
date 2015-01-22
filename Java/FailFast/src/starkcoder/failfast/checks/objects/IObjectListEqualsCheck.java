@@ -54,5 +54,5 @@ public interface IObjectListEqualsCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectListEqualsFail.class)
-	boolean isObjectListEquals(Object caller, List<Object> referenceA, List<Object> referenceB);
+	<A extends Object, B extends Object> boolean isObjectListEquals(Object caller, List<A> referenceA, List<B> referenceB);
 }

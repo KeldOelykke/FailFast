@@ -1,3 +1,4 @@
+package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -21,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveFloatNotEqualsCheck} and {link:IPrimitiveFloatNotEqualsFail}.
+ * Fail-fast unit test of {link:IObjectFloatEqualsCheck} and {link:IObjectFloatEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatValueNotEqualsTest {
+public class FloatEqualsTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,33 +96,32 @@ public class FloatValueNotEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueNotEqualsCheckerCallerIsNull() {
+	public void testFloatEqualsCheckerCallerIsNull() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
-		if(checker.isFloatValueNotEquals(null, valueA, valueB))
+		float valueB = 0.123f;
+		if(checker.isFloatEquals(null, valueA, valueB))
 		{
-			failer.failFloatValueNotEquals(this, "valueA", "valueB");
+			failer.failFloatEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueNotEqualsFailerCallerIsNull() {
+	public void testFloatEqualsFailerCallerIsNull() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
-		if(checker.isFloatValueNotEquals(this, valueA, valueB))
+		float valueB = 0.123f;
+		if(checker.isFloatEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueNotEquals(null, "valueA", "valueB");
+			failer.failFloatEquals(null, "valueA", "valueB");
 		}
-
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotEqualsFailerCallerIsWrong() {
+	public void testFloatFailerCallerIsWrong() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
-		if(checker.isFloatValueNotEquals(new String("Foo"), valueA, valueB))
+		float valueB = 0.123f;
+		if(checker.isFloatEquals(new String("Foo"), valueA, valueB))
 		{
-			failer.failFloatValueNotEquals(new String("Bar"), "valueA", "valueB");
+			failer.failFloatEquals(new String("Bar"), "valueA", "valueB");
 		}
 	}
 	
@@ -130,37 +129,37 @@ public class FloatValueNotEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotEqualsMismatchCheckCheck() {
+	public void testFloatEqualsMismatchCheckCheck() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
-		if(checker.isFloatValueNotEquals(this, valueA, valueB))
+		float valueB = 0.123f;
+		if(checker.isFloatEquals(this, valueA, valueB))
 		{
-			checker.isFloatValueNotEquals(this, valueA, valueB);
+			checker.isFloatEquals(this, valueA, valueB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotEqualsMismatchFail() {
-		failer.failFloatValueNotEquals(this, "valueA", "valueB");
+	public void testFloatEqualsMismatchFail() {
+		failer.failFloatEquals(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotEqualsMismatchWrongCheck() {
+	public void testFloatEqualsMismatchWrongCheck() {
 		float valueA = 0.123f;
-		float valueB = 0.123f;
-		if(checker.isFloatValueEquals(this, valueA, valueB)) // wrong call
+		float valueB = 0.1234f;
+		if(checker.isFloatNotEquals(this, valueA, valueB)) // wrong call
 		{
-			failer.failFloatValueNotEquals(this, "valueA", "valueB");
+			failer.failFloatEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueNotEqualsMismatchWrongFail() {
+	public void testFloatEqualsMismatchWrongFail() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
-		if(checker.isFloatValueNotEquals(this, valueA, valueB))
+		float valueB = 0.123f;
+		if(checker.isFloatEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueEquals(this, "valueA", "valueB"); // wrong call
+			failer.failFloatNotEquals(this, "valueA", "valueB"); // wrong call
 		}
 	}
 	
@@ -168,14 +167,14 @@ public class FloatValueNotEqualsTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueNotEqualsFailNoMessage() {
+	public void testFloatEqualsFailNoMessage() {
 		float valueA = 0.123f;
-		float valueB = 0.1234f;
+		float valueB = valueA;
 		try
 		{
-			if(checker.isFloatValueNotEquals(this, valueA, valueB))
+			if(checker.isFloatEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueNotEquals(this, "valueA", "valueB");
+				failer.failFloatEquals(this, "valueA", "valueB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -188,14 +187,14 @@ public class FloatValueNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueNotEqualsFailMessage() {
+	public void testFloatEqualsFailMessage() {
 		float valueA = 0.1234f;
-		float valueB = 0.123f;
+		float valueB = valueA;
 		try
 		{
-			if(checker.isFloatValueNotEquals(this, valueA, valueB))
+			if(checker.isFloatEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueNotEquals(this, "valueA", "valueB", "Extra info goes here");
+				failer.failFloatEquals(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -208,14 +207,14 @@ public class FloatValueNotEqualsTest {
 	}
 	
 	@Test
-	public void testFloatValueNotEqualsNoFail() {
+	public void testFloatEqualsNoFail() {
 		float valueA = 0.1234f;
-		float valueB = valueA;
-		if(checker.isFloatValueNotEquals(this, valueA, valueB))
+		float valueB = 0.123f;
+		if(checker.isFloatEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueNotEquals(this, "valueA", "valueB");
+			failer.failFloatEquals(this, "valueA", "valueB");
 		}
-		assertTrue("Expected valueA & valueB to pass the not-equals check", true);
+		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

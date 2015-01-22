@@ -46,5 +46,5 @@ public interface IObjectNullCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectNullFail.class)
-	boolean isObjectNull(Object caller, Object reference);
+	<A extends Object> boolean isObjectNull(Object caller, A reference);
 }

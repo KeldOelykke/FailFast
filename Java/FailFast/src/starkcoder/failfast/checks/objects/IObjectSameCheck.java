@@ -48,5 +48,5 @@ public interface IObjectSameCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectSameFail.class)
-	boolean isObjectSame(Object caller, Object referenceA, Object referenceB);
+	<A extends Object, B extends Object> boolean isObjectSame(Object caller, A referenceA, B referenceB);
 }

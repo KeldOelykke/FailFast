@@ -1,3 +1,4 @@
+package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -21,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveFloatOutsideCheck} and {link:IPrimitiveFloatOutsideFail}.
+ * Fail-fast unit test of {link:IPrimitiveFloatGreaterOrEqualsCheck} and {link:IPrimitiveFloatGreaterOrEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatValueOutsideTest {
+public class FloatGreaterOrEqualsTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,35 +96,32 @@ public class FloatValueOutsideTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueOutsideCheckerCallerIsNull() {
-		float valueA = 0.122f;
-		float valueMin = 0.123f;
-		float valueMax = 0.123f;
-		if(checker.isFloatValueOutside(null, valueA, valueMin, valueMax))
+	public void testFloatGreaterOrEqualsCheckerCallerIsNull() {
+		float valueA = 0.124f;
+		float valueB = 0.123f;
+		if(checker.isFloatGreaterOrEquals(null, valueA, valueB))
 		{
-			failer.failFloatValueOutside(this, "valueA");
+			failer.failFloatGreaterOrEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueOutsideFailerCallerIsNull() {
-		float valueA = 0.122f;
-		float valueMin = 0.123f;
-		float valueMax = 0.123f;
-		if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
+	public void testFloatGreaterOrEqualsFailerCallerIsNull() {
+		float valueA = 0.124f;
+		float valueB = 0.123f;
+		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueOutside(null, "valueA");
+			failer.failFloatGreaterOrEquals(null, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueFailerCallerIsWrong() {
-		float valueA = 0.122f;
-		float valueMin = 0.123f;
-		float valueMax = 0.123f;
-		if(checker.isFloatValueOutside(new String("Foo"), valueA, valueMin, valueMax))
+	public void testFloatFailerCallerIsWrong() {
+		float valueA = 0.124f;
+		float valueB = 0.123f;
+		if(checker.isFloatGreaterOrEquals(new String("Foo"), valueA, valueB))
 		{
-			failer.failFloatValueOutside(new String("Bar"), "valueA");
+			failer.failFloatGreaterOrEquals(new String("Bar"), "valueA", "valueB");
 		}
 	}
 	
@@ -132,40 +129,37 @@ public class FloatValueOutsideTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueOutsideMismatchCheckCheck() {
-		float valueA = 0.122f;
-		float valueMin = 0.123f;
-		float valueMax = 0.123f;
-		if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
+	public void testFloatGreaterOrEqualsMismatchCheckCheck() {
+		float valueA = 0.124f;
+		float valueB = 0.123f;
+		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
 		{
-			checker.isFloatValueOutside(this, valueA, valueMin, valueMax);
+			checker.isFloatGreaterOrEquals(this, valueA, valueB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueOutsideMismatchFail() {
-		failer.failFloatValueOutside(this, "valueA");
+	public void testFloatGreaterOrEqualsMismatchFail() {
+		failer.failFloatGreaterOrEquals(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueOutsideMismatchWrongCheck() {
-		float valueA = 0.124f;
-		float valueMin = 0.1241f;
-		float valueMax = 0.124f;
-		if(checker.isFloatValueWithin(this, valueA, valueMin, valueMax)) // wrong call
+	public void testFloatGreaterOrEqualsMismatchWrongCheck() {
+		float valueA = 0.122f;
+		float valueB = 0.123f;
+		if(checker.isFloatLess(this, valueA, valueB)) // wrong call
 		{
-			failer.failFloatValueOutside(this, "valueA");
+			failer.failFloatGreaterOrEquals(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueOutsideMismatchWrongFail() {
-		float valueA = 0.122f;
-		float valueMin = 0.123f;
-		float valueMax = 0.123f;
-		if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
+	public void testFloatGreaterOrEqualsMismatchWrongFail() {
+		float valueA = 0.123f;
+		float valueB = 0.122f;
+		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueWithin(this, "valueA"); // wrong call
+			failer.failFloatLess(this, "valueA", "valueB"); // wrong call
 		}
 	}
 	
@@ -173,15 +167,14 @@ public class FloatValueOutsideTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueOutsideFailNoMessage() {
-		float valueA = 0.121f;
-		float valueMin = 0.122f;
-		float valueMax = 0.123f;
+	public void testFloatGreaterFailNoMessage() {
+		float valueA = 0.125f;
+		float valueB = 0.124f;
 		try
 		{
-			if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
+			if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueOutside(this, "valueA");
+				failer.failFloatGreaterOrEquals(this, "valueA", "valueB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -194,15 +187,54 @@ public class FloatValueOutsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueOutsideFailMessage() {
-		float valueA = 0.122f;
-		float valueMin = 0.124f;
-		float valueMax = 0.123f;
+	public void testFloatGreaterFailMessage() {
+		float valueA = 0.124f;
+		float valueB = -0.124f;
 		try
 		{
-			if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
+			if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
 			{
-				failer.failFloatValueOutside(this, "valueA", "Extra info goes here");
+				failer.failFloatGreaterOrEquals(this, "valueA", "valueB", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+
+	@Test(expected=FailFastException.class)
+	public void testFloatEqualsFailNoMessage() {
+		float valueA = -0.124f;
+		float valueB = -0.124f;
+		try
+		{
+			if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
+			{
+				failer.failFloatGreaterOrEquals(this, "valueA", "valueB");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testFloatEqualsFailMessage() {
+		float valueA = 0.125f;
+		float valueB = 0.125f;
+		try
+		{
+			if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
+			{
+				failer.failFloatGreaterOrEquals(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -215,82 +247,15 @@ public class FloatValueOutsideTest {
 	}
 	
 	@Test
-	public void testFloatValueOutsideNoFail() {
-		float valueA = 0.123f;
-		float valueMin = 0.123f;
-		float valueMax = 0.124f;
-		if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
+	public void testFloatGreaterOrEqualsNoFail() {
+		float valueA = 0.122f;
+		float valueB = 0.123f;
+		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
 		{
-			failer.failFloatValueOutside(this, "valueA");
+			failer.failFloatGreaterOrEquals(this, "valueA", "valueB");
 		}
-		assertTrue("Expected valueA & valueMin to pass the equals check", true);
+		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 
-	
-	
-	// 4th - corner cases
-	
-	@Test(expected=FailFastException.class)
-	public void testFloatValueOutsideFailFloatMin() {
-		float valueA = Float.MIN_VALUE;
-		float valueMin = Float.intBitsToFloat(Float.floatToIntBits(Float.MIN_VALUE) + 0x1);
-		float valueMax = Float.MAX_VALUE;
-		try
-		{
-			if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
-			{
-				failer.failFloatValueOutside(this, "valueA");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testFloatValueOutsideFailFloatMax() {
-		float valueA = Float.MAX_VALUE;
-		float valueMin = Float.MIN_VALUE;
-		float valueMax = Float.intBitsToFloat(Float.floatToIntBits(Float.MAX_VALUE) - 0x1);
-		try
-		{
-			if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
-			{
-				failer.failFloatValueOutside(this, "valueA", "Extra info goes here");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testFloatValueOutsideFailMinusZeroVsZero() {
-		float valueA = Float.intBitsToFloat(Float.floatToIntBits(0f) + 0x1);
-		float valueMin = 0f;
-		float valueMax = 0f;
-		try
-		{
-			if(checker.isFloatValueOutside(this, valueA, valueMin, valueMax))
-			{
-				failer.failFloatValueOutside(this, "valueA", "Extra info goes here");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
 }

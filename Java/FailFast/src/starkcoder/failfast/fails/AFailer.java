@@ -30,22 +30,12 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Locale;
 
 import starkcoder.failfast.contractors.ICallContractor;
-import starkcoder.failfast.fails.generics.arrays.IGenericArrayEqualsFail;
-import starkcoder.failfast.fails.generics.arrays.IGenericArrayNotEqualsFail;
-import starkcoder.failfast.fails.generics.collections.IGenericCollectionEqualsFail;
-import starkcoder.failfast.fails.generics.collections.IGenericCollectionNotEqualsFail;
-import starkcoder.failfast.fails.generics.lists.IGenericListEqualsFail;
-import starkcoder.failfast.fails.generics.lists.IGenericListNotEqualsFail;
-import starkcoder.failfast.fails.generics.objects.IGenericObjectEqualsFail;
-import starkcoder.failfast.fails.generics.objects.IGenericObjectNotEqualsFail;
-import starkcoder.failfast.fails.generics.objects.IGenericObjectNotNullFail;
-import starkcoder.failfast.fails.generics.objects.IGenericObjectNotSameFail;
-import starkcoder.failfast.fails.generics.objects.IGenericObjectNullFail;
-import starkcoder.failfast.fails.generics.objects.IGenericObjectSameFail;
 import starkcoder.failfast.fails.objects.IObjectArrayEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail;
+import starkcoder.failfast.fails.objects.IObjectDefaultFail;
 import starkcoder.failfast.fails.objects.IObjectEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectListEqualsFail;
+import starkcoder.failfast.fails.objects.IObjectNotDefaultFail;
 import starkcoder.failfast.fails.objects.IObjectNotEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectNotNullFail;
 import starkcoder.failfast.fails.objects.IObjectNotSameFail;
@@ -71,6 +61,22 @@ import starkcoder.failfast.fails.objects.enums.IObjectEnumNotNullFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatDefaultFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsAlmostFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatLessFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatNotDefaultFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsAlmostFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatNotNullFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatNotSameFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatNullFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatOutsideFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
@@ -91,24 +97,6 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail;
-import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanDefaultFail;
-import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail;
-import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail;
-import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotDefaultFail;
-import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail;
-import starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatDefaultFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatGreaterEqualsFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatGreaterFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatLessEqualsFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatLessFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotDefaultFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatOutsideFail;
-import starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatWithinFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -168,179 +156,179 @@ public abstract class AFailer implements IFailer
 	}
 
 	
-	// GENERIC OBJECT - START -------------------------------
-
-	
-	@Override
-	public void failGenericObjectNull(Object caller, String referenceName)
-	{
-		this.Throw(caller, IGenericObjectNullFail.class, new Object[] { caller, referenceName });
-	}
-	@Override
-	public void failGenericObjectNull(Object caller, String referenceName,
-			String message)
-	{
-		this.Throw(caller, IGenericObjectNullFail.class, new Object[] { caller, referenceName, message });
-	}
-	
-	@Override
-	public void failGenericObjectNotNull(Object caller, String referenceName)
-	{
-		this.Throw(caller, IGenericObjectNotNullFail.class, new Object[] { caller, referenceName });
-	}
-	@Override
-	public void failGenericObjectNotNull(Object caller, String referenceName,
-			String message)
-	{
-		this.Throw(caller, IGenericObjectNotNullFail.class, new Object[] { caller, referenceName, message });
-	}
-	
-	@Override
-	public void failGenericObjectSame(Object caller, String referenceAName,
-			String referenceBName)
-	{
-		this.Throw(caller, IGenericObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericObjectSame(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	
-	@Override
-	public void failGenericObjectNotSame(Object caller, String referenceAName,
-			String referenceBName)
-	{
-		this.Throw(caller, IGenericObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericObjectNotSame(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-
-	
-	@Override
-	public void failGenericObjectEquals(Object caller, String referenceAName,
-			String referenceBName)
-	{
-		this.Throw(caller, IGenericObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericObjectEquals(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-
-	@Override
-	public void failGenericObjectNotEquals(Object caller,
-			String referenceAName, String referenceBName)
-	{
-		this.Throw(caller, IGenericObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericObjectNotEquals(Object caller,
-			String referenceAName, String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	
-	// GENERIC OBJECT - END -------------------------------
-
-
-	// GENERIC ARRAY - START -------------------------------
-
-	@Override
-	public void failGenericArrayEquals(Object caller, String referenceAName,
-			String referenceBName)
-	{
-		this.Throw(caller, IGenericArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericArrayEquals(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	@Override
-	public void failGenericArrayNotEquals(Object caller, String referenceAName,
-			String referenceBName)
-	{
-		this.Throw(caller, IGenericArrayNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericArrayNotEquals(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericArrayNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	
-	// GENERIC ARRAY - END -------------------------------
-
-	
-	// GENERIC COLLECTION - START -------------------------------
-	
-	@Override
-	public void failGenericCollectionEquals(Object caller,
-			String referenceAName, String referenceBName)
-	{
-		this.Throw(caller, IGenericCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericCollectionEquals(Object caller,
-			String referenceAName, String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	@Override
-	public void failGenericCollectionNotEquals(Object caller,
-			String referenceAName, String referenceBName)
-	{
-		this.Throw(caller, IGenericCollectionNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericCollectionNotEquals(Object caller,
-			String referenceAName, String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericCollectionNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	
-	// GENERIC COLLECTION - END -------------------------------
-	
-
-	
-	// GENERIC LIST - START -------------------------------
-	
-	@Override
-	public void failGenericListEquals(Object caller, String referenceAName,
-			String referenceBName)
-	{
-		this.Throw(caller, IGenericListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericListEquals(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	
-	@Override
-	public void failGenericListNotEquals(Object caller, String referenceAName,
-			String referenceBName)
-	{
-		this.Throw(caller, IGenericListNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
-	}
-	@Override
-	public void failGenericListNotEquals(Object caller, String referenceAName,
-			String referenceBName, String message)
-	{
-		this.Throw(caller, IGenericListNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
-	}
-	
-	// GENERIC LIST - END -------------------------------
+//	// GENERIC OBJECT - START -------------------------------
+//
+//	
+//	@Override
+//	public void failGenericObjectNull(Object caller, String referenceName)
+//	{
+//		this.Throw(caller, IGenericObjectNullFail.class, new Object[] { caller, referenceName });
+//	}
+//	@Override
+//	public void failGenericObjectNull(Object caller, String referenceName,
+//			String message)
+//	{
+//		this.Throw(caller, IGenericObjectNullFail.class, new Object[] { caller, referenceName, message });
+//	}
+//	
+//	@Override
+//	public void failGenericObjectNotNull(Object caller, String referenceName)
+//	{
+//		this.Throw(caller, IGenericObjectNotNullFail.class, new Object[] { caller, referenceName });
+//	}
+//	@Override
+//	public void failGenericObjectNotNull(Object caller, String referenceName,
+//			String message)
+//	{
+//		this.Throw(caller, IGenericObjectNotNullFail.class, new Object[] { caller, referenceName, message });
+//	}
+//	
+//	@Override
+//	public void failGenericObjectSame(Object caller, String referenceAName,
+//			String referenceBName)
+//	{
+//		this.Throw(caller, IGenericObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericObjectSame(Object caller, String referenceAName,
+//			String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	
+//	@Override
+//	public void failGenericObjectNotSame(Object caller, String referenceAName,
+//			String referenceBName)
+//	{
+//		this.Throw(caller, IGenericObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericObjectNotSame(Object caller, String referenceAName,
+//			String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//
+//	
+//	@Override
+//	public void failGenericObjectEquals(Object caller, String referenceAName,
+//			String referenceBName)
+//	{
+//		this.Throw(caller, IGenericObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericObjectEquals(Object caller, String referenceAName,
+//			String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//
+//	@Override
+//	public void failGenericObjectNotEquals(Object caller,
+//			String referenceAName, String referenceBName)
+//	{
+//		this.Throw(caller, IGenericObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericObjectNotEquals(Object caller,
+//			String referenceAName, String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	
+//	// GENERIC OBJECT - END -------------------------------
+//
+//
+//	// GENERIC ARRAY - START -------------------------------
+//
+//	@Override
+//	public void failGenericArrayEquals(Object caller, String referenceAName,
+//			String referenceBName)
+//	{
+//		this.Throw(caller, IGenericArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericArrayEquals(Object caller, String referenceAName,
+//			String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	@Override
+//	public void failGenericArrayNotEquals(Object caller, String referenceAName,
+//			String referenceBName)
+//	{
+//		this.Throw(caller, IGenericArrayNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericArrayNotEquals(Object caller, String referenceAName,
+//			String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericArrayNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	
+//	// GENERIC ARRAY - END -------------------------------
+//
+//	
+//	// GENERIC COLLECTION - START -------------------------------
+//	
+//	@Override
+//	public void failGenericCollectionEquals(Object caller,
+//			String referenceAName, String referenceBName)
+//	{
+//		this.Throw(caller, IGenericCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericCollectionEquals(Object caller,
+//			String referenceAName, String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	@Override
+//	public void failGenericCollectionNotEquals(Object caller,
+//			String referenceAName, String referenceBName)
+//	{
+//		this.Throw(caller, IGenericCollectionNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericCollectionNotEquals(Object caller,
+//			String referenceAName, String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericCollectionNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	
+//	// GENERIC COLLECTION - END -------------------------------
+//	
+//
+//	
+//	// GENERIC LIST - START -------------------------------
+//	
+//	@Override
+//	public void failGenericListEquals(Object caller, String referenceAName,
+//			String referenceBName)
+//	{
+//		this.Throw(caller, IGenericListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericListEquals(Object caller, String referenceAName,
+//			String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	
+//	@Override
+//	public void failGenericListNotEquals(Object caller, String referenceAName,
+//			String referenceBName)
+//	{
+//		this.Throw(caller, IGenericListNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+//	}
+//	@Override
+//	public void failGenericListNotEquals(Object caller, String referenceAName,
+//			String referenceBName, String message)
+//	{
+//		this.Throw(caller, IGenericListNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+//	}
+//	
+//	// GENERIC LIST - END -------------------------------
 	
 	
 	
@@ -460,6 +448,30 @@ public abstract class AFailer implements IFailer
 			String referenceBName, String message)
 	{
 		this.Throw(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failObjectDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failObjectDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failObjectNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failObjectNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -883,11 +895,311 @@ public abstract class AFailer implements IFailer
 	
 	// OBJECTS - ENUM - END ---------------------------------
 	
+
+	
+	// OBJECTS - BOOLEAN - START ---------------------------------
+	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotSameFail#failFloatNotSame(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotSameFail#failFloatNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail#failFloatSame(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail#failFloatSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsFail#failFloatNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsFail#failFloatNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsFail#failFloatEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsFail#failFloatEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotNullFail#failFloatNotNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectFloatNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotNullFail#failFloatNotNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectFloatNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNullFail#failFloatNull(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failFloatNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectFloatNullFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNullFail#failFloatNull(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectFloatNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatDefaultFail#failFloatDefault(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failFloatDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectFloatDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatDefaultFail#failFloatDefault(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectFloatDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotDefaultFail#failFloatNotDefault(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectFloatNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotDefaultFail#failFloatNotDefault(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectFloatNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsAlmostFail#failFloatEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsAlmostFail#failFloatEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsAlmostFail#failFloatNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsAlmostFail#failFloatNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatNotEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}	
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterFail#failFloatGreater(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterFail#failFloatGreater(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterOrEqualsFail#failFloatGreaterOrEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterOrEqualsFail#failFloatGreaterOrEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatLessFail#failFloatLess(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatLessFail#failFloatLess(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatLessOrEqualsFail#failFloatLessOrEquals(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectFloatLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatLessOrEqualsFail#failFloatLessOrEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectFloatLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatOutsideFail#failFloatOutside(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failFloatOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectFloatOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatOutsideFail#failFloatOutside(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectFloatOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail#failFloatWithin(java.lang.Object, java.lang.String)
+	 */
+	@Override
+	public void failFloatWithin(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectFloatWithinFail.class, new Object[] { caller, referenceAName });
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail#failFloatWithin(java.lang.Object, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void failFloatWithin(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectFloatWithinFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - BOOLEAN - END ---------------------------------
+
 	
 	
 	// OBJECTS - STRING - START ---------------------------------
-	
-	
 	
 
 	@Override
@@ -1212,295 +1524,295 @@ public abstract class AFailer implements IFailer
 	
 	
 	
-	// PRIMITIVES - BOOLEAN - START -------------------------------
-
+//	// PRIMITIVES - BOOLEAN - START -------------------------------
+//
+//	
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueNotEquals(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanNotEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueNotEquals(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail#failBooleanValueEquals(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueEquals(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail#failBooleanValueEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueEquals(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail#failBooleanValueFalse(java.lang.Object, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueFalse(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanFalseFail.class, new Object[] { caller, valueAName });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail#failBooleanValueFalse(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueFalse(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanFalseFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail#failBooleanValueTrue(java.lang.Object, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueTrue(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail#failBooleanValueTrue(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failBooleanValueTrue(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	
+//	@Override
+//	public void failBooleanValueDefault(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanDefaultFail.class, new Object[] { caller, valueAName });
+//	}
+//	@Override
+//	public void failBooleanValueDefault(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanDefaultFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	@Override
+//	public void failBooleanValueNotDefault(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanNotDefaultFail.class, new Object[] { caller, valueAName });
+//	}
+//	@Override
+//	public void failBooleanValueNotDefault(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveBooleanNotDefaultFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	
+//	
+//	// PRIMITIVES - BOOLEAN - END ---------------------------------
 	
 	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueNotEquals(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveBooleanNotEqualsFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanNotEqualsFail#failBooleanValueNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueNotEquals(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveBooleanNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail#failBooleanValueEquals(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueEquals(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveBooleanEqualsFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanEqualsFail#failBooleanValueEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueEquals(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveBooleanEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail#failBooleanValueFalse(java.lang.Object, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueFalse(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveBooleanFalseFail.class, new Object[] { caller, valueAName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanFalseFail#failBooleanValueFalse(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueFalse(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveBooleanFalseFail.class, new Object[] { caller, valueAName, message });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail#failBooleanValueTrue(java.lang.Object, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueTrue(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.booleans.IPrimitiveBooleanTrueFail#failBooleanValueTrue(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failBooleanValueTrue(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveBooleanTrueFail.class, new Object[] { caller, valueAName, message });
-	}
-	
-	@Override
-	public void failBooleanValueDefault(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveBooleanDefaultFail.class, new Object[] { caller, valueAName });
-	}
-	@Override
-	public void failBooleanValueDefault(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveBooleanDefaultFail.class, new Object[] { caller, valueAName, message });
-	}
-	@Override
-	public void failBooleanValueNotDefault(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveBooleanNotDefaultFail.class, new Object[] { caller, valueAName });
-	}
-	@Override
-	public void failBooleanValueNotDefault(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveBooleanNotDefaultFail.class, new Object[] { caller, valueAName, message });
-	}
-	
-	
-	// PRIMITIVES - BOOLEAN - END ---------------------------------
-	
-	
-	// PRIMITIVES - FLOAT - START -------------------------------
-
-
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail#failFloatValueEquals(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueEquals(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatEqualsFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail#failFloatValueEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueEquals(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueNotEquals(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueNotEquals(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	@Override
-	public void failFloatValueDefault(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveFloatDefaultFail.class, new Object[] { caller, valueAName });
-	}
-	@Override
-	public void failFloatValueDefault(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveFloatDefaultFail.class, new Object[] { caller, valueAName, message });
-	}
-	
-	@Override
-	public void failFloatValueNotDefault(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveFloatNotDefaultFail.class, new Object[] { caller, valueAName });
-	}
-	@Override
-	public void failFloatValueNotDefault(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveFloatNotDefaultFail.class, new Object[] { caller, valueAName, message });
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	
-	@Override
-	public void failFloatValueGreater(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatGreaterFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	@Override
-	public void failFloatValueGreater(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatGreaterFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	@Override
-	public void failFloatValueGreaterEquals(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatGreaterEqualsFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	@Override
-	public void failFloatValueGreaterEquals(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatGreaterEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	@Override
-	public void failFloatValueLess(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatLessFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	@Override
-	public void failFloatValueLess(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatLessFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	@Override
-	public void failFloatValueLessEquals(Object caller, String valueAName,
-			String valueBName)
-	{
-		this.Throw(caller, IPrimitiveFloatLessEqualsFail.class, new Object[] { caller, valueAName, valueBName });
-	}
-	@Override
-	public void failFloatValueLessEquals(Object caller, String valueAName,
-			String valueBName, String message)
-	{
-		this.Throw(caller, IPrimitiveFloatLessEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
-	}
-	
-	@Override
-	public void failFloatValueOutside(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName });
-	}
-	@Override
-	public void failFloatValueOutside(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, message });
-	}
-	
-	@Override
-	public void failFloatValueWithin(Object caller, String valueAName)
-	{
-		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName });
-	}
-	@Override
-	public void failFloatValueWithin(Object caller, String valueAName,
-			String message)
-	{
-		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, message });
-	}
-	
-	
-	// PRIMITIVES - FLOAT - END ---------------------------------
+//	// PRIMITIVES - FLOAT - START -------------------------------
+//
+//
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail#failFloatValueEquals(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueEquals(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsFail#failFloatValueEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueEquals(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueNotEquals(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsFail#failFloatValueNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueNotEquals(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatNotEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	@Override
+//	public void failFloatValueDefault(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatDefaultFail.class, new Object[] { caller, valueAName });
+//	}
+//	@Override
+//	public void failFloatValueDefault(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatDefaultFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	
+//	@Override
+//	public void failFloatValueNotDefault(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatNotDefaultFail.class, new Object[] { caller, valueAName });
+//	}
+//	@Override
+//	public void failFloatValueNotDefault(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatNotDefaultFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatEqualsAlmostFail#failFloatValueEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueEqualsAlmost(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	/* (non-Javadoc)
+//	 * @see starkcoder.failfast.fails.primitives.floats.IPrimitiveFloatNotEqualsAlmostFail#failFloatValueNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
+//	 */
+//	@Override
+//	public void failFloatValueNotEqualsAlmost(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatNotEqualsAlmostFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	
+//	@Override
+//	public void failFloatValueGreater(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatGreaterFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	@Override
+//	public void failFloatValueGreater(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatGreaterFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	@Override
+//	public void failFloatValueGreaterEquals(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatGreaterEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	@Override
+//	public void failFloatValueGreaterEquals(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatGreaterEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	@Override
+//	public void failFloatValueLess(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatLessFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	@Override
+//	public void failFloatValueLess(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatLessFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	@Override
+//	public void failFloatValueLessEquals(Object caller, String valueAName,
+//			String valueBName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatLessEqualsFail.class, new Object[] { caller, valueAName, valueBName });
+//	}
+//	@Override
+//	public void failFloatValueLessEquals(Object caller, String valueAName,
+//			String valueBName, String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatLessEqualsFail.class, new Object[] { caller, valueAName, valueBName, message });
+//	}
+//	
+//	@Override
+//	public void failFloatValueOutside(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName });
+//	}
+//	@Override
+//	public void failFloatValueOutside(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatOutsideFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	
+//	@Override
+//	public void failFloatValueWithin(Object caller, String valueAName)
+//	{
+//		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName });
+//	}
+//	@Override
+//	public void failFloatValueWithin(Object caller, String valueAName,
+//			String message)
+//	{
+//		this.Throw(caller, IPrimitiveFloatWithinFail.class, new Object[] { caller, valueAName, message });
+//	}
+//	
+//	
+//	// PRIMITIVES - FLOAT - END ---------------------------------
 
 	
 	/**

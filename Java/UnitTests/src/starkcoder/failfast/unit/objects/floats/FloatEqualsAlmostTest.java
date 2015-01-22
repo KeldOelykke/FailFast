@@ -1,3 +1,4 @@
+package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -21,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.primitives.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveFloatEqualsAlmostCheck} and {link:IPrimitiveFloatEqualsAlmostFail}.
+ * Fail-fast unit test of {link:IObjectFloatEqualsAlmostCheck} and {link:IObjectFloatEqualsAlmostFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatValueEqualsAlmostTest {
+public class FloatEqualsAlmostTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,32 +96,32 @@ public class FloatValueEqualsAlmostTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueEqualsAlmostCheckerCallerIsNull() {
+	public void testFloatEqualsAlmostCheckerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEqualsAlmost(null, valueA, valueB))
+		if(checker.isFloatEqualsAlmost(null, valueA, valueB))
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatValueEqualsAlmostFailerCallerIsNull() {
+	public void testFloatEqualsAlmostFailerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 		{
-			failer.failFloatValueEqualsAlmost(null, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(null, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueFailerCallerIsWrong() {
+	public void testFloatFailerCallerIsWrong() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEqualsAlmost(new String("Foo"), valueA, valueB))
+		if(checker.isFloatEqualsAlmost(new String("Foo"), valueA, valueB))
 		{
-			failer.failFloatValueEqualsAlmost(new String("Bar"), "valueA", "valueB");
+			failer.failFloatEqualsAlmost(new String("Bar"), "valueA", "valueB");
 		}
 	}
 	
@@ -129,37 +129,37 @@ public class FloatValueEqualsAlmostTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsAlmostMismatchCheckCheck() {
+	public void testFloatEqualsAlmostMismatchCheckCheck() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 		{
-			checker.isFloatValueEqualsAlmost(this, valueA, valueB);
+			checker.isFloatEqualsAlmost(this, valueA, valueB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsAlmostMismatchFail() {
-		failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+	public void testFloatEqualsAlmostMismatchFail() {
+		failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsAlmostMismatchWrongCheck() {
+	public void testFloatEqualsAlmostMismatchWrongCheck() {
 		float valueA = 0.123f;
 		float valueB = 0.1241f;
-		if(checker.isFloatValueNotEqualsAlmost(this, valueA, valueB)) // wrong call
+		if(checker.isFloatNotEqualsAlmost(this, valueA, valueB)) // wrong call
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatValueEqualsAlmostMismatchWrongFail() {
+	public void testFloatEqualsAlmostMismatchWrongFail() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 		{
-			failer.failFloatValueNotEqualsAlmost(this, "valueA", "valueB"); // wrong call
+			failer.failFloatNotEqualsAlmost(this, "valueA", "valueB"); // wrong call
 		}
 	}
 	
@@ -167,14 +167,14 @@ public class FloatValueEqualsAlmostTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostFailNoMessage() {
+	public void testFloatEqualsAlmostFailNoMessage() {
 		float valueA = 0.123f;
 		float valueB = valueA;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+			if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 			{
-				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+				failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -187,14 +187,14 @@ public class FloatValueEqualsAlmostTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostFailMessage() {
+	public void testFloatEqualsAlmostFailMessage() {
 		float valueA = 0.1234f;
 		float valueB = valueA;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+			if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 			{
-				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
+				failer.failFloatEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -207,12 +207,12 @@ public class FloatValueEqualsAlmostTest {
 	}
 	
 	@Test
-	public void testFloatValueEqualsAlmostNoFail() {
+	public void testFloatEqualsAlmostNoFail() {
 		float valueA = 0.1241f;
 		float valueB = 0.123f;
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
@@ -222,14 +222,14 @@ public class FloatValueEqualsAlmostTest {
 	// 4th - method override cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostOverrideFailNoMessage() {
+	public void testFloatEqualsAlmostOverrideFailNoMessage() {
 		float valueA = 0.121f;
 		float valueB = 0.12f;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, 0.0011f))
+			if(checker.isFloatEqualsAlmost(this, valueA, valueB, 0.0011f))
 			{
-				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+				failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -242,14 +242,14 @@ public class FloatValueEqualsAlmostTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostOverrideFailMessage() {
+	public void testFloatEqualsAlmostOverrideFailMessage() {
 		float valueA = 0.11f;
 		float valueB = 0.1f;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, 0.011f))
+			if(checker.isFloatEqualsAlmost(this, valueA, valueB, 0.011f))
 			{
-				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
+				failer.failFloatEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -262,60 +262,60 @@ public class FloatValueEqualsAlmostTest {
 	}
 	
 	@Test
-	public void testFloatValueEqualsAlmostOverrideNoFail() {
+	public void testFloatEqualsAlmostOverrideNoFail() {
 		float valueA = 0.1234f;
 		float valueB = -0.123f;
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, 0.2f))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB, 0.2f))
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
-	public void testFloatValueEqualsAlmostOverrideNoFailTiny() {
+	public void testFloatEqualsAlmostOverrideNoFailTiny() {
 		float valueA = (float) Math.pow(1, -10);
 		float valueB = (float)(0.9 * Math.pow(1, -10));
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.09 * Math.pow(1, -10))))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB, (float)(0.09 * Math.pow(1, -10))))
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostOverrideFailTiny() {
+	public void testFloatEqualsAlmostOverrideFailTiny() {
 		float valueA = (float) Math.pow(1, -10);
 		float valueB = (float)(0.9 * Math.pow(1, -10));
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.11 * Math.pow(1, -10))))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB, (float)(0.11 * Math.pow(1, -10))))
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test
-	public void testFloatValueEqualsAlmostOverrideNoFailHuge() {
+	public void testFloatEqualsAlmostOverrideNoFailHuge() {
 		float valueA = (float) Math.pow(1, 10);
 		float valueB = (float)(0.9 * Math.pow(1, 10));
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.09 * Math.pow(1, 10))))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB, (float)(0.09 * Math.pow(1, 10))))
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostOverrideFailHuge() {
+	public void testFloatEqualsAlmostOverrideFailHuge() {
 		float valueA = (float) Math.pow(1, 10);
 		float valueB = (float)(0.9 * Math.pow(1, 10));
-		if(checker.isFloatValueEqualsAlmost(this, valueA, valueB, (float)(0.11 * Math.pow(1, 10))))
+		if(checker.isFloatEqualsAlmost(this, valueA, valueB, (float)(0.11 * Math.pow(1, 10))))
 		{
-			failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+			failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 		}
 		assertTrue("Expected valueA & valueB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
@@ -324,14 +324,14 @@ public class FloatValueEqualsAlmostTest {
 	// 5th - corner cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostFailZeroVsZero() {
+	public void testFloatEqualsAlmostFailZeroVsZero() {
 		float valueA = 0f;
 		float valueB = valueA;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+			if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 			{
-				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB");
+				failer.failFloatEqualsAlmost(this, "valueA", "valueB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -344,14 +344,14 @@ public class FloatValueEqualsAlmostTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostFailAlmostZeroVsZero() {
+	public void testFloatEqualsAlmostFailAlmostZeroVsZero() {
 		float valueA = 0.00001f;
 		float valueB = 0f;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+			if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 			{
-				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
+				failer.failFloatEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -364,14 +364,14 @@ public class FloatValueEqualsAlmostTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatValueEqualsAlmostFailMinusAlmostZeroVsZero() {
+	public void testFloatEqualsAlmostFailMinusAlmostZeroVsZero() {
 		float valueA = -0.00001f;
 		float valueB = 0f;
 		try
 		{
-			if(checker.isFloatValueEqualsAlmost(this, valueA, valueB))
+			if(checker.isFloatEqualsAlmost(this, valueA, valueB))
 			{
-				failer.failFloatValueEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
+				failer.failFloatEqualsAlmost(this, "valueA", "valueB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
