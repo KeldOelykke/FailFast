@@ -23,7 +23,7 @@
  */
 package starkcoder.failfast.fails.objects.floats;
 
-import starkcoder.failfast.checks.objects.floats.IObjectFloatWithinCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatInsideCheck;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.NFail;
@@ -33,10 +33,10 @@ import starkcoder.failfast.fails.NFail;
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFloatWithinFail extends IFail
+public interface IObjectFloatInsideFail extends IFail
 {
 	/**
-	 * Fails specified values, since they passed a within check.
+	 * Fails specified values, since they passed an inside check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if value check asserted)
@@ -47,14 +47,14 @@ public interface IObjectFloatWithinFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatWithinCheck.class,
+	@NFail(checkerSpecificationType = IObjectFloatInsideCheck.class,
 			failExceptionType = FailFastException.class, 
-			failMessageFormat = "%s: Float '%s'(%s) is within Float range [%s;%s].",
+			failMessageFormat = "%s: Float '%s'(%s) is inside Float range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
-	void failFloatWithin(Object caller, String referenceAName);
+	void failFloatInside(Object caller, String referenceAName);
 
 	/**
-	 * Fails specified references, since they passed a within check.
+	 * Fails specified references, since they passed an inside check.
 	 * 
 	 * @param caller
 	 *            object calling checker and then failer (if reference check asserted)
@@ -67,10 +67,10 @@ public interface IObjectFloatWithinFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatWithinCheck.class,
+	@NFail(checkerSpecificationType = IObjectFloatInsideCheck.class,
 			failExceptionType = FailFastException.class, 
-			failMessageFormat = "%s: Float '%s'(%s) is within Float range [%s;%s]. %s.",
+			failMessageFormat = "%s: Float '%s'(%s) is inside Float range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			
-	void failFloatWithin(Object caller, String referenceAName, String message);
+	void failFloatInside(Object caller, String referenceAName, String message);
 
 }

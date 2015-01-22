@@ -76,7 +76,7 @@ import starkcoder.failfast.fails.objects.floats.IObjectFloatNotSameFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatNullFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatOutsideFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatInsideFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
@@ -1181,18 +1181,18 @@ public abstract class AFailer implements IFailer
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail#failFloatWithin(java.lang.Object, java.lang.String)
 	 */
 	@Override
-	public void failFloatWithin(Object caller, String referenceAName)
+	public void failFloatInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectFloatWithinFail.class, new Object[] { caller, referenceAName });
+		this.Throw(caller, IObjectFloatInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail#failFloatWithin(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void failFloatWithin(Object caller, String referenceAName,
+	public void failFloatInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectFloatWithinFail.class, new Object[] { caller, referenceAName, message });
+		this.Throw(caller, IObjectFloatInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - BOOLEAN - END ---------------------------------

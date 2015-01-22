@@ -596,13 +596,13 @@
             <test name="starkcoder.failfast.unit.objects.floats.FloatEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatGreaterOrEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatInsideTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatLessOrEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatLessTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatNotEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatOutsideTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.floats.FloatWithinTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEmptyTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEqualsTest" todir="${junit.output.dir}"/>
@@ -963,13 +963,13 @@
             <test name="starkcoder.failfast.unit.objects.floats.FloatEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatGreaterOrEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatInsideTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatLessOrEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatLessTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatNotEqualsAlmostTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatNotEqualsTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatOutsideTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.floats.FloatWithinTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEmptyTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEqualsTest" todir="${junit.output.dir}"/>
@@ -1073,11 +1073,30 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
-    <target name="FloatWithinTest">
+    <target name="starkcoder.failfast.unit.objects.floats">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.floats.FloatWithinTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatEqualsAlmostTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatInsideTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatLessTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatNotDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatNotEqualsAlmostTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatNotEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatOutsideTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="FloatInsideTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.floats.FloatInsideTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>

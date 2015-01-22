@@ -64,6 +64,7 @@ import starkcoder.failfast.checks.objects.floats.IObjectFloatEqualsAlmostCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatEqualsCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatGreaterCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.floats.IObjectFloatInsideCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatLessCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatLessOrEqualsCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatNotDefaultCheck;
@@ -74,7 +75,6 @@ import starkcoder.failfast.checks.objects.floats.IObjectFloatNotSameCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatNullCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatOutsideCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatSameCheck;
-import starkcoder.failfast.checks.objects.floats.IObjectFloatWithinCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
@@ -1158,21 +1158,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(null != referenceA && null != referenceB && referenceA.compareTo(referenceB) < 0)
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IObjectFloatLessCheck.class, new Object[] { caller, referenceA, referenceB });
-		}
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectFloatLessCheck.class);
 
 		return result;
 	}
@@ -1186,22 +1172,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 		
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if((null == referenceA && null == referenceB)
-			|| (null != referenceA && null != referenceB && referenceA.compareTo(referenceB) <= 0))
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IObjectFloatLessOrEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-		}
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectFloatLessOrEqualsCheck.class);
 
 		return result;
 	}
@@ -1214,21 +1185,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(null != referenceA && null != referenceB && 0 < referenceA.compareTo(referenceB))
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IObjectFloatGreaterCheck.class, new Object[] { caller, referenceA, referenceB });
-		}
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectFloatGreaterCheck.class);
 
 		return result;
 	}
@@ -1242,22 +1199,7 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if((null == referenceA && null == referenceB)
-			|| (null != referenceA && null != referenceB && 0 <= referenceA.compareTo(referenceB)))
-		{
-			result = true;
-		}
-		// else false
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IObjectFloatGreaterOrEqualsCheck.class, new Object[] { caller, referenceA, referenceB });
-		}
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectFloatGreaterOrEqualsCheck.class);
 
 		return result;
 	}
@@ -1271,73 +1213,21 @@ public abstract class AChecker implements IChecker
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(null != referenceA && null != referenceMin && null != referenceMax)
-		{
-			if(referenceMin.compareTo(referenceMax) <= 0)
-			{
-				if(referenceA.compareTo(referenceMin) < 0 || 0 < referenceA.compareTo(referenceMax))
-				{
-					result = true;
-				}
-			}
-			else
-			{ // referenceMin > referenceMax
-				if(referenceA.compareTo(referenceMax) < 0 || 0 < referenceA.compareTo(referenceMin))
-				{
-					result = true;
-				}
-			}
-		}
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IObjectFloatOutsideCheck.class, new Object[] { caller, referenceA, referenceMin, referenceMax });
-		}
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectFloatOutsideCheck.class);
 
 		return result;
 	}
 
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatWithinCheck#isFloatWithin(java.lang.Object, java.lang.Float, java.lang.Float, java.lang.Float)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectFloatInsideCheck#isFloatInside(java.lang.Object, java.lang.Float, java.lang.Float, java.lang.Float)
 	 */
 	@Override
-	public boolean isFloatWithin(Object caller, Float referenceA,
+	public boolean isFloatInside(Object caller, Float referenceA,
 			Float referenceMin, Float referenceMax)
 	{
 		boolean result = false;
 
-		if (null == caller)
-		{
-			throw new IllegalArgumentException("caller is null");
-		}
-		
-		if(null != referenceA && null != referenceMin && null != referenceMax)
-		{
-			if(referenceMin.compareTo(referenceMax) <= 0)
-			{
-				if(0 <= referenceA.compareTo(referenceMin) && referenceA.compareTo(referenceMax) <= 0)
-				{
-					result = true;
-				}
-			}
-			else
-			{ // referenceMin > referenceMax
-				if(0 <= referenceA.compareTo(referenceMax) && referenceA.compareTo(referenceMin) <= 0)
-				{
-					result = true;
-				}
-			}
-		}
-			
-		if (result)
-		{
-			this.pushContractWithCaller(caller, IObjectFloatWithinCheck.class, new Object[] { caller, referenceA, referenceMin, referenceMax });
-		}
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectFloatInsideCheck.class);
 
 		return result;
 	}
@@ -2606,7 +2496,183 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
+	
+	
+	protected <T extends Comparable<T>> boolean isGenericComparableLessImplementation(Object caller, T referenceA,
+			T referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
 
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceB
+			&& referenceA.compareTo(referenceB) < 0)
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}	
+	
+	protected <T extends Comparable<T>> boolean isGenericComparableLessOrEqualsImplementation(Object caller, T referenceA,
+			T referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceB 
+			&& referenceA.compareTo(referenceB) <= 0)
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}	
+
+	
+	protected <T extends Comparable<T>> boolean isGenericComparableGreaterImplementation(Object caller, T referenceA,
+			T referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if(null != referenceA && null != referenceB && 0 < referenceA.compareTo(referenceB))
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}		
+
+	protected <T extends Comparable<T>> boolean isGenericComparableGreaterOrEqualsImplementation(Object caller, T referenceA,
+			T referenceB, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if (null == referenceA && null == referenceB)
+		{
+			result = true;
+		}
+		else if(null != referenceA && null != referenceB 
+			&& 0 <= referenceA.compareTo(referenceB))
+		{
+			result = true;
+		}
+		if(result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceB });
+		}
+
+		return result;
+	}
+	
+	protected <T extends Comparable<T>> boolean isGenericComparableInsideImplementation(Object caller, T referenceA,
+		T referenceMin, T referenceMax, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if(null != referenceA && null != referenceMin && null != referenceMax)
+		{
+			if(referenceMin.compareTo(referenceMax) <= 0)
+			{
+				if(0 <= referenceA.compareTo(referenceMin) && referenceA.compareTo(referenceMax) <= 0)
+				{
+					result = true;
+				}
+			}
+			else
+			{ // referenceMin > referenceMax
+				if(0 <= referenceA.compareTo(referenceMax) && referenceA.compareTo(referenceMin) <= 0)
+				{
+					result = true;
+				}
+			}
+		}
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceMin, referenceMax });
+		}
+
+		return result;
+	}	
+	
+	protected <T extends Comparable<T>> boolean isGenericComparableOutsideImplementation(Object caller, T referenceA,
+		T referenceMin, T referenceMax, Class<? extends ICheck> checkerSpecification)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+
+		if(null != referenceA && null != referenceMin && null != referenceMax)
+		{
+			if(referenceMin.compareTo(referenceMax) <= 0)
+			{
+				if(referenceA.compareTo(referenceMin) < 0 || 0 < referenceA.compareTo(referenceMax))
+				{
+					result = true;
+				}
+			}
+			else
+			{ // referenceMin > referenceMax
+				if(referenceA.compareTo(referenceMax) < 0 || 0 < referenceA.compareTo(referenceMin))
+				{
+					result = true;
+				}
+			}
+		}
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, checkerSpecification, new Object[] { caller, referenceA, referenceMin, referenceMax });
+		}
+
+		return result;
+	}	
 	
 	protected <A,B> boolean isGenericListEqualsImplementation(Object caller, List<A> referenceA,
 			List<B> referenceB, Class<? extends ICheck> checkerSpecification)

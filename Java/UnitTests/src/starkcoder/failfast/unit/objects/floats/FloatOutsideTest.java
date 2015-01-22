@@ -152,7 +152,7 @@ public class FloatOutsideTest {
 		float valueA = 0.124f;
 		float valueMin = 0.1241f;
 		float valueMax = 0.124f;
-		if(checker.isFloatWithin(this, valueA, valueMin, valueMax)) // wrong call
+		if(checker.isFloatInside(this, valueA, valueMin, valueMax)) // wrong call
 		{
 			failer.failFloatOutside(this, "valueA");
 		}
@@ -165,7 +165,7 @@ public class FloatOutsideTest {
 		float valueMax = 0.123f;
 		if(checker.isFloatOutside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatWithin(this, "valueA"); // wrong call
+			failer.failFloatInside(this, "valueA"); // wrong call
 		}
 	}
 	

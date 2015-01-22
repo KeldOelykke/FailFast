@@ -46,11 +46,11 @@ import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
 
 /**
- * Fail-fast unit test of {link:IObjectFloatWithinCheck} and {link:IObjectFloatWithinFail}.
+ * Fail-fast unit test of {link:IObjectFloatInsideCheck} and {link:IObjectFloatInsideFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatWithinTest {
+public class FloatInsideTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,24 +96,24 @@ public class FloatWithinTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatWithinCheckerCallerIsNull() {
+	public void testFloatInsideCheckerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
-		if(checker.isFloatWithin(null, valueA, valueMin, valueMax))
+		if(checker.isFloatInside(null, valueA, valueMin, valueMax))
 		{
-			failer.failFloatWithin(this, "valueA");
+			failer.failFloatInside(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatWithinFailerCallerIsNull() {
+	public void testFloatInsideFailerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
-		if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+		if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatWithin(null, "valueA");
+			failer.failFloatInside(null, "valueA");
 		}
 	}
 	
@@ -122,9 +122,9 @@ public class FloatWithinTest {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
-		if(checker.isFloatWithin(new String("Foo"), valueA, valueMin, valueMax))
+		if(checker.isFloatInside(new String("Foo"), valueA, valueMin, valueMax))
 		{
-			failer.failFloatWithin(new String("Bar"), "valueA");
+			failer.failFloatInside(new String("Bar"), "valueA");
 		}
 	}
 	
@@ -132,38 +132,38 @@ public class FloatWithinTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatWithinMismatchCheckCheck() {
+	public void testFloatInsideMismatchCheckCheck() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
-		if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+		if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 		{
-			checker.isFloatWithin(this, valueA, valueMin, valueMax);
+			checker.isFloatInside(this, valueA, valueMin, valueMax);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatWithinMismatchFail() {
-		failer.failFloatWithin(this, "valueA");
+	public void testFloatInsideMismatchFail() {
+		failer.failFloatInside(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatWithinMismatchWrongCheck() {
+	public void testFloatInsideMismatchWrongCheck() {
 		float valueA = 0.123f;
 		float valueMin = 0.1241f;
 		float valueMax = 0.124f;
 		if(checker.isFloatOutside(this, valueA, valueMin, valueMax)) // wrong call
 		{
-			failer.failFloatWithin(this, "valueA");
+			failer.failFloatInside(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatWithinMismatchWrongFail() {
+	public void testFloatInsideMismatchWrongFail() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
-		if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+		if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 		{
 			failer.failFloatOutside(this, "valueA"); // wrong call
 		}
@@ -173,15 +173,15 @@ public class FloatWithinTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatWithinFailNoMessage() {
+	public void testFloatInsideFailNoMessage() {
 		float valueA = 0.123f;
 		float valueMin = 0.122f;
 		float valueMax = 0.124f;
 		try
 		{
-			if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+			if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatWithin(this, "valueA");
+				failer.failFloatInside(this, "valueA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -194,15 +194,15 @@ public class FloatWithinTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatWithinFailMessage() {
+	public void testFloatInsideFailMessage() {
 		float valueA = 0.123f;
 		float valueMin = 0.124f;
 		float valueMax = 0.122f;
 		try
 		{
-			if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+			if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatWithin(this, "valueA", "Extra info goes here");
+				failer.failFloatInside(this, "valueA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -215,13 +215,13 @@ public class FloatWithinTest {
 	}
 	
 	@Test
-	public void testFloatWithinNoFail() {
+	public void testFloatInsideNoFail() {
 		float valueA = 0.1241f;
 		float valueMin = 0.123f;
 		float valueMax = 0.124f;
-		if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+		if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatWithin(this, "valueA");
+			failer.failFloatInside(this, "valueA");
 		}
 		assertTrue("Expected valueA & valueMin to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
@@ -231,15 +231,15 @@ public class FloatWithinTest {
 	// 4th - corner cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatWithinFailFloatMin() {
+	public void testFloatInsideFailFloatMin() {
 		float valueA = Float.MIN_VALUE;
 		float valueMin = valueA;
 		float valueMax = valueA;
 		try
 		{
-			if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+			if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatWithin(this, "valueA");
+				failer.failFloatInside(this, "valueA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -252,15 +252,15 @@ public class FloatWithinTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatWithinFailFloatMax() {
+	public void testFloatInsideFailFloatMax() {
 		float valueA = Float.MAX_VALUE;
 		float valueMin = valueA;
 		float valueMax = valueA;
 		try
 		{
-			if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+			if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatWithin(this, "valueA", "Extra info goes here");
+				failer.failFloatInside(this, "valueA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -273,14 +273,14 @@ public class FloatWithinTest {
 	}
 	
 	@Test
-	public void testFloatWithinNoFailMinusZeroVsZero() {
+	public void testFloatInsideNoFailMinusZeroVsZero() {
 		float valueA = -0f;
 		float valueMin = 0f;
 		float valueMax = 0f;
 		{
-			if(checker.isFloatWithin(this, valueA, valueMin, valueMax))
+			if(checker.isFloatInside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatWithin(this, "valueA", "Extra info goes here");
+				failer.failFloatInside(this, "valueA", "Extra info goes here");
 			}
 		}
 		assertTrue("Expected to pass the equals check", true);

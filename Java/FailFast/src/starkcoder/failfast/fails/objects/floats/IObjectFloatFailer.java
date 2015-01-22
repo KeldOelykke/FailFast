@@ -40,7 +40,7 @@ public interface IObjectFloatFailer extends
 		IObjectFloatEqualsAlmostFail, IObjectFloatNotEqualsAlmostFail,
 		IObjectFloatLessFail, IObjectFloatLessOrEqualsFail, 
 		IObjectFloatGreaterFail, IObjectFloatGreaterOrEqualsFail, 
-		IObjectFloatWithinFail, IObjectFloatOutsideFail
+		IObjectFloatInsideFail, IObjectFloatOutsideFail
 {
 
 }

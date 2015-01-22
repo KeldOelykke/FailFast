@@ -25,14 +25,14 @@ package starkcoder.failfast.checks.objects.floats;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatInsideFail;
 
 /**
  * Specifies a within check for Float.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFloatWithinCheck extends ICheck
+public interface IObjectFloatInsideCheck extends ICheck
 {
 	/**
 	 * Checks if references are not null and A is within [min;max].
@@ -50,7 +50,7 @@ public interface IObjectFloatWithinCheck extends ICheck
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NCheck(failSpecificationType = IObjectFloatWithinFail.class)
-	boolean isFloatWithin(Object caller, Float referenceA, Float referenceMin, Float referenceMax);
+	@NCheck(failSpecificationType = IObjectFloatInsideFail.class)
+	boolean isFloatInside(Object caller, Float referenceA, Float referenceMin, Float referenceMax);
 
 }

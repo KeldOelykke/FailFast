@@ -39,7 +39,7 @@ public interface IObjectFloatChecker extends
 	IObjectFloatEqualsAlmostCheck, IObjectFloatNotEqualsAlmostCheck,
 	IObjectFloatLessCheck, IObjectFloatLessOrEqualsCheck, 
 	IObjectFloatGreaterCheck, IObjectFloatGreaterOrEqualsCheck, 
-	IObjectFloatWithinCheck, IObjectFloatOutsideCheck
+	IObjectFloatInsideCheck, IObjectFloatOutsideCheck
 {
 
 }
