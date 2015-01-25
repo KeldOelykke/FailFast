@@ -75,6 +75,20 @@ import starkcoder.failfast.checks.objects.floats.IObjectFloatNotSameCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatNullCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatOutsideCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatSameCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerDefaultCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerEqualsCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerGreaterCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerInsideCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerLessCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerLessOrEqualsCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerNotDefaultCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerNotEqualsCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerNotNullCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerNotSameCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerNullCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerOutsideCheck;
+import starkcoder.failfast.checks.objects.integers.IObjectIntegerSameCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
@@ -911,6 +925,7 @@ public abstract class AChecker implements IChecker
 
 	
 	
+
 	// OBJECTS - FLOATS - START
 
 	@Override
@@ -1234,6 +1249,171 @@ public abstract class AChecker implements IChecker
 	
 	
 	// OBJECTS - FLOATS - END
+	
+	
+	
+	// OBJECTS - INTEGERS - START
+
+	@Override
+	public boolean isIntegerNotSame(Object caller, Integer referenceA,
+			Integer referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectIntegerNotSameCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isIntegerSame(Object caller, Integer referenceA,
+			Integer referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectIntegerSameCheck.class);
+
+		return result;
+	}	
+	
+	@Override
+	public boolean isIntegerEquals(Object caller, Integer referenceA,
+			Integer referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectIntegerEqualsCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isIntegerNotEquals(Object caller, Integer referenceA,
+			Integer referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectIntegerNotEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isIntegerNotNull(Object caller, Integer referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectIntegerNotNullCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isIntegerNull(Object caller, Integer referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectIntegerNullCheck.class);
+
+		return result;
+	}
+	
+	private Integer integerDefault = 0;
+	@Override
+	public Integer getIntegerDefault()
+	{
+		return this.integerDefault;
+	}
+	@Override
+	public void setIntegerDefault(Integer defaultInteger)
+	{
+		this.integerDefault = defaultInteger;
+	}
+
+	@Override
+	public boolean isIntegerDefault(Object caller, Integer referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getIntegerDefault(), IObjectIntegerDefaultCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isIntegerNotDefault(Object caller, Integer referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getIntegerDefault(), IObjectIntegerNotDefaultCheck.class);
+
+		return result;
+	}
+
+	
+	@Override
+	public boolean isIntegerLess(Object caller, Integer referenceA, Integer referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectIntegerLessCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isIntegerLessOrEquals(Object caller, Integer referenceA,
+			Integer referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectIntegerLessOrEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isIntegerGreater(Object caller, Integer referenceA, Integer referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectIntegerGreaterCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isIntegerGreaterOrEquals(Object caller, Integer referenceA,
+			Integer referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectIntegerGreaterOrEqualsCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isIntegerOutside(Object caller, Integer referenceA,
+			Integer referenceMin, Integer referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectIntegerOutsideCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isIntegerInside(Object caller, Integer referenceA,
+			Integer referenceMin, Integer referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectIntegerInsideCheck.class);
+
+		return result;
+	}
+	
+	
+	// OBJECTS - INTEGERS - END
+
 	
 	
 	// OBJECTS - STRINGS - START

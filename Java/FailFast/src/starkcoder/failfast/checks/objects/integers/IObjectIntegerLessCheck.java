@@ -21,28 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.checks.objects.integers;
 
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerLessFail;
 
 /**
- * Specification grouping all object fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
- * </p>
+ * Specifies a less check for Integer.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectIntegerFailer, IObjectStringFailer
+public interface IObjectIntegerLessCheck extends ICheck
 {
+	/**
+	 * Checks if references are not nulls and A < B.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check against reference B
+	 * @param referenceB
+	 *            argument to check against reference A
+	 * @return true, if references are not null and A < B, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectIntegerLessFail.class)
+	boolean isIntegerLess(Object caller, Integer referenceA, Integer referenceB);
 
 }

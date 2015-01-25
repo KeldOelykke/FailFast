@@ -21,28 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.checks.objects.integers;
 
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerNotDefaultFail;
 
 /**
- * Specification grouping all object fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
- * </p>
+ * Specifies a not-default check for Integer.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectIntegerFailer, IObjectStringFailer
+public interface IObjectIntegerNotDefaultCheck extends IObjectIntegerDefaultProperties, ICheck
 {
-
+	/**
+	 * Checks if the reference is NOT equal to registered default Integer.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check
+	 * @return true, if reference is NOT equal to default, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectIntegerNotDefaultFail.class)
+	boolean isIntegerNotDefault(Object caller, Integer referenceA);
 }

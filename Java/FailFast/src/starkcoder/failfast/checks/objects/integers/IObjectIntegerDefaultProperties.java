@@ -1,5 +1,4 @@
-/**
- * The MIT License (MIT)
+/* The MIT License (MIT)
  * 
  * Copyright (c) 2014 Keld Ølykke
  * 
@@ -21,28 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
-
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+package starkcoder.failfast.checks.objects.integers;
 
 /**
- * Specification grouping all object fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
- * </p>
+ * Defines properties used by both {link:IObjectIntegerDefaultCheck} and {link:IObjectIntegerNotDefaultCheck}.
  * 
  * @author Keld Oelykke
+ *
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectIntegerFailer, IObjectStringFailer
+public interface IObjectIntegerDefaultProperties
 {
+
+	/**
+	 * Default float used by isIntegerDefault and isValueNotDefault.
+	 * <p>
+	 * By default a Integer has value 0
+	 * </p>
+	 * 
+	 * @return default Integer - default is a Integer with value 0
+	 */
+	public Integer getIntegerDefault();
+
+	/**
+	 * Changes the default value used by isIntegerDefault and isIntegerNotDefault.
+	 * 
+	 * @param defaultIntegerValue
+	 *            new value to set
+	 */
+	public void setIntegerDefault(
+			Integer defaultIntegerValue);
 
 }

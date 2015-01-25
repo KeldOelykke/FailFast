@@ -21,28 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.fails.objects.integers;
 
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
 
 /**
- * Specification grouping all object fail specifications.
+ * Specification grouping all Integer fail specifications.
  * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
+ * This (or a derivative) should inherit all fail methods targeting Integer.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectIntegerFailer, IObjectStringFailer
+public interface IObjectIntegerFailer extends 
+		IObjectIntegerSameFail, IObjectIntegerNotSameFail,
+		IObjectIntegerEqualsFail, IObjectIntegerNotEqualsFail,
+		IObjectIntegerNullFail, IObjectIntegerNotNullFail,
+		IObjectIntegerDefaultFail, IObjectIntegerNotDefaultFail,
+		IObjectIntegerLessFail, IObjectIntegerLessOrEqualsFail, 
+		IObjectIntegerGreaterFail, IObjectIntegerGreaterOrEqualsFail, 
+		IObjectIntegerInsideFail, IObjectIntegerOutsideFail
 {
 
 }

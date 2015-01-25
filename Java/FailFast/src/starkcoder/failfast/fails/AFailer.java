@@ -77,6 +77,20 @@ import starkcoder.failfast.fails.objects.floats.IObjectFloatNullFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatOutsideFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatInsideFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerDefaultFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerEqualsFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerGreaterFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerInsideFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerLessFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerNotDefaultFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerNotEqualsFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerNotNullFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerNotSameFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerNullFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerOutsideFail;
+import starkcoder.failfast.fails.objects.integers.IObjectIntegerSameFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
@@ -897,7 +911,7 @@ public abstract class AFailer implements IFailer
 	
 
 	
-	// OBJECTS - BOOLEAN - START ---------------------------------
+	// OBJECTS - FLOAT - START ---------------------------------
 	
 	
 	/* (non-Javadoc)
@@ -1195,8 +1209,188 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectFloatInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
-	// OBJECTS - BOOLEAN - END ---------------------------------
+	// OBJECTS - FLOAT - END ---------------------------------
 
+
+	// OBJECTS - INTEGER - START ---------------------------------
+	
+	
+	@Override
+	public void failIntegerNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failIntegerSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failIntegerNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failIntegerEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failIntegerNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectIntegerNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failIntegerNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectIntegerNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failIntegerNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectIntegerNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failIntegerNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectIntegerNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failIntegerDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectIntegerDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failIntegerDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectIntegerDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failIntegerNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectIntegerNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failIntegerNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectIntegerNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failIntegerGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failIntegerGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failIntegerLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failIntegerLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectIntegerLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failIntegerLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectIntegerLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failIntegerOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectIntegerOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failIntegerOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectIntegerOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failIntegerInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectIntegerInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failIntegerInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectIntegerInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - INTEGER - END ---------------------------------
+	
+	
 	
 	
 	// OBJECTS - STRING - START ---------------------------------
