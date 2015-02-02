@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.objects.enums;
+package starkcoder.failfast.unit.objects.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -44,14 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
-import starkcoder.failfast.templates.objects.IObjectNotNullTest;
+import starkcoder.failfast.templates.objects.IObjectNotSameTest;
 
 /**
- * Fail-fast unit test of {link:IObjectEnumNotNullCheck} and {link:IObjectEnumNotNullFail}.
+ * Fail-fast unit test of {link:IObjectFloatNotSameCheck} and {link:IObjectFloatNotSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
+public class FloatNotSameTest implements IObjectNotSameTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -97,64 +97,71 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testObjectNotNullCheckerCallerIsNull() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(null, referenceNotNull))
+	public void testObjectNotSameCheckerCallerIsNull() {
+		Float referenceA = null;
+		Float referenceB = new Float(0f);
+		if(checker.isFloatNotSame(null, referenceA, referenceB))
 		{
-			failer.failEnumNotNull(this, "referenceNotNull");
+			failer.failFloatNotSame(this, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testObjectNotNullFailerCallerIsNull() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(this, referenceNotNull))
+	public void testObjectNotSameFailerCallerIsNull() {
+		Float referenceA = null;
+		Float referenceB = new Float(1f);
+		if(checker.isFloatNotSame(this, referenceA, referenceB))
 		{
-			failer.failEnumNotNull(null, "referenceNotNull");
+			failer.failFloatNotSame(null, "referenceA", "referenceB");
 		}
+
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullFailerCallerIsWrong() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(new String("Foo"), referenceNotNull))
+	public void testObjectNotSameFailerCallerIsWrong() {
+		Float referenceA = null;
+		Float referenceB = new Float(0f);
+		if(checker.isFloatNotSame(new String("Foo"), referenceA, referenceB))
 		{
-			failer.failEnumNotNull(new String("Bar"), "referenceNotNull");
+			failer.failFloatNotSame(new String("Bar"), "referenceA", "referenceB");
 		}
 	}
 	
-
+	
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchCheckCheck() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(this, referenceNotNull))
+	public void testObjectNotSameMismatchCheckCheck() {
+		Float referenceA = null;
+		Float referenceB = new Float(1f);
+		if(checker.isFloatNotSame(this, referenceA, referenceB))
 		{
-			checker.isEnumNotNull(this, referenceNotNull);
+			checker.isFloatNotSame(this, referenceA, referenceB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchFail() {
-		failer.failObjectNull(this, "referenceNotNull");
+	public void testObjectNotSameMismatchFail() {
+		failer.failFloatNotSame(this, "referenceA", "referenceB");
 	}
-	
+
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchWrongCheck() {
-		Object referenceNotNull = null;
-		if(checker.isObjectNull(this, referenceNotNull)) // wrong call
+	public void testObjectNotSameMismatchWrongCheck() {
+		Float referenceA = null;
+		Float referenceB = null;
+		if(checker.isFloatSame(this, referenceA, referenceB)) // wrong call
 		{
-			failer.failEnumNotNull(this, "referenceNotNull");
+			failer.failFloatNotSame(this, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchWrongFail() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(this, referenceNotNull)) 
+	public void testObjectNotSameMismatchWrongFail() {
+		Float referenceA = null;
+		Float referenceB = new Float(0f);
+		if(checker.isFloatNotSame(this, referenceA, referenceB))
 		{
-			failer.failObjectNull(this, "referenceNotNull"); // wrong call
+			failer.failFloatSame(this, "referenceA", "referenceB"); // wrong call
 		}
 	}
 	
@@ -162,13 +169,14 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testObjectNotNullFailNoMessage() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
+	public void testObjectNotSameFailNoMessage() {
+		Float referenceA = null;
+		Float referenceB = new Float(1f);
 		try
 		{
-			if(checker.isEnumNotNull(this, referenceNotNull))
+			if(checker.isFloatNotSame(this, referenceA, referenceB))
 			{
-				failer.failEnumNotNull(this, "referenceNotNull");
+				failer.failFloatNotSame(this, "referenceA", "referenceB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -178,17 +186,17 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 			throw failFastException;
 
 		}
-
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testObjectNotNullFailMessage() {
-		EFoo referenceNotNull = EFoo.VALUE_B;
+	public void testObjectNotSameFailMessage() {
+		Float referenceA = new Float(0f);
+		Float referenceB = new Float(0f);
 		try
 		{
-			if(checker.isEnumNotNull(this, referenceNotNull))
+			if(checker.isFloatNotSame(this, referenceA, referenceB))
 			{
-				failer.failEnumNotNull(this, "referenceNotNull", "Extra info goes here");
+				failer.failFloatNotSame(this, "referenceA", "referenceB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -201,13 +209,14 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
-		EFoo referenceNull = null;
-		if(checker.isEnumNotNull(this, referenceNull))
+	public void testObjectNotSameNoFail() {
+		Float referenceA = Float.MAX_VALUE;
+		Float referenceB = referenceA;
+		if(checker.isFloatNotSame(this, referenceA, referenceB))
 		{
-			failer.failEnumNotNull(this, "referenceNull");
+			failer.failFloatNotSame(this, "referenceA", "referenceB");
 		}
-		assertTrue("Expected referenceNull to pass the not-null check", true);
+		assertTrue("Expected referenceA & referenceB to pass the not-same check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

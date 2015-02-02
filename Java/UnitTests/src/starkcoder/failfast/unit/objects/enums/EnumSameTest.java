@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectSameTest;
 
 /**
  * Fail-fast unit test of {link:IObjectEnumSameCheck} and {link:IObjectEnumSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumSameTest {
+public class EnumSameTest implements IObjectSameTest<Enum<?>> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class EnumSameTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumSameCheckerCallerIsNull() {
+	public void testObjectSameCheckerCallerIsNull() {
 		EBar referenceA = null;
 		EBar referenceB = null;
 		if(checker.isEnumSame(null, referenceA, referenceB))
@@ -106,7 +107,7 @@ public class EnumSameTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumSameFailerCallerIsNull() {
+	public void testObjectSameFailerCallerIsNull() {
 		EBar referenceA = null;
 		EBar referenceB = null;
 		if(checker.isEnumSame(this, referenceA, referenceB))
@@ -117,7 +118,7 @@ public class EnumSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumSameFailerCallerIsWrong() {
+	public void testObjectSameFailerCallerIsWrong() {
 		EBar referenceA = null;
 		EBar referenceB = null;
 		if(checker.isEnumSame(new String("Foo"), referenceA, referenceB))
@@ -130,7 +131,7 @@ public class EnumSameTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumSameMismatchCheckCheck() {
+	public void testObjectSameMismatchCheckCheck() {
 		EBar referenceA = null;
 		EBar referenceB = null;
 		if(checker.isEnumSame(this, referenceA, referenceB))
@@ -140,12 +141,12 @@ public class EnumSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumSameMismatchFail() {
+	public void testObjectSameMismatchFail() {
 		failer.failEnumSame(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testEnumSameMismatchWrongCheck() {
+	public void testObjectSameMismatchWrongCheck() {
 		EBar referenceA = null;
 		EBar referenceB = EBar.VALUE_B;
 		if(checker.isEnumNotSame(this, referenceA, referenceB)) // wrong call
@@ -155,7 +156,7 @@ public class EnumSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumSameMismatchWrongFail() {
+	public void testObjectSameMismatchWrongFail() {
 		EBar referenceA = null;
 		EBar referenceB = null;
 		if(checker.isEnumSame(this, referenceA, referenceB))
@@ -168,7 +169,7 @@ public class EnumSameTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumSameFailNoMessage() {
+	public void testObjectSameFailNoMessage() {
 		EBar referenceA = null;
 		EBar referenceB = null;
 		try
@@ -188,7 +189,7 @@ public class EnumSameTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumSameFailMessage() {
+	public void testObjectSameFailMessage() {
 		EBar referenceA = EBar.VALUE_B;
 		EBar referenceB = EBar.VALUE_B;
 		try
@@ -208,7 +209,7 @@ public class EnumSameTest {
 	}
 	
 	@Test
-	public void testEnumSameNoFail() {
+	public void testObjectSameNoFail() {
 		EBar referenceA = EBar.VALUE_A;
 		EBar referenceB = EBar.VALUE_B; 
 		if(checker.isEnumSame(this, referenceA, referenceB))

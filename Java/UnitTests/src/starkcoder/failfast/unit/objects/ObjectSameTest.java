@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectSameTest;
 
 /**
  * Fail-fast unit test of {link:IObjectSameCheck} and {link:IObjectSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class ObjectSameTest {
+public class ObjectSameTest implements IObjectSameTest<Object> {
 
 	private IChecker checker;
 	private IFailer failer;

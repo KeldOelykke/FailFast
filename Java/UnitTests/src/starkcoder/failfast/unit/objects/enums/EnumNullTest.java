@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNullTest;
 
 /**
  * Fail-fast unit test of {link:IObjectEnumNullCheck} and {link:IObjectEnumNullFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumNullTest {
+public class EnumNullTest implements IObjectNullTest<Enum<?>> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class EnumNullTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumNullCheckerCallerIsNull() {
+	public void testObjectNullCheckerCallerIsNull() {
 		EFoo referenceNull = null;
 		if(checker.isEnumNull(null, referenceNull))
 		{
@@ -105,7 +106,7 @@ public class EnumNullTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumNullFailerCallerIsNull() {
+	public void testObjectNullFailerCallerIsNull() {
 		EFoo referenceNull = null;
 		if(checker.isEnumNull(this, referenceNull))
 		{
@@ -114,7 +115,7 @@ public class EnumNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNullFailerCallerIsWrong() {
+	public void testObjectNullFailerCallerIsWrong() {
 		EFoo referenceNull = null;
 		if(checker.isEnumNull(new String("Foo"), referenceNull))
 		{
@@ -126,7 +127,7 @@ public class EnumNullTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNullMismatchCheckCheck() {
+	public void testObjectNullMismatchCheckCheck() {
 		EFoo referenceNull = null;
 		if(checker.isEnumNull(this, referenceNull))
 		{
@@ -135,12 +136,12 @@ public class EnumNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNullMismatchFail() {
+	public void testObjectNullMismatchFail() {
 		failer.failEnumNull(this, "referenceNull");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNullMismatchWrongCheck() {
+	public void testObjectNullMismatchWrongCheck() {
 		EFoo referenceNotNull = EFoo.VALUE_A;
 		if(checker.isEnumNotNull(this, referenceNotNull)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class EnumNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNullMismatchWrongFail() {
+	public void testObjectNullMismatchWrongFail() {
 		EFoo referenceNull = null;
 		if(checker.isEnumNull(this, referenceNull)) 
 		{
@@ -161,7 +162,7 @@ public class EnumNullTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNullFailNoMessage() {
+	public void testObjectNullFailNoMessage() {
 		EFoo referenceNull = null;
 		try
 		{
@@ -180,7 +181,7 @@ public class EnumNullTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNullFailMessage() {
+	public void testObjectNullFailMessage() {
 		EFoo referenceNull = null;
 		try
 		{
@@ -199,7 +200,7 @@ public class EnumNullTest {
 	}
 	
 	@Test
-	public void testEnumNotNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		EFoo referenceNotNull = EFoo.VALUE_A;
 		if(checker.isEnumNull(this, referenceNotNull))
 		{

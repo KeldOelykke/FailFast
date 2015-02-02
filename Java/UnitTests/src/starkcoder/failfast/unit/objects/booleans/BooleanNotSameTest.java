@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotSameTest;
 
 /**
  * Fail-fast unit test of {link:IObjectBooleanNotSameCheck} and {link:IObjectBooleanNotSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanNotSameTest {
+public class BooleanNotSameTest implements IObjectNotSameTest<Boolean> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class BooleanNotSameTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNotSameCheckerCallerIsNull() {
+	public void testObjectNotSameCheckerCallerIsNull() {
 		Boolean referenceA = null;
 		Boolean referenceB = new Boolean(false);
 		if(checker.isBooleanNotSame(null, referenceA, referenceB))
@@ -106,7 +107,7 @@ public class BooleanNotSameTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNotSameFailerCallerIsNull() {
+	public void testObjectNotSameFailerCallerIsNull() {
 		Boolean referenceA = null;
 		Boolean referenceB = new Boolean(true);
 		if(checker.isBooleanNotSame(this, referenceA, referenceB))
@@ -117,7 +118,7 @@ public class BooleanNotSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotSameFailerCallerIsWrong() {
+	public void testObjectNotSameFailerCallerIsWrong() {
 		Boolean referenceA = null;
 		Boolean referenceB = Boolean.FALSE;
 		if(checker.isBooleanNotSame(new String("Foo"), referenceA, referenceB))
@@ -130,7 +131,7 @@ public class BooleanNotSameTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotSameMismatchCheckCheck() {
+	public void testObjectNotSameMismatchCheckCheck() {
 		Boolean referenceA = null;
 		Boolean referenceB = Boolean.TRUE;
 		if(checker.isBooleanNotSame(this, referenceA, referenceB))
@@ -140,12 +141,12 @@ public class BooleanNotSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotSameMismatchFail() {
+	public void testObjectNotSameMismatchFail() {
 		failer.failBooleanNotSame(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotSameMismatchWrongCheck() {
+	public void testObjectNotSameMismatchWrongCheck() {
 		Boolean referenceA = null;
 		Boolean referenceB = null;
 		if(checker.isBooleanSame(this, referenceA, referenceB)) // wrong call
@@ -155,7 +156,7 @@ public class BooleanNotSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotSameMismatchWrongFail() {
+	public void testObjectNotSameMismatchWrongFail() {
 		Boolean referenceA = null;
 		Boolean referenceB = new Boolean(false);
 		if(checker.isBooleanNotSame(this, referenceA, referenceB))
@@ -168,7 +169,7 @@ public class BooleanNotSameTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNotSameFailNoMessage() {
+	public void testObjectNotSameFailNoMessage() {
 		Boolean referenceA = null;
 		Boolean referenceB = new Boolean(true);
 		try
@@ -188,7 +189,7 @@ public class BooleanNotSameTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNotSameFailMessage() {
+	public void testObjectNotSameFailMessage() {
 		Boolean referenceA = new Boolean(false);
 		Boolean referenceB = new Boolean(false);
 		try
@@ -208,9 +209,9 @@ public class BooleanNotSameTest {
 	}
 	
 	@Test
-	public void testBooleanNotSameNoFail() {
+	public void testObjectNotSameNoFail() {
 		Boolean referenceA = Boolean.TRUE;
-		Boolean referenceB = Boolean.TRUE; // these get same reference because of hashcode of "a"
+		Boolean referenceB = Boolean.TRUE; // these points at same reference
 		if(checker.isBooleanNotSame(this, referenceA, referenceB))
 		{
 			failer.failBooleanNotSame(this, "referenceA", "referenceB");

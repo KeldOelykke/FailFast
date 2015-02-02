@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotSameTest;
 
 /**
  * Fail-fast unit test of {link:IObjectStringNotSameCheck} and {link:IObjectStringNotSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class StringNotSameTest {
+public class StringNotSameTest implements IObjectNotSameTest<String> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class StringNotSameTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringNotSameCheckerCallerIsNull() {
+	public void testObjectNotSameCheckerCallerIsNull() {
 		String referenceA = null;
 		String referenceB = "a";
 		if(checker.isStringNotSame(null, referenceA, referenceB))
@@ -106,7 +107,7 @@ public class StringNotSameTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringNotSameFailerCallerIsNull() {
+	public void testObjectNotSameFailerCallerIsNull() {
 		String referenceA = null;
 		String referenceB = "b";
 		if(checker.isStringNotSame(this, referenceA, referenceB))
@@ -117,7 +118,7 @@ public class StringNotSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotSameFailerCallerIsWrong() {
+	public void testObjectNotSameFailerCallerIsWrong() {
 		String referenceA = null;
 		String referenceB = "a";
 		if(checker.isStringNotSame(new String("Foo"), referenceA, referenceB))
@@ -130,7 +131,7 @@ public class StringNotSameTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotSameMismatchCheckCheck() {
+	public void testObjectNotSameMismatchCheckCheck() {
 		String referenceA = null;
 		String referenceB = "b";
 		if(checker.isStringNotSame(this, referenceA, referenceB))
@@ -140,12 +141,12 @@ public class StringNotSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotSameMismatchFail() {
+	public void testObjectNotSameMismatchFail() {
 		failer.failStringNotSame(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotSameMismatchWrongCheck() {
+	public void testObjectNotSameMismatchWrongCheck() {
 		String referenceA = null;
 		String referenceB = null;
 		if(checker.isStringSame(this, referenceA, referenceB)) // wrong call
@@ -155,7 +156,7 @@ public class StringNotSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotSameMismatchWrongFail() {
+	public void testObjectNotSameMismatchWrongFail() {
 		String referenceA = null;
 		String referenceB = "a";
 		if(checker.isStringNotSame(this, referenceA, referenceB))
@@ -168,7 +169,7 @@ public class StringNotSameTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testStringNotSameFailNoMessage() {
+	public void testObjectNotSameFailNoMessage() {
 		String referenceA = null;
 		String referenceB = "b";
 		try
@@ -188,7 +189,7 @@ public class StringNotSameTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testStringNotSameFailMessage() {
+	public void testObjectNotSameFailMessage() {
 		String referenceA = "a";
 		String referenceB = "b";
 		try
@@ -208,9 +209,9 @@ public class StringNotSameTest {
 	}
 	
 	@Test
-	public void testStringNotSameNoFail() {
+	public void testObjectNotSameNoFail() {
 		String referenceA = "a";
-		String referenceB = "a"; // these get same reference because of hashcode of "a"
+		String referenceB = "a"; // these get same reference because strings are immutable and "cached"
 		if(checker.isStringNotSame(this, referenceA, referenceB))
 		{
 			failer.failStringNotSame(this, "referenceA", "referenceB");

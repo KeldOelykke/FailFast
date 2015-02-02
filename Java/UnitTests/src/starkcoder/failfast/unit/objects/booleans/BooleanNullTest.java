@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNullTest;
 
 /**
  * Fail-fast unit test of {link:IObjectBooleanNullCheck} and {link:IObjectBooleanNullFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanNullTest {
+public class BooleanNullTest implements IObjectNullTest<Boolean> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class BooleanNullTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNullCheckerCallerIsNull() {
+	public void testObjectNullCheckerCallerIsNull() {
 		Boolean referenceNull = null;
 		if(checker.isBooleanNull(null, referenceNull))
 		{
@@ -105,7 +106,7 @@ public class BooleanNullTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNullFailerCallerIsNull() {
+	public void testObjectNullFailerCallerIsNull() {
 		Boolean referenceNull = null;
 		if(checker.isBooleanNull(this, referenceNull))
 		{
@@ -114,7 +115,7 @@ public class BooleanNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNullFailerCallerIsWrong() {
+	public void testObjectNullFailerCallerIsWrong() {
 		Boolean referenceNull = null;
 		if(checker.isBooleanNull(new String("Foo"), referenceNull))
 		{
@@ -126,7 +127,7 @@ public class BooleanNullTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNullMismatchCheckCheck() {
+	public void testObjectNullMismatchCheckCheck() {
 		Boolean referenceNull = null;
 		if(checker.isBooleanNull(this, referenceNull))
 		{
@@ -135,12 +136,12 @@ public class BooleanNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNullMismatchFail() {
+	public void testObjectNullMismatchFail() {
 		failer.failBooleanNull(this, "referenceNull");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNullMismatchWrongCheck() {
+	public void testObjectNullMismatchWrongCheck() {
 		Boolean referenceNull = new Boolean(false);
 		if(checker.isBooleanNotNull(this, referenceNull)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class BooleanNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNullMismatchWrongFail() {
+	public void testObjectNullMismatchWrongFail() {
 		Boolean referenceNull = null;
 		if(checker.isBooleanNull(this, referenceNull)) 
 		{
@@ -161,7 +162,7 @@ public class BooleanNullTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNullFailNoMessage() {
+	public void testObjectNullFailNoMessage() {
 		Boolean referenceNull = null;
 		try
 		{
@@ -180,7 +181,7 @@ public class BooleanNullTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNullFailMessage() {
+	public void testObjectNullFailMessage() {
 		Boolean referenceNull = null;
 		try
 		{
@@ -199,7 +200,7 @@ public class BooleanNullTest {
 	}
 	
 	@Test
-	public void testBooleanNotNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		Boolean referenceNotNull = new Boolean(false);
 		if(checker.isBooleanNull(this, referenceNotNull))
 		{

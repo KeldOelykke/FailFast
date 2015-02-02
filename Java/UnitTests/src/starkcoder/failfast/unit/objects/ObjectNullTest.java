@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNullTest;
 
 /**
  * Fail-fast unit test of {link:IObjectNullCheck} and {link:IObjectNullFail}.
  * 
  * @author Keld Oelykke
  */
-public class ObjectNullTest {
+public class ObjectNullTest implements IObjectNullTest<Object> {
 
 	private IChecker checker;
 	private IFailer failer;

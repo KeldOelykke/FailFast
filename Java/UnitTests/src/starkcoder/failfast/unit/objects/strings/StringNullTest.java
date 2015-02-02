@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNullTest;
 
 /**
  * Fail-fast unit test of {link:IObjectStringNullCheck} and {link:IObjectStringNullFail}.
  * 
  * @author Keld Oelykke
  */
-public class StringNullTest {
+public class StringNullTest implements IObjectNullTest<String> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class StringNullTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringNullCheckerCallerIsNull() {
+	public void testObjectNullCheckerCallerIsNull() {
 		String referenceNull = null;
 		if(checker.isStringNull(null, referenceNull))
 		{
@@ -105,7 +106,7 @@ public class StringNullTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringNullFailerCallerIsNull() {
+	public void testObjectNullFailerCallerIsNull() {
 		String referenceNull = null;
 		if(checker.isStringNull(this, referenceNull))
 		{
@@ -114,7 +115,7 @@ public class StringNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNullFailerCallerIsWrong() {
+	public void testObjectNullFailerCallerIsWrong() {
 		String referenceNull = null;
 		if(checker.isStringNull(new String("Foo"), referenceNull))
 		{
@@ -126,7 +127,7 @@ public class StringNullTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNullMismatchCheckCheck() {
+	public void testObjectNullMismatchCheckCheck() {
 		String referenceNull = null;
 		if(checker.isStringNull(this, referenceNull))
 		{
@@ -135,12 +136,12 @@ public class StringNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNullMismatchFail() {
+	public void testObjectNullMismatchFail() {
 		failer.failStringNull(this, "referenceNull");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testStringNullMismatchWrongCheck() {
+	public void testObjectNullMismatchWrongCheck() {
 		String referenceNull = "notnull";
 		if(checker.isStringNotNull(this, referenceNull)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class StringNullTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNullMismatchWrongFail() {
+	public void testObjectNullMismatchWrongFail() {
 		String referenceNull = null;
 		if(checker.isStringNull(this, referenceNull)) 
 		{
@@ -161,7 +162,7 @@ public class StringNullTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testStringNullFailNoMessage() {
+	public void testObjectNullFailNoMessage() {
 		String referenceNull = null;
 		try
 		{
@@ -180,7 +181,7 @@ public class StringNullTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testStringNullFailMessage() {
+	public void testObjectNullFailMessage() {
 		String referenceNull = null;
 		try
 		{
@@ -199,7 +200,7 @@ public class StringNullTest {
 	}
 	
 	@Test
-	public void testStringNotNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		String referenceNotNull = "notnull";
 		if(checker.isStringNull(this, referenceNotNull))
 		{

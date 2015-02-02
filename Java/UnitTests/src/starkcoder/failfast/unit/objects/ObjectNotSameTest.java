@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotSameTest;
 
 /**
  * Fail-fast unit test of {link:IObjectNotSameCheck} and {link:IObjectNotSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class ObjectNotSameTest {
+public class ObjectNotSameTest implements IObjectNotSameTest<Object> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -210,7 +211,7 @@ public class ObjectNotSameTest {
 	@Test
 	public void testObjectNotSameNoFail() {
 		Object referenceA = "a";
-		Object referenceB = "a"; // these get same reference because of hashcode of "a"
+		Object referenceB = "a"; // these get same reference because strings are immutable and "cached"
 		if(checker.isObjectNotSame(this, referenceA, referenceB))
 		{
 			failer.failObjectNotSame(this, "referenceA", "referenceB");

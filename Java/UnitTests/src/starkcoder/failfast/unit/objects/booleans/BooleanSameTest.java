@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectSameTest;
 
 /**
  * Fail-fast unit test of {link:IObjectBooleanSameCheck} and {link:IObjectBooleanSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanSameTest {
+public class BooleanSameTest implements IObjectSameTest<Boolean> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class BooleanSameTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanSameCheckerCallerIsNull() {
+	public void testObjectSameCheckerCallerIsNull() {
 		Boolean referenceA = null;
 		Boolean referenceB = null;
 		if(checker.isBooleanSame(null, referenceA, referenceB))
@@ -106,7 +107,7 @@ public class BooleanSameTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanSameFailerCallerIsNull() {
+	public void testObjectSameFailerCallerIsNull() {
 		Boolean referenceA = null;
 		Boolean referenceB = null;
 		if(checker.isBooleanSame(this, referenceA, referenceB))
@@ -117,7 +118,7 @@ public class BooleanSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanSameFailerCallerIsWrong() {
+	public void testObjectSameFailerCallerIsWrong() {
 		Boolean referenceA = null;
 		Boolean referenceB = null;
 		if(checker.isBooleanSame(new String("Foo"), referenceA, referenceB))
@@ -130,7 +131,7 @@ public class BooleanSameTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanSameMismatchCheckCheck() {
+	public void testObjectSameMismatchCheckCheck() {
 		Boolean referenceA = null;
 		Boolean referenceB = null;
 		if(checker.isBooleanSame(this, referenceA, referenceB))
@@ -140,12 +141,12 @@ public class BooleanSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanSameMismatchFail() {
+	public void testObjectSameMismatchFail() {
 		failer.failBooleanSame(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanSameMismatchWrongCheck() {
+	public void testObjectSameMismatchWrongCheck() {
 		Boolean referenceA = null;
 		Boolean referenceB = new Boolean(false);
 		if(checker.isBooleanNotSame(this, referenceA, referenceB)) // wrong call
@@ -155,7 +156,7 @@ public class BooleanSameTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanSameMismatchWrongFail() {
+	public void testObjectSameMismatchWrongFail() {
 		Boolean referenceA = null;
 		Boolean referenceB = null;
 		if(checker.isBooleanSame(this, referenceA, referenceB))
@@ -168,7 +169,7 @@ public class BooleanSameTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanSameFailNoMessage() {
+	public void testObjectSameFailNoMessage() {
 		Boolean referenceA = null;
 		Boolean referenceB = null;
 		try
@@ -188,7 +189,7 @@ public class BooleanSameTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanSameFailMessage() {
+	public void testObjectSameFailMessage() {
 		Boolean referenceA = new Boolean(true);
 		Boolean referenceB = referenceA;
 		try
@@ -208,7 +209,7 @@ public class BooleanSameTest {
 	}
 	
 	@Test
-	public void testBooleanSameNoFail() {
+	public void testObjectSameNoFail() {
 		Boolean referenceA = new Boolean(true);
 		Boolean referenceB = new Boolean(true); // A & B not same reference, but they are equals 
 		if(checker.isBooleanSame(this, referenceA, referenceB))

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.unit.objects.enums;
+package starkcoder.failfast.unit.objects.floats;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -44,14 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
-import starkcoder.failfast.templates.objects.IObjectNotNullTest;
+import starkcoder.failfast.templates.objects.IObjectNullTest;
 
 /**
- * Fail-fast unit test of {link:IObjectEnumNotNullCheck} and {link:IObjectEnumNotNullFail}.
+ * Fail-fast unit test of {link:IObjectFloatNullCheck} and {link:IObjectFloatNullFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
+public class FloatNullTest implements IObjectNullTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -97,64 +97,64 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testObjectNotNullCheckerCallerIsNull() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(null, referenceNotNull))
+	public void testObjectNullCheckerCallerIsNull() {
+		Float referenceNull = null;
+		if(checker.isFloatNull(null, referenceNull))
 		{
-			failer.failEnumNotNull(this, "referenceNotNull");
+			failer.failFloatNull(this, "referenceNull");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testObjectNotNullFailerCallerIsNull() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(this, referenceNotNull))
+	public void testObjectNullFailerCallerIsNull() {
+		Float referenceNull = null;
+		if(checker.isFloatNull(this, referenceNull))
 		{
-			failer.failEnumNotNull(null, "referenceNotNull");
+			failer.failFloatNull(null, "referenceNull");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullFailerCallerIsWrong() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(new String("Foo"), referenceNotNull))
+	public void testObjectNullFailerCallerIsWrong() {
+		Float referenceNull = null;
+		if(checker.isFloatNull(new String("Foo"), referenceNull))
 		{
-			failer.failEnumNotNull(new String("Bar"), "referenceNotNull");
+			failer.failFloatNull(new String("Bar"), "referenceNull");
 		}
 	}
 	
-
+	
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchCheckCheck() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(this, referenceNotNull))
+	public void testObjectNullMismatchCheckCheck() {
+		Float referenceNull = null;
+		if(checker.isFloatNull(this, referenceNull))
 		{
-			checker.isEnumNotNull(this, referenceNotNull);
+			checker.isFloatNull(this, referenceNull);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchFail() {
-		failer.failObjectNull(this, "referenceNotNull");
+	public void testObjectNullMismatchFail() {
+		failer.failFloatNull(this, "referenceNull");
 	}
-	
+
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchWrongCheck() {
-		Object referenceNotNull = null;
-		if(checker.isObjectNull(this, referenceNotNull)) // wrong call
+	public void testObjectNullMismatchWrongCheck() {
+		Float referenceNull = new Float(0f);
+		if(checker.isFloatNotNull(this, referenceNull)) // wrong call
 		{
-			failer.failEnumNotNull(this, "referenceNotNull");
+			failer.failFloatNull(this, "referenceNull");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testObjectNotNullMismatchWrongFail() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
-		if(checker.isEnumNotNull(this, referenceNotNull)) 
+	public void testObjectNullMismatchWrongFail() {
+		Float referenceNull = null;
+		if(checker.isFloatNull(this, referenceNull)) 
 		{
-			failer.failObjectNull(this, "referenceNotNull"); // wrong call
+			failer.failFloatNotNull(this, "referenceNull"); // wrong call
 		}
 	}
 	
@@ -162,13 +162,13 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testObjectNotNullFailNoMessage() {
-		EFoo referenceNotNull = EFoo.VALUE_A;
+	public void testObjectNullFailNoMessage() {
+		Float referenceNull = null;
 		try
 		{
-			if(checker.isEnumNotNull(this, referenceNotNull))
+			if(checker.isFloatNull(this, referenceNull))
 			{
-				failer.failEnumNotNull(this, "referenceNotNull");
+				failer.failFloatNull(this, "referenceNull");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -178,17 +178,16 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 			throw failFastException;
 
 		}
-
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testObjectNotNullFailMessage() {
-		EFoo referenceNotNull = EFoo.VALUE_B;
+	public void testObjectNullFailMessage() {
+		Float referenceNull = null;
 		try
 		{
-			if(checker.isEnumNotNull(this, referenceNotNull))
+			if(checker.isFloatNull(this, referenceNull))
 			{
-				failer.failEnumNotNull(this, "referenceNotNull", "Extra info goes here");
+				failer.failFloatNull(this, "referenceNull", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -201,13 +200,13 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
-		EFoo referenceNull = null;
-		if(checker.isEnumNotNull(this, referenceNull))
+	public void testObjectNotNullNoFail() {
+		Float referenceNotNull = new Float(0f);
+		if(checker.isFloatNull(this, referenceNotNull))
 		{
-			failer.failEnumNotNull(this, "referenceNull");
+			failer.failFloatNull(this, "referenceNotNull");
 		}
-		assertTrue("Expected referenceNull to pass the not-null check", true);
+		assertTrue("Expected referenceNotNull to pass the null check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 
