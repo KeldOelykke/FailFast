@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotEqualsTest;
 
 /**
  * Fail-fast unit test of {link:IObjectNotEqualsCheck} and {link:IObjectNotEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class ObjectNotEqualsTest {
+public class ObjectNotEqualsTest implements IObjectNotEqualsTest<Object> {
 
 	private IChecker checker;
 	private IFailer failer;

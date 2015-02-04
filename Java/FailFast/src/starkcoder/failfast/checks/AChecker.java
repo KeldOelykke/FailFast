@@ -910,12 +910,11 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-		if (null == referenceA) // can't derive Class from null
+		if (null != referenceA) // can't derive Class from null
 		{
-			throw new IllegalArgumentException("referenceA is null");
+//			throw new IllegalArgumentException("referenceA is null");
+			result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getEnumDefault(referenceA.getDeclaringClass()), IObjectEnumDefaultCheck.class);
 		}
-
-		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getEnumDefault(referenceA.getDeclaringClass()), IObjectEnumDefaultCheck.class);
 
 		return result;
 	}

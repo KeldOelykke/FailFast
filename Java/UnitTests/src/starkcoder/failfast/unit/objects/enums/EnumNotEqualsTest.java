@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotEqualsTest;
 
 /**
  * Fail-fast unit test of {link:IObjectEnumNotEqualsCheck} and {link:IObjectEnumNotEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumNotEqualsTest {
+public class EnumNotEqualsTest implements IObjectNotEqualsTest<Enum<?>> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class EnumNotEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumNotEqualsCheckerCallerIsNull() {
+	public void testObjectNotEqualsCheckerCallerIsNull() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EFoo referenceB = EFoo.VALUE_B;
 		if(checker.isEnumNotEquals(null, referenceA, referenceB))
@@ -106,7 +107,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumNotEqualsFailerCallerIsNull() {
+	public void testObjectNotEqualsFailerCallerIsNull() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EFoo referenceB = EFoo.VALUE_B;
 		if(checker.isEnumNotEquals(this, referenceA, referenceB))
@@ -117,7 +118,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotEqualsFailerCallerIsWrong() {
+	public void testObjectNotEqualsFailerCallerIsWrong() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EFoo referenceB = EFoo.VALUE_B;
 		if(checker.isEnumNotEquals(new String("Foo"), referenceA, referenceB))
@@ -130,7 +131,7 @@ public class EnumNotEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotEqualsMismatchCheckCheck() {
+	public void testObjectNotEqualsMismatchCheckCheck() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EFoo referenceB = EFoo.VALUE_B;
 		if(checker.isEnumNotEquals(this, referenceA, referenceB))
@@ -140,12 +141,12 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotEqualsMismatchFail() {
+	public void testObjectNotEqualsMismatchFail() {
 		failer.failEnumNotEquals(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotEqualsMismatchWrongCheck() {
+	public void testObjectNotEqualsMismatchWrongCheck() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EFoo referenceB = EFoo.VALUE_A;
 		if(checker.isEnumEquals(this, referenceA, referenceB)) // wrong call
@@ -155,7 +156,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotEqualsMismatchWrongFail() {
+	public void testObjectNotEqualsMismatchWrongFail() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EFoo referenceB = EFoo.VALUE_B;
 		if(checker.isEnumNotEquals(this, referenceA, referenceB))
@@ -168,7 +169,7 @@ public class EnumNotEqualsTest {
 	// 3rd - normal cases
 	
 	@Test
-	public void testEnumNullNotEqualsEnumNullNoFail() {
+	public void testObjectNullNotEqualsEnumNullNoFail() {
 		EFoo referenceA = null;
 		EFoo referenceB = null;
 		{
@@ -182,7 +183,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNullNotEqualsEnumNotNullFail() {
+	public void testObjectNullNotEqualsEnumNotNullFail() {
 		EFoo referenceA = null;
 		EFoo referenceB = EFoo.VALUE_A;
 		try
@@ -202,7 +203,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNotNullNotEqualsEnumNullFail() {
+	public void testObjectNotNullNotEqualsEnumNullFail() {
 		EFoo referenceA = EFoo.VALUE_B;
 		EFoo referenceB = null;
 		try
@@ -222,7 +223,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNotEqualsFailNoMessage() {
+	public void testObjectNotEqualsFailNoMessage() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EFoo referenceB = EFoo.VALUE_B;
 		try
@@ -242,7 +243,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNotEqualsFailMessage() {
+	public void testObjectNotEqualsFailMessage() {
 		EFoo referenceA = EFoo.VALUE_B;
 		EFoo referenceB = EFoo.VALUE_A;
 		try
@@ -262,7 +263,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test
-	public void testEnumNotEqualsNoFail() {
+	public void testObjectNotEqualsNoFail() {
 		EFoo referenceA = EFoo.VALUE_B;
 		EFoo referenceB = referenceA;
 		if(checker.isEnumNotEquals(this, referenceA, referenceB))
@@ -274,7 +275,7 @@ public class EnumNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumFooNotEqualsEnumBarFail() {
+	public void testObjectFooNotEqualsEnumBarFail() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EBar referenceB = EBar.VALUE_A;
 		try

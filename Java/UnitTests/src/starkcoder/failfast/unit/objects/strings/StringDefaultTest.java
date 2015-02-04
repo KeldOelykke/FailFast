@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectDefaultTest;
 
 /**
  * Fail-fast unit test of {link:IObjectStringDefaultCheck} and {link:IObjectStringDefaultFail}.
  * 
  * @author Keld Oelykke
  */
-public class StringDefaultTest {
+public class StringDefaultTest implements IObjectDefaultTest<String> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class StringDefaultTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringDefaultCheckerCallerIsNull() {
+	public void testObjectDefaultCheckerCallerIsNull() {
 		String referenceA = "";
 		if(checker.isStringDefault(null, referenceA))
 		{
@@ -105,7 +106,7 @@ public class StringDefaultTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringDefaultFailerCallerIsNull() {
+	public void testObjectDefaultFailerCallerIsNull() {
 		String referenceA = "";
 		if(checker.isStringDefault(this, referenceA))
 		{
@@ -114,7 +115,7 @@ public class StringDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringFailerCallerIsWrong() {
+	public void testObjectDefaultFailerCallerIsWrong() {
 		String referenceA = "";
 		if(checker.isStringDefault(new String("Foo"), referenceA))
 		{
@@ -126,7 +127,7 @@ public class StringDefaultTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringDefaultMismatchCheckCheck() {
+	public void testObjectDefaultMismatchCheckCheck() {
 		String referenceA = "";
 		if(checker.isStringDefault(this, referenceA))
 		{
@@ -135,12 +136,12 @@ public class StringDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringDefaultMismatchFail() {
+	public void testObjectDefaultMismatchFail() {
 		failer.failStringDefault(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testStringDefaultMismatchWrongCheck() {
+	public void testObjectDefaultMismatchWrongCheck() {
 		String referenceA = "foo";
 		if(checker.isStringNotDefault(this, referenceA)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class StringDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringDefaultMismatchWrongFail() {
+	public void testObjectDefaultMismatchWrongFail() {
 		String referenceA = "";
 		if(checker.isStringDefault(this, referenceA))
 		{
@@ -161,7 +162,7 @@ public class StringDefaultTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testStringDefaultFailNoMessage() {
+	public void testObjectDefaultFailNoMessage() {
 		String referenceA = "";
 		try
 		{
@@ -180,7 +181,7 @@ public class StringDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testStringDefaultFailMessage() {
+	public void testObjectDefaultFailMessage() {
 		String referenceA = "";
 		try
 		{
@@ -199,7 +200,7 @@ public class StringDefaultTest {
 	}
 	
 	@Test
-	public void testStringNullNoFail() {
+	public void testObjectNullNoFail() {
 		String referenceA = null;
 		if(checker.isStringDefault(this, referenceA))
 		{
@@ -210,7 +211,7 @@ public class StringDefaultTest {
 	}
 	
 	@Test
-	public void testStringNotDefaultNoFail() {
+	public void testObjectNotDefaultNoFail() {
 		String referenceA = "foo";
 		if(checker.isStringDefault(this, referenceA))
 		{
@@ -221,7 +222,7 @@ public class StringDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testStringChangedDefaultFail() {
+	public void testObjectChangedDefaultFail() {
 		String referenceA = "foo";
 		checker.setStringDefault(referenceA);
 		try

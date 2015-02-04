@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectDefaultTest;
 
 /**
  * Fail-fast unit test of {link:IObjectBooleanDefaultCheck} and {link:IObjectBooleanDefaultFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanDefaultTest {
+public class BooleanDefaultTest implements IObjectDefaultTest<Boolean> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class BooleanDefaultTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanDefaultCheckerCallerIsNull() {
+	public void testObjectDefaultCheckerCallerIsNull() {
 		Boolean referenceA = Boolean.FALSE;
 		if(checker.isBooleanDefault(null, referenceA))
 		{
@@ -105,7 +106,7 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanDefaultFailerCallerIsNull() {
+	public void testObjectDefaultFailerCallerIsNull() {
 		Boolean referenceA = Boolean.FALSE;
 		if(checker.isBooleanDefault(this, referenceA))
 		{
@@ -114,7 +115,7 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanFailerCallerIsWrong() {
+	public void testObjectDefaultFailerCallerIsWrong() {
 		Boolean referenceA = Boolean.FALSE;
 		if(checker.isBooleanDefault(new String("Foo"), referenceA))
 		{
@@ -126,7 +127,7 @@ public class BooleanDefaultTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanDefaultMismatchCheckCheck() {
+	public void testObjectDefaultMismatchCheckCheck() {
 		Boolean referenceA = Boolean.FALSE;
 		if(checker.isBooleanDefault(this, referenceA))
 		{
@@ -135,12 +136,12 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanDefaultMismatchFail() {
+	public void testObjectDefaultMismatchFail() {
 		failer.failBooleanDefault(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanDefaultMismatchWrongCheck() {
+	public void testObjectDefaultMismatchWrongCheck() {
 		Boolean referenceA = Boolean.TRUE;
 		if(checker.isBooleanNotDefault(this, referenceA)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanDefaultMismatchWrongFail() {
+	public void testObjectDefaultMismatchWrongFail() {
 		Boolean referenceA = Boolean.FALSE;
 		if(checker.isBooleanDefault(this, referenceA))
 		{
@@ -161,7 +162,7 @@ public class BooleanDefaultTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanDefaultFailNoMessage() {
+	public void testObjectDefaultFailNoMessage() {
 		Boolean referenceA = Boolean.FALSE;
 		try
 		{
@@ -180,7 +181,7 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanDefaultFailMessage() {
+	public void testObjectDefaultFailMessage() {
 		Boolean referenceA = Boolean.FALSE;
 		try
 		{
@@ -199,7 +200,7 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test
-	public void testBooleanNullNoFail() {
+	public void testObjectNullNoFail() {
 		Boolean referenceA = null;
 		if(checker.isBooleanDefault(this, referenceA))
 		{
@@ -210,7 +211,7 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test
-	public void testBooleanNotDefaultNoFail() {
+	public void testObjectNotDefaultNoFail() {
 		Boolean referenceA = Boolean.TRUE;
 		if(checker.isBooleanDefault(this, referenceA))
 		{
@@ -221,7 +222,7 @@ public class BooleanDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanChangedDefaultFail() {
+	public void testObjectChangedDefaultFail() {
 		Boolean referenceA = Boolean.TRUE;
 		checker.setBooleanDefault(referenceA);
 		try

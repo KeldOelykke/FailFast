@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectDefaultTest;
 
 /**
  * Fail-fast unit test of {link:IObjectFloatDefaultCheck} and {link:IObjectFloatDefaultFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatDefaultTest {
+public class FloatDefaultTest implements IObjectDefaultTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class FloatDefaultTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatDefaultCheckerCallerIsNull() {
+	public void testObjectDefaultCheckerCallerIsNull() {
 		float valueA = 0f;
 		if(checker.isFloatDefault(null, valueA))
 		{
@@ -105,7 +106,7 @@ public class FloatDefaultTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatDefaultFailerCallerIsNull() {
+	public void testObjectDefaultFailerCallerIsNull() {
 		float valueA = 0f;
 		if(checker.isFloatDefault(this, valueA))
 		{
@@ -114,7 +115,7 @@ public class FloatDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatFailerCallerIsWrong() {
+	public void testObjectDefaultFailerCallerIsWrong() {
 		float valueA = 0f;
 		if(checker.isFloatDefault(new String("Foo"), valueA))
 		{
@@ -126,7 +127,7 @@ public class FloatDefaultTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatDefaultMismatchCheckCheck() {
+	public void testObjectDefaultMismatchCheckCheck() {
 		float valueA = 0f;
 		if(checker.isFloatDefault(this, valueA))
 		{
@@ -135,12 +136,12 @@ public class FloatDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatDefaultMismatchFail() {
+	public void testObjectDefaultMismatchFail() {
 		failer.failFloatDefault(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatDefaultMismatchWrongCheck() {
+	public void testObjectDefaultMismatchWrongCheck() {
 		float valueA = 1f;
 		if(checker.isFloatNotDefault(this, valueA)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class FloatDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatDefaultMismatchWrongFail() {
+	public void testObjectDefaultMismatchWrongFail() {
 		float valueA = 0f;
 		if(checker.isFloatDefault(this, valueA))
 		{
@@ -161,7 +162,7 @@ public class FloatDefaultTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatDefaultFailNoMessage() {
+	public void testObjectDefaultFailNoMessage() {
 		float valueA = 0f;
 		try
 		{
@@ -180,7 +181,7 @@ public class FloatDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatDefaultFailMessage() {
+	public void testObjectDefaultFailMessage() {
 		float valueA = 0f;
 		try
 		{
@@ -199,7 +200,19 @@ public class FloatDefaultTest {
 	}
 	
 	@Test
-	public void testFloatNotDefaultNoFail() {
+	public void testObjectNullNoFail() {
+		Float referenceA = null;
+		if(checker.isFloatDefault(this, referenceA))
+		{
+			failer.failFloatDefault(this, "referenceA");
+		}
+		assertTrue("Expected referenceA not to pass the check", true);
+		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+	}
+
+	
+	@Test
+	public void testObjectNotDefaultNoFail() {
 		float valueA = 1f;
 		if(checker.isFloatDefault(this, valueA))
 		{
@@ -210,7 +223,7 @@ public class FloatDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatChangedDefaultFail() {
+	public void testObjectChangedDefaultFail() {
 		float valueA = 1f;
 		checker.setFloatDefault(valueA);
 		try

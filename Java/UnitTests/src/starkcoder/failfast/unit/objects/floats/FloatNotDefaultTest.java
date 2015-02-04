@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotDefaultTest;
 
 /**
  * Fail-fast unit test of {link:IObjectFloatNotDefaultCheck} and {link:IObjectFloatTrueFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatNotDefaultTest {
+public class FloatNotDefaultTest implements IObjectNotDefaultTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class FloatNotDefaultTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatNotDefaultCheckerCallerIsNull() {
+	public void testObjectNotDefaultCheckerCallerIsNull() {
 		float valueA = 1f;
 		if(checker.isFloatNotDefault(null, valueA))
 		{
@@ -105,7 +106,7 @@ public class FloatNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatNotDefaultFailerCallerIsNull() {
+	public void testObjectNotDefaultFailerCallerIsNull() {
 		float valueA = 1f;
 		if(checker.isFloatNotDefault(this, valueA))
 		{
@@ -114,7 +115,7 @@ public class FloatNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatFailerCallerIsWrong() {
+	public void testObjectFailerCallerIsWrong() {
 		float valueA = 1f;
 		if(checker.isFloatNotDefault(new String("Foo"), valueA))
 		{
@@ -126,7 +127,7 @@ public class FloatNotDefaultTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatNotDefaultMismatchCheckCheck() {
+	public void testObjectNotDefaultMismatchCheckCheck() {
 		float valueA = 1f;
 		if(checker.isFloatNotDefault(this, valueA))
 		{
@@ -135,12 +136,12 @@ public class FloatNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatNotDefaultMismatchFail() {
+	public void testObjectNotDefaultMismatchFail() {
 		failer.failFloatNotDefault(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatNotDefaultMismatchWrongCheck() {
+	public void testObjectNotDefaultMismatchWrongCheck() {
 		float valueA = 0f;
 		if(checker.isFloatDefault(this, valueA)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class FloatNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatNotDefaultMismatchWrongFail() {
+	public void testObjectNotDefaultMismatchWrongFail() {
 		float valueA = 1f;
 		if(checker.isFloatNotDefault(this, valueA))
 		{
@@ -161,7 +162,7 @@ public class FloatNotDefaultTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatNotDefaultFailNoMessage() {
+	public void testObjectNotDefaultFailNoMessage() {
 		float valueA = 1f;
 		try
 		{
@@ -180,7 +181,7 @@ public class FloatNotDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatNotDefaultFailMessage() {
+	public void testObjectNotDefaultFailMessage() {
 		float valueA = 1f;
 		try
 		{
@@ -198,8 +199,27 @@ public class FloatNotDefaultTest {
 		}
 	}
 	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullFail() {
+		Float referenceA = null;
+		try
+		{
+			if(checker.isFloatNotDefault(this, referenceA))
+			{
+				failer.failFloatNotDefault(this, "referenceA");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+		}
+	}
+
+	
 	@Test
-	public void testFloatDefaultNoFail() {
+	public void testObjectDefaultNoFail() {
 		float valueA = 0f;
 		if(checker.isFloatNotDefault(this, valueA))
 		{
@@ -210,7 +230,7 @@ public class FloatNotDefaultTest {
 	}
 	
 	@Test
-	public void testFloatDefaultChangedNoFail() {
+	public void testObjectDefaultChangedNoFail() {
 		float valueA = 1f;
 		checker.setFloatDefault(valueA);
 		if(checker.isFloatNotDefault(this, valueA))

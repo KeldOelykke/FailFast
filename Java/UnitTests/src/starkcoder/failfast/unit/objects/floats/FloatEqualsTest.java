@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectEqualsTest;
 
 /**
  * Fail-fast unit test of {link:IObjectFloatEqualsCheck} and {link:IObjectFloatEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatEqualsTest {
+public class FloatEqualsTest implements IObjectEqualsTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class FloatEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatEqualsCheckerCallerIsNull() {
+	public void testObjectEqualsCheckerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
 		if(checker.isFloatEquals(null, valueA, valueB))
@@ -106,7 +107,7 @@ public class FloatEqualsTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatEqualsFailerCallerIsNull() {
+	public void testObjectEqualsFailerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
 		if(checker.isFloatEquals(this, valueA, valueB))
@@ -116,7 +117,7 @@ public class FloatEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatFailerCallerIsWrong() {
+	public void testObjectEqualsFailerCallerIsWrong() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
 		if(checker.isFloatEquals(new String("Foo"), valueA, valueB))
@@ -129,7 +130,7 @@ public class FloatEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatEqualsMismatchCheckCheck() {
+	public void testObjectEqualsMismatchCheckCheck() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
 		if(checker.isFloatEquals(this, valueA, valueB))
@@ -139,12 +140,12 @@ public class FloatEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatEqualsMismatchFail() {
+	public void testObjectEqualsMismatchFail() {
 		failer.failFloatEquals(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatEqualsMismatchWrongCheck() {
+	public void testObjectEqualsMismatchWrongCheck() {
 		float valueA = 0.123f;
 		float valueB = 0.1234f;
 		if(checker.isFloatNotEquals(this, valueA, valueB)) // wrong call
@@ -154,7 +155,7 @@ public class FloatEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatEqualsMismatchWrongFail() {
+	public void testObjectEqualsMismatchWrongFail() {
 		float valueA = 0.123f;
 		float valueB = 0.123f;
 		if(checker.isFloatEquals(this, valueA, valueB))
@@ -167,7 +168,7 @@ public class FloatEqualsTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatEqualsFailNoMessage() {
+	public void testObjectEqualsFailNoMessage() {
 		float valueA = 0.123f;
 		float valueB = valueA;
 		try
@@ -187,7 +188,7 @@ public class FloatEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatEqualsFailMessage() {
+	public void testObjectEqualsFailMessage() {
 		float valueA = 0.1234f;
 		float valueB = valueA;
 		try
@@ -207,7 +208,7 @@ public class FloatEqualsTest {
 	}
 	
 	@Test
-	public void testFloatEqualsNoFail() {
+	public void testObjectEqualsNoFail() {
 		float valueA = 0.1234f;
 		float valueB = 0.123f;
 		if(checker.isFloatEquals(this, valueA, valueB))

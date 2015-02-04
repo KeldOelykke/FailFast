@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectEqualsTest;
 
 /**
  * Fail-fast unit test of {link:IObjectEqualsCheck} and {link:IObjectEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class ObjectEqualsTest {
+public class ObjectEqualsTest implements IObjectEqualsTest<Object> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -115,7 +116,7 @@ public class ObjectEqualsTest {
 		}
 
 	}
-	
+
 	@Test(expected=IllegalStateException.class)
 	public void testObjectEqualsFailerCallerIsWrong() {
 		Object referenceA = null;
@@ -218,5 +219,6 @@ public class ObjectEqualsTest {
 		assertTrue("Expected referenceA & referenceB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
+
 
 }

@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotDefaultTest;
 
 /**
  * Fail-fast unit test of {link:IObjectEnumNotDefaultCheck} and {link:IObjectEnumNotDefaultFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumNotDefaultTest {
+public class EnumNotDefaultTest implements IObjectNotDefaultTest<Enum<?>> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class EnumNotDefaultTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumNotDefaultCheckerCallerIsNull() {
+	public void testObjectNotDefaultCheckerCallerIsNull() {
 		EFoo referenceA = EFoo.VALUE_B;
 		if(checker.isEnumNotDefault(null, referenceA))
 		{
@@ -105,7 +106,7 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumNotDefaultFailerCallerIsNull() {
+	public void testObjectNotDefaultFailerCallerIsNull() {
 		EFoo referenceA = EFoo.VALUE_B;
 		if(checker.isEnumNotDefault(this, referenceA))
 		{
@@ -114,7 +115,7 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumFailerCallerIsWrong() {
+	public void testObjectFailerCallerIsWrong() {
 		EFoo referenceA = EFoo.VALUE_B;
 		if(checker.isEnumNotDefault(new String("Foo"), referenceA))
 		{
@@ -126,7 +127,7 @@ public class EnumNotDefaultTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotDefaultMismatchCheckCheck() {
+	public void testObjectNotDefaultMismatchCheckCheck() {
 		EFoo referenceA = EFoo.VALUE_B;
 		if(checker.isEnumNotDefault(this, referenceA))
 		{
@@ -135,12 +136,12 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotDefaultMismatchFail() {
+	public void testObjectNotDefaultMismatchFail() {
 		failer.failEnumNotDefault(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotDefaultMismatchWrongCheck() {
+	public void testObjectNotDefaultMismatchWrongCheck() {
 		EFoo referenceA = EFoo.VALUE_A;
 		if(checker.isEnumDefault(this, referenceA)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumNotDefaultMismatchWrongFail() {
+	public void testObjectNotDefaultMismatchWrongFail() {
 		EFoo referenceA = EFoo.VALUE_B;
 		if(checker.isEnumNotDefault(this, referenceA))
 		{
@@ -161,7 +162,7 @@ public class EnumNotDefaultTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNotDefaultFailNoMessage() {
+	public void testObjectNotDefaultFailNoMessage() {
 		EFoo referenceA = EFoo.VALUE_B;
 		try
 		{
@@ -180,7 +181,7 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumNotDefaultFailMessage() {
+	public void testObjectNotDefaultFailMessage() {
 		EFoo referenceA = EFoo.VALUE_B;
 		try
 		{
@@ -199,7 +200,7 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumNullFail() {
+	public void testObjectNullFail() {
 		EFoo referenceA = null;
 		try
 		{
@@ -218,7 +219,7 @@ public class EnumNotDefaultTest {
 	}
 
 	@Test
-	public void testEnumDefaultNoFail() {
+	public void testObjectDefaultNoFail() {
 		EFoo referenceA = EFoo.VALUE_A;
 		if(checker.isEnumNotDefault(this, referenceA))
 		{
@@ -229,7 +230,7 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test
-	public void testEnumDefaultChangedNoFail() {
+	public void testObjectDefaultChangedNoFail() {
 		EFoo referenceA = EFoo.VALUE_B;
 		checker.setEnumDefault(referenceA);
 		if(checker.isEnumNotDefault(this, referenceA))
@@ -241,7 +242,7 @@ public class EnumNotDefaultTest {
 	}
 	
 	@Test
-	public void testEnumChanged2DefaultNoFail() {
+	public void testObjectChanged2DefaultNoFail() {
 		EFoo referenceA = EFoo.VALUE_B;
 		EBar referenceB = EBar.VALUE_A;
 		checker.setEnumDefault(referenceA);
@@ -258,7 +259,7 @@ public class EnumNotDefaultTest {
 
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumChanged2DefaultFail() {
+	public void testObjectChanged2DefaultFail() {
 		EFoo referenceA = EFoo.VALUE_A;
 		EBar referenceB = EBar.VALUE_A;
 		checker.setEnumDefault(referenceA);

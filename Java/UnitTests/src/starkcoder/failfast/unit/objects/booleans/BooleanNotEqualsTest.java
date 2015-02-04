@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotEqualsTest;
 
 /**
  * Fail-fast unit test of {link:IObjectBooleanNotEqualsCheck} and {link:IObjectBooleanNotEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanNotEqualsTest {
+public class BooleanNotEqualsTest implements IObjectNotEqualsTest<Boolean> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class BooleanNotEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNotEqualsCheckerCallerIsNull() {
+	public void testObjectNotEqualsCheckerCallerIsNull() {
 		Boolean referenceA = Boolean.FALSE;
 		Boolean referenceB = Boolean.TRUE;
 		if(checker.isBooleanNotEquals(null, referenceA, referenceB))
@@ -106,7 +107,7 @@ public class BooleanNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNotEqualsFailerCallerIsNull() {
+	public void testObjectNotEqualsFailerCallerIsNull() {
 		Boolean referenceA = Boolean.FALSE;
 		Boolean referenceB = Boolean.TRUE;
 		if(checker.isBooleanNotEquals(this, referenceA, referenceB))
@@ -117,7 +118,7 @@ public class BooleanNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotEqualsFailerCallerIsWrong() {
+	public void testObjectNotEqualsFailerCallerIsWrong() {
 		Boolean referenceA = Boolean.FALSE;
 		Boolean referenceB = Boolean.TRUE;
 		if(checker.isBooleanNotEquals(new String("Foo"), referenceA, referenceB))
@@ -130,7 +131,7 @@ public class BooleanNotEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotEqualsMismatchCheckCheck() {
+	public void testObjectNotEqualsMismatchCheckCheck() {
 		Boolean referenceA = Boolean.FALSE;
 		Boolean referenceB = Boolean.TRUE;
 		if(checker.isBooleanNotEquals(this, referenceA, referenceB))
@@ -140,12 +141,12 @@ public class BooleanNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotEqualsMismatchFail() {
+	public void testObjectNotEqualsMismatchFail() {
 		failer.failBooleanNotEquals(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotEqualsMismatchWrongCheck() {
+	public void testObjectNotEqualsMismatchWrongCheck() {
 		Boolean referenceA = Boolean.FALSE;
 		Boolean referenceB = Boolean.FALSE;
 		if(checker.isBooleanEquals(this, referenceA, referenceB)) // wrong call
@@ -155,7 +156,7 @@ public class BooleanNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotEqualsMismatchWrongFail() {
+	public void testObjectNotEqualsMismatchWrongFail() {
 		Boolean referenceA = Boolean.FALSE;
 		Boolean referenceB = Boolean.TRUE;
 		if(checker.isBooleanNotEquals(this, referenceA, referenceB))
@@ -168,7 +169,7 @@ public class BooleanNotEqualsTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNotEqualsFailNoMessage() {
+	public void testObjectNotEqualsFailNoMessage() {
 		Boolean referenceA = Boolean.FALSE;
 		Boolean referenceB = Boolean.TRUE;
 		try
@@ -188,7 +189,7 @@ public class BooleanNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNotEqualsFailMessage() {
+	public void testObjectNotEqualsFailMessage() {
 		Boolean referenceA = Boolean.TRUE;
 		Boolean referenceB = Boolean.FALSE;
 		try
@@ -208,7 +209,7 @@ public class BooleanNotEqualsTest {
 	}
 	
 	@Test
-	public void testBooleanNotEqualsNoFail() {
+	public void testObjectNotEqualsNoFail() {
 		Boolean referenceA = Boolean.TRUE;
 		Boolean referenceB = referenceA;
 		if(checker.isBooleanNotEquals(this, referenceA, referenceB))

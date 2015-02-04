@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotEqualsTest;
 
 /**
  * Fail-fast unit test of {link:IObjectStringNotEqualsCheck} and {link:IObjectStringNotEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class StringNotEqualsTest {
+public class StringNotEqualsTest implements IObjectNotEqualsTest<String> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class StringNotEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringNotEqualsCheckerCallerIsNull() {
+	public void testObjectNotEqualsCheckerCallerIsNull() {
 		String referenceA = "";
 		String referenceB = "foo";
 		if(checker.isStringNotEquals(null, referenceA, referenceB))
@@ -106,7 +107,7 @@ public class StringNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testStringNotEqualsFailerCallerIsNull() {
+	public void testObjectNotEqualsFailerCallerIsNull() {
 		String referenceA = "";
 		String referenceB = "foo";
 		if(checker.isStringNotEquals(this, referenceA, referenceB))
@@ -117,7 +118,7 @@ public class StringNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotEqualsFailerCallerIsWrong() {
+	public void testObjectNotEqualsFailerCallerIsWrong() {
 		String referenceA = "";
 		String referenceB = "foo";
 		if(checker.isStringNotEquals(new String("Foo"), referenceA, referenceB))
@@ -130,7 +131,7 @@ public class StringNotEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotEqualsMismatchCheckCheck() {
+	public void testObjectNotEqualsMismatchCheckCheck() {
 		String referenceA = "";
 		String referenceB = "foo";
 		if(checker.isStringNotEquals(this, referenceA, referenceB))
@@ -140,12 +141,12 @@ public class StringNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotEqualsMismatchFail() {
+	public void testObjectNotEqualsMismatchFail() {
 		failer.failStringNotEquals(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotEqualsMismatchWrongCheck() {
+	public void testObjectNotEqualsMismatchWrongCheck() {
 		String referenceA = "";
 		String referenceB = "";
 		if(checker.isStringEquals(this, referenceA, referenceB)) // wrong call
@@ -155,7 +156,7 @@ public class StringNotEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testStringNotEqualsMismatchWrongFail() {
+	public void testObjectNotEqualsMismatchWrongFail() {
 		String referenceA = "";
 		String referenceB = "foo";
 		if(checker.isStringNotEquals(this, referenceA, referenceB))
@@ -168,7 +169,7 @@ public class StringNotEqualsTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testStringNotEqualsFailNoMessage() {
+	public void testObjectNotEqualsFailNoMessage() {
 		String referenceA = "";
 		String referenceB = "foo";
 		try
@@ -188,7 +189,7 @@ public class StringNotEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testStringNotEqualsFailMessage() {
+	public void testObjectNotEqualsFailMessage() {
 		String referenceA = "foo";
 		String referenceB = "";
 		try
@@ -208,7 +209,7 @@ public class StringNotEqualsTest {
 	}
 
 	@Test
-	public void testStringNotEqualsNoFail() {
+	public void testObjectNotEqualsNoFail() {
 		String referenceA = "foo";
 		String referenceB = referenceA;
 		if(checker.isStringNotEquals(this, referenceA, referenceB))

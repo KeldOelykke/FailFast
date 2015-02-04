@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.objects.IObjectNotDefaultTest;
 
 /**
  * Fail-fast unit test of {link:IObjectBooleanNotDefaultCheck} and {link:IObjectBooleanNotDefaultFail}.
  * 
  * @author Keld Oelykke
  */
-public class BooleanNotDefaultTest {
+public class BooleanNotDefaultTest implements IObjectNotDefaultTest<Boolean> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class BooleanNotDefaultTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNotDefaultCheckerCallerIsNull() {
+	public void testObjectNotDefaultCheckerCallerIsNull() {
 		Boolean referenceA = Boolean.TRUE;
 		if(checker.isBooleanNotDefault(null, referenceA))
 		{
@@ -105,7 +106,7 @@ public class BooleanNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testBooleanNotDefaultFailerCallerIsNull() {
+	public void testObjectNotDefaultFailerCallerIsNull() {
 		Boolean referenceA = Boolean.TRUE;
 		if(checker.isBooleanNotDefault(this, referenceA))
 		{
@@ -114,7 +115,7 @@ public class BooleanNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanFailerCallerIsWrong() {
+	public void testObjectFailerCallerIsWrong() {
 		Boolean referenceA = Boolean.TRUE;
 		if(checker.isBooleanNotDefault(new String("Foo"), referenceA))
 		{
@@ -126,7 +127,7 @@ public class BooleanNotDefaultTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotDefaultMismatchCheckCheck() {
+	public void testObjectNotDefaultMismatchCheckCheck() {
 		Boolean referenceA = Boolean.TRUE;
 		if(checker.isBooleanNotDefault(this, referenceA))
 		{
@@ -135,12 +136,12 @@ public class BooleanNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotDefaultMismatchFail() {
+	public void testObjectNotDefaultMismatchFail() {
 		failer.failBooleanNotDefault(this, "referenceA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotDefaultMismatchWrongCheck() {
+	public void testObjectNotDefaultMismatchWrongCheck() {
 		Boolean referenceA = Boolean.FALSE;
 		if(checker.isBooleanDefault(this, referenceA)) // wrong call
 		{
@@ -149,7 +150,7 @@ public class BooleanNotDefaultTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testBooleanNotDefaultMismatchWrongFail() {
+	public void testObjectNotDefaultMismatchWrongFail() {
 		Boolean referenceA = Boolean.TRUE;
 		if(checker.isBooleanNotDefault(this, referenceA))
 		{
@@ -161,7 +162,7 @@ public class BooleanNotDefaultTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNotDefaultFailNoMessage() {
+	public void testObjectNotDefaultFailNoMessage() {
 		Boolean referenceA = Boolean.TRUE;
 		try
 		{
@@ -180,7 +181,7 @@ public class BooleanNotDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNotDefaultFailMessage() {
+	public void testObjectNotDefaultFailMessage() {
 		Boolean referenceA = Boolean.TRUE;
 		try
 		{
@@ -199,7 +200,7 @@ public class BooleanNotDefaultTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testBooleanNullFail() {
+	public void testObjectNullFail() {
 		Boolean referenceA = null;
 		try
 		{
@@ -218,7 +219,7 @@ public class BooleanNotDefaultTest {
 	}
 
 	@Test
-	public void testBooleanDefaultNoFail() {
+	public void testObjectDefaultNoFail() {
 		Boolean referenceA = Boolean.FALSE;
 		if(checker.isBooleanNotDefault(this, referenceA))
 		{
@@ -229,7 +230,7 @@ public class BooleanNotDefaultTest {
 	}
 	
 	@Test
-	public void testBooleanDefaultChangedNoFail() {
+	public void testObjectDefaultChangedNoFail() {
 		Boolean referenceA = Boolean.TRUE;
 		checker.setBooleanDefault(referenceA);
 		if(checker.isBooleanNotDefault(this, referenceA))
