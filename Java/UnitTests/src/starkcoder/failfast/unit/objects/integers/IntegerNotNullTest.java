@@ -1,4 +1,3 @@
-package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -22,6 +21,7 @@ package starkcoder.failfast.unit.objects.floats;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package starkcoder.failfast.unit.objects.integers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -44,14 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
-import starkcoder.failfast.templates.comparables.IComparableGreaterTest;
+import starkcoder.failfast.templates.objects.IObjectNotNullTest;
 
 /**
- * Fail-fast unit test of {link:IObjectFloatGreaterCheck} and {link:IObjectFloatGreaterFail}.
+ * Fail-fast unit test of {link:IObjectIntegerNotNullCheck} and {link:IObjectIntegerNotNullFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatGreaterTest implements IComparableGreaterTest<Float> {
+public class IntegerNotNullTest implements IObjectNotNullTest<Integer>{
 
 	private IChecker checker;
 	private IFailer failer;
@@ -97,70 +97,64 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterCheckerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(null, valueA, valueB))
+	public void testObjectNotNullCheckerCallerIsNull() {
+		Integer referenceNotNull = new Integer(0);
+		if(checker.isIntegerNotNull(null, referenceNotNull))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerNotNull(this, "referenceNotNull");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterFailerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectNotNullFailerCallerIsNull() {
+		Integer referenceNotNull = new Integer(0);
+		if(checker.isIntegerNotNull(this, referenceNotNull))
 		{
-			failer.failFloatGreater(null, "valueA", "valueB");
+			failer.failIntegerNotNull(null, "referenceNotNull");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterFailerCallerIsWrong() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(new String("Foo"), valueA, valueB))
+	public void testObjectNotNullFailerCallerIsWrong() {
+		Integer referenceNotNull = new Integer(0);
+		if(checker.isIntegerNotNull(new String("Foo"), referenceNotNull))
 		{
-			failer.failFloatGreater(new String("Bar"), "valueA", "valueB");
+			failer.failIntegerNotNull(new String("Bar"), "referenceNotNull");
 		}
 	}
 	
-	
+
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchCheckCheck() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectNotNullMismatchCheckCheck() {
+		Integer referenceNotNull = new Integer(0);
+		if(checker.isIntegerNotNull(this, referenceNotNull))
 		{
-			checker.isFloatGreater(this, valueA, valueB);
+			checker.isIntegerNotNull(this, referenceNotNull);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchFail() {
-		failer.failFloatGreater(this, "valueA", "valueB");
+	public void testObjectNotNullMismatchFail() {
+		failer.failObjectNull(this, "referenceNotNull");
 	}
-
+	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchWrongCheck() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLess(this, valueA, valueB)) // wrong call
+	public void testObjectNotNullMismatchWrongCheck() {
+		Object referenceNotNull = null;
+		if(checker.isObjectNull(this, referenceNotNull)) // wrong call
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerNotNull(this, "referenceNotNull");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchWrongFail() {
-		float valueA = 0.123f;
-		float valueB = 0.122f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectNotNullMismatchWrongFail() {
+		Integer referenceNotNull = new Integer(0);
+		if(checker.isIntegerNotNull(this, referenceNotNull)) 
 		{
-			failer.failFloatLess(this, "valueA", "valueB"); // wrong call
+			failer.failObjectNull(this, "referenceNotNull"); // wrong call
 		}
 	}
 	
@@ -168,14 +162,13 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailNoMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testObjectNotNullFailNoMessage() {
+		Integer referenceNotNull = new Integer(0);
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isIntegerNotNull(this, referenceNotNull))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB");
+				failer.failIntegerNotNull(this, "referenceNotNull");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -185,17 +178,17 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 			throw failFastException;
 
 		}
+
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testObjectNotNullFailMessage() {
+		Integer referenceNotNull = new Integer(0);
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isIntegerNotNull(this, referenceNotNull))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB", "Extra info goes here");
+				failer.failIntegerNotNull(this, "referenceNotNull", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -208,14 +201,13 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	}
 	
 	@Test
-	public void testComparableGreaterNoFail() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectNullNoFail() {
+		Integer referenceNull = null;
+		if(checker.isIntegerNotNull(this, referenceNull))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerNotNull(this, "referenceNull");
 		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertTrue("Expected referenceNull to pass the not-null check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

@@ -1,4 +1,4 @@
-package starkcoder.failfast.unit.objects.floats;
+package starkcoder.failfast.unit.objects.integers;
 /**
  * The MIT License (MIT)
  * 
@@ -44,14 +44,13 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
-import starkcoder.failfast.templates.comparables.IComparableLessOrEqualsTest;
 
 /**
- * Fail-fast unit test of {link:IObjectFloatLessOrEqualsCheck} and {link:IObjectFloatLessOrEqualsFail}.
+ * Fail-fast unit test of {link:IObjectIntegerOutsideCheck} and {link:IObjectIntegerOutsideFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatLessOrEqualsTest implements IComparableLessOrEqualsTest<Float> {
+public class IntegerOutsideTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -97,32 +96,35 @@ public class FloatLessOrEqualsTest implements IComparableLessOrEqualsTest<Float>
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableLessOrEqualsCheckerCallerIsNull() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLessOrEquals(null, valueA, valueB))
+	public void testIntegerOutsideCheckerCallerIsNull() {
+		int valueA = 122;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerOutside(null, valueA, valueMin, valueMax))
 		{
-			failer.failFloatLessOrEquals(this, "valueA", "valueB");
+			failer.failIntegerOutside(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableLessOrEqualsFailerCallerIsNull() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLessOrEquals(this, valueA, valueB))
+	public void testIntegerOutsideFailerCallerIsNull() {
+		int valueA = 122;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatLessOrEquals(null, "valueA", "valueB");
+			failer.failIntegerOutside(null, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableLessOrEqualsFailerCallerIsWrong() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLessOrEquals(new String("Foo"), valueA, valueB))
+	public void testIntegerFailerCallerIsWrong() {
+		int valueA = 122;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerOutside(new String("Foo"), valueA, valueMin, valueMax))
 		{
-			failer.failFloatLessOrEquals(new String("Bar"), "valueA", "valueB");
+			failer.failIntegerOutside(new String("Bar"), "valueA");
 		}
 	}
 	
@@ -130,37 +132,40 @@ public class FloatLessOrEqualsTest implements IComparableLessOrEqualsTest<Float>
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableLessOrEqualsMismatchCheckCheck() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLessOrEquals(this, valueA, valueB))
+	public void testIntegerOutsideMismatchCheckCheck() {
+		int valueA = 122;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
 		{
-			checker.isFloatLessOrEquals(this, valueA, valueB);
+			checker.isIntegerOutside(this, valueA, valueMin, valueMax);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableLessOrEqualsMismatchFail() {
-		failer.failFloatLessOrEquals(this, "valueA", "valueB");
+	public void testIntegerOutsideMismatchFail() {
+		failer.failIntegerOutside(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testComparableLessOrEqualsMismatchWrongCheck() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB)) // wrong call
+	public void testIntegerOutsideMismatchWrongCheck() {
+		int valueA = 124;
+		int valueMin = 1241;
+		int valueMax = 124;
+		if(checker.isIntegerInside(this, valueA, valueMin, valueMax)) // wrong call
 		{
-			failer.failFloatLessOrEquals(this, "valueA", "valueB");
+			failer.failIntegerOutside(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableLessOrEqualsMismatchWrongFail() {
-		float valueA = 0.123f;
-		float valueB = 0.124f;
-		if(checker.isFloatLessOrEquals(this, valueA, valueB))
+	public void testIntegerOutsideMismatchWrongFail() {
+		int valueA = 122;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB"); // wrong call
+			failer.failIntegerInside(this, "valueA"); // wrong call
 		}
 	}
 	
@@ -168,14 +173,15 @@ public class FloatLessOrEqualsTest implements IComparableLessOrEqualsTest<Float>
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableLessFailNoMessage() {
-		float valueA = -0.123f;
-		float valueB = 0.123f;
+	public void testIntegerOutsideFailNoMessage() {
+		int valueA = 121;
+		int valueMin = 122;
+		int valueMax = 123;
 		try
 		{
-			if(checker.isFloatLessOrEquals(this, valueA, valueB))
+			if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatLessOrEquals(this, "valueA", "valueB");
+				failer.failIntegerOutside(this, "valueA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -188,54 +194,15 @@ public class FloatLessOrEqualsTest implements IComparableLessOrEqualsTest<Float>
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableLessFailMessage() {
-		float valueA = 0.123f;
-		float valueB = 0.124f;
+	public void testIntegerOutsideFailMessage() {
+		int valueA = 122;
+		int valueMin = 124;
+		int valueMax = 123;
 		try
 		{
-			if(checker.isFloatLessOrEquals(this, valueA, valueB))
+			if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatLessOrEquals(this, "valueA", "valueB", "Extra info goes here");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testComparableEqualsFailNoMessage() {
-		float valueA = 0.124f;
-		float valueB = 0.124f;
-		try
-		{
-			if(checker.isFloatLessOrEquals(this, valueA, valueB))
-			{
-				failer.failFloatLessOrEquals(this, "valueA", "valueB");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
-
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testComparableEqualsFailMessage() {
-		float valueA = -0.124f;
-		float valueB = -0.124f;
-		try
-		{
-			if(checker.isFloatLessOrEquals(this, valueA, valueB))
-			{
-				failer.failFloatLessOrEquals(this, "valueA", "valueB", "Extra info goes here");
+				failer.failIntegerOutside(this, "valueA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -248,15 +215,82 @@ public class FloatLessOrEqualsTest implements IComparableLessOrEqualsTest<Float>
 	}
 	
 	@Test
-	public void testComparableLessOrEqualsNoFail() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatLessOrEquals(this, valueA, valueB))
+	public void testIntegerOutsideNoFail() {
+		int valueA = 123;
+		int valueMin = 123;
+		int valueMax = 124;
+		if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatLessOrEquals(this, "valueA", "valueB");
+			failer.failIntegerOutside(this, "valueA");
 		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertTrue("Expected valueA & valueMin to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 
+	
+	
+	// 4th - corner cases
+	
+	@Test(expected=FailFastException.class)
+	public void testIntegerOutsideFailIntegerMin() {
+		int valueA = Integer.MIN_VALUE;
+		int valueMin = (Integer.MIN_VALUE + 1);
+		int valueMax = Integer.MAX_VALUE;
+		try
+		{
+			if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
+			{
+				failer.failIntegerOutside(this, "valueA");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testIntegerOutsideFailIntegerMax() {
+		int valueA = Integer.MAX_VALUE;
+		int valueMin = Integer.MIN_VALUE;
+		int valueMax = (Integer.MAX_VALUE - 1);
+		try
+		{
+			if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
+			{
+				failer.failIntegerOutside(this, "valueA", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testIntegerOutsideFailMinusZeroVsZero() {
+		int valueA = (0 + 1);
+		int valueMin = 0;
+		int valueMax = 0;
+		try
+		{
+			if(checker.isIntegerOutside(this, valueA, valueMin, valueMax))
+			{
+				failer.failIntegerOutside(this, "valueA", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
 }

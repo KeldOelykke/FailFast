@@ -1,4 +1,4 @@
-package starkcoder.failfast.unit.objects.floats;
+package starkcoder.failfast.unit.objects.integers;
 /**
  * The MIT License (MIT)
  * 
@@ -44,14 +44,13 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
-import starkcoder.failfast.templates.comparables.IComparableGreaterTest;
 
 /**
- * Fail-fast unit test of {link:IObjectFloatGreaterCheck} and {link:IObjectFloatGreaterFail}.
+ * Fail-fast unit test of {link:IObjectIntegerInsideCheck} and {link:IObjectIntegerInsideFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatGreaterTest implements IComparableGreaterTest<Float> {
+public class IntegerInsideTest {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -97,32 +96,35 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterCheckerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(null, valueA, valueB))
+	public void testIntegerInsideCheckerCallerIsNull() {
+		int valueA = 123;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerInside(null, valueA, valueMin, valueMax))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerInside(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterFailerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testIntegerInsideFailerCallerIsNull() {
+		int valueA = 123;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatGreater(null, "valueA", "valueB");
+			failer.failIntegerInside(null, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterFailerCallerIsWrong() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(new String("Foo"), valueA, valueB))
+	public void testIntegerFailerCallerIsWrong() {
+		int valueA = 123;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerInside(new String("Foo"), valueA, valueMin, valueMax))
 		{
-			failer.failFloatGreater(new String("Bar"), "valueA", "valueB");
+			failer.failIntegerInside(new String("Bar"), "valueA");
 		}
 	}
 	
@@ -130,37 +132,40 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchCheckCheck() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testIntegerInsideMismatchCheckCheck() {
+		int valueA = 123;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
 		{
-			checker.isFloatGreater(this, valueA, valueB);
+			checker.isIntegerInside(this, valueA, valueMin, valueMax);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchFail() {
-		failer.failFloatGreater(this, "valueA", "valueB");
+	public void testIntegerInsideMismatchFail() {
+		failer.failIntegerInside(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchWrongCheck() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLess(this, valueA, valueB)) // wrong call
+	public void testIntegerInsideMismatchWrongCheck() {
+		int valueA = 123;
+		int valueMin = 1241;
+		int valueMax = 124;
+		if(checker.isIntegerOutside(this, valueA, valueMin, valueMax)) // wrong call
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerInside(this, "valueA");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchWrongFail() {
-		float valueA = 0.123f;
-		float valueB = 0.122f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testIntegerInsideMismatchWrongFail() {
+		int valueA = 123;
+		int valueMin = 123;
+		int valueMax = 123;
+		if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatLess(this, "valueA", "valueB"); // wrong call
+			failer.failIntegerOutside(this, "valueA"); // wrong call
 		}
 	}
 	
@@ -168,14 +173,15 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailNoMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testIntegerInsideFailNoMessage() {
+		int valueA = 123;
+		int valueMin = 122;
+		int valueMax = 124;
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB");
+				failer.failIntegerInside(this, "valueA");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -188,14 +194,15 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testIntegerInsideFailMessage() {
+		int valueA = 123;
+		int valueMin = 124;
+		int valueMax = 122;
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB", "Extra info goes here");
+				failer.failIntegerInside(this, "valueA", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -208,15 +215,79 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	}
 	
 	@Test
-	public void testComparableGreaterNoFail() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testIntegerInsideNoFail() {
+		int valueA = 1241;
+		int valueMin = 123;
+		int valueMax = 124;
+		if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerInside(this, "valueA");
 		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertTrue("Expected valueA & valueMin to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 
+	
+	// 4th - corner cases
+	
+	@Test(expected=FailFastException.class)
+	public void testIntegerInsideFailIntegerMin() {
+		int valueA = Integer.MIN_VALUE;
+		int valueMin = valueA;
+		int valueMax = valueA;
+		try
+		{
+			if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
+			{
+				failer.failIntegerInside(this, "valueA");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testIntegerInsideFailIntegerMax() {
+		int valueA = Integer.MAX_VALUE;
+		int valueMin = valueA;
+		int valueMax = valueA;
+		try
+		{
+			if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
+			{
+				failer.failIntegerInside(this, "valueA", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testIntegerInsideFailMinusZeroVsZero() {
+		int valueA = -0;
+		int valueMin = 0;
+		int valueMax = 0;
+		try
+		{
+			if(checker.isIntegerInside(this, valueA, valueMin, valueMax))
+			{
+				failer.failIntegerInside(this, "valueA", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+		}
+	}
 }

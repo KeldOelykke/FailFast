@@ -1,4 +1,3 @@
-package starkcoder.failfast.unit.objects.floats;
 /**
  * The MIT License (MIT)
  * 
@@ -22,6 +21,7 @@ package starkcoder.failfast.unit.objects.floats;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package starkcoder.failfast.unit.objects.integers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -44,14 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
-import starkcoder.failfast.templates.comparables.IComparableGreaterTest;
+import starkcoder.failfast.templates.objects.IObjectSameTest;
 
 /**
- * Fail-fast unit test of {link:IObjectFloatGreaterCheck} and {link:IObjectFloatGreaterFail}.
+ * Fail-fast unit test of {link:IObjectIntegerSameCheck} and {link:IObjectIntegerSameFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatGreaterTest implements IComparableGreaterTest<Float> {
+public class IntegerSameTest implements IObjectSameTest<Integer> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -97,32 +97,33 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterCheckerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(null, valueA, valueB))
+	public void testObjectSameCheckerCallerIsNull() {
+		Integer referenceA = null;
+		Integer referenceB = null;
+		if(checker.isIntegerSame(null, referenceA, referenceB))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerSame(this, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterFailerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectSameFailerCallerIsNull() {
+		Integer referenceA = null;
+		Integer referenceB = null;
+		if(checker.isIntegerSame(this, referenceA, referenceB))
 		{
-			failer.failFloatGreater(null, "valueA", "valueB");
+			failer.failIntegerSame(null, "referenceA", "referenceB");
 		}
+
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterFailerCallerIsWrong() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(new String("Foo"), valueA, valueB))
+	public void testObjectSameFailerCallerIsWrong() {
+		Integer referenceA = null;
+		Integer referenceB = null;
+		if(checker.isIntegerSame(new String("Foo"), referenceA, referenceB))
 		{
-			failer.failFloatGreater(new String("Bar"), "valueA", "valueB");
+			failer.failIntegerSame(new String("Bar"), "referenceA", "referenceB");
 		}
 	}
 	
@@ -130,37 +131,37 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchCheckCheck() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectSameMismatchCheckCheck() {
+		Integer referenceA = null;
+		Integer referenceB = null;
+		if(checker.isIntegerSame(this, referenceA, referenceB))
 		{
-			checker.isFloatGreater(this, valueA, valueB);
+			checker.isIntegerSame(this, referenceA, referenceB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchFail() {
-		failer.failFloatGreater(this, "valueA", "valueB");
+	public void testObjectSameMismatchFail() {
+		failer.failIntegerSame(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchWrongCheck() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLess(this, valueA, valueB)) // wrong call
+	public void testObjectSameMismatchWrongCheck() {
+		Integer referenceA = null;
+		Integer referenceB = new Integer(0);
+		if(checker.isIntegerNotSame(this, referenceA, referenceB)) // wrong call
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerSame(this, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterMismatchWrongFail() {
-		float valueA = 0.123f;
-		float valueB = 0.122f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectSameMismatchWrongFail() {
+		Integer referenceA = null;
+		Integer referenceB = null;
+		if(checker.isIntegerSame(this, referenceA, referenceB))
 		{
-			failer.failFloatLess(this, "valueA", "valueB"); // wrong call
+			failer.failIntegerNotSame(this, "referenceA", "referenceB"); // wrong call
 		}
 	}
 	
@@ -168,14 +169,14 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailNoMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testObjectSameFailNoMessage() {
+		Integer referenceA = null;
+		Integer referenceB = null;
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isIntegerSame(this, referenceA, referenceB))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB");
+				failer.failIntegerSame(this, "referenceA", "referenceB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -188,14 +189,14 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+	public void testObjectSameFailMessage() {
+		Integer referenceA = new Integer(1);
+		Integer referenceB = referenceA;
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isIntegerSame(this, referenceA, referenceB))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB", "Extra info goes here");
+				failer.failIntegerSame(this, "referenceA", "referenceB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -208,14 +209,14 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	}
 	
 	@Test
-	public void testComparableGreaterNoFail() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+	public void testObjectSameNoFail() {
+		Integer referenceA = new Integer(1);
+		Integer referenceB = new Integer(1); // A & B not same reference, but they are equals 
+		if(checker.isIntegerSame(this, referenceA, referenceB))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failIntegerSame(this, "referenceA", "referenceB");
 		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertTrue("Expected referenceA & referenceB to pass the same check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

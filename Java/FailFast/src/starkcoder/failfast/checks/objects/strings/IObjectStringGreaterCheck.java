@@ -23,28 +23,31 @@
  */
 package starkcoder.failfast.checks.objects.strings;
 
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.strings.IObjectStringGreaterFail;
 
 /**
- * Specification grouping all String check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting String.
- * </p>
+ * Specifies a greater check for String.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectStringChecker extends 
-	IObjectStringSameCheck, IObjectStringNotSameCheck,
-	IObjectStringEqualsCheck, IObjectStringNotEqualsCheck,
-	IObjectStringNullCheck, IObjectStringNotNullCheck,
-	IObjectStringDefaultCheck, IObjectStringNotDefaultCheck,
-	IObjectStringLessCheck, IObjectStringLessOrEqualsCheck,
-	IObjectStringGreaterCheck, IObjectStringGreaterOrEqualsCheck,
-	IObjectStringEmptyCheck, IObjectStringNotEmptyCheck,
-	IObjectStringNullOrEmptyCheck, IObjectStringNotNullAndNotEmptyCheck,
-	IObjectStringWithPrefixCheck, IObjectStringWithoutPrefixCheck,
-	IObjectStringWithSubstringCheck, IObjectStringWithoutSubstringCheck,
-	IObjectStringWithPostfixCheck, IObjectStringWithoutPostfixCheck,
-	IObjectStringMatchingCheck, IObjectStringNotMatchingCheck
+public interface IObjectStringGreaterCheck extends ICheck
 {
+	/**
+	 * Checks if references are not null && A > B.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check against reference B
+	 * @param referenceB
+	 *            argument to check against reference A
+	 * @return true, if references are not null && A > B, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectStringGreaterFail.class)
+	boolean isStringGreater(Object caller, String referenceA, String referenceB);
 
 }

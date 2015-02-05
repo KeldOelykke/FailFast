@@ -1,4 +1,4 @@
-package starkcoder.failfast.unit.objects.floats;
+package starkcoder.failfast.unit.objects.strings;
 /**
  * The MIT License (MIT)
  * 
@@ -47,11 +47,11 @@ import starkcoder.failfast.fails.IFailer;
 import starkcoder.failfast.templates.comparables.IComparableGreaterTest;
 
 /**
- * Fail-fast unit test of {link:IObjectFloatGreaterCheck} and {link:IObjectFloatGreaterFail}.
+ * Fail-fast unit test of {link:IObjectStringGreaterCheck} and {link:IObjectStringGreaterFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatGreaterTest implements IComparableGreaterTest<Float> {
+public class StringGreaterTest implements IComparableGreaterTest<String> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -98,31 +98,31 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testComparableGreaterCheckerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(null, valueA, valueB))
+		String referenceA = "a.abc";
+		String referenceB = "a.abb";
+		if(checker.isStringGreater(null, referenceA, referenceB))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failStringGreater(this, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void testComparableGreaterFailerCallerIsNull() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+		String referenceA = "a.abc";
+		String referenceB = "a.abb";
+		if(checker.isStringGreater(this, referenceA, referenceB))
 		{
-			failer.failFloatGreater(null, "valueA", "valueB");
+			failer.failStringGreater(null, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testComparableGreaterFailerCallerIsWrong() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(new String("Foo"), valueA, valueB))
+		String referenceA = "a.abc";
+		String referenceB = "a.abb";
+		if(checker.isStringGreater(new String("Foo"), referenceA, referenceB))
 		{
-			failer.failFloatGreater(new String("Bar"), "valueA", "valueB");
+			failer.failStringGreater(new String("Bar"), "referenceA", "referenceB");
 		}
 	}
 	
@@ -131,36 +131,36 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	
 	@Test(expected=IllegalStateException.class)
 	public void testComparableGreaterMismatchCheckCheck() {
-		float valueA = 0.124f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+		String referenceA = "a.abc";
+		String referenceB = "a.abb";
+		if(checker.isStringGreater(this, referenceA, referenceB))
 		{
-			checker.isFloatGreater(this, valueA, valueB);
+			checker.isStringGreater(this, referenceA, referenceB);
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testComparableGreaterMismatchFail() {
-		failer.failFloatGreater(this, "valueA", "valueB");
+		failer.failStringGreater(this, "referenceA", "referenceB");
 	}
 
 	@Test(expected=IllegalStateException.class)
 	public void testComparableGreaterMismatchWrongCheck() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatLess(this, valueA, valueB)) // wrong call
+		String referenceA = "a.aba";
+		String referenceB = "a.abb";
+		if(checker.isStringLess(this, referenceA, referenceB)) // wrong call
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failStringGreater(this, "referenceA", "referenceB");
 		}
 	}
 	
 	@Test(expected=IllegalStateException.class)
 	public void testComparableGreaterMismatchWrongFail() {
-		float valueA = 0.123f;
-		float valueB = 0.122f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+		String referenceA = "a.abb";
+		String referenceB = "a.aba";
+		if(checker.isStringGreater(this, referenceA, referenceB))
 		{
-			failer.failFloatLess(this, "valueA", "valueB"); // wrong call
+			failer.failStringLess(this, "referenceA", "referenceB"); // wrong call
 		}
 	}
 	
@@ -169,13 +169,13 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	
 	@Test(expected=FailFastException.class)
 	public void testComparableGreaterFailNoMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+		String referenceA = "a.abe";
+		String referenceB = "a.abc";
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isStringGreater(this, referenceA, referenceB))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB");
+				failer.failStringGreater(this, "referenceA", "referenceB");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -189,13 +189,13 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	
 	@Test(expected=FailFastException.class)
 	public void testComparableGreaterFailMessage() {
-		float valueA = 0.125f;
-		float valueB = 0.124f;
+		String referenceA = "a.abe";
+		String referenceB = "a.abc";
 		try
 		{
-			if(checker.isFloatGreater(this, valueA, valueB))
+			if(checker.isStringGreater(this, referenceA, referenceB))
 			{
-				failer.failFloatGreater(this, "valueA", "valueB", "Extra info goes here");
+				failer.failStringGreater(this, "referenceA", "referenceB", "Extra info goes here");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -209,13 +209,13 @@ public class FloatGreaterTest implements IComparableGreaterTest<Float> {
 	
 	@Test
 	public void testComparableGreaterNoFail() {
-		float valueA = 0.122f;
-		float valueB = 0.123f;
-		if(checker.isFloatGreater(this, valueA, valueB))
+		String referenceA = "a.aba";
+		String referenceB = "a.abb";
+		if(checker.isStringGreater(this, referenceA, referenceB))
 		{
-			failer.failFloatGreater(this, "valueA", "valueB");
+			failer.failStringGreater(this, "referenceA", "referenceB");
 		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
+		assertTrue("Expected referenceA & referenceB to pass the equals check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 

@@ -92,6 +92,10 @@ import starkcoder.failfast.checks.objects.integers.IObjectIntegerSameCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringGreaterCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringLessCheck;
+import starkcoder.failfast.checks.objects.strings.IObjectStringLessOrEqualsCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringMatchingCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringNotEmptyCheck;
@@ -1536,6 +1540,49 @@ public abstract class AChecker implements IChecker
 
 		return result;
 	}
+	
+	@Override
+	public boolean isStringLess(Object caller, String referenceA, String referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectStringLessCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isStringLessOrEquals(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectStringLessOrEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isStringGreater(Object caller, String referenceA, String referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectStringGreaterCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isStringGreaterOrEquals(Object caller, String referenceA,
+			String referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectStringGreaterOrEqualsCheck.class);
+
+		return result;
+	}	
+	
 
 	private final static String stringEmpty = "";
 	

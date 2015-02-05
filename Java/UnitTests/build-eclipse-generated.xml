@@ -23,6 +23,7 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -718,9 +719,27 @@
             <test name="starkcoder.failfast.unit.objects.floats.FloatNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatOutsideTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerInsideTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerLessTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerOutsideTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerSameTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEmptyTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringMatchingTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNotEmptyTest" todir="${junit.output.dir}"/>
@@ -821,6 +840,10 @@
             <test name="starkcoder.failfast.unit.objects.strings.StringDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEmptyTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringMatchingTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNotEmptyTest" todir="${junit.output.dir}"/>
@@ -1112,9 +1135,27 @@
             <test name="starkcoder.failfast.unit.objects.floats.FloatNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatOutsideTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.floats.FloatSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerInsideTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerLessTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerOutsideTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerSameTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEmptyTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringMatchingTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNotDefaultTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringNotEmptyTest" todir="${junit.output.dir}"/>
@@ -1132,6 +1173,150 @@
             <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPostfixTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringWithoutPrefixTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.strings.StringWithoutSubstringTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringLessTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringGreaterTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringLessOrEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="StringGreaterOrEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.strings.StringGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerNullTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerNotNullTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerSameTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerSameTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerNotSameTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotSameTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerDefaultTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerNotDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotDefaultTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerNotEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerNotEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerLessTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerLessTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerGreaterTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerGreaterTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerGreaterOrEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerLessOrEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerOutsideTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerOutsideTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="IntegerInsideTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.integers.IntegerInsideTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>

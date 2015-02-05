@@ -94,6 +94,10 @@ import starkcoder.failfast.fails.objects.integers.IObjectIntegerSameFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringGreaterFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringLessFail;
+import starkcoder.failfast.fails.objects.strings.IObjectStringLessOrEqualsFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringNotEmptyFail;
@@ -1501,6 +1505,59 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	
+	@Override
+	public void failStringGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failStringGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failStringGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failStringGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failStringLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failStringLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failStringLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectStringLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failStringLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectStringLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+
 	
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail#failStringEmpty(java.lang.Object, java.lang.String)

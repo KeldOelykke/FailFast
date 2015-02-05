@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.comparables.IComparableLessTest;
 
 /**
  * Fail-fast unit test of {link:IObjectFloatLessCheck} and {link:IObjectFloatLessFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatLessTest {
+public class FloatLessTest implements IComparableLessTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class FloatLessTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatLessCheckerCallerIsNull() {
+	public void testComparableLessCheckerCallerIsNull() {
 		float valueA = 0.122f;
 		float valueB = 0.123f;
 		if(checker.isFloatLess(null, valueA, valueB))
@@ -106,7 +107,7 @@ public class FloatLessTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatLessFailerCallerIsNull() {
+	public void testComparableLessFailerCallerIsNull() {
 		float valueA = 0.122f;
 		float valueB = 0.123f;
 		if(checker.isFloatLess(this, valueA, valueB))
@@ -116,7 +117,7 @@ public class FloatLessTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatFailerCallerIsWrong() {
+	public void testComparableLessFailerCallerIsWrong() {
 		float valueA = 0.122f;
 		float valueB = 0.123f;
 		if(checker.isFloatLess(new String("Foo"), valueA, valueB))
@@ -129,7 +130,7 @@ public class FloatLessTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatLessMismatchCheckCheck() {
+	public void testComparableLessMismatchCheckCheck() {
 		float valueA = 0.122f;
 		float valueB = 0.123f;
 		if(checker.isFloatLess(this, valueA, valueB))
@@ -139,12 +140,12 @@ public class FloatLessTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatLessMismatchFail() {
+	public void testComparableLessMismatchFail() {
 		failer.failFloatLess(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatLessMismatchWrongCheck() {
+	public void testComparableLessMismatchWrongCheck() {
 		float valueA = 0.124f;
 		float valueB = 0.123f;
 		if(checker.isFloatGreater(this, valueA, valueB)) // wrong call
@@ -154,7 +155,7 @@ public class FloatLessTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatLessMismatchWrongFail() {
+	public void testComparableLessMismatchWrongFail() {
 		float valueA = 0.123f;
 		float valueB = 0.124f;
 		if(checker.isFloatLess(this, valueA, valueB))
@@ -167,7 +168,7 @@ public class FloatLessTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatLessFailNoMessage() {
+	public void testComparableLessFailNoMessage() {
 		float valueA = 0.123f;
 		float valueB = 0.124f;
 		try
@@ -187,7 +188,7 @@ public class FloatLessTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatLessFailMessage() {
+	public void testComparableLessFailMessage() {
 		float valueA = 0.123f;
 		float valueB = 0.124f;
 		try
@@ -207,7 +208,7 @@ public class FloatLessTest {
 	}
 	
 	@Test
-	public void testFloatLessNoFail() {
+	public void testComparableLessNoFail() {
 		float valueA = 0.124f;
 		float valueB = 0.123f;
 		if(checker.isFloatLess(this, valueA, valueB))

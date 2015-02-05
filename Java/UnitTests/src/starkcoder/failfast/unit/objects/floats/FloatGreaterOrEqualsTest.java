@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.comparables.IComparableGreaterOrEqualsTest;
 
 /**
  * Fail-fast unit test of {link:IPrimitiveFloatGreaterOrEqualsCheck} and {link:IPrimitiveFloatGreaterOrEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatGreaterOrEqualsTest {
+public class FloatGreaterOrEqualsTest implements IComparableGreaterOrEqualsTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class FloatGreaterOrEqualsTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatGreaterOrEqualsCheckerCallerIsNull() {
+	public void testComparableGreaterOrEqualsCheckerCallerIsNull() {
 		float valueA = 0.124f;
 		float valueB = 0.123f;
 		if(checker.isFloatGreaterOrEquals(null, valueA, valueB))
@@ -106,7 +107,7 @@ public class FloatGreaterOrEqualsTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatGreaterOrEqualsFailerCallerIsNull() {
+	public void testComparableGreaterOrEqualsFailerCallerIsNull() {
 		float valueA = 0.124f;
 		float valueB = 0.123f;
 		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
@@ -116,7 +117,7 @@ public class FloatGreaterOrEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatFailerCallerIsWrong() {
+	public void testComparableGreaterOrEqualsFailerCallerIsWrong() {
 		float valueA = 0.124f;
 		float valueB = 0.123f;
 		if(checker.isFloatGreaterOrEquals(new String("Foo"), valueA, valueB))
@@ -129,7 +130,7 @@ public class FloatGreaterOrEqualsTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatGreaterOrEqualsMismatchCheckCheck() {
+	public void testComparableGreaterOrEqualsMismatchCheckCheck() {
 		float valueA = 0.124f;
 		float valueB = 0.123f;
 		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
@@ -139,12 +140,12 @@ public class FloatGreaterOrEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatGreaterOrEqualsMismatchFail() {
+	public void testComparableGreaterOrEqualsMismatchFail() {
 		failer.failFloatGreaterOrEquals(this, "valueA", "valueB");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatGreaterOrEqualsMismatchWrongCheck() {
+	public void testComparableGreaterOrEqualsMismatchWrongCheck() {
 		float valueA = 0.122f;
 		float valueB = 0.123f;
 		if(checker.isFloatLess(this, valueA, valueB)) // wrong call
@@ -154,7 +155,7 @@ public class FloatGreaterOrEqualsTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatGreaterOrEqualsMismatchWrongFail() {
+	public void testComparableGreaterOrEqualsMismatchWrongFail() {
 		float valueA = 0.123f;
 		float valueB = 0.122f;
 		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))
@@ -167,7 +168,7 @@ public class FloatGreaterOrEqualsTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatGreaterFailNoMessage() {
+	public void testComparableGreaterFailNoMessage() {
 		float valueA = 0.125f;
 		float valueB = 0.124f;
 		try
@@ -187,7 +188,7 @@ public class FloatGreaterOrEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatGreaterFailMessage() {
+	public void testComparableGreaterFailMessage() {
 		float valueA = 0.124f;
 		float valueB = -0.124f;
 		try
@@ -207,7 +208,7 @@ public class FloatGreaterOrEqualsTest {
 	}
 
 	@Test(expected=FailFastException.class)
-	public void testFloatEqualsFailNoMessage() {
+	public void testComparableEqualsFailNoMessage() {
 		float valueA = -0.124f;
 		float valueB = -0.124f;
 		try
@@ -227,7 +228,7 @@ public class FloatGreaterOrEqualsTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatEqualsFailMessage() {
+	public void testComparableEqualsFailMessage() {
 		float valueA = 0.125f;
 		float valueB = 0.125f;
 		try
@@ -247,7 +248,7 @@ public class FloatGreaterOrEqualsTest {
 	}
 	
 	@Test
-	public void testFloatGreaterOrEqualsNoFail() {
+	public void testComparableGreaterOrEqualsNoFail() {
 		float valueA = 0.122f;
 		float valueB = 0.123f;
 		if(checker.isFloatGreaterOrEquals(this, valueA, valueB))

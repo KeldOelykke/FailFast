@@ -38,6 +38,8 @@ public interface IObjectStringFailer extends
 	IObjectStringEqualsFail, IObjectStringNotEqualsFail,
 	IObjectStringNullFail, IObjectStringNotNullFail,
 	IObjectStringDefaultFail, IObjectStringNotDefaultFail,
+	IObjectStringLessFail, IObjectStringLessOrEqualsFail,
+	IObjectStringGreaterFail, IObjectStringGreaterOrEqualsFail,
 	IObjectStringEmptyFail, IObjectStringNotEmptyFail,
 	IObjectStringNullOrEmptyFail, IObjectStringNotNullAndNotEmptyFail,
 	IObjectStringWithPrefixFail, IObjectStringWithoutPrefixFail,
