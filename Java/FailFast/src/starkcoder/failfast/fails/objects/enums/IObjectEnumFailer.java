@@ -36,7 +36,10 @@ public interface IObjectEnumFailer extends
 	IObjectEnumSameFail, IObjectEnumNotSameFail,
 	IObjectEnumEqualsFail, IObjectEnumNotEqualsFail,
 	IObjectEnumNullFail, IObjectEnumNotNullFail,
-	IObjectEnumDefaultFail, IObjectEnumNotDefaultFail
+	IObjectEnumDefaultFail, IObjectEnumNotDefaultFail,
+	IObjectEnumGreaterFail, IObjectEnumGreaterOrEqualsFail,
+	IObjectEnumLessFail, IObjectEnumLessOrEqualsFail,
+	IObjectEnumInsideFail, IObjectEnumOutsideFail
 {
 
 }

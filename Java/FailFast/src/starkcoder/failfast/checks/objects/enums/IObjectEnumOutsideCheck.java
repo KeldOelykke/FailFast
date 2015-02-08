@@ -25,26 +25,32 @@ package starkcoder.failfast.checks.objects.enums;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumOutsideFail;
 
 /**
- * Specifies a default value check for Enum.
+ * Specifies a within check for Enum.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectEnumDefaultCheck extends IObjectEnumDefaultProperties, ICheck
+public interface IObjectEnumOutsideCheck extends ICheck
 {
 	/**
-	 * Checks if the Enum reference a default value.
+	 * Checks if references are not nulls and A is outside [min;max].
+	 * <p>
+	 * [min;max] and [max;min] is considered the same number range.
+	 * </p>
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
-	 *            reference to check
-	 * @return true, if referenced object has a default value, otherwise false
+	 *            reference to check against reference B
+	 * @param referenceB
+	 *            argument to check against reference A
+	 * @return true, if references are not nulls and A is outside [min;max], otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NCheck(failSpecificationType = IObjectEnumDefaultFail.class)
-	<A extends Enum<A>> boolean isEnumDefault(Object caller, A referenceA);
+	@NCheck(failSpecificationType = IObjectEnumOutsideFail.class)
+	<T extends Enum<T>> boolean isEnumOutside(Object caller, T referenceA, T referenceMin, T referenceMax);
+
 }

@@ -28,7 +28,7 @@ package starkcoder.failfast.unit.objects.enums;
  *
  */
 public enum EBar {
-	VALUE_A, VALUE_B;
+	VALUE_A, VALUE_B, VALUE_C;
 
 	@Override
 	public String toString() {

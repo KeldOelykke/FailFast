@@ -36,7 +36,10 @@ public interface IObjectEnumChecker extends
 	IObjectEnumSameCheck, IObjectEnumNotSameCheck,
 	IObjectEnumEqualsCheck, IObjectEnumNotEqualsCheck,
 	IObjectEnumNullCheck, IObjectEnumNotNullCheck,
-	IObjectEnumDefaultCheck, IObjectEnumNotDefaultCheck
+	IObjectEnumDefaultCheck, IObjectEnumNotDefaultCheck,
+	IObjectEnumGreaterCheck, IObjectEnumGreaterOrEqualsCheck,
+	IObjectEnumLessCheck, IObjectEnumLessOrEqualsCheck,
+	IObjectEnumInsideCheck, IObjectEnumOutsideCheck
 {
 
 }

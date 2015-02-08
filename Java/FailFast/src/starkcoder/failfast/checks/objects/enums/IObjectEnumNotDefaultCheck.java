@@ -46,5 +46,5 @@ public interface IObjectEnumNotDefaultCheck extends IObjectEnumDefaultProperties
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectEnumNotDefaultFail.class)
-	boolean isEnumNotDefault(Object caller, Enum<?> referenceA);
+	<A extends Enum<A>> boolean isEnumNotDefault(Object caller, A referenceA);
 }

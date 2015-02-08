@@ -53,11 +53,17 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanSameCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumGreaterCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumInsideCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumLessCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumLessOrEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotNullCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNotSameCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck;
+import starkcoder.failfast.checks.objects.enums.IObjectEnumOutsideCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumSameCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatDefaultCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatEqualsAlmostCheck;
@@ -781,8 +787,8 @@ public abstract class AChecker implements IChecker
 	// OBJECTS - ENUMS - START
 
 	@Override
-	public boolean isEnumNotSame(Object caller, Enum<?> referenceA,
-			Enum<?> referenceB)
+	public <A extends Enum<A>, B extends Enum<B>> boolean isEnumNotSame(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -792,8 +798,8 @@ public abstract class AChecker implements IChecker
 	}
 
 	@Override
-	public boolean isEnumSame(Object caller, Enum<?> referenceA,
-			Enum<?> referenceB)
+	public <A extends Enum<A>, B extends Enum<B>> boolean isEnumSame(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -806,8 +812,8 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNotEqualsCheck#isEnumNotEquals(java.lang.Object, java.lang.Enum, java.lang.Enum)
 	 */
 	@Override
-	public boolean isEnumNotEquals(Object caller, Enum<?> referenceA,
-			Enum<?> referenceB)
+	public <A extends Enum<A>, B extends Enum<B>> boolean isEnumNotEquals(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -820,8 +826,8 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck#isEnumEquals(java.lang.Object, java.lang.Enum, java.lang.Enum)
 	 */
 	@Override
-	public boolean isEnumEquals(Object caller, Enum<?> referenceA,
-			Enum<?> referenceB)
+	public <A extends Enum<A>, B extends Enum<B>> boolean isEnumEquals(Object caller, A referenceA,
+			B referenceB)
 	{
 		boolean result = false;
 
@@ -834,7 +840,7 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNotNullCheck#isEnumNotNull(java.lang.Object, java.lang.Enum)
 	 */
 	@Override
-	public boolean isEnumNotNull(Object caller, Enum<?> referenceA)
+	public <A extends Enum<A>> boolean isEnumNotNull(Object caller, A referenceA)
 	{
 		boolean result = false;
 
@@ -847,7 +853,7 @@ public abstract class AChecker implements IChecker
 	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck#isEnumNull(java.lang.Object, java.lang.Enum)
 	 */
 	@Override
-	public boolean isEnumNull(Object caller, Enum<?> referenceA)
+	public <A extends Enum<A>> boolean isEnumNull(Object caller, A referenceA)
 	{
 		boolean result = false;
 
@@ -864,6 +870,9 @@ public abstract class AChecker implements IChecker
 		return this.enumDefaults;
 	}
 	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultProperties#getEnumDefault(java.lang.Class)
+	 */
 	@Override
 	public Enum<?> getEnumDefault(Class<? extends Enum<?>> enumType)
 	{
@@ -880,14 +889,20 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultProperties#setEnumDefault(java.lang.Enum)
+	 */
 	@Override
 	public void setEnumDefault(Enum<?> defaultEnum)
 	{
 		this.getEnumDefaults().put(defaultEnum.getClass(), defaultEnum);
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumNotDefaultCheck#isEnumNotDefault(java.lang.Object, java.lang.Enum)
+	 */
 	@Override
-	public boolean isEnumNotDefault(Object caller, Enum<?> referenceA)
+	public <A extends Enum<A>> boolean isEnumNotDefault(Object caller, A referenceA)
 	{
 		boolean result = false;
 
@@ -905,8 +920,11 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck#isEnumDefault(java.lang.Object, java.lang.Enum)
+	 */
 	@Override
-	public boolean isEnumDefault(Object caller, Enum<?> referenceA)
+	public <A extends Enum<A>> boolean isEnumDefault(Object caller, A referenceA)
 	{
 		boolean result = false;
 
@@ -923,6 +941,87 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumLessCheck#isEnumLess(java.lang.Object, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public <T extends Enum<T>> boolean isEnumLess(Object caller, T referenceA, T referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectEnumLessCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumLessOrEqualsCheck#isEnumLessOrEquals(java.lang.Object, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public <T extends Enum<T>> boolean isEnumLessOrEquals(Object caller, T referenceA,
+			T referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectEnumLessOrEqualsCheck.class);
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumGreaterCheck#isEnumGreater(java.lang.Object, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public <T extends Enum<T>> boolean isEnumGreater(Object caller, T referenceA, T referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectEnumGreaterCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumGreaterOrEqualsCheck#isEnumGreaterOrEquals(java.lang.Object, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public <T extends Enum<T>> boolean isEnumGreaterOrEquals(Object caller, T referenceA,
+			T referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectEnumGreaterOrEqualsCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumOutsideCheck#isEnumOutside(java.lang.Object, java.lang.Enum, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public <T extends Enum<T>> boolean isEnumOutside(Object caller, T referenceA,
+			T referenceMin, T referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectEnumOutsideCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.enums.IObjectEnumInsideCheck#isEnumInside(java.lang.Object, java.lang.Enum, java.lang.Enum, java.lang.Enum)
+	 */
+	@Override
+	public <T extends Enum<T>> boolean isEnumInside(Object caller, T referenceA,
+			T referenceMin, T referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectEnumInsideCheck.class);
+
+		return result;
+	}
 	
 	// OBJECTS - ENUMS - END
 

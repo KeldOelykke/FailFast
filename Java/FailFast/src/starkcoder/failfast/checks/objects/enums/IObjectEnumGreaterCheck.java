@@ -25,26 +25,29 @@ package starkcoder.failfast.checks.objects.enums;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumGreaterFail;
 
 /**
- * Specifies a default value check for Enum.
+ * Specifies a greater check for Enum.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectEnumDefaultCheck extends IObjectEnumDefaultProperties, ICheck
+public interface IObjectEnumGreaterCheck extends ICheck
 {
 	/**
-	 * Checks if the Enum reference a default value.
+	 * Checks if references are not null && A > B.
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
-	 *            reference to check
-	 * @return true, if referenced object has a default value, otherwise false
+	 *            reference to check against reference B
+	 * @param referenceB
+	 *            argument to check against reference A
+	 * @return true, if references are not null && A > B, otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NCheck(failSpecificationType = IObjectEnumDefaultFail.class)
-	<A extends Enum<A>> boolean isEnumDefault(Object caller, A referenceA);
+	@NCheck(failSpecificationType = IObjectEnumGreaterFail.class)
+	<T extends Enum<T>> boolean isEnumGreater(Object caller, T referenceA, T referenceB);
+
 }

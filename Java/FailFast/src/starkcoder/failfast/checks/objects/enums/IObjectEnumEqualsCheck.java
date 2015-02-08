@@ -48,5 +48,5 @@ public interface IObjectEnumEqualsCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectEnumEqualsFail.class)
-	boolean isEnumEquals(Object caller, Enum<?> referenceA, Enum<?> referenceB);
+	<A extends Enum<A>, B extends Enum<B>> boolean isEnumEquals(Object caller, A referenceA, B referenceB);
 }

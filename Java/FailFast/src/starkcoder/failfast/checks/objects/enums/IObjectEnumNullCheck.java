@@ -46,5 +46,5 @@ public interface IObjectEnumNullCheck extends ICheck
 	 *             if caller is null
 	 */
 	@NCheck(failSpecificationType = IObjectEnumNullFail.class)
-	boolean isEnumNull(Object caller, Enum<?> referenceA);
+	<A extends Enum<A>> boolean isEnumNull(Object caller, A referenceA);
 }

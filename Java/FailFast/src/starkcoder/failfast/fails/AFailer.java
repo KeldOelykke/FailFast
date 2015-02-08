@@ -55,11 +55,17 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanSameFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumGreaterFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumInsideFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumLessFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumLessOrEqualsFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotDefaultFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotEqualsFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotNullFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumOutsideFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatDefaultFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsAlmostFail;
@@ -910,6 +916,81 @@ public abstract class AFailer implements IFailer
 		this.Throw(caller, IObjectEnumNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
+	@Override
+	public void failEnumGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failEnumGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failEnumGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failEnumGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failEnumLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failEnumLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failEnumLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectEnumLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failEnumLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectEnumLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failEnumOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectEnumOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failEnumOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectEnumOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failEnumInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectEnumInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failEnumInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectEnumInsideFail.class, new Object[] { caller, referenceAName, message });
+	}	
 	
 	// OBJECTS - ENUM - END ---------------------------------
 	

@@ -25,26 +25,29 @@ package starkcoder.failfast.checks.objects.enums;
 
 import starkcoder.failfast.checks.ICheck;
 import starkcoder.failfast.checks.NCheck;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
+import starkcoder.failfast.fails.objects.enums.IObjectEnumLessOrEqualsFail;
 
 /**
- * Specifies a default value check for Enum.
+ * Specifies a less or equals check for Enum.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectEnumDefaultCheck extends IObjectEnumDefaultProperties, ICheck
+public interface IObjectEnumLessOrEqualsCheck extends ICheck
 {
 	/**
-	 * Checks if the Enum reference a default value.
+	 * Checks if references are both null or A <= B.
 	 * 
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
-	 *            reference to check
-	 * @return true, if referenced object has a default value, otherwise false
+	 *            reference to check against reference B
+	 * @param referenceB
+	 *            argument to check against reference A
+	 * @return true, if references are both null or A <= B, otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NCheck(failSpecificationType = IObjectEnumDefaultFail.class)
-	<A extends Enum<A>> boolean isEnumDefault(Object caller, A referenceA);
+	@NCheck(failSpecificationType = IObjectEnumLessOrEqualsFail.class)
+	<T extends Enum<T>> boolean isEnumLessOrEquals(Object caller, T referenceA, T referenceB);
+
 }
