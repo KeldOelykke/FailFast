@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.comparables.IComparableInsideTest;
 
 /**
  * Fail-fast unit test of {link:IObjectEnumInsideCheck} and {link:IObjectEnumInsideFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumInsideTest {
+public class EnumInsideTest implements IComparableInsideTest<EBar> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class EnumInsideTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumInsideCheckerCallerIsNull() {
+	public void testComparableInsideCheckerCallerIsNull() {
 		EBar valueA = EBar.VALUE_B;
 		EBar valueMin = EBar.VALUE_B;
 		EBar valueMax = EBar.VALUE_B;
@@ -107,7 +108,7 @@ public class EnumInsideTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testEnumInsideFailerCallerIsNull() {
+	public void testComparableInsideFailerCallerIsNull() {
 		EBar valueA = EBar.VALUE_B;
 		EBar valueMin = EBar.VALUE_B;
 		EBar valueMax = EBar.VALUE_B;
@@ -118,7 +119,7 @@ public class EnumInsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumFailerCallerIsWrong() {
+	public void testComparableInsideFailerCallerIsWrong() {
 		EBar valueA = EBar.VALUE_B;
 		EBar valueMin = EBar.VALUE_B;
 		EBar valueMax = EBar.VALUE_B;
@@ -132,7 +133,7 @@ public class EnumInsideTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumInsideMismatchCheckCheck() {
+	public void testComparableInsideMismatchCheckCheck() {
 		EBar valueA = EBar.VALUE_B;
 		EBar valueMin = EBar.VALUE_B;
 		EBar valueMax = EBar.VALUE_B;
@@ -143,12 +144,12 @@ public class EnumInsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumInsideMismatchFail() {
+	public void testComparableInsideMismatchFail() {
 		failer.failEnumInside(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testEnumInsideMismatchWrongCheck() {
+	public void testComparableInsideMismatchWrongCheck() {
 		EBar valueA = EBar.VALUE_A;
 		EBar valueMin = EBar.VALUE_C;
 		EBar valueMax = EBar.VALUE_B;
@@ -159,7 +160,7 @@ public class EnumInsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testEnumInsideMismatchWrongFail() {
+	public void testComparableInsideMismatchWrongFail() {
 		EBar valueA = EBar.VALUE_B;
 		EBar valueMin = EBar.VALUE_B;
 		EBar valueMax = EBar.VALUE_B;
@@ -173,7 +174,7 @@ public class EnumInsideTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumInsideFailNoMessage() {
+	public void testComparableInsideFailNoMessage() {
 		EBar valueA = EBar.VALUE_B;
 		EBar valueMin = EBar.VALUE_A;
 		EBar valueMax = EBar.VALUE_C;
@@ -194,7 +195,7 @@ public class EnumInsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumInsideFailMessage() {
+	public void testComparableInsideFailMessage() {
 		EBar valueA = EBar.VALUE_B;
 		EBar valueMin = EBar.VALUE_C;
 		EBar valueMax = EBar.VALUE_A;
@@ -215,7 +216,7 @@ public class EnumInsideTest {
 	}
 	
 	@Test
-	public void testEnumInsideNoFail() {
+	public void testComparableInsideNoFail() {
 		EBar valueA = EBar.VALUE_C;
 		EBar valueMin = EBar.VALUE_A;
 		EBar valueMax = EBar.VALUE_B;
@@ -231,7 +232,7 @@ public class EnumInsideTest {
 	// 4th - corner cases
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumInsideFailEnumMin() {
+	public void testComparableInsideFailComparableMin() {
 		EBar valueA = EBar.VALUE_A;
 		EBar valueMin = EBar.VALUE_A;
 		EBar valueMax = EBar.VALUE_A;
@@ -252,7 +253,7 @@ public class EnumInsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testEnumInsideFailEnumMax() {
+	public void testComparableInsideFailComparableMax() {
 		EBar valueA = EBar.VALUE_C;
 		EBar valueMin = EBar.VALUE_C;
 		EBar valueMax = EBar.VALUE_C;

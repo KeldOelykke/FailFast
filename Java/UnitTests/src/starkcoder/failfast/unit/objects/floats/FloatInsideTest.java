@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.comparables.IComparableInsideTest;
 
 /**
  * Fail-fast unit test of {link:IObjectFloatInsideCheck} and {link:IObjectFloatInsideFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatInsideTest {
+public class FloatInsideTest implements IComparableInsideTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class FloatInsideTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatInsideCheckerCallerIsNull() {
+	public void testComparableInsideCheckerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -107,7 +108,7 @@ public class FloatInsideTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatInsideFailerCallerIsNull() {
+	public void testComparableInsideFailerCallerIsNull() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -118,7 +119,7 @@ public class FloatInsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatFailerCallerIsWrong() {
+	public void testComparableInsideFailerCallerIsWrong() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -132,7 +133,7 @@ public class FloatInsideTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatInsideMismatchCheckCheck() {
+	public void testComparableInsideMismatchCheckCheck() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -143,12 +144,12 @@ public class FloatInsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatInsideMismatchFail() {
+	public void testComparableInsideMismatchFail() {
 		failer.failFloatInside(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatInsideMismatchWrongCheck() {
+	public void testComparableInsideMismatchWrongCheck() {
 		float valueA = 0.123f;
 		float valueMin = 0.1241f;
 		float valueMax = 0.124f;
@@ -159,7 +160,7 @@ public class FloatInsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatInsideMismatchWrongFail() {
+	public void testComparableInsideMismatchWrongFail() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -173,7 +174,7 @@ public class FloatInsideTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatInsideFailNoMessage() {
+	public void testComparableInsideFailNoMessage() {
 		float valueA = 0.123f;
 		float valueMin = 0.122f;
 		float valueMax = 0.124f;
@@ -194,7 +195,7 @@ public class FloatInsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatInsideFailMessage() {
+	public void testComparableInsideFailMessage() {
 		float valueA = 0.123f;
 		float valueMin = 0.124f;
 		float valueMax = 0.122f;
@@ -215,7 +216,7 @@ public class FloatInsideTest {
 	}
 	
 	@Test
-	public void testFloatInsideNoFail() {
+	public void testComparableInsideNoFail() {
 		float valueA = 0.1241f;
 		float valueMin = 0.123f;
 		float valueMax = 0.124f;
@@ -231,7 +232,7 @@ public class FloatInsideTest {
 	// 4th - corner cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatInsideFailFloatMin() {
+	public void testComparableInsideFailComparableMin() {
 		float valueA = Float.MIN_VALUE;
 		float valueMin = valueA;
 		float valueMax = valueA;
@@ -252,7 +253,7 @@ public class FloatInsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatInsideFailFloatMax() {
+	public void testComparableInsideFailComparableMax() {
 		float valueA = Float.MAX_VALUE;
 		float valueMin = valueA;
 		float valueMax = valueA;
@@ -273,7 +274,7 @@ public class FloatInsideTest {
 	}
 	
 	@Test
-	public void testFloatInsideNoFailMinusZeroVsZero() {
+	public void testComparableInsideNoFailMinusZeroVsZero() {
 		float valueA = -0f;
 		float valueMin = 0f;
 		float valueMax = 0f;

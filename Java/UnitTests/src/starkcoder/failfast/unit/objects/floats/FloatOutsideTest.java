@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.comparables.IComparableOutsideTest;
 
 /**
  * Fail-fast unit test of {link:IObjectFloatOutsideCheck} and {link:IObjectFloatOutsideFail}.
  * 
  * @author Keld Oelykke
  */
-public class FloatOutsideTest {
+public class FloatOutsideTest implements IComparableOutsideTest<Float> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class FloatOutsideTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatOutsideCheckerCallerIsNull() {
+	public void testComparableOutsideCheckerCallerIsNull() {
 		float valueA = 0.122f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -107,7 +108,7 @@ public class FloatOutsideTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testFloatOutsideFailerCallerIsNull() {
+	public void testComparableOutsideFailerCallerIsNull() {
 		float valueA = 0.122f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -118,7 +119,7 @@ public class FloatOutsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatFailerCallerIsWrong() {
+	public void testComparableOutsideFailerCallerIsWrong() {
 		float valueA = 0.122f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -132,7 +133,7 @@ public class FloatOutsideTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatOutsideMismatchCheckCheck() {
+	public void testComparableOutsideMismatchCheckCheck() {
 		float valueA = 0.122f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -143,12 +144,12 @@ public class FloatOutsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatOutsideMismatchFail() {
+	public void testComparableOutsideMismatchFail() {
 		failer.failFloatOutside(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testFloatOutsideMismatchWrongCheck() {
+	public void testComparableOutsideMismatchWrongCheck() {
 		float valueA = 0.124f;
 		float valueMin = 0.1241f;
 		float valueMax = 0.124f;
@@ -159,7 +160,7 @@ public class FloatOutsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testFloatOutsideMismatchWrongFail() {
+	public void testComparableOutsideMismatchWrongFail() {
 		float valueA = 0.122f;
 		float valueMin = 0.123f;
 		float valueMax = 0.123f;
@@ -173,7 +174,7 @@ public class FloatOutsideTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatOutsideFailNoMessage() {
+	public void testComparableOutsideFailNoMessage() {
 		float valueA = 0.121f;
 		float valueMin = 0.122f;
 		float valueMax = 0.123f;
@@ -194,7 +195,7 @@ public class FloatOutsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatOutsideFailMessage() {
+	public void testComparableOutsideFailMessage() {
 		float valueA = 0.122f;
 		float valueMin = 0.124f;
 		float valueMax = 0.123f;
@@ -215,7 +216,7 @@ public class FloatOutsideTest {
 	}
 	
 	@Test
-	public void testFloatOutsideNoFail() {
+	public void testComparableOutsideNoFail() {
 		float valueA = 0.123f;
 		float valueMin = 0.123f;
 		float valueMax = 0.124f;
@@ -232,7 +233,7 @@ public class FloatOutsideTest {
 	// 4th - corner cases
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatOutsideFailFloatMin() {
+	public void testComparableOutsideFailComparableMin() {
 		float valueA = Float.MIN_VALUE;
 		float valueMin = Float.intBitsToFloat(Float.floatToIntBits(Float.MIN_VALUE) + 0x1);
 		float valueMax = Float.MAX_VALUE;
@@ -253,7 +254,7 @@ public class FloatOutsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testFloatOutsideFailFloatMax() {
+	public void testComparableOutsideFailComparableMax() {
 		float valueA = Float.MAX_VALUE;
 		float valueMin = Float.MIN_VALUE;
 		float valueMax = Float.intBitsToFloat(Float.floatToIntBits(Float.MAX_VALUE) - 0x1);

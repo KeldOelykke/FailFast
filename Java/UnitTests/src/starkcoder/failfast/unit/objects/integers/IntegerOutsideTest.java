@@ -44,13 +44,14 @@ import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFailer;
+import starkcoder.failfast.templates.comparables.IComparableOutsideTest;
 
 /**
  * Fail-fast unit test of {link:IObjectIntegerOutsideCheck} and {link:IObjectIntegerOutsideFail}.
  * 
  * @author Keld Oelykke
  */
-public class IntegerOutsideTest {
+public class IntegerOutsideTest implements IComparableOutsideTest<Integer> {
 
 	private IChecker checker;
 	private IFailer failer;
@@ -96,7 +97,7 @@ public class IntegerOutsideTest {
 	// 1st - caller checks
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testIntegerOutsideCheckerCallerIsNull() {
+	public void testComparableOutsideCheckerCallerIsNull() {
 		int valueA = 122;
 		int valueMin = 123;
 		int valueMax = 123;
@@ -107,7 +108,7 @@ public class IntegerOutsideTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testIntegerOutsideFailerCallerIsNull() {
+	public void testComparableOutsideFailerCallerIsNull() {
 		int valueA = 122;
 		int valueMin = 123;
 		int valueMax = 123;
@@ -118,7 +119,7 @@ public class IntegerOutsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testIntegerFailerCallerIsWrong() {
+	public void testComparableOutsideFailerCallerIsWrong() {
 		int valueA = 122;
 		int valueMin = 123;
 		int valueMax = 123;
@@ -132,7 +133,7 @@ public class IntegerOutsideTest {
 	// 2nd - mismatch calls
 	
 	@Test(expected=IllegalStateException.class)
-	public void testIntegerOutsideMismatchCheckCheck() {
+	public void testComparableOutsideMismatchCheckCheck() {
 		int valueA = 122;
 		int valueMin = 123;
 		int valueMax = 123;
@@ -143,12 +144,12 @@ public class IntegerOutsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testIntegerOutsideMismatchFail() {
+	public void testComparableOutsideMismatchFail() {
 		failer.failIntegerOutside(this, "valueA");
 	}
 
 	@Test(expected=IllegalStateException.class)
-	public void testIntegerOutsideMismatchWrongCheck() {
+	public void testComparableOutsideMismatchWrongCheck() {
 		int valueA = 124;
 		int valueMin = 1241;
 		int valueMax = 124;
@@ -159,7 +160,7 @@ public class IntegerOutsideTest {
 	}
 	
 	@Test(expected=IllegalStateException.class)
-	public void testIntegerOutsideMismatchWrongFail() {
+	public void testComparableOutsideMismatchWrongFail() {
 		int valueA = 122;
 		int valueMin = 123;
 		int valueMax = 123;
@@ -173,7 +174,7 @@ public class IntegerOutsideTest {
 	// 3rd - normal cases
 	
 	@Test(expected=FailFastException.class)
-	public void testIntegerOutsideFailNoMessage() {
+	public void testComparableOutsideFailNoMessage() {
 		int valueA = 121;
 		int valueMin = 122;
 		int valueMax = 123;
@@ -194,7 +195,7 @@ public class IntegerOutsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testIntegerOutsideFailMessage() {
+	public void testComparableOutsideFailMessage() {
 		int valueA = 122;
 		int valueMin = 124;
 		int valueMax = 123;
@@ -215,7 +216,7 @@ public class IntegerOutsideTest {
 	}
 	
 	@Test
-	public void testIntegerOutsideNoFail() {
+	public void testComparableOutsideNoFail() {
 		int valueA = 123;
 		int valueMin = 123;
 		int valueMax = 124;
@@ -232,7 +233,7 @@ public class IntegerOutsideTest {
 	// 4th - corner cases
 	
 	@Test(expected=FailFastException.class)
-	public void testIntegerOutsideFailIntegerMin() {
+	public void testComparableOutsideFailComparableMin() {
 		int valueA = Integer.MIN_VALUE;
 		int valueMin = (Integer.MIN_VALUE + 1);
 		int valueMax = Integer.MAX_VALUE;
@@ -253,7 +254,7 @@ public class IntegerOutsideTest {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testIntegerOutsideFailIntegerMax() {
+	public void testComparableOutsideFailComparableMax() {
 		int valueA = Integer.MAX_VALUE;
 		int valueMin = Integer.MIN_VALUE;
 		int valueMax = (Integer.MAX_VALUE - 1);
