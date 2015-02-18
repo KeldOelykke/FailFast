@@ -95,6 +95,20 @@ import starkcoder.failfast.checks.objects.integers.IObjectIntegerNotSameCheck;
 import starkcoder.failfast.checks.objects.integers.IObjectIntegerNullCheck;
 import starkcoder.failfast.checks.objects.integers.IObjectIntegerOutsideCheck;
 import starkcoder.failfast.checks.objects.integers.IObjectIntegerSameCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongDefaultCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongEqualsCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongGreaterCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongInsideCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongLessCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongLessOrEqualsCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongNotDefaultCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongNotEqualsCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongNotNullCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongNotSameCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongNullCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongOutsideCheck;
+import starkcoder.failfast.checks.objects.longs.IObjectLongSameCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringDefaultCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEmptyCheck;
 import starkcoder.failfast.checks.objects.strings.IObjectStringEqualsCheck;
@@ -1516,6 +1530,170 @@ public abstract class AChecker implements IChecker
 	
 	// OBJECTS - INTEGERS - END
 
+
+	
+	// OBJECTS - LONGS - START
+
+	@Override
+	public boolean isLongNotSame(Object caller, Long referenceA,
+			Long referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectLongNotSameCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isLongSame(Object caller, Long referenceA,
+			Long referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectLongSameCheck.class);
+
+		return result;
+	}	
+	
+	@Override
+	public boolean isLongEquals(Object caller, Long referenceA,
+			Long referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectLongEqualsCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isLongNotEquals(Object caller, Long referenceA,
+			Long referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectLongNotEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isLongNotNull(Object caller, Long referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectLongNotNullCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isLongNull(Object caller, Long referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectLongNullCheck.class);
+
+		return result;
+	}
+	
+	private Long longDefault = new Long(0);
+	@Override
+	public Long getLongDefault()
+	{
+		return this.longDefault;
+	}
+	@Override
+	public void setLongDefault(Long defaultLong)
+	{
+		this.longDefault = defaultLong;
+	}
+
+	@Override
+	public boolean isLongDefault(Object caller, Long referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getLongDefault(), IObjectLongDefaultCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isLongNotDefault(Object caller, Long referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getLongDefault(), IObjectLongNotDefaultCheck.class);
+
+		return result;
+	}
+
+	
+	@Override
+	public boolean isLongLess(Object caller, Long referenceA, Long referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectLongLessCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isLongLessOrEquals(Object caller, Long referenceA,
+			Long referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectLongLessOrEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isLongGreater(Object caller, Long referenceA, Long referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectLongGreaterCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isLongGreaterOrEquals(Object caller, Long referenceA,
+			Long referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectLongGreaterOrEqualsCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isLongOutside(Object caller, Long referenceA,
+			Long referenceMin, Long referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectLongOutsideCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isLongInside(Object caller, Long referenceA,
+			Long referenceMin, Long referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectLongInsideCheck.class);
+
+		return result;
+	}
+	
+	
+	// OBJECTS - LONGS - END
+	
 	
 	
 	// OBJECTS - STRINGS - START

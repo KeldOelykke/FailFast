@@ -21,29 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.checks.objects.longs;
 
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.longs.IObjectLongFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.longs.IObjectLongDefaultFail;
 
 /**
- * Specification grouping all object fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
- * </p>
+ * Specifies a default check for Long.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectIntegerFailer, IObjectLongFailer, IObjectStringFailer
+public interface IObjectLongDefaultCheck extends IObjectLongDefaultProperties, ICheck
 {
-
+	/**
+	 * Checks if the reference is equal to the registered default Long.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            value to default check
+	 * @return true, if reference equals default, otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectLongDefaultFail.class)
+	boolean isLongDefault(Object caller, Long referenceA);
 }

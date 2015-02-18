@@ -1,5 +1,4 @@
-/**
- * The MIT License (MIT)
+/* The MIT License (MIT)
  * 
  * Copyright (c) 2014 Keld Ølykke
  * 
@@ -21,29 +20,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
-
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.longs.IObjectLongFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+package starkcoder.failfast.checks.objects.longs;
 
 /**
- * Specification grouping all object fail specifications.
- * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
- * </p>
+ * Defines properties used by both {link:IObjectLongDefaultCheck} and {link:IObjectLongNotDefaultCheck}.
  * 
  * @author Keld Oelykke
+ *
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectIntegerFailer, IObjectLongFailer, IObjectStringFailer
+public interface IObjectLongDefaultProperties
 {
+
+	/**
+	 * Default float used by isLongDefault and isValueNotDefault.
+	 * <p>
+	 * By default a Long has value 0
+	 * </p>
+	 * 
+	 * @return default Long - default is a Long with value 0
+	 */
+	public Long getLongDefault();
+
+	/**
+	 * Changes the default value used by isLongDefault and isLongNotDefault.
+	 * 
+	 * @param defaultLongValue
+	 *            new value to set
+	 */
+	public void setLongDefault(
+			Long defaultLongValue);
 
 }

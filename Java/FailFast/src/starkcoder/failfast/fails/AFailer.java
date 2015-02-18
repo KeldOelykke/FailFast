@@ -97,6 +97,20 @@ import starkcoder.failfast.fails.objects.integers.IObjectIntegerNotSameFail;
 import starkcoder.failfast.fails.objects.integers.IObjectIntegerNullFail;
 import starkcoder.failfast.fails.objects.integers.IObjectIntegerOutsideFail;
 import starkcoder.failfast.fails.objects.integers.IObjectIntegerSameFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongDefaultFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongEqualsFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongGreaterFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongInsideFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongLessFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongNotDefaultFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongNotEqualsFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongNotNullFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongNotSameFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongNullFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongOutsideFail;
+import starkcoder.failfast.fails.objects.longs.IObjectLongSameFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
@@ -1297,6 +1311,7 @@ public abstract class AFailer implements IFailer
 	// OBJECTS - FLOAT - END ---------------------------------
 
 
+
 	// OBJECTS - INTEGER - START ---------------------------------
 	
 	
@@ -1474,6 +1489,185 @@ public abstract class AFailer implements IFailer
 	}
 	
 	// OBJECTS - INTEGER - END ---------------------------------
+	
+	
+	
+	// OBJECTS - LONG - START ---------------------------------
+	
+	@Override
+	public void failLongNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failLongSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failLongNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failLongEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failLongNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectLongNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failLongNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectLongNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failLongNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectLongNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failLongNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectLongNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failLongDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectLongDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failLongDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectLongDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failLongNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectLongNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failLongNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectLongNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failLongGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failLongGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failLongLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failLongLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectLongLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failLongLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectLongLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failLongOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectLongOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failLongOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectLongOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failLongInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectLongInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failLongInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectLongInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - LONG - END ---------------------------------
 	
 	
 	

@@ -21,29 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
-
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.longs.IObjectLongFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
+package starkcoder.failfast.checks.objects.longs;
 
 /**
- * Specification grouping all object fail specifications.
+ * Specification grouping all Long check specifications.
  * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
+ * This (or a derivative) should inherit all check methods targeting Long.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectIntegerFailer, IObjectLongFailer, IObjectStringFailer
+public interface IObjectLongChecker extends 
+	IObjectLongSameCheck, IObjectLongNotSameCheck,
+	IObjectLongEqualsCheck, IObjectLongNotEqualsCheck,
+	IObjectLongNullCheck, IObjectLongNotNullCheck,
+	IObjectLongDefaultCheck, IObjectLongNotDefaultCheck,
+	IObjectLongLessCheck, IObjectLongLessOrEqualsCheck, 
+	IObjectLongGreaterCheck, IObjectLongGreaterOrEqualsCheck, 
+	IObjectLongInsideCheck, IObjectLongOutsideCheck
 {
 
 }
