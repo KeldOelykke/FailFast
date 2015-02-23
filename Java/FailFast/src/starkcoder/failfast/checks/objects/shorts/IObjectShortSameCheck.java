@@ -21,30 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
+package starkcoder.failfast.checks.objects.shorts;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
-import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
-import starkcoder.failfast.checks.objects.floats.IObjectFloatChecker;
-import starkcoder.failfast.checks.objects.integers.IObjectIntegerChecker;
-import starkcoder.failfast.checks.objects.longs.IObjectLongChecker;
-import starkcoder.failfast.checks.objects.shorts.IObjectShortChecker;
-import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortSameFail;
 
 /**
- * Specification grouping all object check specifications.
- * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
- * </p>
+ * Specifies a reference check for Short.
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectDefaultCheck, IObjectNotDefaultCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectArrayChecker, IObjectListChecker, IObjectCollectionChecker,
-		IObjectsEqualsCheck, IObjectsNotEqualsCheck,
-		IObjectBooleanChecker, IObjectEnumChecker, IObjectFloatChecker, IObjectShortChecker, IObjectIntegerChecker, IObjectLongChecker, IObjectStringChecker
+public interface IObjectShortSameCheck extends ICheck
 {
-
+	/**
+	 * Checks if the references are the same (using ==) or both nulls.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param referenceA
+	 *            reference to check using == against reference B
+	 * @param referenceB
+	 *            argument to check using == of reference A
+	 * @return true, if references are the same (using ==) - including both nulls - otherwise false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
+	 */
+	@NCheck(failSpecificationType = IObjectShortSameFail.class)
+	boolean isShortSame(Object caller, Short referenceA, Short referenceB);
 }

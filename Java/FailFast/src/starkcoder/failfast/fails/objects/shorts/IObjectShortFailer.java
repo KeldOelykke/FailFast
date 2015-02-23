@@ -21,30 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.checks.objects;
+package starkcoder.failfast.fails.objects.shorts;
 
-import starkcoder.failfast.checks.objects.booleans.IObjectBooleanChecker;
-import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
-import starkcoder.failfast.checks.objects.floats.IObjectFloatChecker;
-import starkcoder.failfast.checks.objects.integers.IObjectIntegerChecker;
-import starkcoder.failfast.checks.objects.longs.IObjectLongChecker;
-import starkcoder.failfast.checks.objects.shorts.IObjectShortChecker;
-import starkcoder.failfast.checks.objects.strings.IObjectStringChecker;
 
 /**
- * Specification grouping all object check specifications.
+ * Specification grouping all Short fail specifications.
  * <p>
- * This (or a derivative) should inherit all check methods targeting Object.
+ * This (or a derivative) should inherit all fail methods targeting Short.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck,
-		IObjectDefaultCheck, IObjectNotDefaultCheck,
-		IObjectEqualsCheck, IObjectNotEqualsCheck, IObjectSameCheck, IObjectNotSameCheck,
-		IObjectArrayChecker, IObjectListChecker, IObjectCollectionChecker,
-		IObjectsEqualsCheck, IObjectsNotEqualsCheck,
-		IObjectBooleanChecker, IObjectEnumChecker, IObjectFloatChecker, IObjectShortChecker, IObjectIntegerChecker, IObjectLongChecker, IObjectStringChecker
+public interface IObjectShortFailer extends 
+		IObjectShortSameFail, IObjectShortNotSameFail,
+		IObjectShortEqualsFail, IObjectShortNotEqualsFail,
+		IObjectShortNullFail, IObjectShortNotNullFail,
+		IObjectShortDefaultFail, IObjectShortNotDefaultFail,
+		IObjectShortLessFail, IObjectShortLessOrEqualsFail, 
+		IObjectShortGreaterFail, IObjectShortGreaterOrEqualsFail, 
+		IObjectShortInsideFail, IObjectShortOutsideFail
 {
 
 }

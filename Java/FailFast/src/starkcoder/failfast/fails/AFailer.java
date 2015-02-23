@@ -111,6 +111,20 @@ import starkcoder.failfast.fails.objects.longs.IObjectLongNotSameFail;
 import starkcoder.failfast.fails.objects.longs.IObjectLongNullFail;
 import starkcoder.failfast.fails.objects.longs.IObjectLongOutsideFail;
 import starkcoder.failfast.fails.objects.longs.IObjectLongSameFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortDefaultFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortEqualsFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortGreaterFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortInsideFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortLessFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortNotDefaultFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortNotEqualsFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortNotNullFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortNotSameFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortNullFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortOutsideFail;
+import starkcoder.failfast.fails.objects.shorts.IObjectShortSameFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringDefaultFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringEqualsFail;
@@ -1312,6 +1326,187 @@ public abstract class AFailer implements IFailer
 
 
 
+	// OBJECTS - SHORT - START ---------------------------------
+	
+	
+	@Override
+	public void failShortNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failShortSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failShortNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failShortEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failShortNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectShortNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failShortNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectShortNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failShortNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectShortNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failShortNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectShortNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failShortDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectShortDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failShortDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectShortDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failShortNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectShortNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failShortNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectShortNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failShortGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failShortGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failShortLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failShortLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectShortLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failShortLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectShortLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failShortOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectShortOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failShortOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectShortOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failShortInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectShortInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failShortInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectShortInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - SHORT - END ---------------------------------
+	
+
+
+
 	// OBJECTS - INTEGER - START ---------------------------------
 	
 	
@@ -1490,6 +1685,7 @@ public abstract class AFailer implements IFailer
 	
 	// OBJECTS - INTEGER - END ---------------------------------
 	
+
 	
 	
 	// OBJECTS - LONG - START ---------------------------------
