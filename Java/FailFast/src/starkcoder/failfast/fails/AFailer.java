@@ -53,6 +53,20 @@ import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotSameFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanSameFail;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanTrueFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteDefaultFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteEqualsFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteGreaterFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteInsideFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteLessFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteNotDefaultFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteNotEqualsFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteNotNullFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteNotSameFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteNullFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteOutsideFail;
+import starkcoder.failfast.fails.objects.bytes.IObjectByteSameFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumGreaterFail;
@@ -790,6 +804,186 @@ public abstract class AFailer implements IFailer
 	
 	
 	// OBJECTS - BOOLEAN - END ---------------------------------
+	
+	
+	// OBJECTS - BYTE - START ---------------------------------
+	
+	
+	@Override
+	public void failByteNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failByteSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failByteNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failByteEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failByteNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectByteNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failByteNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectByteNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failByteNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectByteNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failByteNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectByteNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failByteDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectByteDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failByteDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectByteDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failByteNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectByteNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failByteNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectByteNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failByteGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failByteGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failByteLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failByteLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectByteLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failByteLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectByteLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failByteOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectByteOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failByteOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectByteOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failByteInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectByteInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failByteInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectByteInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - BYTE - END ---------------------------------
+	
 	
 	
 	

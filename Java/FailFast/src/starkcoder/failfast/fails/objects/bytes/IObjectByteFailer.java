@@ -21,31 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.fails.objects;
+package starkcoder.failfast.fails.objects.bytes;
 
-import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
-import starkcoder.failfast.fails.objects.bytes.IObjectByteFailer;
-import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
-import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
-import starkcoder.failfast.fails.objects.longs.IObjectLongFailer;
-import starkcoder.failfast.fails.objects.shorts.IObjectShortFailer;
-import starkcoder.failfast.fails.objects.strings.IObjectStringFailer;
 
 /**
- * Specification grouping all object fail specifications.
+ * Specification grouping all Byte fail specifications.
  * <p>
- * This (or a derivative) should inherit all fail methods targeting Object.
+ * This (or a derivative) should inherit all fail methods targeting Byte.
  * </p>
  * 
  * @author Keld Oelykke
  */
-public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
-		IObjectDefaultFail, IObjectNotDefaultFail,
-		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
-		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
-		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectByteFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectShortFailer, IObjectIntegerFailer, IObjectLongFailer, IObjectStringFailer
+public interface IObjectByteFailer extends 
+		IObjectByteSameFail, IObjectByteNotSameFail,
+		IObjectByteEqualsFail, IObjectByteNotEqualsFail,
+		IObjectByteNullFail, IObjectByteNotNullFail,
+		IObjectByteDefaultFail, IObjectByteNotDefaultFail,
+		IObjectByteLessFail, IObjectByteLessOrEqualsFail, 
+		IObjectByteGreaterFail, IObjectByteGreaterOrEqualsFail, 
+		IObjectByteInsideFail, IObjectByteOutsideFail
 {
 
 }

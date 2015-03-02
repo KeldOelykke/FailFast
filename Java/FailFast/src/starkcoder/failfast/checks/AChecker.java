@@ -51,6 +51,20 @@ import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNotSameCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanNullCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanSameCheck;
 import starkcoder.failfast.checks.objects.booleans.IObjectBooleanTrueCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteDefaultCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteEqualsCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteGreaterCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteInsideCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteLessCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteLessOrEqualsCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteNotDefaultCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteNotEqualsCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteNotNullCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteNotSameCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteNullCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteOutsideCheck;
+import starkcoder.failfast.checks.objects.bytes.IObjectByteSameCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumGreaterCheck;
@@ -810,6 +824,173 @@ public abstract class AChecker implements IChecker
 	
 	// OBJECTS - BOOLEANS - END
 
+	
+	
+
+	
+	// OBJECTS - BYTES - START
+
+	@Override
+	public boolean isByteNotSame(Object caller, Byte referenceA,
+			Byte referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectByteNotSameCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isByteSame(Object caller, Byte referenceA,
+			Byte referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectByteSameCheck.class);
+
+		return result;
+	}	
+	
+	@Override
+	public boolean isByteEquals(Object caller, Byte referenceA,
+			Byte referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectByteEqualsCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isByteNotEquals(Object caller, Byte referenceA,
+			Byte referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectByteNotEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isByteNotNull(Object caller, Byte referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectByteNotNullCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isByteNull(Object caller, Byte referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectByteNullCheck.class);
+
+		return result;
+	}
+	
+	private Byte byteDefault = 0;
+	@Override
+	public Byte getByteDefault()
+	{
+		return this.byteDefault;
+	}
+	@Override
+	public void setByteDefault(Byte defaultByte)
+	{
+		this.byteDefault = defaultByte;
+	}
+
+	@Override
+	public boolean isByteDefault(Object caller, Byte referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getByteDefault(), IObjectByteDefaultCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isByteNotDefault(Object caller, Byte referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getByteDefault(), IObjectByteNotDefaultCheck.class);
+
+		return result;
+	}
+
+	
+	@Override
+	public boolean isByteLess(Object caller, Byte referenceA, Byte referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectByteLessCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isByteLessOrEquals(Object caller, Byte referenceA,
+			Byte referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectByteLessOrEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isByteGreater(Object caller, Byte referenceA, Byte referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectByteGreaterCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isByteGreaterOrEquals(Object caller, Byte referenceA,
+			Byte referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectByteGreaterOrEqualsCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isByteOutside(Object caller, Byte referenceA,
+			Byte referenceMin, Byte referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectByteOutsideCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isByteInside(Object caller, Byte referenceA,
+			Byte referenceMin, Byte referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectByteInsideCheck.class);
+
+		return result;
+	}
+	
+	
+	// OBJECTS - BYTES - END
+
+		
 	
 	
 	// OBJECTS - ENUMS - START
