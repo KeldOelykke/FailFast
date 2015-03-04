@@ -65,6 +65,20 @@ import starkcoder.failfast.checks.objects.bytes.IObjectByteNotSameCheck;
 import starkcoder.failfast.checks.objects.bytes.IObjectByteNullCheck;
 import starkcoder.failfast.checks.objects.bytes.IObjectByteOutsideCheck;
 import starkcoder.failfast.checks.objects.bytes.IObjectByteSameCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterDefaultCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterEqualsCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterGreaterCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterInsideCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterLessCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterLessOrEqualsCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterNotDefaultCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterNotEqualsCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterNotNullCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterNotSameCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterNullCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterOutsideCheck;
+import starkcoder.failfast.checks.objects.characters.IObjectCharacterSameCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumGreaterCheck;
@@ -824,10 +838,7 @@ public abstract class AChecker implements IChecker
 	
 	// OBJECTS - BOOLEANS - END
 
-	
-	
-
-	
+		
 	// OBJECTS - BYTES - START
 
 	@Override
@@ -987,10 +998,171 @@ public abstract class AChecker implements IChecker
 		return result;
 	}
 	
-	
 	// OBJECTS - BYTES - END
 
+	
+	
+	// OBJECTS - CHARACTERS - START
+
+	@Override
+	public boolean isCharacterNotSame(Object caller, Character referenceA,
+			Character referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectCharacterNotSameCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isCharacterSame(Object caller, Character referenceA,
+			Character referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectCharacterSameCheck.class);
+
+		return result;
+	}	
+	
+	@Override
+	public boolean isCharacterEquals(Object caller, Character referenceA,
+			Character referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectCharacterEqualsCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isCharacterNotEquals(Object caller, Character referenceA,
+			Character referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectCharacterNotEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isCharacterNotNull(Object caller, Character referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectCharacterNotNullCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isCharacterNull(Object caller, Character referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectCharacterNullCheck.class);
+
+		return result;
+	}
+	
+	private Character characterDefault = 0;
+	@Override
+	public Character getCharacterDefault()
+	{
+		return this.characterDefault;
+	}
+	@Override
+	public void setCharacterDefault(Character defaultCharacter)
+	{
+		this.characterDefault = defaultCharacter;
+	}
+
+	@Override
+	public boolean isCharacterDefault(Object caller, Character referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getCharacterDefault(), IObjectCharacterDefaultCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isCharacterNotDefault(Object caller, Character referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getCharacterDefault(), IObjectCharacterNotDefaultCheck.class);
+
+		return result;
+	}
+
+	
+	@Override
+	public boolean isCharacterLess(Object caller, Character referenceA, Character referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectCharacterLessCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isCharacterLessOrEquals(Object caller, Character referenceA,
+			Character referenceB)
+	{
+		boolean result = false;
 		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectCharacterLessOrEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isCharacterGreater(Object caller, Character referenceA, Character referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectCharacterGreaterCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isCharacterGreaterOrEquals(Object caller, Character referenceA,
+			Character referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectCharacterGreaterOrEqualsCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isCharacterOutside(Object caller, Character referenceA,
+			Character referenceMin, Character referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectCharacterOutsideCheck.class);
+
+		return result;
+	}
+
+	@Override
+	public boolean isCharacterInside(Object caller, Character referenceA,
+			Character referenceMin, Character referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectCharacterInsideCheck.class);
+
+		return result;
+	}
+	
+	// OBJECTS - CHARACTERS - END
+
 	
 	
 	// OBJECTS - ENUMS - START

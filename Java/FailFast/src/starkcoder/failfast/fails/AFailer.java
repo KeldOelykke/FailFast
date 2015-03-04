@@ -67,6 +67,20 @@ import starkcoder.failfast.fails.objects.bytes.IObjectByteNotSameFail;
 import starkcoder.failfast.fails.objects.bytes.IObjectByteNullFail;
 import starkcoder.failfast.fails.objects.bytes.IObjectByteOutsideFail;
 import starkcoder.failfast.fails.objects.bytes.IObjectByteSameFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterDefaultFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterEqualsFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterGreaterFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterInsideFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterLessFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterNotDefaultFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterNotEqualsFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterNotNullFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterNotSameFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterNullFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterOutsideFail;
+import starkcoder.failfast.fails.objects.characters.IObjectCharacterSameFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumGreaterFail;
@@ -984,6 +998,185 @@ public abstract class AFailer implements IFailer
 	
 	// OBJECTS - BYTE - END ---------------------------------
 	
+	
+	
+	// OBJECTS - CHARACTER - START ---------------------------------
+	
+	
+	@Override
+	public void failCharacterNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failCharacterSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failCharacterNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failCharacterEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failCharacterNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectCharacterNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failCharacterNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectCharacterNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failCharacterNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectCharacterNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failCharacterNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectCharacterNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failCharacterDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectCharacterDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failCharacterDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectCharacterDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failCharacterNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectCharacterNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failCharacterNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectCharacterNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failCharacterGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failCharacterGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failCharacterLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failCharacterLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectCharacterLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failCharacterLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectCharacterLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failCharacterOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectCharacterOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failCharacterOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectCharacterOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failCharacterInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectCharacterInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failCharacterInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectCharacterInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - CHARACTER - END ---------------------------------
 	
 	
 	
