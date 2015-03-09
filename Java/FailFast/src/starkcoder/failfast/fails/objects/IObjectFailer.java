@@ -26,6 +26,7 @@ package starkcoder.failfast.fails.objects;
 import starkcoder.failfast.fails.objects.booleans.IObjectBooleanFailer;
 import starkcoder.failfast.fails.objects.bytes.IObjectByteFailer;
 import starkcoder.failfast.fails.objects.characters.IObjectCharacterFailer;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleFailer;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumFailer;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatFailer;
 import starkcoder.failfast.fails.objects.integers.IObjectIntegerFailer;
@@ -46,7 +47,7 @@ public interface IObjectFailer extends IObjectNullFail, IObjectNotNullFail,
 		IObjectEqualsFail, IObjectNotEqualsFail, IObjectSameFail, IObjectNotSameFail,
 		IObjectArrayFailer, IObjectListFailer, IObjectCollectionFailer,
 		IObjectsEqualsFail, IObjectsNotEqualsFail,
-		IObjectBooleanFailer, IObjectByteFailer, IObjectCharacterFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectShortFailer, IObjectIntegerFailer, IObjectLongFailer, IObjectStringFailer
+		IObjectBooleanFailer, IObjectByteFailer, IObjectCharacterFailer, IObjectDoubleFailer, IObjectEnumFailer, IObjectFloatFailer, IObjectShortFailer, IObjectIntegerFailer, IObjectLongFailer, IObjectStringFailer
 {
 
 }

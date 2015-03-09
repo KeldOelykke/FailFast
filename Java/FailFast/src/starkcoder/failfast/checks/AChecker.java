@@ -79,6 +79,22 @@ import starkcoder.failfast.checks.objects.characters.IObjectCharacterNotSameChec
 import starkcoder.failfast.checks.objects.characters.IObjectCharacterNullCheck;
 import starkcoder.failfast.checks.objects.characters.IObjectCharacterOutsideCheck;
 import starkcoder.failfast.checks.objects.characters.IObjectCharacterSameCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleDefaultCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleEqualsAlmostCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleEqualsCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleGreaterCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleInsideCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleLessCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleLessOrEqualsCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleNotDefaultCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleNotEqualsAlmostCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleNotEqualsCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleNotNullCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleNotSameCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleNullCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleOutsideCheck;
+import starkcoder.failfast.checks.objects.doubles.IObjectDoubleSameCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumDefaultCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumEqualsCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumGreaterCheck;
@@ -1163,6 +1179,323 @@ public abstract class AChecker implements IChecker
 	
 	// OBJECTS - CHARACTERS - END
 
+	
+
+	// OBJECTS - DOUBLE - START
+
+	@Override
+	public boolean isDoubleNotSame(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectDoubleNotSameCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isDoubleSame(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectDoubleSameCheck.class);
+
+		return result;
+	}	
+	
+	@Override
+	public boolean isDoubleEquals(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectDoubleEqualsCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isDoubleNotEquals(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectDoubleNotEqualsCheck.class);
+
+		return result;
+	}
+	
+	@Override
+	public boolean isDoubleNotNull(Object caller, Double referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectDoubleNotNullCheck.class);
+
+		return result;
+	}
+	@Override
+	public boolean isDoubleNull(Object caller, Double referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectDoubleNullCheck.class);
+
+		return result;
+	}
+	
+	private Double doubleDefault = 0d;
+	@Override
+	public Double getDoubleDefault()
+	{
+		return this.doubleDefault;
+	}
+	@Override
+	public void setDoubleDefault(Double defaultDouble)
+	{
+		this.doubleDefault = defaultDouble;
+	}
+
+	@Override
+	public boolean isDoubleDefault(Object caller, Double referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getDoubleDefault(), IObjectDoubleDefaultCheck.class);
+
+		return result;
+	}
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectDoubleNotDefaultCheck#isDoubleNotDefault(java.lang.Object, java.lang.Double)
+	 */
+	@Override
+	public boolean isDoubleNotDefault(Object caller, Double referenceA)
+	{
+		boolean result = false;
+
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getDoubleDefault(), IObjectDoubleNotDefaultCheck.class);
+
+		return result;
+	}
+
+	private Double doubleEqualsAlmostDefaultAbsoluteEpsilon = 0.00001d;
+	@Override
+	public Double getDoubleEqualsAlmostDefaultAbsoluteEpsilon()
+	{
+		return this.doubleEqualsAlmostDefaultAbsoluteEpsilon;
+	}
+	@Override
+	public void setDoubleEqualsAlmostDefaultAbsoluteEpsilon(
+			Double defaultAbsoluteEpsilon)
+	{
+		this.doubleEqualsAlmostDefaultAbsoluteEpsilon = Math.abs(defaultAbsoluteEpsilon);
+	}
+	
+	private Double doubleEqualsAlmostDefaultRelativeEpsilon = 0.000001d;
+	@Override
+	public Double getDoubleEqualsAlmostDefaultRelativeEpsilon()
+	{
+		return this.doubleEqualsAlmostDefaultRelativeEpsilon;
+	}
+	@Override
+	public void setDoubleEqualsAlmostDefaultRelativeEpsilon(
+			Double defaultRelativeEpsilon)
+	{
+		this.doubleEqualsAlmostDefaultRelativeEpsilon = Math.abs(defaultRelativeEpsilon);
+	}	
+	
+	@Override
+	public boolean isDoubleEqualsAlmost(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+
+		Double defaultAbsoluteEpsilon = this.getDoubleEqualsAlmostDefaultAbsoluteEpsilon();
+		Double defaultRelativeEpsilon = this.getDoubleEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isDoubleEqualsAlmost(caller, referenceA, referenceB, defaultAbsoluteEpsilon, defaultRelativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isDoubleEqualsAlmost(Object caller, Double referenceA,
+			Double referenceB, Double absoluteEpsilon)
+	{
+		boolean result = false;
+
+		Double defaultRelativeEpsilon = this.getDoubleEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isDoubleEqualsAlmost(caller, referenceA, referenceB, absoluteEpsilon, defaultRelativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isDoubleEqualsAlmost(Object caller, Double referenceA,
+			Double referenceB, Double absoluteEpsilon, Double relativeEpsilon)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		Double lowB = null;
+		Double highB = null;
+		if(referenceA == referenceB)
+		{
+			result = true;
+		}
+		else 
+		{
+			lowB = (1f - Math.signum(referenceA) * relativeEpsilon) * referenceA - absoluteEpsilon;
+			highB = (1f + Math.signum(referenceA) * relativeEpsilon) * referenceA + absoluteEpsilon;
+			result = (lowB <= referenceB && referenceB <= highB);
+		}
+
+		if(result)
+		{
+			this.pushContractWithCaller(caller, IObjectDoubleEqualsAlmostCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean isDoubleNotEqualsAlmost(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+
+		Double absoluteEpsilon = this.getDoubleEqualsAlmostDefaultAbsoluteEpsilon();
+		Double relativeEpsilon = this.getDoubleEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isDoubleNotEqualsAlmost(caller, referenceA, referenceB, absoluteEpsilon, relativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isDoubleNotEqualsAlmost(Object caller, Double referenceA,
+			Double referenceB, Double absoluteEpsilon)
+	{
+		boolean result = false;
+
+		Double relativeEpsilon = this.getDoubleEqualsAlmostDefaultRelativeEpsilon();
+		result = this.isDoubleNotEqualsAlmost(caller, referenceA, referenceB, absoluteEpsilon, relativeEpsilon);
+				
+		return result;
+	}
+	@Override
+	public boolean isDoubleNotEqualsAlmost(Object caller, Double referenceA,
+			Double referenceB, Double absoluteEpsilon, Double relativeEpsilon)
+	{
+		boolean result = false;
+
+		if (null == caller)
+		{
+			throw new IllegalArgumentException("caller is null");
+		}
+		
+		Double lowB = null;
+		Double highB = null;
+		if(referenceA != referenceB)
+		{
+			lowB = (1f - Math.signum(referenceA) * relativeEpsilon) * referenceA - absoluteEpsilon;
+			highB = (1f + Math.signum(referenceA) * relativeEpsilon) * referenceA + absoluteEpsilon;
+			result = (referenceB < lowB ||  highB < referenceB);
+		}
+		// else false
+			
+		if (result)
+		{
+			this.pushContractWithCaller(caller, IObjectDoubleNotEqualsAlmostCheck.class, new Object[] { caller, referenceA, referenceB }, new Object[] { absoluteEpsilon, relativeEpsilon, lowB, highB });
+		}
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectDoubleLessCheck#isDoubleLess(java.lang.Object, java.lang.Double, java.lang.Double)
+	 */
+	@Override
+	public boolean isDoubleLess(Object caller, Double referenceA, Double referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectDoubleLessCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectDoubleLessOrEqualsCheck#isDoubleLessOrEquals(java.lang.Object, java.lang.Double, java.lang.Double)
+	 */
+	@Override
+	public boolean isDoubleLessOrEquals(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectDoubleLessOrEqualsCheck.class);
+
+		return result;
+	}
+	
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectDoubleGreaterCheck#isDoubleGreater(java.lang.Object, java.lang.Double, java.lang.Double)
+	 */
+	@Override
+	public boolean isDoubleGreater(Object caller, Double referenceA, Double referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectDoubleGreaterCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectDoubleGreaterOrEqualsCheck#isDoubleGreaterOrEquals(java.lang.Object, java.lang.Double, java.lang.Double)
+	 */
+	@Override
+	public boolean isDoubleGreaterOrEquals(Object caller, Double referenceA,
+			Double referenceB)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectDoubleGreaterOrEqualsCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectDoubleOutsideCheck#isDoubleOutside(java.lang.Object, java.lang.Double, java.lang.Double, java.lang.Double)
+	 */
+	@Override
+	public boolean isDoubleOutside(Object caller, Double referenceA,
+			Double referenceMin, Double referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectDoubleOutsideCheck.class);
+
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.checks.objects.floats.IObjectDoubleInsideCheck#isDoubleInside(java.lang.Object, java.lang.Double, java.lang.Double, java.lang.Double)
+	 */
+	@Override
+	public boolean isDoubleInside(Object caller, Double referenceA,
+			Double referenceMin, Double referenceMax)
+	{
+		boolean result = false;
+
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectDoubleInsideCheck.class);
+
+		return result;
+	}
+	
+	
+	// OBJECTS - DOUBLE - END
+		
 	
 	
 	// OBJECTS - ENUMS - START

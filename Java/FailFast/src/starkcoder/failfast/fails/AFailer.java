@@ -81,6 +81,22 @@ import starkcoder.failfast.fails.objects.characters.IObjectCharacterNotSameFail;
 import starkcoder.failfast.fails.objects.characters.IObjectCharacterNullFail;
 import starkcoder.failfast.fails.objects.characters.IObjectCharacterOutsideFail;
 import starkcoder.failfast.fails.objects.characters.IObjectCharacterSameFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleDefaultFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleEqualsAlmostFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleEqualsFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleGreaterFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleInsideFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleLessFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleNotDefaultFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleNotEqualsAlmostFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleNotEqualsFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleNotNullFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleNotSameFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleNullFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleOutsideFail;
+import starkcoder.failfast.fails.objects.doubles.IObjectDoubleSameFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumGreaterFail;
@@ -1178,6 +1194,212 @@ public abstract class AFailer implements IFailer
 	
 	// OBJECTS - CHARACTER - END ---------------------------------
 	
+
+	
+	// OBJECTS - DOUBLE - START ---------------------------------
+	
+	
+	@Override
+	public void failDoubleNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failDoubleSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDoubleNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failDoubleEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDoubleNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDoubleNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDoubleNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDoubleNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDoubleNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDoubleNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDoubleNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDoubleNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDoubleDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDoubleDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDoubleDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDoubleDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failDoubleNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDoubleNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDoubleNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDoubleNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDoubleEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDoubleNotEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleNotEqualsAlmost(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}	
+	
+	@Override
+	public void failDoubleGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDoubleGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDoubleLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDoubleLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDoubleLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDoubleLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDoubleLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDoubleOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDoubleOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDoubleOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDoubleOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDoubleInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDoubleInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDoubleInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDoubleInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - DOUBLE - END ---------------------------------
+
 	
 	
 	// OBJECTS - ENUM - START ---------------------------------
@@ -1415,7 +1637,7 @@ public abstract class AFailer implements IFailer
 	
 	
 	/* (non-Javadoc)
-	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotSameFail#failFloatNotSame(java.lang.Object, java.lang.String, java.lang.String)
+	 * @see starkcoder.failfast.fails.objects.floats.IObjectDoubleNotSameFail#failFloatNotSame(java.lang.Object, java.lang.String, java.lang.String)
 	 */
 	@Override
 	public void failFloatNotSame(Object caller, String referenceAName,
