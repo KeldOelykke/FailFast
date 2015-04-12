@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * 
- * Copyright (c) 2014 Keld Ølykke
+ * Copyright (c) 2014-2015 Keld Oelykke
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -772,9 +772,8 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-		if (null != referenceA)
 		{
-			if (referenceA.equals(Boolean.FALSE))
+			if (Boolean.FALSE.equals(referenceA))
 			{
 				this.pushContractWithCaller(caller, IObjectBooleanFalseCheck.class, new Object[] { caller, referenceA }, new Object[] { Boolean.FALSE });
 				result = true;
@@ -796,9 +795,8 @@ public abstract class AChecker implements IChecker
 		{
 			throw new IllegalArgumentException("caller is null");
 		}
-		if (null != referenceA)
 		{
-			if (referenceA.equals(Boolean.TRUE))
+			if (Boolean.TRUE.equals(referenceA))
 			{
 				this.pushContractWithCaller(caller, IObjectBooleanTrueCheck.class, new Object[] { caller, referenceA }, new Object[] { Boolean.TRUE });
 				result = true;

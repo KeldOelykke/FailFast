@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * 
- * Copyright (c) 2014 Keld Ølykke
+ * Copyright (c) 2014-2015 Keld Oelykke
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,8 +42,6 @@ public interface IObjectFloatOutsideFail extends IFail
 	 *            object calling checker and then failer (if reference check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
@@ -60,8 +58,6 @@ public interface IObjectFloatOutsideFail extends IFail
 	 *            object calling checker and then failer (if reference check asserted)
 	 * @param referenceAName
 	 *            name of reference A to fail
-	 * @param referenceBName
-	 *            name of reference B to fail
 	 * @param message
 	 *            additional information
 	 * @throws IllegalArgumentException

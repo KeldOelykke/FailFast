@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * 
- * Copyright (c) 2014 Keld Ølykke
+ * Copyright (c) 2014-2015 Keld Oelykke
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,7 @@ import starkcoder.failfast.fails.objects.doubles.IObjectDoubleEqualsAlmostFail;
  * (see https://github.com/KeldOelykke/FailFast/blob/master/Java/Docs/Images/almostEqualZoneForXandY.png).
  * </p>
  * 
- * @see http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+ * @see <a href="http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/">http://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/</a>
  * 
  * @author Keld Oelykke
  */

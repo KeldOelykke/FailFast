@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * 
- * Copyright (c) 2014 Keld Ølykke
+ * Copyright (c) 2014-2015 Keld Oelykke
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,9 +43,11 @@ public interface IObjectFloatOutsideCheck extends ICheck
 	 * @param caller
 	 *            end-user instance initiating the check
 	 * @param referenceA
-	 *            reference to check against reference B
-	 * @param referenceB
-	 *            argument to check against reference A
+	 *            reference to check against number range
+	 * @param referenceMin
+	 *            reference to start of number range
+	 * @param referenceMax
+	 *            reference to end of number range
 	 * @return true, if references are not nulls and A is outside [min;max], otherwise false
 	 * @throws IllegalArgumentException
 	 *             if caller is null
