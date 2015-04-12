@@ -58,10 +58,13 @@ Examples
 https://github.com/KeldOelykke/FailFast/wiki
 
 
-Builds, Tests & Jar
+Releases
 ===================
 
-(To Be Defined)
+Go to http://oelykke-failfast.appspot.com to:
+ - download jars
+ - view javadoc
+ - try it online
 
 
 Dogma
