@@ -1,7 +1,6 @@
 package starkcoder.failfast.web;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
@@ -206,28 +205,22 @@ public class InteractiveServlet extends HttpServlet {
 				stringBuilder.append(buttonUpdateHtml.replaceFirst("XXX_ARGUMENT_INDEX", "" + index));
 			}
 			
-			{ // example
-				String ex1 = conditionalHtml.replaceFirst("XXX_FAILFAST_CHECKER_METHOD", method.getName());
-				String ex2 = ex1.replaceFirst("XXX_FAILFAST_CHECKER_ARGUMENTS", checkerArgumentsAsString);
-				String ex3 = ex2.replaceFirst("XXX_FAILFAST_FAILER_METHOD", method.getName().replaceFirst("is", "fail"));
-				String ex4 = ex3.replaceFirst("XXX_FAILFAST_FAILER_ARGUMENTS", failerArgumentsAsString);
-				stringBuilder.append(ex4);
-			}
 			
 			String checkerExceptionDescription = null;
 			String failerExceptionDescription = null;
 			boolean checkerInvoked = false;
 			boolean failerInvoked = false;
+			boolean failerShouldInvoke = false;
 			Boolean resultBoolean = null;
 			try {
 				checkerInvoked = true;
 				Object result = method.invoke(checker, checkerArguments);
 				resultBoolean = (Boolean) result;
-				if(resultBoolean)
 				{
 					String failerMethodName = "fail" + method.getName().substring(2);
 					IFailer failer = failFastOrNull.getFailer();
 					Method[] failerMethods = failer.getClass().getMethods();
+					Method failMethod2Call = null;
 					for(Method method_ : failerMethods)
 					{
 						String methodName = method_.getName();
@@ -239,36 +232,80 @@ public class InteractiveServlet extends HttpServlet {
 //								stringBuilder.append("Calling ");
 //								stringBuilder.append(method_.getName());
 //								stringBuilder.append("\n");
-								failerInvoked = true;
-								method_.invoke(failer, failerArguments);
+								failMethod2Call = method_;
+								break;
+							}
+							else
+							{
+								if(null == failMethod2Call)
+								{
+									failMethod2Call = method_;
+								}
+								else if(failerParameterTypes.length < failMethod2Call.getParameterTypes().length)
+								{
+									failMethod2Call = method_;
+								}
+								
 							}
 //							stringBuilder.append(method.getName());
 //							stringBuilder.append("\n");
 						}
 					}
+					
+					if(null != failMethod2Call)
+					{
+						Object[] failerArguments2Use = null;
+						Class<?>[] failerParameterTypes = failMethod2Call.getParameterTypes();
+						if(failerParameterTypes.length == failerArguments.length)
+						{
+							failerArguments2Use = failerArguments;
+						}
+						else
+						{
+							failerArguments2Use = new Object[failerParameterTypes.length];
+							failerArgumentsAsString = "";
+							for(int index = 0; index < failerArguments2Use.length && index < failerArguments.length; ++index)
+							{
+								failerArguments2Use[index] = failerArguments[index];
+								if(0 < index)
+								{
+									failerArgumentsAsString += ", ";
+								}
+								failerArgumentsAsString += failerArguments2Use[index];
+							}
+						}
+						
+						if(resultBoolean)
+						{
+							failerShouldInvoke = true;
+							failerInvoked = true;
+							failMethod2Call.invoke(failer, failerArguments2Use);
+						}
+					}
 				}
-			} catch (IllegalAccessException | IllegalArgumentException
-					| InvocationTargetException e) {
-//				stringBuilder.append("\n");
-//				stringBuilder.append("Exception caught:\n");
-//				stringBuilder.append(e.getCause());
-//				stringBuilder.append("\n");
-				if(null != e && null != e.getCause())
+			} catch (Exception e) {
+				if(!failerInvoked)
 				{
-					if(!failerInvoked)
-					{
-						checkerExceptionDescription = e.getCause().toString();
-					}
-					else
-					{
-						failerExceptionDescription = e.getCause().toString();
-					}
+					checkerExceptionDescription = (null == e.getCause() ? e.toString() : e.getCause().toString());
+				}
+				else
+				{
+					failerExceptionDescription = (null == e.getCause() ? e.toString() : e.getCause().toString());
 				}
 			}
+			
+			{ // example
+				String ex1 = conditionalHtml.replaceFirst("XXX_FAILFAST_CHECKER_METHOD", method.getName());
+				String ex2 = ex1.replaceFirst("XXX_FAILFAST_CHECKER_ARGUMENTS", checkerArgumentsAsString);
+				String ex3 = ex2.replaceFirst("XXX_FAILFAST_FAILER_METHOD", method.getName().replaceFirst("is", "fail"));
+				String ex4 = ex3.replaceFirst("XXX_FAILFAST_FAILER_ARGUMENTS", failerArgumentsAsString);
+				stringBuilder.append(ex4);
+			}
+
 //			stringBuilder.append(breakHtml);
 			stringBuilder.append(checkerCallReturnValueHtml.replaceFirst("XXX_RETURN_VALUE", (null == resultBoolean ? (null == checkerExceptionDescription ? (checkerInvoked ? "null" : "not called") : checkerExceptionDescription) : resultBoolean.toString())));
 //			stringBuilder.append(breakHtml);
-			stringBuilder.append(failerExceptionHtml.replaceFirst("XXX_FAILFAST_EXCEPTION", (null == failerExceptionDescription ? (failerInvoked ? "null" : "not called") : failerExceptionDescription)));
+			stringBuilder.append(failerExceptionHtml.replaceFirst("XXX_FAILFAST_EXCEPTION", (null == failerExceptionDescription ? (failerInvoked ? "null" : (failerShouldInvoke ? "interactive app giving up - please blame the developer - thanks!" : "not called")) : failerExceptionDescription)));
 			
 		}
 		
