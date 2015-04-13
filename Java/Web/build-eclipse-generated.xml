@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Web">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="/Users/kro/Pgm/eclipse_4.2.2"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="App Engine SDK [App Engine - 1.9.18].libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/appengine-local-runtime-shared.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/el-api.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/jsp/repackaged-appengine-ant-1.7.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/jsp/repackaged-appengine-ant-launcher-1.7.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/jsp/repackaged-appengine-jasper-6.0.29.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/jsp/repackaged-appengine-jasper-el-6.0.29.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/jsp/repackaged-appengine-tomcat-juli-6.0.29.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/jsp-api.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/shared/servlet-api.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/appengine-tools-api.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/opt/user/appengine-api-labs/v1/appengine-api-labs.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/opt/user/appengine-endpoints/v1/appengine-endpoints-deps.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/opt/user/appengine-endpoints/v1/appengine-endpoints.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/opt/user/jsr107/v1/appengine-jsr107cache-1.9.18.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/opt/user/jsr107/v1/jsr107cache-1.1.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/com.google.appengine.eclipse.sdkbundle_1.9.18/appengine-java-sdk-1.9.18/lib/user/appengine-api-1.0-sdk-1.9.18.jar"/>
+    </path>
+    <path id="Web.classpath">
+        <pathelement location="war/WEB-INF/classes"/>
+        <path refid="App Engine SDK [App Engine - 1.9.18].libraryclasspath"/>
+        <pathelement location="war/WEB-INF/lib/starkcoder-failfast-1.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="war/WEB-INF/classes"/>
+        <copy includeemptydirs="false" todir="war/WEB-INF/classes">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="war/WEB-INF/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="war/WEB-INF/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Web.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+</project>

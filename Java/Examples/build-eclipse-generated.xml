@@ -5,7 +5,7 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="Examples">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="/Users/kro/Pgm/eclipse"/>
+    <property name="ECLIPSE_HOME" value="/Users/kro/Pgm/eclipse_4.2.2"/>
     <property name="junit.output.dir" value="bin/junit"/>
     <property name="FailFast.location" value="../FailFast"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -27,7 +27,6 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -50,6 +49,38 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="BoxedPrimitivesTest.callAllTestAgainAndAgain">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.memoryusage.boxedprimitives.BoxedPrimitivesTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="BoxedPrimitivesTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.memoryusage.boxedprimitives.BoxedPrimitivesTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="BoxedPrimitivesTest.testMemoryUsagePrimitiveBoolean">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.memoryusage.boxedprimitives.BoxedPrimitivesTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
+    <target name="BoxedPrimitivesTest.testMemoryUsagePrimitiveFloat">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.examples.memoryusage.boxedprimitives.BoxedPrimitivesTest" todir="${junit.output.dir}"/>
+            <classpath refid="Examples.classpath"/>
+        </junit>
+    </target>
     <target name="EntitiesWithMyFailFastTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -65,6 +96,7 @@
             <test name="starkcoder.failfast.examples.exceptionhandling.multithreaded.MainExceptionHandlerThreadedTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerPassiveTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerReactiveTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.memoryusage.boxedprimitives.BoxedPrimitivesTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.reference2failfast.abstractclass.EntitiesWithMyFailFastTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.reference2failfast.staticclass.SMyFailFastTest" todir="${junit.output.dir}"/>
             <classpath refid="Examples.classpath"/>
@@ -125,6 +157,7 @@
             <test name="starkcoder.failfast.examples.exceptionhandling.multithreaded.MainExceptionHandlerThreadedTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerPassiveTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.exceptionhandling.singlethreaded.MainExceptionHandlerReactiveTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.examples.memoryusage.boxedprimitives.BoxedPrimitivesTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.reference2failfast.abstractclass.EntitiesWithMyFailFastTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.examples.reference2failfast.staticclass.SMyFailFastTest" todir="${junit.output.dir}"/>
             <classpath refid="Examples.classpath"/>
