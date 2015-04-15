@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." name="starkcoder-failfast">
+<project basedir="." name="starkcoder-failfast-unittests">
 	
 	<import file="build-eclipse-generated.xml"/>
 	
@@ -10,25 +10,22 @@
 	<property name="bin.dir" value="bin" />
 	<property name="dist.dir" value="dist" />
 	<property name="jar.dir" value="${bin.dir}/jar" />
-	<property name="doc.dir" value="${bin.dir}/doc" />
+    <property name="doc.dir" value="${bin.dir}/doc" />
 	<property name="api.dir" value="${doc.dir}/api" />
-	
-	<property name="unittests.ant" value="../junit" />
-	<property name="tests.dir" value="${bin.dir}/junit" />
 	
     <property name="main-class"	value="starkcoder.failfast.SFailFast" />
 	
 	<!-- ================================= 
           target: init              
          ================================= -->
-    <target name="init" depends="FailFast.init" description="Initializes settings and filesystem">
+    <target name="init" depends="UnitTests.init" description="Initializes settings and filesystem">
 		<echo message="ANT_HOME=${env.ANT_HOME}"/>
 		<echo message="JAVA_HOME=${env.JAVA_HOME}"/>
 		<echo message="source=${source}"/>
 		<echo message="target=${target}"/>
 		<echo message="debuglevel=${debuglevel}"/>
 		<echo message="ant.project.name=${ant.project.name}"/>
-		<echo message="version.major=${version.major}"/>
+<!--		<echo message="version.major=${version.major}"/>
 		<echo message="version.minor=${version.minor}"/>
 		
 		<tstamp>
@@ -40,105 +37,31 @@
 						
 	    <property name="version" value="${version.major}.${version.minor}.${now.mdd}.${now.hmm}" />
 		<echo message="version=${version}"/>
-		<echo message="jar=${jar.dir}"/>
+		<echo message="jar=${jar.dir}"/> -->
     </target>
 
 	<!-- ================================= 
           target: clean              
          ================================= -->
-    <target name="clean" depends="init,FailFast.clean" description="Removes temporary directories and files">
+    <target name="clean" depends="init,UnitTests.clean" description="Removes temporary directories and files">
     </target>
 
 	<!-- ================================= 
           target: cleanall              
          ================================= -->
-    <target name="cleanall" depends="init,FailFast.cleanall" description="Removes temporary directories and files">
-       	<ant antfile="build.xml" dir="${UnitTests.location}" inheritAll="false" target="cleanall"/>
-    	<delete dir="${dist.dir}"/>
+    <target name="cleanall" depends="init,UnitTests.cleanall" description="Removes temporary directories and files">
+    	<!-- <delete dir="${dist.dir}"/>  -->
     </target>
 
 	<!-- ================================= 
           target: build              
          ================================= -->
-    <target name="build" depends="init,FailFast.build" description="Builds the code">
-    </target>
-
-	<!-- ================================= 
-          target: dist              
-         ================================= -->
-	<property name="dist.html.htmlhead" value="&lt;html&gt;&lt;head&gt;" />
-	<property name="dist.html.title" value="&lt;title&gt;FailFast v.${version.major}.${version.minor}&lt;/title&gt;" />
-	<property name="dist.html.headbody" value="&lt;/head&gt;&lt;body&gt;" />
-	<property name="dist.html.heading" value="&lt;h3&gt;FailFast v.${version.major}.${version.minor}&lt;/h3&gt;" />
-	<property name="dist.html.apistart" value="&lt;a href='api/index.html'&gt;api (javadoc)&lt;/a&gt;" />
-	<property name="dist.html.unitstart" value="&lt;a href='unit/index.html'&gt;unit tests (junit)&lt;/a&gt;" />
-	<property name="dist.html.break" value="&lt;br/&gt;" />
-	<property name="dist.html.jar" value="&lt;a href='jar/${ant.project.name}-${version.major}.${version.minor}.jar'&gt;${ant.project.name}-${version.major}.${version.minor}.jar&lt;/a&gt;" />
-	<property name="dist.html.jar.src" value="&lt;a href='jar/${ant.project.name}-${version.major}.${version.minor}-src.jar'&gt;${ant.project.name}-${version.major}.${version.minor}-src.jar&lt;/a&gt;" />
-	<property name="dist.html.jar.javadoc" value="&lt;a href='jar/${ant.project.name}-${version.major}.${version.minor}-javadoc.jar'&gt;${ant.project.name}-${version.major}.${version.minor}-javadoc.jar&lt;/a&gt;" />
-	<property name="dist.html.jar.all" value="&lt;a href='jar/${ant.project.name}-${version.major}.${version.minor}-all.jar'&gt;${ant.project.name}-${version.major}.${version.minor}-all.jar&lt;/a&gt;" />
-	<property name="dist.html.bodyhtml" value="&lt;/body&gt;&lt;/html&gt;" />
-
-	<property name="dist.version.dir" value="${dist.dir}/${version.major}.${version.minor}" />
-
-    <target name="dist" depends="init,build" description="Builds distribution">
-    	
-    	<ant antfile="build.xml" dir="${UnitTests.location}" inheritAll="false" target="unitreport"/>
-    	
-        <mkdir dir="${dist.dir}"/>
-        <mkdir dir="${dist.version.dir}"/>
-    	<ant target="jar">
-    	</ant>
-    	<ant target="jar-src">
-    	</ant>
-       	<ant target="jar-javadoc">
-        	</ant>
-       	<ant target="jar-all">
-        	</ant>
-    	<copy todir="${dist.version.dir}/jar">
-    		<fileset dir="${jar.dir}">
-    		</fileset>
-    	</copy>
-    	
-    	<copy todir="${dist.version.dir}/api">
-    		<fileset dir="${api.dir}">
-    		</fileset>
-    	</copy>
-    	
-    	<copy todir="${dist.version.dir}/unit">
-    		<fileset dir="${UnitTests.location}/bin/junit"
-    			excludes="*.xml"
-    		>
-    		</fileset>
-    	</copy>
-    	
-    	<echo file="${dist.version.dir}/index.html" append="false">
-    		${dist.html.htmlhead}
-    		${dist.html.title}
-			${dist.html.headbody}
-			${dist.html.break}
-			${dist.html.heading}
-			${dist.html.break}
-			${dist.html.apistart}
-			${dist.html.break}
-			${dist.html.unitstart}
-			${dist.html.break}
-			${dist.html.break}
-			${dist.html.jar}
-			${dist.html.break}
-			${dist.html.jar.src}
-			${dist.html.break}
-			${dist.html.jar.javadoc}
-			${dist.html.break}
-			${dist.html.jar.all}
-    		${dist.html.bodyhtml}
-    	</echo>
-    	
+    <target name="build" depends="init,UnitTests.build" description="Builds the code">
     </target>
 	
-	<!-- ================================= 
-          target: jar              
-         ================================= -->
+   	<!-- ================================= 
+         target: jar              
+        ================================= -->
     <target name="jar" depends="build" description="Builds a jar file">
        	
             <mkdir dir="${jar.dir}"/>
@@ -152,10 +75,10 @@
     			/>
             </jar>
     </target>
-
-	<!-- ================================= 
-          target: jar-src              
-         ================================= -->
+    
+   	<!-- ================================= 
+         target: jar-src              
+        ================================= -->
     <target name="jar-src" depends="build" description="Builds a jar file with source files">
        	
             <mkdir dir="${jar.dir}"/>
@@ -168,7 +91,8 @@
     			/>
             </jar>
     </target>
-
+    
+    
 	<!-- ================================= 
           target: jar-javadoc              
          ================================= -->
@@ -213,9 +137,9 @@
          ================================= -->
     <target name="javadoc" depends="build" description="Builds a javadoc">
     	
-	  <javadoc packagenames="starkcoder.failfast.*"
+	  <javadoc packagenames="starkcoder.failfast.unit.*"
 	           sourcepath="src"
-	           excludepackagenames="starkcoder.failfast.unit.*"
+	           excludepackagenames="org.junit*"
 	           defaultexcludes="yes"
 	           destdir="${doc.dir}/api"
 	           author="true"
@@ -225,13 +149,18 @@
 	    <doctitle><![CDATA[<h1>FailFast v.${version.major}.${version.minor}</h1>]]></doctitle>
 	    <bottom><![CDATA[<i>The MIT License (MIT) - Copyright &#169; 2014-2015 Keld Oelykke. All Rights Reserved.</i>]]></bottom>
 	    <tag name="todo" scope="all" description="To do:"/>
-	    <group title="FailFast" packages="starkcoder.failfast*"/>
-	    <group title="Checks" packages="starkcoder.failfast.checks*"/>
-	    <group title="Fails" packages="starkcoder.failfast.fails*"/>
+	    <group title="Test Templates" packages="starkcoder.failfast.templates*"/>
+	    <group title="Unit Tests" packages="starkcoder.failfast.unit*"/>
 	    <link offline="true" href="http://docs.oracle.com/javase/7/docs/api/" packagelistLoc="C:\tmp"/>
 	    <link href="http://docs.oracle.com/javase/7/docs/api/"/>
 	  </javadoc>
     	
+    </target>
+    
+	<!-- ================================= 
+          target: unitreport              
+         ================================= -->
+    <target name="unitreport" depends="build, UnitTests.UnitTests, UnitTests.junitreport" description="Runs tests and builds a unit test report">
     </target>
 	
 </project>
