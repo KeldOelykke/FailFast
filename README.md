@@ -65,8 +65,9 @@ Releases
 
 Go to http://oelykke-failfast.appspot.com to:
  - download jars
- - view javadoc
- - try it online
+ - view api (javadoc)
+ - view unit test results (junit)
+ - try the checker-failer pairs online
 
 
 Dogma
