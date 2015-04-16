@@ -36,6 +36,7 @@
         <mkdir dir="war/WEB-INF/classes"/>
         <copy includeemptydirs="false" todir="war/WEB-INF/classes">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>

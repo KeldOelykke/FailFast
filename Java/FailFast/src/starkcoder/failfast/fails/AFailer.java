@@ -193,6 +193,20 @@ import starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail;
 import starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidDefaultFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidEqualsFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidGreaterFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidInsideFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidLessFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidNotDefaultFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidNotEqualsFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidNotNullFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidNotSameFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidNullFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidOutsideFail;
+import starkcoder.failfast.fails.objects.uuids.IObjectUuidSameFail;
 
 /**
  * Abstract implementation of {@link IFailer}.
@@ -2850,8 +2864,191 @@ public abstract class AFailer implements IFailer
 	}
 	
 	
-	
 	// OBJECTS - STRING - END ---------------------------------
+	
+	
+
+
+	// OBJECTS - UUID - START ---------------------------------
+	
+	
+	@Override
+	public void failUuidNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failUuidSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failUuidNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failUuidEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failUuidNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectUuidNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failUuidNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectUuidNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failUuidNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectUuidNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failUuidNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectUuidNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failUuidDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectUuidDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failUuidDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectUuidDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failUuidNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectUuidNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failUuidNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectUuidNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failUuidGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failUuidGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failUuidLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failUuidLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectUuidLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failUuidLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectUuidLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failUuidOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectUuidOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failUuidOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectUuidOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failUuidInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectUuidInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failUuidInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectUuidInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - UUID - END ---------------------------------
+	
+
+	
 	
 	
 	
