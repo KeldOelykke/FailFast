@@ -277,7 +277,7 @@ public class UuidOutsideTest implements IComparableOutsideTest<UUID> {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testShortOutsideFailMinusZeroVsZero() {
+	public void testUuidOutsideFailMinusZeroVsZero() {
 		UUID valueA = new UUID(0, 1);
 		UUID valueMin = new UUID(0, 0);
 		UUID valueMax = new UUID(0, 0);

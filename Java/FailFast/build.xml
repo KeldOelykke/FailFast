@@ -4,7 +4,7 @@
 	<import file="build-eclipse-generated.xml"/>
 	
 	<property name="version.major" value="1"/> 
-	<property name="version.minor" value="0"/>
+	<property name="version.minor" value="1"/>
 	
 	<property name="src.dir" value="src" />
 	<property name="bin.dir" value="bin" />

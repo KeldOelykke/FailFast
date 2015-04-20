@@ -275,7 +275,7 @@ public class UuidInsideTest implements IComparableInsideTest<UUID> {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testShortInsideFailMinusZeroVsZero() {
+	public void testUuidInsideFailMinusZeroVsZero() {
 		UUID valueA = new UUID(0, -0);
 		UUID valueMin = new UUID(0, 0);
 		UUID valueMax = new UUID(0, 0);
