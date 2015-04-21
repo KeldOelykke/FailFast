@@ -24,6 +24,7 @@
 package starkcoder.failfast.checks;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -80,6 +81,20 @@ import starkcoder.failfast.checks.objects.characters.IObjectCharacterNotSameChec
 import starkcoder.failfast.checks.objects.characters.IObjectCharacterNullCheck;
 import starkcoder.failfast.checks.objects.characters.IObjectCharacterOutsideCheck;
 import starkcoder.failfast.checks.objects.characters.IObjectCharacterSameCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateDefaultCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateEqualsCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateGreaterCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateGreaterOrEqualsCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateInsideCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateLessCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateLessOrEqualsCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateNotDefaultCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateNotEqualsCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateNotNullCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateNotSameCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateNullCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateOutsideCheck;
+import starkcoder.failfast.checks.objects.dates.IObjectDateSameCheck;
 import starkcoder.failfast.checks.objects.doubles.IObjectDoubleDefaultCheck;
 import starkcoder.failfast.checks.objects.doubles.IObjectDoubleEqualsAlmostCheck;
 import starkcoder.failfast.checks.objects.doubles.IObjectDoubleEqualsCheck;
@@ -1191,6 +1206,168 @@ public abstract class AChecker implements IChecker
 	}
 	
 	// OBJECTS - CHARACTER - END
+
+	
+	// OBJECTS - DATE - START
+	
+	@Override
+	public boolean isDateNotSame(Object caller, Date referenceA,
+			Date referenceB)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectNotSameImplementation(caller, referenceA, referenceB, IObjectDateNotSameCheck.class);
+	
+		return result;
+	}
+	@Override
+	public boolean isDateSame(Object caller, Date referenceA,
+			Date referenceB)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectSameImplementation(caller, referenceA, referenceB, IObjectDateSameCheck.class);
+	
+		return result;
+	}	
+	
+	@Override
+	public boolean isDateEquals(Object caller, Date referenceA,
+			Date referenceB)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectEqualsImplementation(caller, referenceA, referenceB, IObjectDateEqualsCheck.class);
+	
+		return result;
+	}
+	@Override
+	public boolean isDateNotEquals(Object caller, Date referenceA,
+			Date referenceB)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectNotEqualsImplementation(caller, referenceA, referenceB, IObjectDateNotEqualsCheck.class);
+	
+		return result;
+	}
+	
+	@Override
+	public boolean isDateNotNull(Object caller, Date referenceA)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectNotNullImplementation(caller, referenceA, IObjectDateNotNullCheck.class);
+	
+		return result;
+	}
+	@Override
+	public boolean isDateNull(Object caller, Date referenceA)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectNullImplementation(caller, referenceA, IObjectDateNullCheck.class);
+	
+		return result;
+	}
+	
+	private Date dateDefault = new Date(0);
+	@Override
+	public Date getDateDefault()
+	{
+		return this.dateDefault;
+	}
+	@Override
+	public void setDateDefault(Date defaultDate)
+	{
+		this.dateDefault = defaultDate;
+	}
+	
+	@Override
+	public boolean isDateDefault(Object caller, Date referenceA)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectDefaultImplementation(caller, referenceA, this.getDateDefault(), IObjectDateDefaultCheck.class);
+	
+		return result;
+	}
+	@Override
+	public boolean isDateNotDefault(Object caller, Date referenceA)
+	{
+		boolean result = false;
+	
+		result = this.isGenericObjectNotDefaultImplementation(caller, referenceA, this.getDateDefault(), IObjectDateNotDefaultCheck.class);
+	
+		return result;
+	}
+	
+	
+	@Override
+	public boolean isDateLess(Object caller, Date referenceA, Date referenceB)
+	{
+		boolean result = false;
+	
+		result = this.isGenericComparableLessImplementation(caller, referenceA, referenceB, IObjectDateLessCheck.class);
+	
+		return result;
+	}
+	
+	@Override
+	public boolean isDateLessOrEquals(Object caller, Date referenceA,
+			Date referenceB)
+	{
+		boolean result = false;
+		
+		result = this.isGenericComparableLessOrEqualsImplementation(caller, referenceA, referenceB, IObjectDateLessOrEqualsCheck.class);
+	
+		return result;
+	}
+	
+	@Override
+	public boolean isDateGreater(Object caller, Date referenceA, Date referenceB)
+	{
+		boolean result = false;
+	
+		result = this.isGenericComparableGreaterImplementation(caller, referenceA, referenceB, IObjectDateGreaterCheck.class);
+	
+		return result;
+	}
+	
+	@Override
+	public boolean isDateGreaterOrEquals(Object caller, Date referenceA,
+			Date referenceB)
+	{
+		boolean result = false;
+	
+		result = this.isGenericComparableGreaterOrEqualsImplementation(caller, referenceA, referenceB, IObjectDateGreaterOrEqualsCheck.class);
+	
+		return result;
+	}
+	
+	@Override
+	public boolean isDateOutside(Object caller, Date referenceA,
+			Date referenceMin, Date referenceMax)
+	{
+		boolean result = false;
+	
+		result = this.isGenericComparableOutsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectDateOutsideCheck.class);
+	
+		return result;
+	}
+	
+	@Override
+	public boolean isDateInside(Object caller, Date referenceA,
+			Date referenceMin, Date referenceMax)
+	{
+		boolean result = false;
+	
+		result = this.isGenericComparableInsideImplementation(caller, referenceA, referenceMin, referenceMax, IObjectDateInsideCheck.class);
+	
+		return result;
+	}
+	
+	// OBJECTS - DATE - END
 
 	
 

@@ -81,6 +81,20 @@ import starkcoder.failfast.fails.objects.characters.IObjectCharacterNotSameFail;
 import starkcoder.failfast.fails.objects.characters.IObjectCharacterNullFail;
 import starkcoder.failfast.fails.objects.characters.IObjectCharacterOutsideFail;
 import starkcoder.failfast.fails.objects.characters.IObjectCharacterSameFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateDefaultFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateEqualsFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateGreaterFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateInsideFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateLessFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateLessOrEqualsFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateNotDefaultFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateNotEqualsFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateNotNullFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateNotSameFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateNullFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateOutsideFail;
+import starkcoder.failfast.fails.objects.dates.IObjectDateSameFail;
 import starkcoder.failfast.fails.objects.doubles.IObjectDoubleDefaultFail;
 import starkcoder.failfast.fails.objects.doubles.IObjectDoubleEqualsAlmostFail;
 import starkcoder.failfast.fails.objects.doubles.IObjectDoubleEqualsFail;
@@ -1207,6 +1221,185 @@ public abstract class AFailer implements IFailer
 	}
 	
 	// OBJECTS - CHARACTER - END ---------------------------------
+	
+	
+	// OBJECTS - DATE - START ---------------------------------
+	
+	
+	@Override
+	public void failDateNotSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateNotSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failDateSame(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateSame(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDateNotEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateNotEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	@Override
+	public void failDateEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDateNotNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDateNotNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDateNotNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDateNotNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDateNull(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDateNullFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDateNull(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDateNullFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDateDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDateDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDateDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDateDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	@Override
+	public void failDateNotDefault(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDateNotDefaultFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDateNotDefault(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDateNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDateGreater(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateGreater(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDateGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateGreaterOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDateLess(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateLess(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDateLessOrEquals(Object caller, String referenceAName,
+			String referenceBName)
+	{
+		this.Throw(caller, IObjectDateLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+	}
+	@Override
+	public void failDateLessOrEquals(Object caller, String referenceAName,
+			String referenceBName, String message)
+	{
+		this.Throw(caller, IObjectDateLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+	}
+	
+	@Override
+	public void failDateOutside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDateOutsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDateOutside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDateOutsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	@Override
+	public void failDateInside(Object caller, String referenceAName)
+	{
+		this.Throw(caller, IObjectDateInsideFail.class, new Object[] { caller, referenceAName });
+	}
+	@Override
+	public void failDateInside(Object caller, String referenceAName,
+			String message)
+	{
+		this.Throw(caller, IObjectDateInsideFail.class, new Object[] { caller, referenceAName, message });
+	}
+	
+	// OBJECTS - DATE - END ---------------------------------
 	
 
 	
