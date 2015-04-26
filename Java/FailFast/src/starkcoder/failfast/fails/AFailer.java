@@ -3588,8 +3588,8 @@ public abstract class AFailer implements IFailer
         Object[] checkerExtraArguments = entry.getValue();
 //        String message = this.formatMessage(failerSpecificationType, failAnnotation, checkerArguments, failerArguments);
 //        String message = String.format(failAnnotation.failMessageFormat(), failerArguments);
-        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
-        FailFastException exception = this.constructFailException(failAnnotation.failExceptionType(), message);
+//        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
+        FailFastException exception = this.constructFailException(failerSpecificationType, failAnnotation, checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
         if(null == this.getFailFastExceptionOrNull())
         { // remember first exception
         	this.setFailFastExceptionOrNull(exception);
@@ -3823,10 +3823,20 @@ public abstract class AFailer implements IFailer
 		return result;
 	}
 
-    protected FailFastException constructFailException(Class<? extends FailFastException> exceptionType, String message)
+    protected FailFastException constructFailException(
+		Class<? extends IFail> failerSpecificationType,
+		NFail failAnnotation, 
+		Object[] checkerUserArguments,
+		Object[] checkerExtraArguments,
+		Object[] failerUserArguments,
+		Object[] failerExtraArguments)
     {
     	FailFastException exception = null;
         
+    	Class<? extends FailFastException> exceptionType = failAnnotation.failExceptionType();
+    	
+        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, checkerUserArguments, checkerExtraArguments, failerUserArguments, failerExtraArguments);
+    	
         Constructor<? extends FailFastException> constructor;
 		try
 		{
@@ -3841,6 +3851,14 @@ public abstract class AFailer implements IFailer
         try
 		{
 			exception = constructor.newInstance(message);
+			exception.setCheckerSpecificationType(failAnnotation.checkerSpecificationType());
+			exception.setCheckerUserArguments(checkerUserArguments);
+			exception.setCheckerExtraArguments(checkerExtraArguments);
+			exception.setFailerSpecificationType(failerSpecificationType);
+			exception.setFailerUserArguments(failerUserArguments);
+			exception.setFailerExtraArguments(failerExtraArguments);
+			exception.setMessageFormat(failAnnotation.failMessageFormat());
+			exception.setFailerMessageArguments(failAnnotation.failMessageArguments());
 		}
 		catch (InstantiationException | IllegalAccessException
 				| IllegalArgumentException | InvocationTargetException e)
