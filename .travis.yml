@@ -4,4 +4,4 @@ jdk:
   - oraclejdk7
   - openjdk7
 #  - openjdk6
-script: ant cleanall build
+script: ant cleanall build unitreport

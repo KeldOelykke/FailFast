@@ -3,6 +3,8 @@
 		
 	<property name="java.failfast.dir" value="Java/FailFast" />
 	<property name="java.failfast.build.xml" value="${java.failfast.dir}/build.xml" />
+	<property name="java.unittests.dir" value="Java/UnitTests" />
+	<property name="java.unittests.build.xml" value="${java.unittests.dir}/build.xml" />
 	
 	<!-- ================================= 
           target: init              
@@ -21,6 +23,7 @@
          ================================= -->
     <target name="cleanall" depends="init" description="Removes temporary directories and files">
     	<ant dir="${java.failfast.dir}" target="cleanall"/>
+    	<ant dir="${java.unittests.dir}" target="cleanall"/>
     </target>
 
 	<!-- ================================= 
@@ -31,10 +34,10 @@
     </target>
 	
    	<!-- ================================= 
-         target: test              
-        ================================= 
-    <target name="test" depends="init" description="Runs test">
-       	<ant dir="${java.failfast.dir}" target="test"/>
+         target: unitreport              
+        ================================= -->
+    <target name="unitreport" depends="init" description="Runs tests and creates report">
+       	<ant dir="${java.unittests.dir}" target="unitreport"/>
     </target>
-	-->
+	
 </project>
