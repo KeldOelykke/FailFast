@@ -59,6 +59,10 @@ Examples
 
 https://github.com/KeldOelykke/FailFast/wiki
 
+CI
+==
+Every new commit triggers a build and unit test run on Travis CI: 
+[![Build Status](https://travis-ci.org/KeldOelykke/FailFast.svg?branch=master)](https://travis-ci.org/KeldOelykke/FailFast)
 
 Releases
 ===================
