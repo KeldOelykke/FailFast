@@ -63,7 +63,7 @@
     <target name="build" depends="init,FailFast.build" description="Builds the code">
     </target>
 
-	<!-- ================================= 
+    <!-- ================================= 
           target: dist              
          ================================= -->
 	<property name="dist.html.htmlhead" value="&lt;html&gt;&lt;head&gt;" />

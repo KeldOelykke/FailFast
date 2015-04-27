@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." name="starkcoder-failfast">
+		
+	<property name="java.failfast.dir" value="Java/FailFast" />
+	<property name="java.failfast.build.xml" value="${java.failfast.dir}/build.xml" />
+	
+	<!-- ================================= 
+          target: init              
+         ================================= -->
+    <target name="init" description="Initializes settings and filesystem">
+		<echo message="ANT_HOME=${env.ANT_HOME}"/>
+		<echo message="JAVA_HOME=${env.JAVA_HOME}"/>
+		<echo message="source=${source}"/>
+		<echo message="target=${target}"/>
+		<echo message="debuglevel=${debuglevel}"/>
+		<echo message="ant.project.name=${ant.project.name}"/>
+    </target>
+
+	<!-- ================================= 
+          target: cleanall              
+         ================================= -->
+    <target name="cleanall" depends="init" description="Removes temporary directories and files">
+    	<ant antfile="${java.failfast.build.xml}" target="cleanall"/>
+    </target>
+
+	<!-- ================================= 
+          target: build              
+         ================================= -->
+    <target name="build" depends="init" description="Builds the code">
+    	<ant antfile="${java.failfast.build.xml}" target="build"/>
+    </target>
+	
+   	<!-- ================================= 
+         target: test              
+        ================================= 
+    <target name="test" depends="init" description="Runs test">
+       	<ant antfile="${java.failfast.build.xml}" target="test"/>
+    </target>
+	-->
+</project>
