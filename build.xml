@@ -20,21 +20,21 @@
           target: cleanall              
          ================================= -->
     <target name="cleanall" depends="init" description="Removes temporary directories and files">
-    	<ant antfile="${java.failfast.build.xml}" target="cleanall"/>
+    	<ant dir="${java.failfast.dir}" target="cleanall"/>
     </target>
 
 	<!-- ================================= 
           target: build              
          ================================= -->
     <target name="build" depends="init" description="Builds the code">
-    	<ant antfile="${java.failfast.build.xml}" target="build"/>
+    	<ant dir="${java.failfast.dir}" target="build"/>
     </target>
 	
    	<!-- ================================= 
          target: test              
         ================================= 
     <target name="test" depends="init" description="Runs test">
-       	<ant antfile="${java.failfast.build.xml}" target="test"/>
+       	<ant dir="${java.failfast.dir}" target="test"/>
     </target>
 	-->
 </project>
