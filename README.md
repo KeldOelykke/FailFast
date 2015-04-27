@@ -57,12 +57,14 @@ The scope of the 2nd major version is check & fail-pairs that can handle arrays 
 Examples
 ========
 
-https://github.com/KeldOelykke/FailFast/wiki
+The wiki has a lot of test examples that hopefully makes sense to you:
+ - https://github.com/KeldOelykke/FailFast/wiki
 
-CI
-==
+Continuous Integration
+======================
+
 Every new commit triggers a build and unit test run on Travis CI: 
-[![Build Status](https://travis-ci.org/KeldOelykke/FailFast.svg?branch=master)](https://travis-ci.org/KeldOelykke/FailFast)
+ - [![Build Status](https://travis-ci.org/KeldOelykke/FailFast.svg?branch=master)](https://travis-ci.org/KeldOelykke/FailFast)
 
 Releases
 ===================
