@@ -1,12 +1,11 @@
 package starkcoder.failfast.examples.reference2failfast.myfailfast.withoverrides is an
-example on how you can wrap the failfast library and replace
+example on how you can wrap the failfast library and add custom
 code when needed.
 
 Most example files are basically wrappers for you to reference:
 - IMyFailFast & MyFailFast (yours) that wrap IFailFast & FailFast (failfast api)
 - IMyChecker & MyChecker (yours) that wrap IChecker & Checker (failfast api),  
 - IMyFailer & MyFailer (yours) that wrap IFailer & Failer (failfast api), and
-- IMyObjectNullCheck & IMyObjectNullFail (yours) being a customized checker-failer pair 
-that replaces built-in IObjectNullCheck & IObjectNullFail (failfast api).
+- IMyFooCheck & IMyFooFail (yours) being a customized checker-failer pair for a custom class Foo (yours).
 
 Additionally, a static class - SMyFailFast - can be used to manage a single set of failfast instances.

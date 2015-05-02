@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.examples.reference2failfast.myfailfast.withoverrides;
+package starkcoder.failfast.examples.reference2failfast.myfailfast.withcustoms;
 
 import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.fails.AFailer;
 
 /**
- * Custom failer class.
+ * Example of a custom failer class with support for your custom failer methods.
  * 
  * @author Keld Oelykke
  */
@@ -59,27 +59,30 @@ public class MyFailer extends AFailer implements IMyFailer
 	}
 	
 	/**
-	 * This is overridden to use a custom failer IMyObjectNullFail instead of IObjectNullFail.
+	 * This is a custom failer IMyFooBarFail to support custom type Foo.
 	 * <p>
-	 * Notice that super should NOT be called.
+	 * You can add as many custom checker-failer pairs as you please. 
 	 * </p>
 	 */
 	@Override
-	public void failObjectNull(Object caller, String referenceName)
+	public void failFooBar(Object caller, String referenceName)
 	{
-		this.popContractWithCallerAndThrowException(caller, IMyObjectNullFail.class, new Object[] { caller, referenceName });
+		this.popContractWithCallerAndThrowException(caller, IMyFooBarFail.class, new Object[] { caller, referenceName });
 	}
 	/**
-	 * This is overridden to use a custom failer IMyObjectNullFail instead of IObjectNullFail.
+	 * This is a custom failer IMyFooBarFail to support custom type Foo.
 	 * <p>
-	 * Notice that super should NOT be called.
+	 * You can add as many custom checker-failer pairs as you please. 
+	 * </p>
+	 * <p>
+	 * Is is up to you if you want to support a fail-method with support for an extra message. 
 	 * </p>
 	 */
 	@Override
-	public void failObjectNull(Object caller, String referenceName,
+	public void failFooBar(Object caller, String referenceName,
 			String message)
 	{
-		this.popContractWithCallerAndThrowException(caller, IMyObjectNullFail.class, new Object[] { caller, referenceName, message });
+		this.popContractWithCallerAndThrowException(caller, IMyFooBarFail.class, new Object[] { caller, referenceName, message });
 	}
 
 }

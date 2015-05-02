@@ -3390,12 +3390,50 @@ public abstract class AChecker implements IChecker
 	
 	protected final static Object[] EmptyObjectArray = new Object[]{};
 
+	/**
+	 * Call this when a check asserts.
+	 * <p>
+	 * This starts a contract that is finished with a fail-call.
+	 * </p>
+	 * 
+	 * @param caller
+	 *            object calling checker
+	 * @param checkerSpecification
+	 *            checker identification (interface)
+	 * @param checkArguments
+	 *            array with arguments of called check method
+	 * @throws IllegalArgumentException
+	 *             if any of the arguments are null
+	 * @throws IllegalStateException
+	 *             if CallContractor has not been set, or a previous push (per
+	 *             thread) has not been popped
+	 */
 	protected void pushContractWithCaller(Object caller,
 			Class<? extends ICheck> checkerSpecification, Object[] checkArguments)
 	{
 		this.pushContractWithCaller(caller, checkerSpecification, checkArguments, EmptyObjectArray);
 	}
 	
+	/**
+	 * Call this when a check asserts.
+	 * <p>
+	 * This starts a contract that is finished with a fail-call.
+	 * </p>
+	 * 
+	 * @param caller
+	 *            object calling checker
+	 * @param checkerSpecification
+	 *            checker identification (interface)
+	 * @param checkArguments
+	 *            array with arguments of called check method
+	 * @param checkExtraArguments
+	 *            array of extra arguments useful in failure message
+	 * @throws IllegalArgumentException
+	 *             if any of the arguments are null
+	 * @throws IllegalStateException
+	 *             if CallContractor has not been set, or a previous push (per
+	 *             thread) has not been popped
+	 */
 	protected void pushContractWithCaller(Object caller,
 			Class<? extends ICheck> checkerSpecification, Object[] checkArguments, Object[] checkExtraArguments)
 	{

@@ -21,25 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.examples.reference2failfast.myfailfast.withoverrides;
+package starkcoder.failfast.examples.reference2failfast.myfailfast.withcustoms;
 
+import starkcoder.failfast.AFailFast;
+import starkcoder.failfast.checks.IChecker;
 import starkcoder.failfast.contractors.ICallContractor;
-import starkcoder.failfast.fails.AFailer;
+import starkcoder.failfast.fails.IFailer;
 
 /**
- * Custom failer class.
+ * A custom fail-fast class that can support your custom checker and custom failer.
  * 
  * @author Keld Oelykke
  */
-public class MyFailer extends AFailer implements IMyFailer
-{
+public class MyFailFast extends AFailFast implements IMyFailFast {
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.examples.reference2failfast.myfailfast.withcustoms.IMyFailFast#getMyChecker()
+	 */
+	@Override
+	public IMyChecker getMyChecker() {
+		return (IMyChecker)this.getChecker();
+	}
+
+	/* (non-Javadoc)
+	 * @see starkcoder.failfast.examples.reference2failfast.myfailfast.withcustoms.IMyFailFast#getMyFailer()
+	 */
+	@Override
+	public IMyFailer getMyFailer() {
+		return (IMyFailer)this.getFailer();
+	}
+
 	/**
 	 * Default constructor.
 	 * <p>
-	 * Remember to set call contractor before usage.
+	 * After using this constructor remember to set Checker, Failer and
+	 * CallContractor before use.
 	 * </p>
 	 */
-	public MyFailer()
+	public MyFailFast()
 	{
 		super();
 	}
@@ -49,37 +68,16 @@ public class MyFailer extends AFailer implements IMyFailer
 	 * <p>
 	 * This is ready for use after this call.
 	 * </p>
-	 * 
+	 * @param checker
+	 *            checker to use
+	 * @param failer
+	 *            failer to use
 	 * @param callContractor
-	 *            used by this
+	 *            call contractor to use
 	 */
-	public MyFailer(ICallContractor callContractor)
+	public MyFailFast(IChecker checker, IFailer failer,
+			ICallContractor callContractor)
 	{
-		super(callContractor);
+		super(checker, failer, callContractor);
 	}
-	
-	/**
-	 * This is overridden to use a custom failer IMyObjectNullFail instead of IObjectNullFail.
-	 * <p>
-	 * Notice that super should NOT be called.
-	 * </p>
-	 */
-	@Override
-	public void failObjectNull(Object caller, String referenceName)
-	{
-		this.popContractWithCallerAndThrowException(caller, IMyObjectNullFail.class, new Object[] { caller, referenceName });
-	}
-	/**
-	 * This is overridden to use a custom failer IMyObjectNullFail instead of IObjectNullFail.
-	 * <p>
-	 * Notice that super should NOT be called.
-	 * </p>
-	 */
-	@Override
-	public void failObjectNull(Object caller, String referenceName,
-			String message)
-	{
-		this.popContractWithCallerAndThrowException(caller, IMyObjectNullFail.class, new Object[] { caller, referenceName, message });
-	}
-
 }

@@ -21,65 +21,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.examples.reference2failfast.myfailfast.withoverrides;
+package starkcoder.failfast.examples.reference2failfast.myfailfast.withcustoms;
 
+import starkcoder.failfast.checks.AChecker;
 import starkcoder.failfast.contractors.ICallContractor;
-import starkcoder.failfast.fails.AFailer;
+
 
 /**
- * Custom failer class.
- * 
+ * Custom checker class.
+ *
  * @author Keld Oelykke
  */
-public class MyFailer extends AFailer implements IMyFailer
+public class MyChecker extends AChecker implements IMyChecker
 {
 	/**
 	 * Default constructor.
 	 * <p>
 	 * Remember to set call contractor before usage.
 	 * </p>
-	 */
-	public MyFailer()
+	 */	
+	public MyChecker()
 	{
 		super();
 	}
-
+	
 	/**
 	 * Recommended constructor receiving required references (manual constructor dependency injection).
 	 * <p>
 	 * This is ready for use after this call.
 	 * </p>
-	 * 
 	 * @param callContractor
 	 *            used by this
 	 */
-	public MyFailer(ICallContractor callContractor)
+	public MyChecker(ICallContractor callContractor)
 	{
 		super(callContractor);
 	}
 	
 	/**
-	 * This is overridden to use a custom failer IMyObjectNullFail instead of IObjectNullFail.
+	 * This is a custom checker IMyFooBarCheck that doesn't exist in super.
 	 * <p>
-	 * Notice that super should NOT be called.
+	 * You can add as many custom checker-failer pairs as you please. 
 	 * </p>
 	 */
 	@Override
-	public void failObjectNull(Object caller, String referenceName)
+	public <A extends Foo> boolean isFooBar(Object caller, A reference)
 	{
-		this.popContractWithCallerAndThrowException(caller, IMyObjectNullFail.class, new Object[] { caller, referenceName });
-	}
-	/**
-	 * This is overridden to use a custom failer IMyObjectNullFail instead of IObjectNullFail.
-	 * <p>
-	 * Notice that super should NOT be called.
-	 * </p>
-	 */
-	@Override
-	public void failObjectNull(Object caller, String referenceName,
-			String message)
-	{
-		this.popContractWithCallerAndThrowException(caller, IMyObjectNullFail.class, new Object[] { caller, referenceName, message });
+		boolean result = false;
+
+		if(null != reference && reference.isBar())
+		{
+			result = true;
+			this.pushContractWithCaller(caller, IMyFooBarCheck.class, new Object[]{ caller, reference });
+		}
+
+		return result;
 	}
 
 }

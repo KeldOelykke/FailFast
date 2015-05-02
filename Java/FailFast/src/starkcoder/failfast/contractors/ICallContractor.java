@@ -61,6 +61,10 @@ public interface ICallContractor
 	 * 			  user supplied check arguments for failer output
 	 * @param checkExtraArguments 
 	 * 			  implementation supplied check arguments for failer output
+	 * @throws IllegalArgumentException 
+	 * 			  if any of the arguments are null
+	 * @throws IllegalStateException 
+	 * 			  if a previous push (per thread) has not been popped
 	 */
 	void pushContractWithCaller(Object caller, IChecker assertingChecker,
 			Class<? extends ICheck> checkSpecification, Object[] checkArguments, Object[] checkExtraArguments);
@@ -79,6 +83,10 @@ public interface ICallContractor
 	 * @param failSpecification
 	 *            fail specification type inhering by IFail
 	 * @return checker pushed user arguments and extra arguments
+	 * @throws IllegalArgumentException 
+	 * 			  if any of the arguments are null
+	 * @throws IllegalStateException 
+	 * 			  if a previous push (per thread) is missing
 	 */
 	SimpleEntry<Object[], Object[]> popContractWithCaller(Object caller, IFailer throwingFailer,
 			Class<? extends IFail> failSpecification);

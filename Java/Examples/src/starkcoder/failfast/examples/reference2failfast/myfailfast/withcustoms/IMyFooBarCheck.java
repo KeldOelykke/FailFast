@@ -21,57 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.examples.reference2failfast.myfailfast.withoverrides;
+package starkcoder.failfast.examples.reference2failfast.myfailfast.withcustoms;
 
-import starkcoder.failfast.checks.AChecker;
-import starkcoder.failfast.contractors.ICallContractor;
-
+import starkcoder.failfast.checks.ICheck;
+import starkcoder.failfast.checks.NCheck;
 
 /**
- * Custom checker class.
- *
+ * Example of a custom checker for Foo and derivatives.
+ * 
  * @author Keld Oelykke
  */
-public class MyChecker extends AChecker implements IMyChecker
+public interface IMyFooBarCheck extends ICheck
 {
 	/**
-	 * Default constructor.
-	 * <p>
-	 * Remember to set call contractor before usage.
-	 * </p>
-	 */	
-	public MyChecker()
-	{
-		super();
-	}
-	
-	/**
-	 * Recommended constructor receiving required references (manual constructor dependency injection).
-	 * <p>
-	 * This is ready for use after this call.
-	 * </p>
-	 * @param callContractor
-	 *            used by this
+	 * Checks whether Foo is Bar.
+	 * 
+	 * @param caller
+	 *            end-user instance initiating the check
+	 * @param reference
+	 *            reference to check
+	 * @return true, if reference is null, otherwise is false
+	 * @throws IllegalArgumentException
+	 *             if caller is null
 	 */
-	public MyChecker(ICallContractor callContractor)
-	{
-		super(callContractor);
-	}
-	
-	/**
-	 * This is overridden to use custom checker IMyObjectNullCheck instead of IObjectNullCheck.
-	 * <p>
-	 * Notice that super should NOT be called.
-	 * </p>
-	 */
-	@Override
-	public <A extends Object> boolean isObjectNull(Object caller, A reference)
-	{
-		boolean result = false;
-
-		result = this.isGenericObjectNullImplementation(caller, reference, IMyObjectNullCheck.class);
-
-		return result;
-	}
-
+	@NCheck(failSpecificationType = IMyFooBarFail.class)
+	<A extends Foo> boolean isFooBar(Object caller, A reference);
 }

@@ -21,57 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package starkcoder.failfast.examples.reference2failfast.myfailfast.withoverrides;
+package starkcoder.failfast.examples.reference2failfast.myfailfast.withcustoms;
 
-import starkcoder.failfast.checks.AChecker;
-import starkcoder.failfast.contractors.ICallContractor;
-
+import starkcoder.failfast.IFailFast;
 
 /**
- * Custom checker class.
- *
+ * Your own fail-fast specification that you can extend with your own fail-fast code.
+ * <p>
+ * This interface could be referenced from many places in your code.
+ * </p>
  * @author Keld Oelykke
  */
-public class MyChecker extends AChecker implements IMyChecker
-{
+public interface IMyFailFast extends IFailFast {
+
 	/**
-	 * Default constructor.
+	 * Retrieves your custom checker instead of IChecker.
 	 * <p>
-	 * Remember to set call contractor before usage.
+	 * Call methods of this (including your extensions/replacements) to check arguments.
 	 * </p>
-	 */	
-	public MyChecker()
-	{
-		super();
-	}
-	
-	/**
-	 * Recommended constructor receiving required references (manual constructor dependency injection).
-	 * <p>
-	 * This is ready for use after this call.
-	 * </p>
-	 * @param callContractor
-	 *            used by this
+	 * @return custom checker.
 	 */
-	public MyChecker(ICallContractor callContractor)
-	{
-		super(callContractor);
-	}
-	
+	IMyChecker getMyChecker();
+
 	/**
-	 * This is overridden to use custom checker IMyObjectNullCheck instead of IObjectNullCheck.
+	 * Retrieves custom failer instead of IFailer.
 	 * <p>
-	 * Notice that super should NOT be called.
+	 * Call methods of this (including your extensions/replacements) to throw an exception when a check asserts.
 	 * </p>
+	 * @return custom failer.
 	 */
-	@Override
-	public <A extends Object> boolean isObjectNull(Object caller, A reference)
-	{
-		boolean result = false;
-
-		result = this.isGenericObjectNullImplementation(caller, reference, IMyObjectNullCheck.class);
-
-		return result;
-	}
-
+	IMyFailer getMyFailer();
+	
 }

@@ -464,7 +464,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failObjectNull(Object caller, String referenceName)
 	{
-		this.Throw(caller, IObjectNullFail.class, new Object[] { caller, referenceName });
+		this.popContractWithCallerAndThrowException(caller, IObjectNullFail.class, new Object[] { caller, referenceName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectNullFail#failObjectNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -473,7 +473,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectNull(Object caller, String referenceName,
 			String message)
 	{
-		this.Throw(caller, IObjectNullFail.class, new Object[] { caller, referenceName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectNullFail.class, new Object[] { caller, referenceName, message });
 	}
 	
 	
@@ -483,7 +483,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failObjectNotNull(Object caller, String referenceName)
 	{
-		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectNotNullFail#failObjectNotNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -492,7 +492,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectNotNull(Object caller, String referenceName,
 			String message)
 	{
-		this.Throw(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotNullFail.class, new Object[] { caller, referenceName, message });
 	}
 	
 	
@@ -503,7 +503,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectEqualsFail#failObjectEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -512,7 +512,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -522,7 +522,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectNotEqualsFail#failObjectNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -531,7 +531,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 
 	
@@ -542,7 +542,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectSameFail#failObjectSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -551,7 +551,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	
@@ -562,7 +562,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectNotSameFail#failObjectNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -571,31 +571,31 @@ public abstract class AFailer implements IFailer
 	public void failObjectNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failObjectDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failObjectDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failObjectNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failObjectNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -605,7 +605,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectArrayEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectArrayEqualsFail#failObjectArrayEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -614,7 +614,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectArrayEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectArrayEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -624,7 +624,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectListEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectListEqualsFail#failObjectListEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -633,7 +633,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectListEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectListEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -643,7 +643,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectCollectionEquals(Object caller,
 			String referenceAName, String referenceBName)
 	{
-		this.Throw(caller, IObjectCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail#failObjectCollectionEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -652,7 +652,7 @@ public abstract class AFailer implements IFailer
 	public void failObjectCollectionEquals(Object caller,
 			String referenceAName, String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCollectionEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	
@@ -665,26 +665,26 @@ public abstract class AFailer implements IFailer
 	public void failObjectsEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectsEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectsEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failObjectsEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectsEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectsEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failObjectsNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectsNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectsNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failObjectsNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectsNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectsNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	
@@ -702,7 +702,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectBooleanNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotSameFail#failBooleanNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -711,7 +711,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectBooleanNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanSameFail#failBooleanSame(java.lang.Object, java.lang.String, java.lang.String)
@@ -720,7 +720,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectBooleanSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanSameFail#failBooleanSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -729,7 +729,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectBooleanSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -739,7 +739,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectBooleanNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotEqualsFail#failBooleanNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -748,7 +748,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectBooleanNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanEqualsFail#failBooleanEquals(java.lang.Object, java.lang.String, java.lang.String)
@@ -757,7 +757,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectBooleanEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanEqualsFail#failBooleanEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -766,7 +766,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectBooleanEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -775,7 +775,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failBooleanNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectBooleanNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNotNullFail#failBooleanNotNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -784,7 +784,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectBooleanNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -793,7 +793,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failBooleanNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectBooleanNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNullFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanNullFail#failBooleanNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -802,7 +802,7 @@ public abstract class AFailer implements IFailer
 	public void failBooleanNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectBooleanNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -811,7 +811,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failBooleanFalse(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectBooleanFalseFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanFalseFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.booleans.IObjectBooleanFalseFail#failBooleanFalse(java.lang.Object, java.lang.String, java.lang.String)
@@ -820,19 +820,19 @@ public abstract class AFailer implements IFailer
 	public void failBooleanFalse(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectBooleanFalseFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanFalseFail.class, new Object[] { caller, referenceAName, message });
 	}	
 
 	@Override
 	public void failBooleanTrue(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectBooleanTrueFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanTrueFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failBooleanTrue(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectBooleanTrueFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanTrueFail.class, new Object[] { caller, referenceAName, message });
 	}	
 	
 	
@@ -840,24 +840,24 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failBooleanDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectBooleanDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failBooleanDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectBooleanDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failBooleanNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectBooleanNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failBooleanNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectBooleanNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectBooleanNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	
@@ -871,173 +871,173 @@ public abstract class AFailer implements IFailer
 	public void failByteNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failByteSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failByteNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failByteEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failByteNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectByteNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failByteNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectByteNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failByteNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectByteNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failByteNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectByteNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failByteDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectByteDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failByteDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectByteDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failByteNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectByteNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failByteNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectByteNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failByteGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failByteGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failByteLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failByteLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectByteLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failByteLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectByteLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failByteOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectByteOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failByteOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectByteOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failByteInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectByteInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failByteInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectByteInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectByteInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - BYTE - END ---------------------------------
@@ -1051,173 +1051,173 @@ public abstract class AFailer implements IFailer
 	public void failCharacterNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failCharacterSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failCharacterNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failCharacterEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failCharacterNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectCharacterNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failCharacterNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectCharacterNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failCharacterNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectCharacterNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failCharacterNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectCharacterNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failCharacterDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectCharacterDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failCharacterDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectCharacterDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failCharacterNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectCharacterNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failCharacterNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectCharacterNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failCharacterGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failCharacterGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failCharacterLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failCharacterLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectCharacterLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failCharacterLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectCharacterLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failCharacterOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectCharacterOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failCharacterOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectCharacterOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failCharacterInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectCharacterInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failCharacterInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectCharacterInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectCharacterInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - CHARACTER - END ---------------------------------
@@ -1230,173 +1230,173 @@ public abstract class AFailer implements IFailer
 	public void failDateNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failDateSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDateNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failDateEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDateNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDateNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDateNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDateNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDateNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDateNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDateNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDateNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDateDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDateDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDateDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDateDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failDateNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDateNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDateNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDateNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDateGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDateGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDateLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDateLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDateLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDateLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDateLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDateOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDateOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDateOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDateOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDateInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDateInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDateInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDateInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDateInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - DATE - END ---------------------------------
@@ -1410,199 +1410,199 @@ public abstract class AFailer implements IFailer
 	public void failDoubleNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failDoubleSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDoubleNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failDoubleEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDoubleNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDoubleNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDoubleNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDoubleNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDoubleNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDoubleNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDoubleNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDoubleNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDoubleDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDoubleDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDoubleDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDoubleDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failDoubleNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDoubleNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDoubleNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDoubleNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDoubleEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDoubleNotEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleNotEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}	
 	
 	@Override
 	public void failDoubleGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDoubleGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDoubleLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDoubleLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectDoubleLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failDoubleLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectDoubleLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failDoubleOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDoubleOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDoubleOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDoubleOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failDoubleInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectDoubleInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failDoubleInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectDoubleInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectDoubleInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - DOUBLE - END ---------------------------------
@@ -1619,7 +1619,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail#failEnumSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1628,7 +1628,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail#failEnumNotSame(java.lang.Object, java.lang.String, java.lang.String)
@@ -1637,7 +1637,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail#failEnumNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1646,7 +1646,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 		
 	/* (non-Javadoc)
@@ -1656,7 +1656,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumEqualsFail#failEnumEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1665,7 +1665,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1675,7 +1675,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotEqualsFail#failEnumNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1684,7 +1684,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}	
 	
 	/* (non-Javadoc)
@@ -1693,7 +1693,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failEnumNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectEnumNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotNullFail#failEnumNotNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -1702,7 +1702,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectEnumNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1711,7 +1711,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failEnumNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectEnumNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNullFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail#failEnumNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -1720,7 +1720,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectEnumNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	
@@ -1730,7 +1730,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failEnumDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectEnumDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumDefaultFail#failEnumDefault(java.lang.Object, java.lang.String, java.lang.String)
@@ -1739,7 +1739,7 @@ public abstract class AFailer implements IFailer
 	public void failEnumDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectEnumDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1748,7 +1748,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failEnumNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectEnumNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.enums.IObjectEnumNotDefaultFail#failEnumNotDefault(java.lang.Object, java.lang.String, java.lang.String)
@@ -1757,83 +1757,83 @@ public abstract class AFailer implements IFailer
 	public void failEnumNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectEnumNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failEnumGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failEnumGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failEnumGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failEnumGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failEnumLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failEnumLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failEnumLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectEnumLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failEnumLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectEnumLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failEnumOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectEnumOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failEnumOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectEnumOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failEnumInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectEnumInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failEnumInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectEnumInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectEnumInsideFail.class, new Object[] { caller, referenceAName, message });
 	}	
 	
 	// OBJECTS - ENUM - END ---------------------------------
@@ -1850,7 +1850,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotSameFail#failFloatNotSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1859,7 +1859,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail#failFloatSame(java.lang.Object, java.lang.String, java.lang.String)
@@ -1868,7 +1868,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail#failFloatSame(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1877,7 +1877,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1887,7 +1887,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsFail#failFloatNotEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1896,7 +1896,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsFail#failFloatEquals(java.lang.Object, java.lang.String, java.lang.String)
@@ -1905,7 +1905,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsFail#failFloatEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -1914,7 +1914,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1923,7 +1923,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failFloatNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectFloatNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotNullFail#failFloatNotNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -1932,7 +1932,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectFloatNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1941,7 +1941,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failFloatNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectFloatNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNullFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNullFail#failFloatNull(java.lang.Object, java.lang.String, java.lang.String)
@@ -1950,7 +1950,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectFloatNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1959,7 +1959,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failFloatDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectFloatDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatDefaultFail#failFloatDefault(java.lang.Object, java.lang.String, java.lang.String)
@@ -1968,7 +1968,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectFloatDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotDefaultFail#failFloatNotDefault(java.lang.Object, java.lang.String)
@@ -1976,7 +1976,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failFloatNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectFloatNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotDefaultFail#failFloatNotDefault(java.lang.Object, java.lang.String, java.lang.String)
@@ -1985,7 +1985,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectFloatNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -1995,7 +1995,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsAlmostFail#failFloatEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -2004,7 +2004,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2014,7 +2014,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatNotEqualsAlmostFail#failFloatNotEqualsAlmost(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -2023,7 +2023,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatNotEqualsAlmost(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatNotEqualsAlmostFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}	
 	
 	/* (non-Javadoc)
@@ -2033,7 +2033,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterFail#failFloatGreater(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -2042,7 +2042,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2052,7 +2052,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterOrEqualsFail#failFloatGreaterOrEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -2061,7 +2061,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2071,7 +2071,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatLessFail#failFloatLess(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -2080,7 +2080,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2090,7 +2090,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectFloatLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatLessOrEqualsFail#failFloatLessOrEquals(java.lang.Object, java.lang.String, java.lang.String, java.lang.String)
@@ -2099,7 +2099,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectFloatLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2108,7 +2108,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failFloatOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectFloatOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatOutsideFail#failFloatOutside(java.lang.Object, java.lang.String, java.lang.String)
@@ -2117,7 +2117,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectFloatOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2126,7 +2126,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failFloatInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectFloatInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.floats.IObjectFloatWithinFail#failFloatWithin(java.lang.Object, java.lang.String, java.lang.String)
@@ -2135,7 +2135,7 @@ public abstract class AFailer implements IFailer
 	public void failFloatInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectFloatInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectFloatInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - FLOAT - END ---------------------------------
@@ -2149,173 +2149,173 @@ public abstract class AFailer implements IFailer
 	public void failShortNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failShortSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failShortNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failShortEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failShortNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectShortNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failShortNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectShortNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failShortNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectShortNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failShortNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectShortNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failShortDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectShortDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failShortDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectShortDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failShortNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectShortNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failShortNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectShortNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failShortGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failShortGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failShortLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failShortLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectShortLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failShortLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectShortLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failShortOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectShortOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failShortOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectShortOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failShortInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectShortInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failShortInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectShortInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectShortInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - SHORT - END ---------------------------------
@@ -2330,173 +2330,173 @@ public abstract class AFailer implements IFailer
 	public void failIntegerNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failIntegerSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failIntegerNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failIntegerEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failIntegerNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectIntegerNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failIntegerNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectIntegerNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failIntegerNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectIntegerNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failIntegerNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectIntegerNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failIntegerDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectIntegerDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failIntegerDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectIntegerDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failIntegerNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectIntegerNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failIntegerNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectIntegerNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failIntegerGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failIntegerGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failIntegerLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failIntegerLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectIntegerLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failIntegerLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectIntegerLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failIntegerOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectIntegerOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failIntegerOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectIntegerOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failIntegerInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectIntegerInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failIntegerInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectIntegerInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectIntegerInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - INTEGER - END ---------------------------------
@@ -2510,173 +2510,173 @@ public abstract class AFailer implements IFailer
 	public void failLongNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failLongSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failLongNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failLongEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failLongNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectLongNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failLongNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectLongNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failLongNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectLongNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failLongNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectLongNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failLongDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectLongDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failLongDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectLongDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failLongNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectLongNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failLongNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectLongNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failLongGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failLongGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failLongLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failLongLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectLongLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failLongLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectLongLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failLongOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectLongOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failLongOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectLongOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failLongInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectLongInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failLongInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectLongInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectLongInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - LONG - END ---------------------------------
@@ -2691,38 +2691,38 @@ public abstract class AFailer implements IFailer
 	public void failStringNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failStringSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failStringEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	
@@ -2730,39 +2730,39 @@ public abstract class AFailer implements IFailer
 	public void failStringNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}	
 	
 	@Override
 	public void failStringNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName });
 	}
 
 	@Override
 	public void failStringNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	
 	@Override
 	public void failStringNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failStringNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}	
 	
 
@@ -2770,26 +2770,26 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failStringDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectStringDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 
 	@Override
 	public void failStringNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failStringNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	
@@ -2797,52 +2797,52 @@ public abstract class AFailer implements IFailer
 	public void failStringGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failStringGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failStringLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failStringLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectStringLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failStringLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectStringLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 
 	
@@ -2852,7 +2852,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringEmpty(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringEmptyFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringEmptyFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringEmptyFail#failStringEmpty(java.lang.Object, java.lang.String, java.lang.String)
@@ -2861,7 +2861,7 @@ public abstract class AFailer implements IFailer
 	public void failStringEmpty(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectStringEmptyFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringEmptyFail.class, new Object[] { caller, referenceAName, message });
 	}
 
 
@@ -2871,7 +2871,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringNotEmpty(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringNotEmptyFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotEmptyFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotEmptyFail#failStringNotEmpty(java.lang.Object, java.lang.String, java.lang.String)
@@ -2880,7 +2880,7 @@ public abstract class AFailer implements IFailer
 	public void failStringNotEmpty(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectStringNotEmptyFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotEmptyFail.class, new Object[] { caller, referenceAName, message });
 	}
 
 	/* (non-Javadoc)
@@ -2890,7 +2890,7 @@ public abstract class AFailer implements IFailer
 	public void failStringNotNullAndNotEmpty(Object caller,
 			String referenceAName)
 	{
-		this.Throw(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotNullAndNotEmptyFail#failStringNotNullAndNotEmpty(java.lang.Object, java.lang.String, java.lang.String)
@@ -2899,7 +2899,7 @@ public abstract class AFailer implements IFailer
 	public void failStringNotNullAndNotEmpty(Object caller,
 			String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotNullAndNotEmptyFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2908,7 +2908,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringNullOrEmpty(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNullOrEmptyFail#failStringNullOrEmpty(java.lang.Object, java.lang.String, java.lang.String)
@@ -2917,7 +2917,7 @@ public abstract class AFailer implements IFailer
 	public void failStringNullOrEmpty(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNullOrEmptyFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	
@@ -2927,7 +2927,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithPrefix(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPrefixFail#failStringWithPrefix(java.lang.Object, java.lang.String, java.lang.String)
@@ -2935,7 +2935,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithPrefix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithPrefixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2944,7 +2944,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithoutPrefix(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPrefixFail#failStringWithoutPrefix(java.lang.Object, java.lang.String, java.lang.String)
@@ -2952,7 +2952,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithoutPrefix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithoutPrefixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2961,7 +2961,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithoutPostfix(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutPostfixFail#failStringWithoutPostfix(java.lang.Object, java.lang.String, java.lang.String)
@@ -2969,7 +2969,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithoutPostfix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithoutPostfixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2978,7 +2978,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithSubstring(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithSubstringFail#failStringWithSubstring(java.lang.Object, java.lang.String, java.lang.String)
@@ -2986,7 +2986,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithSubstring(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithSubstringFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -2995,7 +2995,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithPostfix(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithPostfixFail#failStringWithPostfix(java.lang.Object, java.lang.String, java.lang.String)
@@ -3003,7 +3003,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithPostfix(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithPostfixFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -3012,7 +3012,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithoutSubstring(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringWithoutSubstringFail#failStringWithoutSubstring(java.lang.Object, java.lang.String, java.lang.String)
@@ -3020,7 +3020,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringWithoutSubstring(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringWithoutSubstringFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	/* (non-Javadoc)
@@ -3029,7 +3029,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringMatching(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringMatchingFail#failStringMatching(java.lang.Object, java.lang.String, java.lang.String)
@@ -3037,7 +3037,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringMatching(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringMatchingFail.class, new Object[] { caller, referenceAName, message });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail#failStringNotMatching(java.lang.Object, java.lang.String)
@@ -3045,7 +3045,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringNotMatching(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName });
 	}
 	/* (non-Javadoc)
 	 * @see starkcoder.failfast.fails.objects.strings.IObjectStringNotMatchingFail#failStringNotMatching(java.lang.Object, java.lang.String, java.lang.String)
@@ -3053,7 +3053,7 @@ public abstract class AFailer implements IFailer
 	@Override
 	public void failStringNotMatching(Object caller, String referenceAName, String message)
 	{
-		this.Throw(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectStringNotMatchingFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	
@@ -3069,173 +3069,173 @@ public abstract class AFailer implements IFailer
 	public void failUuidNotSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidNotSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failUuidSame(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidSameFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidSameFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidSame(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidSameFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failUuidNotEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidNotEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	@Override
 	public void failUuidEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failUuidNotNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectUuidNotNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failUuidNotNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectUuidNotNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failUuidNull(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectUuidNullFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNullFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failUuidNull(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectUuidNullFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNullFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failUuidDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectUuidDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failUuidDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectUuidDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	@Override
 	public void failUuidNotDefault(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectUuidNotDefaultFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotDefaultFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failUuidNotDefault(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectUuidNotDefaultFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidNotDefaultFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failUuidGreater(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidGreaterFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidGreater(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidGreaterFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failUuidGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidGreaterOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidGreaterOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failUuidLess(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidLessFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidLessFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidLess(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidLessFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failUuidLessOrEquals(Object caller, String referenceAName,
 			String referenceBName)
 	{
-		this.Throw(caller, IObjectUuidLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName });
 	}
 	@Override
 	public void failUuidLessOrEquals(Object caller, String referenceAName,
 			String referenceBName, String message)
 	{
-		this.Throw(caller, IObjectUuidLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidLessOrEqualsFail.class, new Object[] { caller, referenceAName, referenceBName, message });
 	}
 	
 	@Override
 	public void failUuidOutside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectUuidOutsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidOutsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failUuidOutside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectUuidOutsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidOutsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	@Override
 	public void failUuidInside(Object caller, String referenceAName)
 	{
-		this.Throw(caller, IObjectUuidInsideFail.class, new Object[] { caller, referenceAName });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidInsideFail.class, new Object[] { caller, referenceAName });
 	}
 	@Override
 	public void failUuidInside(Object caller, String referenceAName,
 			String message)
 	{
-		this.Throw(caller, IObjectUuidInsideFail.class, new Object[] { caller, referenceAName, message });
+		this.popContractWithCallerAndThrowException(caller, IObjectUuidInsideFail.class, new Object[] { caller, referenceAName, message });
 	}
 	
 	// OBJECTS - UUID - END ---------------------------------
@@ -3569,13 +3569,53 @@ public abstract class AFailer implements IFailer
 		}
 	}
 	
+	/**
+	 * Empty object array to reuse with calls to popContractWithCallerAndThrowException.
+	 */
 	protected final static Object[] EmptyObjectArray = new Object[]{};
-    protected void Throw(Object caller, Class<? extends IFail> failerSpecificationType, Object[] failerArguments)
+	
+	/**
+	 * Call this after a check asserts.
+	 * <p>
+	 * This ends a contract that was started with a checker-call.
+	 * </p>
+	 * @param caller
+	 *            object calling checker and then failer
+	 * @param failerSpecificationType
+	 *            failer identification (interface)
+	 * @param failerArguments
+	 *            array with arguments of called fail method
+	 * @throws IllegalArgumentException
+	 *             if any of the arguments are null
+	 * @throws IllegalStateException
+	 *             if CallContractor has not been set, or a previous push (per
+	 *             thread) is missing
+	 */
+    protected void popContractWithCallerAndThrowException(Object caller, Class<? extends IFail> failerSpecificationType, Object[] failerArguments)
     {
-    	this.Throw(caller, failerSpecificationType, failerArguments, EmptyObjectArray);
+    	this.popContractWithCallerAndThrowException(caller, failerSpecificationType, failerArguments, EmptyObjectArray);
     }
     
-    protected void Throw(Object caller, Class<? extends IFail> failerSpecificationType, Object[] failerArguments, Object[] failerExtraArguments)
+	/**
+	 * Call this after a check asserts.
+	 * <p>
+	 * This ends a contract that was started with a checker-call.
+	 * </p>
+	 * @param caller
+	 *            object calling checker and then failer
+	 * @param failerSpecificationType
+	 *            failer identification (interface)
+	 * @param failerArguments
+	 *            array with arguments of called fail method
+	 * @param failerExtraArguments
+	 *            array of extra arguments useful in failure message
+	 * @throws IllegalArgumentException
+	 *             if any of the arguments are null
+	 * @throws IllegalStateException
+	 *             if CallContractor has not been set, or a previous push (per
+	 *             thread) is missing
+	 */
+    protected void popContractWithCallerAndThrowException(Object caller, Class<? extends IFail> failerSpecificationType, Object[] failerArguments, Object[] failerExtraArguments)
     {
         if (null == caller)
         {
