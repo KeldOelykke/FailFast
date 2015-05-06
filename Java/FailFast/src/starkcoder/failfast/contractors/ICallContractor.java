@@ -23,10 +23,7 @@
  */
 package starkcoder.failfast.contractors;
 
-import java.util.AbstractMap.SimpleEntry;
-
-import starkcoder.failfast.checks.ICheck;
-import starkcoder.failfast.checks.IChecker;
+import starkcoder.failfast.contractors.contracts.ICallContract;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.IFailer;
 
@@ -45,29 +42,20 @@ import starkcoder.failfast.fails.IFailer;
 public interface ICallContractor
 {
 	/**
-	 * Starts a contract between caller and call contractor.
+	 * Starts a {link:ICallContract} between caller and call contractor.
 	 * <p>
 	 * Argument checkSpecification is annotated with a matching fail specification that
 	 * needs to be employed by the caller to end the contract.
 	 * </p>
 	 * 
-	 * @param caller
-	 *            instance that called a checker and needs to call a failer
-	 * @param assertingChecker
-	 *            checker that was called and asserted
-	 * @param checkSpecification
-	 *            check specification type inheriting ICheck
-	 * @param checkArguments
-	 * 			  user supplied check arguments for failer output
-	 * @param checkExtraArguments 
-	 * 			  implementation supplied check arguments for failer output
+	 * @param callContract
+	 *            contract data created by asserting check-method.
 	 * @throws IllegalArgumentException 
-	 * 			  if any of the arguments are null
+	 * 			  if any contract data is missing
 	 * @throws IllegalStateException 
 	 * 			  if a previous push (per thread) has not been popped
 	 */
-	void pushContractWithCaller(Object caller, IChecker assertingChecker,
-			Class<? extends ICheck> checkSpecification, Object[] checkArguments, Object[] checkExtraArguments);
+	void pushContractWithCaller(ICallContract callContract);
 
 	/**
 	 * Ends a contract between caller and call contractor.
@@ -88,6 +76,6 @@ public interface ICallContractor
 	 * @throws IllegalStateException 
 	 * 			  if a previous push (per thread) is missing
 	 */
-	SimpleEntry<Object[], Object[]> popContractWithCaller(Object caller, IFailer throwingFailer,
+	ICallContract popContractWithCaller(Object caller, IFailer throwingFailer,
 			Class<? extends IFail> failSpecification);
 }

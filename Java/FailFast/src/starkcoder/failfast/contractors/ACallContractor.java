@@ -23,13 +23,9 @@
  */
 package starkcoder.failfast.contractors;
 
-import java.lang.reflect.Method;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
 
-import starkcoder.failfast.checks.ICheck;
-import starkcoder.failfast.checks.IChecker;
-import starkcoder.failfast.checks.NCheck;
+import starkcoder.failfast.contractors.contracts.ICallContract;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.IFailer;
 
@@ -49,94 +45,33 @@ public abstract class ACallContractor implements ICallContractor
 
 
 
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.contractors.ICallContractor#pushContractWithCaller(java.lang.Object, starkcoder.failfast.checks.IChecker, java.lang.Class, java.lang.String[])
-	 */
 	@Override
-	public void pushContractWithCaller(Object caller,
-			IChecker assertingChecker, Class<? extends ICheck> checkSpecification, Object[] checkArguments, Object[] checkExtraArguments)
+	public void pushContractWithCaller(ICallContract callContract)
 	{
-		Class<? extends IFail> failSpecificationType = null;
+		if(null == callContract)
 		{
-			if(null == caller)
-			{
-				throw new IllegalArgumentException("caller is null");
-			}
+			throw new IllegalArgumentException("callContract is null");
 		}
-		{
-			if(null == assertingChecker)
-			{
-				throw new IllegalArgumentException("assertingChecker is null");
-			}
-		}
-		{
-			if(null == checkSpecification)
-			{
-				throw new IllegalArgumentException("checkerSpecification is null");
-			}
-			Method[] declaredMethods = checkSpecification.getDeclaredMethods();
-			if(declaredMethods.length <= 0)
-			{
-				throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' must have at least 1 check-method - not " + declaredMethods.length);
-			}
-			for(int index = 0; index < declaredMethods.length; ++index)
-			{
-				Method declaredMethod = declaredMethods[index];
-				NCheck checkAnnotation = declaredMethod.getAnnotation(NCheck.class);
-				if(null == checkAnnotation)
-				{
-					throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' must have check-method '" + declaredMethod + "' annotated with " + NCheck.class);
-				}
-				
-				failSpecificationType = checkAnnotation.failSpecificationType();
-				if(null == failSpecificationType)
-				{
-					throw new IllegalArgumentException("checkerSpecification '" + checkSpecification + "' method '" + declaredMethod + "' has failSpecificationType set to null");
-				}
-			}
-		}
+		callContract.validateContractData();
 		
 		synchronized(this.getSynchronizationObject())
 		{
 			Long currentThreadId = this.getCurrentThreadId();
-		    Object callerPushed = this.getThreadId2Caller().get(currentThreadId);
-		    Class<? extends IFail> failSpecificationTypePushed = this.getThreadId2FailSpecification().get(currentThreadId);
-		    Object[] checkArgumentsPushed = this.getThreadId2CheckArguments().get(currentThreadId);
-		    Object[] checkExtraArgumentsPushed = this.getThreadId2CheckExtraArguments().get(currentThreadId);
-		    if (null != callerPushed)
+			ICallContract callContractPushedOrNull = this.getThreadId2CallContract().get(currentThreadId);
+		    if (null != callContractPushedOrNull)
 		    {
-		        throw new IllegalStateException("Cannot push caller " + caller + ", since caller " + callerPushed + " needs to be popped first.");
+		        throw new IllegalStateException("Cannot push contract " + callContract + " for caller " + callContract.getCaller() + ", since caller " + callContractPushedOrNull.getCaller() + " first needs to pop contract " + callContractPushedOrNull + ".");
 		    }
-			if (null != failSpecificationTypePushed)
-			{
-			    throw new IllegalStateException("Cannot push fail specification " + failSpecificationType + ", since fail specification " + failSpecificationTypePushed + " needs to be popped first.");
-			}
-			if (null != checkArgumentsPushed)
-			{
-			    throw new IllegalStateException("Cannot push fail specification " + failSpecificationType + " with " + checkArguments.length + " user arguments, since fail specification " + failSpecificationTypePushed + " with " + checkArgumentsPushed.length + " arguments needs to be popped first.");
-			}
-			if (null != checkExtraArgumentsPushed)
-			{
-			    throw new IllegalStateException("Cannot push fail specification " + failSpecificationType + " with " + checkExtraArguments.length + " extra arguments, since fail specification " + failSpecificationTypePushed + " with " + checkExtraArgumentsPushed.length + " arguments needs to be popped first.");
-			}
-		
-			this.getThreadId2Caller().put(currentThreadId, caller);
-			this.getThreadId2FailSpecification().put(currentThreadId, failSpecificationType);
-			this.getThreadId2CheckArguments().put(currentThreadId, checkArguments);
-			this.getThreadId2CheckExtraArguments().put(currentThreadId, checkExtraArguments);
+		    this.getThreadId2CallContract().put(currentThreadId, callContract);
 		}
 	}
 
 
-	/* (non-Javadoc)
-	 * @see starkcoder.failfast.contractors.ICallContractor#popContractWithCaller(java.lang.Object, starkcoder.failfast.fails.IFailer, java.lang.Class)
-	 */
 	@Override
-	public SimpleEntry<Object[], Object[]> popContractWithCaller(Object caller, IFailer throwingFailer,
+	public ICallContract popContractWithCaller(Object caller, IFailer throwingFailer,
 			Class<? extends IFail> failSpecification)
 	{
-		SimpleEntry<Object[], Object[]> result = null;
-//		Object[] result = null;
+		ICallContract result = null;
 		{
 			if(null == caller)
 			{
@@ -159,41 +94,23 @@ public abstract class ACallContractor implements ICallContractor
 		synchronized(this.getSynchronizationObject())
 		{
 			Long currentThreadId = this.getCurrentThreadId();
- 
-		    Object callerPushed = this.getThreadId2Caller().get(currentThreadId);
-		    Class<? extends IFail> failSpecificationPushed = this.getThreadId2FailSpecification().get(currentThreadId);
-		    Object[] checkArguments = this.getThreadId2CheckArguments().get(currentThreadId);
-		    Object[] checkExtraArguments = this.getThreadId2CheckExtraArguments().get(currentThreadId);
 
-            if (null == callerPushed)
+			ICallContract callContractPushedOrNull = this.getThreadId2CallContract().get(currentThreadId);
+			
+            if (null == callContractPushedOrNull)
             {
-                throw new IllegalStateException("Cannot pop caller " + caller + ", since it is not currently pushed.");
+                throw new IllegalStateException("Cannot pop a contract for caller " + caller + ", since none is currently pushed.");
             }
-            if (null == failSpecificationPushed)
-            { // this should never happen
-                throw new IllegalStateException("Cannot pop fail specification " + failSpecification + " for caller " + caller + ", since nothing is currently pushed.");
-            }
-            if (null == checkArguments)
-            { // this should never happen
-                throw new IllegalStateException("Cannot pop check user arguments " + checkArguments + " for caller " + caller + ", since nothing is currently pushed.");
-            }
-            if (null == checkExtraArguments)
-            { // this should never happen
-                throw new IllegalStateException("Cannot pop check extra arguments " + checkExtraArguments + " for caller " + caller + ", since nothing is currently pushed.");
-            }
-            if (caller != callerPushed)
+            if (caller != callContractPushedOrNull.getCaller())
             {
-                throw new IllegalStateException("Cannot pop caller " + caller + ", since caller " + callerPushed + " is currently pushed.");
+                throw new IllegalStateException("Cannot pop a contract for caller " + caller + ", since caller " + callContractPushedOrNull.getCaller() + " has pushed a contract.");
             }
-            if (failSpecification != failSpecificationPushed)
+            Class<? extends IFail> failSpecificationType = callContractPushedOrNull.reflectFailSpecificationType();
+            if (!failSpecification.equals(failSpecificationType))
             {
-                throw new IllegalStateException("Cannot pop fail specification " + failSpecification + " for caller " + caller + ", since fail specification " + failSpecificationPushed + " is currently pushed.");
+                throw new IllegalStateException("Cannot pop a contract for fail specification " + failSpecification + " for caller " + caller + ", since a contract for fail specification " + failSpecificationType + " is currently pushed by caller " + callContractPushedOrNull.getCaller() + ".");
             }
-            this.getThreadId2Caller().remove(currentThreadId);
-            this.getThreadId2FailSpecification().remove(currentThreadId);
-            this.getThreadId2CheckArguments().remove(currentThreadId);
-            this.getThreadId2CheckExtraArguments().remove(currentThreadId);
-            result = new SimpleEntry<>(checkArguments, checkExtraArguments);
+            result = callContractPushedOrNull;
  		}
 		
 		return result;
@@ -217,55 +134,21 @@ public abstract class ACallContractor implements ICallContractor
 		this.synchronizationObject = synchronizationObject;
 	}
 	
-	private HashMap<Long, Object> threadId2Caller = new HashMap<Long, Object>();
-	protected HashMap<Long, Object> getThreadId2Caller()
+	private HashMap<Long, ICallContract> threadId2CallContract = new HashMap<Long, ICallContract>();
+	protected HashMap<Long, ICallContract> getThreadId2CallContract()
 	{
-		return threadId2Caller;
+		return threadId2CallContract;
 	}
-	protected void setThreadId2Caller(HashMap<Long, Object> threadId2Caller)
+	protected void setThreadId2CallContract(HashMap<Long, ICallContract> threadId2CallContract)
 	{
-		this.threadId2Caller = threadId2Caller;
-	}
-	
-	private HashMap<Long, Class<? extends IFail>> threadId2FailSpecification = new HashMap<Long, Class<? extends IFail>>();
-	protected HashMap<Long, Class<? extends IFail>> getThreadId2FailSpecification()
-	{
-		return threadId2FailSpecification;
-	}
-	protected void setThreadId2FailSpecification(
-			HashMap<Long, Class<? extends IFail>> threadId2FailSpecification)
-	{
-		this.threadId2FailSpecification = threadId2FailSpecification;
-	}
-	
-	private HashMap<Long, Object[]> threadId2CheckArguments = new HashMap<Long, Object[]>();
-	protected HashMap<Long, Object[]> getThreadId2CheckArguments()
-	{
-		return threadId2CheckArguments;
-	}
-	protected void setThreadId2CheckArguments(
-			HashMap<Long, Object[]> threadId2CheckArguments)
-	{
-		this.threadId2CheckArguments = threadId2CheckArguments;
+		this.threadId2CallContract = threadId2CallContract;
 	}
 
-	private HashMap<Long, Object[]> threadId2CheckExtraArguments = new HashMap<Long, Object[]>();
-	protected HashMap<Long, Object[]> getThreadId2CheckExtraArguments()
-	{
-		return threadId2CheckExtraArguments;
-	}
-	protected void setThreadId2CheckExtraArguments(
-			HashMap<Long, Object[]> threadId2CheckExtraArguments)
-	{
-		this.threadId2CheckExtraArguments = threadId2CheckExtraArguments;
-	}
 
 	protected Long getCurrentThreadId()
 	{
 		long id = Thread.currentThread().getId();
 		return Long.valueOf(id);
 	}
-	
-	
 
 }

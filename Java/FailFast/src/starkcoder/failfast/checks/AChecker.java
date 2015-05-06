@@ -222,6 +222,8 @@ import starkcoder.failfast.checks.objects.uuids.IObjectUuidNullCheck;
 import starkcoder.failfast.checks.objects.uuids.IObjectUuidOutsideCheck;
 import starkcoder.failfast.checks.objects.uuids.IObjectUuidSameCheck;
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.contractors.contracts.CallContract;
+import starkcoder.failfast.contractors.contracts.ICallContract;
 
 /**
  * Abstract implementation of {@link IChecker}.
@@ -3435,7 +3437,7 @@ public abstract class AChecker implements IChecker
 	 *             thread) has not been popped
 	 */
 	protected void pushContractWithCaller(Object caller,
-			Class<? extends ICheck> checkerSpecification, Object[] checkArguments, Object[] checkExtraArguments)
+			Class<? extends ICheck> checkSpecification, Object[] checkArguments, Object[] checkExtraArguments)
 	{
 		ICallContractor callContractor = this.getCallContractor();
 		if (null == callContractor)
@@ -3444,11 +3446,30 @@ public abstract class AChecker implements IChecker
 					"CallContractor must be set before using this checker.");
 		}
 
+		ICallContract callContract = this.contructCallContract(caller, this, checkSpecification, checkArguments, checkExtraArguments);
 		// require a fail call from caller
-		callContractor.pushContractWithCaller(caller, this,
-				checkerSpecification, checkArguments, checkExtraArguments);
+		callContractor.pushContractWithCaller(callContract);
 	}
 	
+	protected ICallContract contructCallContract(Object caller, IChecker assertingChecker,
+			Class<? extends ICheck> checkSpecification, Object[] checkArguments, Object[] checkExtraArguments)
+	{
+		ICallContract result = null;
+		
+		{
+			ICallContract callContract = new CallContract();
+			{
+				callContract.setCaller(caller);
+				callContract.setCheckSpecification(checkSpecification);
+				callContract.setCheckArguments(checkArguments);
+				callContract.setCheckExtraArguments(checkExtraArguments);
+				callContract.setAssertingChecker(assertingChecker);
+			}
+			result = callContract;
+		}
+		
+		return result;
+	}
 	
 	protected <A,B> boolean isGenericObjectEqualsImplementation(Object caller, A referenceA,
 			B referenceB, Class<? extends ICheck> checkerSpecification)

@@ -26,10 +26,10 @@ package starkcoder.failfast.fails;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Locale;
 
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.contractors.contracts.ICallContract;
 import starkcoder.failfast.fails.objects.IObjectArrayEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectCollectionEqualsFail;
 import starkcoder.failfast.fails.objects.IObjectDefaultFail;
@@ -130,6 +130,7 @@ import starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsAlmostFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatGreaterOrEqualsFail;
+import starkcoder.failfast.fails.objects.floats.IObjectFloatInsideFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatLessFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatLessOrEqualsFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatNotDefaultFail;
@@ -140,7 +141,6 @@ import starkcoder.failfast.fails.objects.floats.IObjectFloatNotSameFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatNullFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatOutsideFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatSameFail;
-import starkcoder.failfast.fails.objects.floats.IObjectFloatInsideFail;
 import starkcoder.failfast.fails.objects.integers.IObjectIntegerDefaultFail;
 import starkcoder.failfast.fails.objects.integers.IObjectIntegerEqualsFail;
 import starkcoder.failfast.fails.objects.integers.IObjectIntegerGreaterFail;
@@ -3623,13 +3623,13 @@ public abstract class AFailer implements IFailer
         }
 
         NFail failAnnotation = this.LookupFailAnnotation(failerSpecificationType, failerArguments);
-        SimpleEntry<Object[], Object[]> entry = this.popContractWithCaller(caller, failerSpecificationType);
-        Object[] checkerArguments = entry.getKey();
-        Object[] checkerExtraArguments = entry.getValue();
+        ICallContract callContract = this.popContractWithCaller(caller, failerSpecificationType);
+//        Object[] checkerArguments = entry.getKey();
+//        Object[] checkerExtraArguments = entry.getValue();
 //        String message = this.formatMessage(failerSpecificationType, failAnnotation, checkerArguments, failerArguments);
 //        String message = String.format(failAnnotation.failMessageFormat(), failerArguments);
 //        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
-        FailFastException exception = this.constructFailException(failerSpecificationType, failAnnotation, checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
+        FailFastException exception = this.constructFailException(failerSpecificationType, failAnnotation, callContract, failerArguments, failerExtraArguments);
         if(null == this.getFailFastExceptionOrNull())
         { // remember first exception
         	this.setFailFastExceptionOrNull(exception);
@@ -3712,9 +3712,9 @@ public abstract class AFailer implements IFailer
         return result;
     }
     
-    protected SimpleEntry<Object[], Object[]> popContractWithCaller(Object caller, Class<? extends IFail> failSpecification)
+    protected ICallContract popContractWithCaller(Object caller, Class<? extends IFail> failSpecification)
     {
-    	SimpleEntry<Object[], Object[]> result = null;
+    	ICallContract result = null;
     	
     	ICallContractor callContractor = this.getCallContractor();
     	if(null == callContractor)
@@ -3865,9 +3865,8 @@ public abstract class AFailer implements IFailer
 
     protected FailFastException constructFailException(
 		Class<? extends IFail> failerSpecificationType,
-		NFail failAnnotation, 
-		Object[] checkerUserArguments,
-		Object[] checkerExtraArguments,
+		NFail failAnnotation,
+		ICallContract callContract,
 		Object[] failerUserArguments,
 		Object[] failerExtraArguments)
     {
@@ -3875,7 +3874,7 @@ public abstract class AFailer implements IFailer
         
     	Class<? extends FailFastException> exceptionType = failAnnotation.failExceptionType();
     	
-        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, checkerUserArguments, checkerExtraArguments, failerUserArguments, failerExtraArguments);
+        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, callContract.getCheckArguments(), callContract.getCheckExtraArguments(), failerUserArguments, failerExtraArguments);
     	
         Constructor<? extends FailFastException> constructor;
 		try
@@ -3892,8 +3891,8 @@ public abstract class AFailer implements IFailer
 		{
 			exception = constructor.newInstance(message);
 			exception.setCheckerSpecificationType(failAnnotation.checkerSpecificationType());
-			exception.setCheckerUserArguments(checkerUserArguments);
-			exception.setCheckerExtraArguments(checkerExtraArguments);
+			exception.setCheckerUserArguments(callContract.getCheckArguments());
+			exception.setCheckerExtraArguments(callContract.getCheckExtraArguments());
 			exception.setFailerSpecificationType(failerSpecificationType);
 			exception.setFailerUserArguments(failerUserArguments);
 			exception.setFailerExtraArguments(failerExtraArguments);
