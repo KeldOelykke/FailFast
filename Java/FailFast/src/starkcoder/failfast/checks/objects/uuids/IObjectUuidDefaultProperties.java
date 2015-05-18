@@ -50,6 +50,6 @@ public interface IObjectUuidDefaultProperties
 	 *            new value to set
 	 */
 	public void setUuidDefault(
-			UUID defaultShortValue);
+			UUID defaultUuidValue);
 
 }

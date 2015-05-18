@@ -3424,7 +3424,7 @@ public abstract class AChecker implements IChecker
 	 * 
 	 * @param caller
 	 *            object calling checker
-	 * @param checkerSpecification
+	 * @param checkSpecification
 	 *            checker identification (interface)
 	 * @param checkArguments
 	 *            array with arguments of called check method
