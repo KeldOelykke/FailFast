@@ -74,7 +74,9 @@ Go to http://oelykke-failfast.appspot.com to:
  - view api (javadoc)
  - view unit test results (junit)
  - try the checker-failer pairs online
-
+ 
+Alternatively, jars can be downloaded from GitHub:
+ - https://github.com/KeldOelykke/FailFast/tree/master/Java/Web/war/releases
 
 Dogma
 =====
