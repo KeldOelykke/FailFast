@@ -76,6 +76,7 @@ Go to http://oelykke-failfast.appspot.com to:
  - try the checker-failer pairs online
  
 Alternatively, jars can be downloaded from GitHub:
+ - https://github.com/KeldOelykke/FailFast/releases
  - https://github.com/KeldOelykke/FailFast/tree/master/Java/Web/war/releases
 
 Dogma
