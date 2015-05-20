@@ -118,4 +118,19 @@ public interface ICallContract
 	 * @return the fail specification (interface) that should be used to end this contract
 	 */
 	Class<? extends IFail> reflectFailSpecificationType();
+	
+	/**
+	 * Retrieves a custom exception class, if set, that fail-method should throw instead of the default class set in attribute of fail-method.
+	 * 
+	 * @return a custom exception class that fail-method should throw, or null
+	 */
+	Class<? extends RuntimeException> getCustomFailExceptionClassOrNull();
+	
+	/**
+	 * Sets a custom exception class that fail-method should throw instead of the default class set in attribute of fail-method.
+	 * 
+	 * @param exceptionClass custom exception class that fail-method should throw
+	 */
+	void setCustomFailExceptionClass(Class<? extends RuntimeException> exceptionClass);
+	
 }

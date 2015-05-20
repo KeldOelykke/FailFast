@@ -53,6 +53,7 @@ import starkcoder.failfast.templates.objects.IObjectNullTest;
  */
 public class ObjectNullTest implements IObjectNullTest<Object> {
 
+	private ICallContractor contractor;
 	private IChecker checker;
 	private IFailer failer;
 	private String toString = null;
@@ -79,6 +80,7 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		ICallContractor callContractor = new CallContractor();
 		IFailFast failFastOrNull = new FailFast(new Checker(callContractor), new Failer(callContractor), callContractor);
 		SFailFast.setFailFastOrNull(failFastOrNull);
+		this.contractor = callContractor;
 		this.checker = SFailFast.getChecker();
 		this.failer = SFailFast.getFailer();
 	}
@@ -209,5 +211,42 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		assertTrue("Expected referenceNotNull to pass the null check", true);
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
-
+	
+	@Test(expected=NullPointerException.class)
+	public void testObjectNullCustomNullPointerExceptionNoMessage() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailExceptionClass(NullPointerException.class);
+				failer.failObjectNull(this, "referenceNull");
+			}
+		}
+		catch(NullPointerException customException)
+		{
+			assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+			System.out.println(customException.getMessage());
+			throw customException;
+		}
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testObjectNullCustomNullPointerExceptionMessage() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailExceptionClass(NullPointerException.class);
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
+			}
+		}
+		catch(NullPointerException customException)
+		{
+			assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+			System.out.println(customException.getMessage());
+			throw customException;
+		}
+	}
 }

@@ -189,6 +189,23 @@ public abstract class ACallContract implements ICallContract
 		
 		return result;
 	}
+	
+	
+	private Class<? extends RuntimeException> customFailExceptionClassOrNull;
+	@Override
+	public Class<? extends RuntimeException> getCustomFailExceptionClassOrNull()
+	{
+		return this.customFailExceptionClassOrNull;
+	}
+	@Override
+	public void setCustomFailExceptionClass(
+			Class<? extends RuntimeException> exceptionClass)
+	{
+		this.customFailExceptionClassOrNull = exceptionClass;
+	}
+	
+	
+	
 
 	
 }

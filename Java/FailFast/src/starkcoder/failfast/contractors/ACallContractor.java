@@ -116,6 +116,38 @@ public abstract class ACallContractor implements ICallContractor
 		return result;
 	}
 	
+	@Override
+	public ICallContract getContractWithCaller(Object caller)
+	{
+		ICallContract result = null;
+		{
+			if(null == caller)
+			{
+				throw new IllegalArgumentException("caller is null");
+			}
+		}
+		
+		synchronized(this.getSynchronizationObject())
+		{
+			Long currentThreadId = this.getCurrentThreadId();
+
+			ICallContract callContractPushedOrNull = this.getThreadId2CallContract().get(currentThreadId);
+			
+            if (null == callContractPushedOrNull)
+            {
+                throw new IllegalStateException("Cannot pop a contract for caller " + caller + ", since none is currently pushed.");
+            }
+            if (caller != callContractPushedOrNull.getCaller())
+            {
+                throw new IllegalStateException("Cannot pop a contract for caller " + caller + ", since caller " + callContractPushedOrNull.getCaller() + " has pushed a contract.");
+            }
+            result = callContractPushedOrNull;
+ 		}
+		
+		return result;
+	}
+
+
 	/**
 	 * Default constructor.
 	 */

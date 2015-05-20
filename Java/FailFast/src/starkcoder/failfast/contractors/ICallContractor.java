@@ -58,7 +58,7 @@ public interface ICallContractor
 	void pushContractWithCaller(ICallContract callContract);
 
 	/**
-	 * Ends a contract between caller and call contractor.
+	 * Ends a {link:ICallContract} between caller and call contractor.
 	 * <p>
 	 * Argument failSpecification is annotated with a matching check specification that
 	 * was employed by the caller to start the contract.
@@ -70,7 +70,7 @@ public interface ICallContractor
 	 *            failer that was called to throw an exception
 	 * @param failSpecification
 	 *            fail specification type inhering by IFail
-	 * @return checker pushed user arguments and extra arguments
+	 * @return contract previously pushed by caller via asserting checker method call
 	 * @throws IllegalArgumentException 
 	 * 			  if any of the arguments are null
 	 * @throws IllegalStateException 
@@ -78,4 +78,13 @@ public interface ICallContractor
 	 */
 	ICallContract popContractWithCaller(Object caller, IFailer throwingFailer,
 			Class<? extends IFail> failSpecification);
+	
+	/**
+	 * Retrieves a reference to a {link:ICallContract} previously pushed by caller.
+	 * 
+	 * @param caller
+	 * 			instance that called a checker and needs to call a failer
+	 * @return contract previously pushed by caller via asserting checker method call
+	 */
+	ICallContract getContractWithCaller(Object caller);
 }
