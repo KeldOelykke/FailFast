@@ -219,7 +219,7 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		{
 			if(checker.isObjectNull(this, referenceNull))
 			{
-				contractor.getContractWithCaller(this).setCustomFailExceptionClass(NullPointerException.class);
+				contractor.getContractWithCaller(this).setCustomFailExceptionType(NullPointerException.class);
 				failer.failObjectNull(this, "referenceNull");
 			}
 		}
@@ -238,7 +238,7 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		{
 			if(checker.isObjectNull(this, referenceNull))
 			{
-				contractor.getContractWithCaller(this).setCustomFailExceptionClass(NullPointerException.class);
+				contractor.getContractWithCaller(this).setCustomFailExceptionType(NullPointerException.class);
 				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
 			}
 		}
@@ -249,4 +249,47 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 			throw customException;
 		}
 	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullCustomFailMessageFormat() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailMessageFormat("%s: I am so tired of Object '%s' being null.");
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullCustomFailMessageFormatAndArguments() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailMessageFormat("Object '%s' is null - reported by Caller '%s'.");
+				contractor.getContractWithCaller(this).setCustomFailMessageArguments("fu1, fu0");
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+
+	
 }

@@ -124,13 +124,57 @@ public interface ICallContract
 	 * 
 	 * @return a custom exception class that fail-method should throw, or null
 	 */
-	Class<? extends RuntimeException> getCustomFailExceptionClassOrNull();
+	Class<? extends RuntimeException> getCustomFailExceptionTypeOrNull();
 	
 	/**
-	 * Sets a custom exception class that fail-method should throw instead of the default class set in attribute of fail-method.
+	 * Sets a custom exception class that fail-method should throw instead of
+	 * the default class set in attribute of fail-method.
+	 * <p>
+	 * If failExceptionType inherits <link:IFailFastException> the exception
+	 * will be registered as a fail-fast exception in <link:IFailFast>.
+	 * </p>
+	 * <p>
+	 * If failExceptionType does not inherit <link:IFailFastException> the
+	 * exception will be treated as a "normal" api exception.
+	 * </p>
 	 * 
-	 * @param exceptionClass custom exception class that fail-method should throw
+	 * @param failExceptionType
+	 *            a custom exception class that fail-method should throw
 	 */
-	void setCustomFailExceptionClass(Class<? extends RuntimeException> exceptionClass);
+	void setCustomFailExceptionType(Class<? extends RuntimeException> failExceptionType);
+	
+	/**
+	 * Retrieves custom message format, if set, that fail-method should use instead of the
+	 * default format set in attribute of fail-method.
+	 * 
+	 * @return custom message format that fail-method should use, or null
+	 */
+	String getCustomFailMessageFormatOrNull();
+	
+	/**
+	 * Sets custom message format that fail-method should use instead of the
+	 * default format set in attribute of fail-method.
+	 * 
+	 * @param failMessageFormat
+	 *            custom message format that fail-method should use
+	 */
+	void setCustomFailMessageFormat(String failMessageFormat);
+	
+	/**
+	 * Retrieves custom message arguments, if set, that fail-method should use instead of the
+	 * default arguments set in attribute of fail-method.
+	 * 
+	 * @return custom message arguments that fail-method should use, or null
+	 */
+	String getCustomFailMessageArgumentsOrNull();
+	
+	/**
+	 * Sets custom message arguments that fail-method should use instead of the
+	 * default arguments set in attribute of fail-method.
+	 * 
+	 * @param failMessageArguments
+	 *            custom message arguments that fail-method should use
+	 */
+	void setCustomFailMessageArguments(String failMessageArguments);
 	
 }

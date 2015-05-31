@@ -191,18 +191,43 @@ public abstract class ACallContract implements ICallContract
 	}
 	
 	
-	private Class<? extends RuntimeException> customFailExceptionClassOrNull;
+	private Class<? extends RuntimeException> customFailExceptionTypeOrNull;
 	@Override
-	public Class<? extends RuntimeException> getCustomFailExceptionClassOrNull()
+	public Class<? extends RuntimeException> getCustomFailExceptionTypeOrNull()
 	{
-		return this.customFailExceptionClassOrNull;
+		return this.customFailExceptionTypeOrNull;
 	}
 	@Override
-	public void setCustomFailExceptionClass(
-			Class<? extends RuntimeException> exceptionClass)
+	public void setCustomFailExceptionType(
+			Class<? extends RuntimeException> failExceptionType)
 	{
-		this.customFailExceptionClassOrNull = exceptionClass;
+		this.customFailExceptionTypeOrNull = failExceptionType;
 	}
+	
+	private String customFailMessageFormatOrNull;
+	@Override
+	public String getCustomFailMessageFormatOrNull()
+	{
+		return this.customFailMessageFormatOrNull;
+	}
+	@Override
+	public void setCustomFailMessageFormat(String failMessageFormat)
+	{
+		this.customFailMessageFormatOrNull = failMessageFormat;
+	}
+	
+	private String customFailMessageArguments;
+	@Override
+	public String getCustomFailMessageArgumentsOrNull()
+	{
+		return this.customFailMessageArguments;
+	}
+	@Override
+	public void setCustomFailMessageArguments(String failMessageArguments)
+	{
+		this.customFailMessageArguments = failMessageArguments;
+	}
+	
 	
 	
 	

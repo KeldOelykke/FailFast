@@ -3630,16 +3630,16 @@ public abstract class AFailer implements IFailer
 //        String message = String.format(failAnnotation.failMessageFormat(), failerArguments);
 //        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
         
-        Class<? extends Exception> customExceptionOrNull = callContract.getCustomFailExceptionClassOrNull();
+        Class<? extends Exception> customExceptionOrNull = callContract.getCustomFailExceptionTypeOrNull();
         if(null == customExceptionOrNull 
-        	|| FailFastException.class.isAssignableFrom(customExceptionOrNull))
+        	|| IFailFastException.class.isAssignableFrom(customExceptionOrNull))
         {
-	        FailFastException exception = this.constructFailException(failerSpecificationType, failAnnotation, callContract, failerArguments, failerExtraArguments);
+	        IFailFastException exception = this.constructFailException(failerSpecificationType, failAnnotation, callContract, failerArguments, failerExtraArguments);
 	        if(null == this.getFailFastExceptionOrNull())
 	        { // remember first exception
 	        	this.setFailFastExceptionOrNull(exception);
 	        }
-	        throw exception;
+	        throw (RuntimeException)exception;
         }
         else
         {
@@ -3741,16 +3741,21 @@ public abstract class AFailer implements IFailer
     protected String constructFailMessage(
 			Class<? extends IFail> failerSpecificationType,
 			NFail failAnnotation, 
-			Object[] checkerUserArguments,
-			Object[] checkerExtraArguments,
+			ICallContract callContract,
 			Object[] failerUserArguments,
 			Object[] failerExtraArguments)
 	{
     	String result = null;
     	
+		Object[] checkerUserArguments = callContract.getCheckArguments();
+		Object[] checkerExtraArguments = callContract.getCheckExtraArguments();
     	Object[] messageArgumentObjects = null;
     	{ // build arguments
-    		String failMessageArguments = failAnnotation.failMessageArguments();
+    		String failMessageArguments = callContract.getCustomFailMessageArgumentsOrNull();
+    		if(null == failMessageArguments)
+    		{
+    			failMessageArguments = failAnnotation.failMessageArguments();
+    		}
     		String[] messageArguments = failMessageArguments.split(",");
     		messageArgumentObjects = new Object[messageArguments.length];
     		for(int index = 0; index < messageArguments.length; ++index)
@@ -3867,27 +3872,31 @@ public abstract class AFailer implements IFailer
     	}
     	
     	{ // format arguments into string
-    		String format = failAnnotation.failMessageFormat();
+    		String format = callContract.getCustomFailMessageFormatOrNull();
+    		if(null == format)
+    		{
+    			format = failAnnotation.failMessageFormat();
+    		}
     		result = String.format(format, messageArgumentObjects);
     	}
     	
 		return result;
 	}
 
-    protected FailFastException constructFailException(
+    protected IFailFastException constructFailException(
 		Class<? extends IFail> failerSpecificationType,
 		NFail failAnnotation,
 		ICallContract callContract,
 		Object[] failerUserArguments,
 		Object[] failerExtraArguments)
     {
-    	FailFastException exception = null;
+    	IFailFastException exception = null;
         
-    	Class<? extends FailFastException> exceptionType = failAnnotation.failExceptionType();
+    	Class<? extends IFailFastException> exceptionType = failAnnotation.failExceptionType();
     	
-        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, callContract.getCheckArguments(), callContract.getCheckExtraArguments(), failerUserArguments, failerExtraArguments);
+        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, callContract, failerUserArguments, failerExtraArguments);
     	
-        Constructor<? extends FailFastException> constructor;
+        Constructor<? extends IFailFastException> constructor;
 		try
 		{
 			constructor = exceptionType.getConstructor(String.class);
@@ -3928,9 +3937,9 @@ public abstract class AFailer implements IFailer
     {
     	RuntimeException exception = null;
         
-    	Class<? extends RuntimeException> exceptionType = callContract.getCustomFailExceptionClassOrNull();
+    	Class<? extends RuntimeException> exceptionType = callContract.getCustomFailExceptionTypeOrNull();
     	
-        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, callContract.getCheckArguments(), callContract.getCheckExtraArguments(), failerUserArguments, failerExtraArguments);
+        String message = this.constructFailMessage(failerSpecificationType, failAnnotation, callContract, failerUserArguments, failerExtraArguments);
     	
         Constructor<? extends RuntimeException> constructor;
 		try
