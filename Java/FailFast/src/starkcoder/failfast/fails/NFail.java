@@ -50,7 +50,7 @@ public @interface NFail
 	 * 
 	 * @return Type of exception to throw
 	 */
-	public Class<? extends FailFastException> failExceptionType();
+	public Class<? extends RuntimeException> failExceptionType();
 	
 	/**
 	 * Exception message formatting string for thrown exception.
