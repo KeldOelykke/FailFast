@@ -45,7 +45,8 @@ public interface IObjectCharacterOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectCharacterOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectCharacterOutsideFail.failCharacterOutside(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectCharacterOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is outside Character range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
@@ -63,7 +64,8 @@ public interface IObjectCharacterOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectCharacterOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectCharacterOutsideFail.failCharacterOutside(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectCharacterOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is outside Character range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			

@@ -45,7 +45,8 @@ public interface IObjectByteNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteNotNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteNotNullFail.failByteNotNull(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectByteNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is NOT null.",
 			failMessageArguments = "fu0, fu1, cu1")
@@ -63,7 +64,8 @@ public interface IObjectByteNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteNotNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteNotNullFail.failByteNotNull(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectByteNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is NOT null. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2")

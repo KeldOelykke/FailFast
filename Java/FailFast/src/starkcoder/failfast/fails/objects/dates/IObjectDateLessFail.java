@@ -47,7 +47,8 @@ public interface IObjectDateLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateLessCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDateLessFail.failDateLess(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectDateLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is less than Date '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectDateLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateLessCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDateLessFail.failDateLess(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectDateLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is less than Date '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

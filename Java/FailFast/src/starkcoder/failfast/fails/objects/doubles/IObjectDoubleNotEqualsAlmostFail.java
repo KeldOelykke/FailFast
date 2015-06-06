@@ -47,7 +47,8 @@ public interface IObjectDoubleNotEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDoubleNotEqualsAlmostCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNotEqualsAlmostFail.failDoubleNotEqualsAlmost(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectDoubleNotEqualsAlmostCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is NOT equal and NOT almost equal to float '%s'(%s) - it is outside range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, cx2, cx3")	
@@ -67,7 +68,8 @@ public interface IObjectDoubleNotEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDoubleNotEqualsAlmostCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNotEqualsAlmostFail.failDoubleNotEqualsAlmost(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectDoubleNotEqualsAlmostCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is NOT equal and NOT almost equal to float '%s'(%s) - it is outside range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, cx2, cx3, fu3")	

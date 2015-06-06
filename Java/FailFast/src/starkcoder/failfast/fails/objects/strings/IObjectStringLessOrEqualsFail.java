@@ -47,7 +47,8 @@ public interface IObjectStringLessOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringLessOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectStringLessOrEqualsFail.failStringLessOrEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectStringLessOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is less than or equal to String '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectStringLessOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringLessOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectStringLessOrEqualsFail.failStringLessOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectStringLessOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is less than or equal to String '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

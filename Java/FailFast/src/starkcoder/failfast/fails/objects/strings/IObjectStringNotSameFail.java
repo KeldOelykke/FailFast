@@ -47,7 +47,8 @@ public interface IObjectStringNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotSameCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectStringNotSameFail.failStringNotSame(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectStringNotSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is NOT same as String '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectStringNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNotSameCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectStringNotSameFail.failStringNotSame(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectStringNotSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is NOT same as String '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

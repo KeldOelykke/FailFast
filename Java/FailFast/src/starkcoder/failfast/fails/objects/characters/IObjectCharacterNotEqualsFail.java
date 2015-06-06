@@ -47,7 +47,8 @@ public interface IObjectCharacterNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectCharacterNotEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectCharacterNotEqualsFail.failCharacterNotEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectCharacterNotEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is NOT equal to Character '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectCharacterNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectCharacterNotEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectCharacterNotEqualsFail.failCharacterNotEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectCharacterNotEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is NOT equal to Character '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

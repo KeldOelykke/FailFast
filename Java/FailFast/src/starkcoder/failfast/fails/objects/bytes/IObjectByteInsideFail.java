@@ -45,7 +45,8 @@ public interface IObjectByteInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteInsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteInsideFail.failByteInside(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectByteInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is inside Byte range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
@@ -63,7 +64,8 @@ public interface IObjectByteInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteInsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteInsideFail.failByteInside(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectByteInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is inside Byte range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			

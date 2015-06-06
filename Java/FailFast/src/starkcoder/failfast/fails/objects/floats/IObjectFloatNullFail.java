@@ -45,7 +45,8 @@ public interface IObjectFloatNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatNullFail.failFloatNull(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectFloatNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is null.",
 			failMessageArguments = "fu0, fu1, cu1")
@@ -63,7 +64,8 @@ public interface IObjectFloatNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatNullFail.failFloatNull(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectFloatNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is null. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2")

@@ -45,7 +45,8 @@ public interface IObjectFloatNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatNotDefaultCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatNotDefaultFail.failFloatNotDefault(Object caller, String referenceAName)",
+		checkerSpecificationType = IObjectFloatNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Float '%s'(%s) is NOT default(%s).",
 		failMessageArguments = "fu0, fu1, cu1, cx0")			
@@ -63,7 +64,8 @@ public interface IObjectFloatNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatNotDefaultCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatNotDefaultFail.failFloatNotDefault(Object caller, String referenceAName, String message)",
+		checkerSpecificationType = IObjectFloatNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Float '%s'(%s) is NOT default(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, cx0, fu2")			

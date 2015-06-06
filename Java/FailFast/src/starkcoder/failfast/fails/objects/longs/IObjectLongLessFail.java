@@ -47,7 +47,8 @@ public interface IObjectLongLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongLessCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongLessFail.failLongLess(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectLongLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is less than Long '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectLongLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongLessCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongLessFail.failLongLess(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectLongLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is less than Long '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

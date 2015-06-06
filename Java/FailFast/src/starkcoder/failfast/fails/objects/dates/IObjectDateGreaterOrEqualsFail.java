@@ -47,7 +47,8 @@ public interface IObjectDateGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateGreaterOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDateGreaterOrEqualsFail.failDateGreaterOrEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectDateGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is greater than or equal to Date '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectDateGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateGreaterOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDateGreaterOrEqualsFail.failDateGreaterOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectDateGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is greater than or equal to Date '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

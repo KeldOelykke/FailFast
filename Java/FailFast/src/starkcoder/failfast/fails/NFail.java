@@ -28,6 +28,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import starkcoder.failfast.checks.ICheck;
+
 
 /**
  * Annotates fail-methods in failers.
@@ -39,11 +41,24 @@ import java.lang.annotation.Target;
 public @interface NFail
 {
 	/**
+	 * Unique method identifier.
+	 * <p>
+	 * This has to be unique to address a certain method of a specific failer specification in a map.
+	 * </p>
+	 * <p>
+	 * This is used by {link:IFailerCustomizer}.
+	 * </p>
+	 * 
+	 * @return method identifier
+	 */
+	public String failerSpecificationAndMethodID();
+	
+	/**
 	 * The Checker specification type with check-methods that must be used with the annotated fail-method.
 	 * 
 	 * @return Checker specification type that matches this Failer attribute
 	 */
-	public Class<?> checkerSpecificationType();
+	public Class<? extends ICheck> checkerSpecificationType();
 	
 	/**
 	 * Type of exception to throw on failure.

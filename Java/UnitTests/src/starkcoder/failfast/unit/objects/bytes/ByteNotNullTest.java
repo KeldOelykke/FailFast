@@ -201,7 +201,7 @@ public class ByteNotNullTest implements IObjectNotNullTest<Byte>{
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		Byte referenceNull = null;
 		if(checker.isByteNotNull(this, referenceNull))
 		{

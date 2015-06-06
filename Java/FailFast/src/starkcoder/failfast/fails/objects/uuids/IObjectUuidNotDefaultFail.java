@@ -45,7 +45,8 @@ public interface IObjectUuidNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidNotDefaultCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidNotDefaultFail.failUuidNotDefault(Object caller, String referenceAName)",
+		checkerSpecificationType = IObjectUuidNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: UUID '%s'(%s) is NOT default(%s).",
 		failMessageArguments = "fu0, fu1, cu1, cx0")			
@@ -63,7 +64,8 @@ public interface IObjectUuidNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidNotDefaultCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidNotDefaultFail.failUuidNotDefault(Object caller, String referenceAName, String message)",
+		checkerSpecificationType = IObjectUuidNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: UUID '%s'(%s) is NOT default(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, cx0, fu2")			

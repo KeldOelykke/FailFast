@@ -228,6 +228,18 @@ public abstract class ACallContract implements ICallContract
 		this.customFailMessageArguments = failMessageArguments;
 	}
 	
+	private String customFailMessagePostfix;
+	@Override
+	public String getCustomFailMessagePostfixOrNull()
+	{
+		return this.customFailMessagePostfix;
+	}
+	@Override
+	public void setCustomFailMessagePostfix(String failMessagePostfix)
+	{
+		this.customFailMessagePostfix = failMessagePostfix;
+	}
+	
 	
 	
 	

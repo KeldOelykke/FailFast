@@ -150,7 +150,7 @@ public interface IFailFastException
 	 * @param failMessageFormat
 	 *            the exception message formatting string for thrown exception
 	 */
-	void setMessageFormat(String failMessageFormat);
+	void setFailMessageFormat(String failMessageFormat);
 
 	/**
 	 * Comma-separated list of ids of checker-call and failer-call arguments

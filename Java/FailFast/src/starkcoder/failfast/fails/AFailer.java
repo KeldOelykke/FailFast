@@ -26,6 +26,7 @@ package starkcoder.failfast.fails;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Locale;
 
 import starkcoder.failfast.contractors.ICallContractor;
@@ -279,6 +280,182 @@ public abstract class AFailer implements IFailer
 		this.failFastExceptionOrNull = failFastExceptionOrNull;
 	}
 
+	// IFailerCustomizer - START -------------------------------
+
+	@Override
+	public Class<? extends RuntimeException> getCustomFailExceptionTypeOrNull(
+			String failerSpecificationAndMethodID)
+	{
+		Class<? extends RuntimeException> result = null;
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			result = this.getFailSpecification2CustomFailExceptionType().get(failerSpecificationAndMethodID);
+		}
+		return result;
+	}
+	@Override
+	public void registerCustomFailExceptionType(
+			String failerSpecificationAndMethodID,
+			Class<? extends RuntimeException> failExceptionType)
+	{
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+        if (null == failExceptionType)
+        {
+            throw new IllegalArgumentException("failExceptionType is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			Class<? extends RuntimeException> customFailExceptionType = this.getFailSpecification2CustomFailExceptionType().get(failerSpecificationAndMethodID);
+			if(null != customFailExceptionType)
+			{
+				throw new IllegalStateException("A custom fail exception '" + customFailExceptionType + "' has already been registered for failer specification method '" + failerSpecificationAndMethodID + "'");
+			}
+			this.getFailSpecification2CustomFailExceptionType().put(failerSpecificationAndMethodID, failExceptionType);
+		}
+	}
+	@Override
+	public void unregisterCustomFailExceptionType(
+			String failerSpecificationAndMethodID)
+	{
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			Class<? extends RuntimeException> customFailExceptionType = this.getFailSpecification2CustomFailExceptionType().get(failerSpecificationAndMethodID);
+			if(null == customFailExceptionType)
+			{
+				throw new IllegalStateException("Can't unregister a custom fail exception for failer specification method '" + failerSpecificationAndMethodID + "' since none is registered.");
+			}
+			this.getFailSpecification2CustomFailExceptionType().remove(failerSpecificationAndMethodID);
+		}
+	}
+	
+	@Override
+	public String getCustomFailMessageFormatOrNull(
+			String failerSpecificationAndMethodID)
+	{
+		String result = null;
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			result = this.getFailSpecification2CustomFailMessageFormat().get(failerSpecificationAndMethodID);
+		}
+		return result;
+	}
+	@Override
+	public void registerCustomFailMessageFormat(
+			String failerSpecificationAndMethodID,
+			String failMessageFormat)
+	{
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+        if (null == failMessageFormat)
+        {
+            throw new IllegalArgumentException("failMessageFormat is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			String customFailMessageFormat = this.getFailSpecification2CustomFailMessageFormat().get(failerSpecificationAndMethodID);
+			if(null != customFailMessageFormat)
+			{
+				throw new IllegalStateException("A custom fail message format '" + customFailMessageFormat + "' has already been registered for failer specification method '" + failerSpecificationAndMethodID + "'");
+			}
+			this.getFailSpecification2CustomFailMessageFormat().put(failerSpecificationAndMethodID, failMessageFormat);
+		}
+	}
+	@Override
+	public void unregisterCustomFailMessageFormat(
+			String failerSpecificationAndMethodID)
+	{
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			String customFailMessageFormat = this.getFailSpecification2CustomFailMessageFormat().get(failerSpecificationAndMethodID);
+			if(null == customFailMessageFormat)
+			{
+				throw new IllegalStateException("Can't unregister a custom fail message format for failer specification method '" + failerSpecificationAndMethodID + "' since none is registered.");
+			}
+			this.getFailSpecification2CustomFailMessageFormat().remove(failerSpecificationAndMethodID);
+		}
+	}
+	
+	@Override
+	public String getCustomFailMessageArgumentsOrNull(
+			String failerSpecificationAndMethodID)
+	{
+		String result = null;
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			result = this.getFailSpecification2CustomFailMessageArguments().get(failerSpecificationAndMethodID);
+		}
+		return result;
+	}
+	@Override
+	public void registerCustomFailMessageArguments(
+			String failerSpecificationAndMethodID,
+			String failMessageArguments)
+	{
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+        if (null == failMessageArguments)
+        {
+            throw new IllegalArgumentException("failMessageArguments is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			String customFailMessageArguments = this.getFailSpecification2CustomFailMessageArguments().get(failerSpecificationAndMethodID);
+			if(null != customFailMessageArguments)
+			{
+				throw new IllegalStateException("A custom fail message arguments '" + customFailMessageArguments + "' has already been registered for failer specification method '" + failerSpecificationAndMethodID + "'");
+			}
+			this.getFailSpecification2CustomFailMessageArguments().put(failerSpecificationAndMethodID, failMessageArguments);
+		}
+	}
+	@Override
+	public void unregisterCustomFailMessageArguments(
+			String failerSpecificationAndMethodID)
+	{
+        if (null == failerSpecificationAndMethodID)
+        {
+            throw new IllegalArgumentException("failerSpecificationAndMethodID is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			String customFailMessageArguments = this.getFailSpecification2CustomFailMessageArguments().get(failerSpecificationAndMethodID);
+			if(null == customFailMessageArguments)
+			{
+				throw new IllegalStateException("Can't unregister a custom fail message arguments for failer specification method '" + failerSpecificationAndMethodID + "' since none is registered.");
+			}
+			this.getFailSpecification2CustomFailMessageArguments().remove(failerSpecificationAndMethodID);
+		}
+	}
+	
+	
+	// IFailerCustomizer - END -------------------------------
+	
 	
 //	// GENERIC OBJECT - START -------------------------------
 //
@@ -3574,6 +3751,60 @@ public abstract class AFailer implements IFailer
 	 */
 	protected final static Object[] EmptyObjectArray = new Object[]{};
 	
+	
+	private Object synchronizationObject = new Object();
+	/*
+	 * Use this for synchronized sections that uses fields with states.
+	 * <p>
+	 * This is used for customization fields that could be managed from different threads.
+	 * </p>
+	 */
+	protected Object getSynchronizationObject()
+	{
+		return this.synchronizationObject;
+	}
+	/*
+	 * Hopefully you have no use for this, but here it is (should I be wrong).
+	 */
+	protected void setSynchronizationObject(Object synchronizationObject)
+	{
+		this.synchronizationObject = synchronizationObject;
+	}
+	
+	private HashMap<String, Class<? extends RuntimeException>> failSpecification2CustomFailExceptionType = new HashMap<String, Class<? extends RuntimeException>>();
+	protected HashMap<String, Class<? extends RuntimeException>> getFailSpecification2CustomFailExceptionType()
+	{
+		return failSpecification2CustomFailExceptionType;
+	}
+	protected void setFailSpecification2CustomFailExceptionType(
+			HashMap<String, Class<? extends RuntimeException>> failSpecification2CustomFailExceptionType)
+	{
+		this.failSpecification2CustomFailExceptionType = failSpecification2CustomFailExceptionType;
+	}
+	
+	private HashMap<String, String> failSpecification2CustomMessageFormat = new HashMap<String, String>();
+	protected HashMap<String, String> getFailSpecification2CustomFailMessageFormat()
+	{
+		return failSpecification2CustomMessageFormat;
+	}
+	protected void setFailSpecification2CustomFailMessageFormat(
+			HashMap<String, String> failSpecification2CustomMessageFormat)
+	{
+		this.failSpecification2CustomMessageFormat = failSpecification2CustomMessageFormat;
+	}
+	
+	private HashMap<String, String> failSpecification2CustomMessageArguments = new HashMap<String, String>();
+	protected HashMap<String, String> getFailSpecification2CustomFailMessageArguments()
+	{
+		return failSpecification2CustomMessageArguments;
+	}
+	protected void setFailSpecification2CustomFailMessageArguments(
+			HashMap<String, String> failSpecification2CustomMessageArguments)
+	{
+		this.failSpecification2CustomMessageArguments = failSpecification2CustomMessageArguments;
+	}
+	
+	
 	/**
 	 * Call this after a check asserts.
 	 * <p>
@@ -3865,7 +4096,12 @@ public abstract class AFailer implements IFailer
     	}
     	
     	{ // format arguments into string
-    		result = String.format(failMessageFormat, messageArgumentObjects);
+    		String message = String.format(failMessageFormat, messageArgumentObjects);
+    		if(null != callContract.getCustomFailMessagePostfixOrNull())
+    		{
+    			message += callContract.getCustomFailMessagePostfixOrNull();
+    		}
+    		result = message;
     	}
     	
 		return result;
@@ -3883,8 +4119,12 @@ public abstract class AFailer implements IFailer
     	// fetch exception type to use
     	Class<? extends RuntimeException> exceptionType = callContract.getCustomFailExceptionTypeOrNull();
     	if(null == exceptionType)
-    	{
-    		exceptionType = failAnnotation.failExceptionType();
+    	{ // no callcontract customization => check failer customization
+    		exceptionType = this.getCustomFailExceptionTypeOrNull(failAnnotation.failerSpecificationAndMethodID());
+        	if(null == exceptionType)
+        	{ // no failer customization => use default from failer specification
+        		exceptionType = failAnnotation.failExceptionType();
+        	}
     	}
     	
     	// fetch format and arguments for exception message and produce it
@@ -3894,13 +4134,21 @@ public abstract class AFailer implements IFailer
     	{
 			failMessageFormat = callContract.getCustomFailMessageFormatOrNull();
 			if(null == failMessageFormat)
-			{
-				failMessageFormat = failAnnotation.failMessageFormat();
+			{ // no contract custom message format => check failer customization
+				failMessageFormat = this.getFailSpecification2CustomFailMessageFormat().get(failAnnotation.failerSpecificationAndMethodID());
+				if(null == failMessageFormat)
+				{ // no failer custom message format => use default
+					failMessageFormat = failAnnotation.failMessageFormat();
+				}
 			}
 			failMessageArguments = callContract.getCustomFailMessageArgumentsOrNull();
 			if(null == failMessageArguments)
-			{
-				failMessageArguments = failAnnotation.failMessageArguments();
+			{ // no contract custom message arguments => check failer customization
+				failMessageArguments = this.getFailSpecification2CustomFailMessageArguments().get(failAnnotation.failerSpecificationAndMethodID());
+				if(null == failMessageArguments)
+				{ // no failer custom message arguments => use default
+					failMessageArguments = failAnnotation.failMessageArguments();
+				}
 			}
 	        message = this.constructFailMessage(failerSpecificationType, failAnnotation, failMessageFormat, failMessageArguments, callContract, failerUserArguments, failerExtraArguments);
     	}
@@ -3929,7 +4177,7 @@ public abstract class AFailer implements IFailer
 				failFastException.setFailerSpecificationType(failerSpecificationType);
 				failFastException.setFailerUserArguments(failerUserArguments);
 				failFastException.setFailerExtraArguments(failerExtraArguments);
-				failFastException.setMessageFormat(failMessageFormat);
+				failFastException.setFailMessageFormat(failMessageFormat);
 				failFastException.setFailerMessageArguments(failMessageArguments);
 			}
 		}

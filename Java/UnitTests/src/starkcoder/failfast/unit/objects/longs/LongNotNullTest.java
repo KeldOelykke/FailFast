@@ -201,7 +201,7 @@ public class LongNotNullTest implements IObjectNotNullTest<Long>{
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		Long referenceNull = null;
 		if(checker.isLongNotNull(this, referenceNull))
 		{

@@ -23,6 +23,7 @@
  */
 package starkcoder.failfast.examples.reference2failfast.abstractclass;
 
+import starkcoder.failfast.examples.reference2failfast.myfailfast.IMyCallContractor;
 import starkcoder.failfast.examples.reference2failfast.myfailfast.IMyChecker;
 import starkcoder.failfast.examples.reference2failfast.myfailfast.IMyFailFast;
 import starkcoder.failfast.examples.reference2failfast.myfailfast.IMyFailer;
@@ -73,5 +74,17 @@ public class AEntity implements IEntity {
 	public IMyFailer getMyFailer()
 	{
 		return SMyFailFast.getMyFailer();
+	}
+
+	/**
+	 * Shortcut to your custom call contractor.
+	 * <p>
+	 * Check how it used in {link: SomeEntity}.
+	 * </p>
+	 * @return custom call contractor.
+	 */
+	public IMyCallContractor getMyCallContractor()
+	{
+		return SMyFailFast.getMyCallContractor();
 	}
 }

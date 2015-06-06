@@ -47,7 +47,8 @@ public interface IObjectDoubleEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDoubleEqualsAlmostCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDoubleEqualsAlmostFail.failDoubleEqualsAlmost(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectDoubleEqualsAlmostCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is equal or almost equal to Double '%s'(%s) - it is within range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, cx2, cx3")			
@@ -67,7 +68,8 @@ public interface IObjectDoubleEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDoubleEqualsAlmostCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDoubleEqualsAlmostFail.failDoubleEqualsAlmost(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectDoubleEqualsAlmostCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is equal or almost equal to Double '%s'(%s) - it is within range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, cx2, cx3, fu3")	

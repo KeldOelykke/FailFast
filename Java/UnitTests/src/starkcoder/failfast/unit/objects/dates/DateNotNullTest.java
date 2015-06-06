@@ -203,7 +203,7 @@ public class DateNotNullTest implements IObjectNotNullTest<Date>{
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		Date referenceNull = null;
 		if(checker.isDateNotNull(this, referenceNull))
 		{

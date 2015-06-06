@@ -45,7 +45,8 @@ public interface IObjectDateNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateNotDefaultCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectDateNotDefaultFail.failDateNotDefault(Object caller, String referenceAName)",
+		checkerSpecificationType = IObjectDateNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Date '%s'(%s) is NOT default(%s).",
 		failMessageArguments = "fu0, fu1, cu1, cx0")			
@@ -63,7 +64,8 @@ public interface IObjectDateNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateNotDefaultCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDateNotDefaultFail.failDateNotDefault(Object caller, String referenceAName, String message)",
+		checkerSpecificationType = IObjectDateNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Date '%s'(%s) is NOT default(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, cx0, fu2")			

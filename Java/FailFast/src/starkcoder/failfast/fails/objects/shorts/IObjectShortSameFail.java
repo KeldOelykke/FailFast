@@ -47,7 +47,8 @@ public interface IObjectShortSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectShortSameCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectShortSameFail.failShortSame(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectShortSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is same as Short '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectShortSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectShortSameCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectShortSameFail.failShortSame(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectShortSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is same as Short '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

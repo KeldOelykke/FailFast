@@ -47,7 +47,8 @@ public interface IObjectIntegerSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectIntegerSameCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectIntegerSameFail.failIntegerSame(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectIntegerSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is same as Integer '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectIntegerSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectIntegerSameCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectIntegerSameFail.failIntegerSame(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectIntegerSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is same as Integer '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

@@ -45,7 +45,8 @@ public interface IObjectIntegerOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectIntegerOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectIntegerOutsideFail.failIntegerOutside(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectIntegerOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is outside Integer range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
@@ -63,7 +64,8 @@ public interface IObjectIntegerOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectIntegerOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectIntegerOutsideFail.failIntegerOutside(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectIntegerOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is outside Integer range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			

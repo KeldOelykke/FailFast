@@ -47,7 +47,8 @@ public interface IObjectByteLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteLessCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteLessFail.failByteLess(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectByteLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is less than Byte '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectByteLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteLessCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteLessFail.failByteLess(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectByteLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is less than Byte '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

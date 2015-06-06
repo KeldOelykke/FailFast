@@ -201,7 +201,7 @@ public class BooleanNotNullTest implements IObjectNotNullTest<Boolean>{
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		Boolean referenceNull = null;
 		if(checker.isBooleanNotNull(this, referenceNull))
 		{

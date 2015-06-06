@@ -47,7 +47,8 @@ public interface IObjectLongGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongGreaterFail.failLongGreater(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectLongGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is greater than Long '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectLongGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongGreaterFail.failLongGreater(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectLongGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is greater than Long '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

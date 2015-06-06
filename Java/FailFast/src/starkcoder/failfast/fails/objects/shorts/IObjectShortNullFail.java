@@ -45,7 +45,8 @@ public interface IObjectShortNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectShortNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectShortNullFail.failShortNull(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectShortNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is null.",
 			failMessageArguments = "fu0, fu1, cu1")
@@ -63,7 +64,8 @@ public interface IObjectShortNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectShortNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectShortNullFail.failShortNull(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectShortNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is null. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2")

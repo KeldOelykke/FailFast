@@ -47,7 +47,8 @@ public interface IObjectStringGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectStringGreaterFail.failStringGreater(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectStringGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is greater than String '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectStringGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectStringGreaterFail.failStringGreater(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectStringGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is greater than String '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

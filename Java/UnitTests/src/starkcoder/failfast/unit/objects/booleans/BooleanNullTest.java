@@ -200,7 +200,7 @@ public class BooleanNullTest implements IObjectNullTest<Boolean> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		Boolean referenceNotNull = new Boolean(false);
 		if(checker.isBooleanNull(this, referenceNotNull))
 		{

@@ -23,42 +23,17 @@
  */
 package starkcoder.failfast.examples.reference2failfast.myfailfast;
 
-import starkcoder.failfast.IFailFast;
+import starkcoder.failfast.contractors.ICallContractor;
 
 /**
- * Your own fail-fast specification that you can extend with your own fail-fast code.
+ * Your own call contractor specification that you can extend with your own contractor stuff (if needed).
  * <p>
- * This interface could be referenced from many places in your code.
+ * This interface will be referenced from many places in your code.
  * </p>
  * @author Keld Oelykke
  */
-public interface IMyFailFast extends IFailFast {
+public interface IMyCallContractor extends ICallContractor {
 
-	/**
-	 * Retrieves your custom checker instead of IChecker.
-	 * <p>
-	 * Call methods of this (including your extensions) to check arguments.
-	 * </p>
-	 * @return custom checker.
-	 */
-	IMyChecker getMyChecker();
+	// you could add your own code here
 
-	/**
-	 * Retrieves custom failer instead of IFailer.
-	 * <p>
-	 * Call methods of this (including your extensions) to throw an exception when a check asserts.
-	 * </p>
-	 * @return custom failer.
-	 */
-	IMyFailer getMyFailer();
-	
-	/**
-	 * Retrieves custom call contractor instead of ICallContractor.
-	 * <p>
-	 * Call methods of this (including your extensions) to reach call contracts between a checker-call and a failer-call.
-	 * </p>
-	 * @return custom call contractor
-	 */
-	IMyCallContractor getMyCallContractor();
-	
 }

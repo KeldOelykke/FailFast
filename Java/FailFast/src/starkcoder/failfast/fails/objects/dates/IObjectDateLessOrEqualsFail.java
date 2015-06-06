@@ -47,7 +47,8 @@ public interface IObjectDateLessOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateLessOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDateLessOrEqualsFail.failDateLessOrEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectDateLessOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is less than or equal to Date '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectDateLessOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDateLessOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDateLessOrEqualsFail.failDateLessOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectDateLessOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is less than or equal to Date '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

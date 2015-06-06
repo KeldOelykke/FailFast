@@ -72,5 +72,5 @@ public interface IObjectNotNullTest<T extends Object> {
 	@Test(expected=FailFastException.class)
 	void testObjectNotNullFailMessage();
 	
-	void testObjectNullNoFail();
+	void testObjectNotNullNoFail();
 }

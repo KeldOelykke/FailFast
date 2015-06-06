@@ -47,7 +47,8 @@ public interface IGenericListNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectsNotEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericListNotEqualsFail.failGenericListNotEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectsNotEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: List<?> '%s' is NOT equal to List<?> '%s'. Element#%s(%s) differs from Element#%s(%s).",
 			failMessageArguments = "fu0, fu1, fu2, cx0, cx1, cx0, cx2")
@@ -67,7 +68,8 @@ public interface IGenericListNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectsNotEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericListNotEqualsFail.failGenericListNotEquals(Object caller, String referenceAName, String referenceBName, String message)",
+		checkerSpecificationType = IObjectsNotEqualsCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: List<?> '%s' is NOT equal to List<?> '%s'. Element#%s(%s) differs from Element#%s(%s). %s.",
 		failMessageArguments = "fu0, fu1, fu2, cx0, cx1, cx0, cx2, fu3")

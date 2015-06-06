@@ -45,7 +45,8 @@ public interface IObjectIntegerInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectIntegerInsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectIntegerInsideFail.failIntegerInside(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectIntegerInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is inside Integer range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
@@ -63,7 +64,8 @@ public interface IObjectIntegerInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectIntegerInsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectIntegerInsideFail.failIntegerInside(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectIntegerInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is inside Integer range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			

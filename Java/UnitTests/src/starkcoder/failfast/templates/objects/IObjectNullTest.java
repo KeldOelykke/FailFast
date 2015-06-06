@@ -74,5 +74,5 @@ public interface IObjectNullTest<T extends Object> {
 	void testObjectNullFailMessage();
 	
 	@Test
-	void testObjectNotNullNoFail();
+	void testObjectNullNoFail();
 }

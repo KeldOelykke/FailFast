@@ -201,7 +201,7 @@ public class EnumNotNullTest implements IObjectNotNullTest<Enum<?>> {
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		EFoo referenceNull = null;
 		if(checker.isEnumNotNull(this, referenceNull))
 		{

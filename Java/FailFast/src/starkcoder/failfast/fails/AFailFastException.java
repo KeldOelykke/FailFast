@@ -141,7 +141,7 @@ public abstract class AFailFastException extends RuntimeException implements
 		return this.failMessageFormat;
 	}
 	@Override
-	public void setMessageFormat(String failMessageFormat)
+	public void setFailMessageFormat(String failMessageFormat)
 	{
 		this.failMessageFormat = failMessageFormat;
 	}

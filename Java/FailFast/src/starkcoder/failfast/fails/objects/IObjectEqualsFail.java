@@ -47,7 +47,8 @@ public interface IObjectEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectEqualsFail.failObjectEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Object '%s'(%s) is equal to object '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectEqualsFail.failObjectEquals(Object caller, String referenceAName, String referenceBName, String message)",
+		checkerSpecificationType = IObjectEqualsCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Object '%s'(%s) is equal to object '%s'(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

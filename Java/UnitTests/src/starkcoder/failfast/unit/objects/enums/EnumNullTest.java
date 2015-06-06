@@ -200,7 +200,7 @@ public class EnumNullTest implements IObjectNullTest<Enum<?>> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		EFoo referenceNotNull = EFoo.VALUE_A;
 		if(checker.isEnumNull(this, referenceNotNull))
 		{

@@ -47,7 +47,8 @@ public interface IObjectFloatGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatGreaterOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatGreaterOrEqualsFail.failFloatGreaterOrEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectFloatGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is greater than or equal to Float '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectFloatGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatGreaterOrEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatGreaterOrEqualsFail.failFloatGreaterOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectFloatGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is greater than or equal to Float '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

@@ -200,7 +200,7 @@ public class IntegerNullTest implements IObjectNullTest<Integer> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		Integer referenceNotNull = new Integer(0);
 		if(checker.isIntegerNull(this, referenceNotNull))
 		{

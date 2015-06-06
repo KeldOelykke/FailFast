@@ -45,7 +45,8 @@ public interface IGenericObjectNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericObjectNotNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IGenericObjectNotNullFail.failGenericObjectNotNull(Object caller, String referenceName)",
+			checkerSpecificationType = IGenericObjectNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: '%s'(%s) is NOT null.",
 			failMessageArguments = "fu0, fu1, cu1")
@@ -63,7 +64,8 @@ public interface IGenericObjectNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericObjectNotNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IGenericObjectNotNullFail.failGenericObjectNotNull(Object caller, String referenceName, String message)",
+			checkerSpecificationType = IGenericObjectNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: '%s'(%s) is NOT null. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2")

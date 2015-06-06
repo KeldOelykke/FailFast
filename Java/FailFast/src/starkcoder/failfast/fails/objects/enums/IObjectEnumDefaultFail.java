@@ -45,7 +45,8 @@ public interface IObjectEnumDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEnumDefaultCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectEnumDefaultFail.failEnumDefault(Object caller, String referenceAName)",
+		checkerSpecificationType = IObjectEnumDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Enum '%s'(%s) is default(%s).",
 		failMessageArguments = "fu0, fu1, cu1, cx0")
@@ -63,7 +64,8 @@ public interface IObjectEnumDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEnumDefaultCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectEnumDefaultFail.failEnumDefault(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectEnumDefaultCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is default(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")

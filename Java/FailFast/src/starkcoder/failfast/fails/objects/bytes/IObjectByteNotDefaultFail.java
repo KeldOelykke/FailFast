@@ -45,7 +45,8 @@ public interface IObjectByteNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteNotDefaultCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectByteNotDefaultFail.failByteNotDefault(Object caller, String referenceAName)",
+		checkerSpecificationType = IObjectByteNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Byte '%s'(%s) is NOT default(%s).",
 		failMessageArguments = "fu0, fu1, cu1, cx0")			
@@ -63,7 +64,8 @@ public interface IObjectByteNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteNotDefaultCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteNotDefaultFail.failByteNotDefault(Object caller, String referenceAName, String message)",
+		checkerSpecificationType = IObjectByteNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Byte '%s'(%s) is NOT default(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, cx0, fu2")			

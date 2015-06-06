@@ -177,4 +177,16 @@ public interface ICallContract
 	 */
 	void setCustomFailMessageArguments(String failMessageArguments);
 	
+	/**
+	 * Retrieves a custom message postfix, if set, that will be added the exception message.
+	 * 
+	 * @return custom message postfix, if set, that will be added the exception message
+	 */
+	String getCustomFailMessagePostfixOrNull();
+	
+	/**
+	 * Sets a custom message postfix that will be added the exception message of the exception to throw.
+	 */
+	void setCustomFailMessagePostfix(String failMessagePostfix);
+	
 }

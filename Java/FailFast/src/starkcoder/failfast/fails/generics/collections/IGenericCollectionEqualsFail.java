@@ -47,7 +47,8 @@ public interface IGenericCollectionEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericCollectionEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericCollectionEqualsFail.failGenericCollectionEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IGenericCollectionEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Collection<?> '%s'(%s) is equal to Collection<?> '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IGenericCollectionEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericCollectionEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericCollectionEqualsFail.failGenericCollectionEquals(Object caller, String referenceAName, String referenceBName, String message)",
+		checkerSpecificationType = IGenericCollectionEqualsCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Collection<?> '%s'(%s) is equal to Collection<?> '%s'(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

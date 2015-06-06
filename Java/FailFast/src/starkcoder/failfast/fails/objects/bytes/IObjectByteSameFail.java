@@ -47,7 +47,8 @@ public interface IObjectByteSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteSameCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectByteSameFail.failByteSame(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectByteSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is same as Byte '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectByteSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteSameCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteSameFail.failByteSame(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectByteSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is same as Byte '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

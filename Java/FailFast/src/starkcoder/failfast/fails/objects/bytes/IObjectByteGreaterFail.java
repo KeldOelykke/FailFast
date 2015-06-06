@@ -47,7 +47,8 @@ public interface IObjectByteGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteGreaterFail.failByteGreater(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectByteGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is greater than Byte '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectByteGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteGreaterFail.failByteGreater(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectByteGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is greater than Byte '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

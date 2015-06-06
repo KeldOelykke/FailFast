@@ -50,8 +50,9 @@ public class SomeEntity extends AEntity {
 		if (this.getMyChecker().isObjectNull(this, bar))
 		{
 			// expensive call creating strings and exception
-			this.getMyFailer().failObjectNull(this, "bar",
-					"Is it really closed?");
+			this.getMyCallContractor().getContractWithCaller(this)
+					.setCustomFailMessagePostfix("Is it really closed?");
+			this.getMyFailer().failObjectNull(this, "bar");
 		}
 	}
 }

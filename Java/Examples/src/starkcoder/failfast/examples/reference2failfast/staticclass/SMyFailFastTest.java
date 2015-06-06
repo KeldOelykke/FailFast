@@ -29,9 +29,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import starkcoder.failfast.contractors.CallContractor;
-import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.examples.reference2failfast.myfailfast.IMyCallContractor;
 import starkcoder.failfast.examples.reference2failfast.myfailfast.IMyFailFast;
+import starkcoder.failfast.examples.reference2failfast.myfailfast.MyCallContractor;
 import starkcoder.failfast.examples.reference2failfast.myfailfast.MyChecker;
 import starkcoder.failfast.examples.reference2failfast.myfailfast.MyFailFast;
 import starkcoder.failfast.examples.reference2failfast.myfailfast.MyFailer;
@@ -60,7 +60,7 @@ public class SMyFailFastTest {
 	@Before
 	public void setUp() throws Exception {
 		// this would be in you application startup section
-		ICallContractor callContractor = new CallContractor();
+		IMyCallContractor callContractor = new MyCallContractor();
 		IMyFailFast myFailFastOrNull = new MyFailFast(new MyChecker(callContractor), new MyFailer(callContractor), callContractor);
 		SMyFailFast.setMyFailFastOrNull(myFailFastOrNull);
 	}

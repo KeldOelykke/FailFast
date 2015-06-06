@@ -45,7 +45,8 @@ public interface IObjectFloatInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatInsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatInsideFail.failFloatInside(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectFloatInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is inside Float range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
@@ -63,7 +64,8 @@ public interface IObjectFloatInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectFloatInsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectFloatInsideFail.failFloatInside(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectFloatInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is inside Float range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			

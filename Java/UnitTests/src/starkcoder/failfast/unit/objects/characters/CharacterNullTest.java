@@ -200,7 +200,7 @@ public class CharacterNullTest implements IObjectNullTest<Character> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		Character referenceNotNull = new Character((char)0);
 		if(checker.isCharacterNull(this, referenceNotNull))
 		{

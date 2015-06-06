@@ -45,7 +45,8 @@ public interface IObjectByteOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteOutsideFail.failByteOutside(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectByteOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is outside Byte range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
@@ -63,7 +64,8 @@ public interface IObjectByteOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteOutsideFail.failByteOutside(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectByteOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is outside Byte range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			

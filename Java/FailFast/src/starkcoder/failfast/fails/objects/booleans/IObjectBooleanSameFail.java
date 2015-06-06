@@ -47,7 +47,8 @@ public interface IObjectBooleanSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanSameCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectBooleanSameFail.failBooleanSame(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectBooleanSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Boolean '%s'(%s) is same as Boolean '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectBooleanSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanSameCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectBooleanSameFail.failBooleanSame(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectBooleanSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Boolean '%s'(%s) is same as Boolean '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

@@ -47,7 +47,8 @@ public interface IGenericListEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericListEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericListEqualsFail.failGenericListEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IGenericListEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: List<?> '%s'(%s) is equal to List<?> '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IGenericListEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericListEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericListEqualsFail.failGenericListEquals(Object caller, String referenceAName, String referenceBName, String message)",
+		checkerSpecificationType = IGenericListEqualsCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: List<?> '%s'(%s) is equal to List<?> '%s'(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

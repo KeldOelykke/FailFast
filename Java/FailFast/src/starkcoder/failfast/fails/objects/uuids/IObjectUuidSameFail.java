@@ -47,7 +47,8 @@ public interface IObjectUuidSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidSameCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidSameFail.failUuidSame(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectUuidSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is same as UUID '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectUuidSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidSameCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidSameFail.failUuidSame(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectUuidSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is same as UUID '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

@@ -45,7 +45,8 @@ public interface IObjectStringNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNullCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectStringNullFail.failStringNull(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectStringNullCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is null.",
 			failMessageArguments = "fu0, fu1, cu1")
@@ -63,7 +64,8 @@ public interface IObjectStringNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectStringNullCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectStringNullFail.failStringNull(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectStringNullCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is null. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2")

@@ -47,7 +47,8 @@ public interface IObjectsNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectsNotEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectsNotEqualsFail.failObjectsNotEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectsNotEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Objects '%s' is NOT equal to Objects '%s'. Object#%s(%s) differs from Object#%s(%s).",
 			failMessageArguments = "fu0, fu1, fu2, cx0, cx1, cx0, cx2")
@@ -67,7 +68,8 @@ public interface IObjectsNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectsNotEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectsNotEqualsFail.failObjectsNotEquals(Object caller, String referenceAName, String referenceBName, String message)",
+		checkerSpecificationType = IObjectsNotEqualsCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Objects '%s' is NOT equal to Objects '%s'. Object#%s(%s) differs from Object#%s(%s). %s.",
 		failMessageArguments = "fu0, fu1, fu2, cx0, cx1, cx0, cx2, fu3")

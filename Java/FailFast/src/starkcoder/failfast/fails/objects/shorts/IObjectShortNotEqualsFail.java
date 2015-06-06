@@ -47,7 +47,8 @@ public interface IObjectShortNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectShortNotEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectShortNotEqualsFail.failShortNotEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectShortNotEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is NOT equal to Short '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IObjectShortNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectShortNotEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectShortNotEqualsFail.failShortNotEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectShortNotEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is NOT equal to Short '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

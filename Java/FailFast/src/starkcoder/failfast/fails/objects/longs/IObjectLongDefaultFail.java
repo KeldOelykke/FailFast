@@ -45,7 +45,8 @@ public interface IObjectLongDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongDefaultCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongDefaultFail.failLongDefault(Object caller, String referenceAName)",
+		checkerSpecificationType = IObjectLongDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Long '%s'(%s) is default(%s).",
 		failMessageArguments = "fu0, fu1, cu1, cx0")
@@ -63,7 +64,8 @@ public interface IObjectLongDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongDefaultCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongDefaultFail.failLongDefault(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectLongDefaultCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is default(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")

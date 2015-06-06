@@ -44,7 +44,8 @@ public interface IMyFooBarFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IMyFooBarCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IMyFooBarFail.failFooBar(Object caller, String referenceName)",
+			checkerSpecificationType = IMyFooBarCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Oh no! Foo '%s' is Bar!",
 			failMessageArguments = "fu0, fu1")
@@ -62,7 +63,8 @@ public interface IMyFooBarFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IMyFooBarCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IMyFooBarFail.failFooBar(Object caller, String referenceName, String message)",
+			checkerSpecificationType = IMyFooBarCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Oh no! Foo '%s' is Bar! %s.",
 			failMessageArguments = "fu0, fu1, fu2")

@@ -45,7 +45,8 @@ public interface IObjectDoubleNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDoubleNotDefaultCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNotDefaultFail.failDoubleNotDefault(Object caller, String referenceAName)",
+		checkerSpecificationType = IObjectDoubleNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Double '%s'(%s) is NOT default(%s).",
 		failMessageArguments = "fu0, fu1, cu1, cx0")			
@@ -63,7 +64,8 @@ public interface IObjectDoubleNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectDoubleNotDefaultCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNotDefaultFail.failDoubleNotDefault(Object caller, String referenceAName, String message)",
+		checkerSpecificationType = IObjectDoubleNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Double '%s'(%s) is NOT default(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, cx0, fu2")			

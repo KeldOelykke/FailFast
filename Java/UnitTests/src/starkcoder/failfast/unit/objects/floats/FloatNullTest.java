@@ -200,7 +200,7 @@ public class FloatNullTest implements IObjectNullTest<Float> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		Float referenceNotNull = new Float(0f);
 		if(checker.isFloatNull(this, referenceNotNull))
 		{

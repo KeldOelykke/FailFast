@@ -47,7 +47,8 @@ public interface IGenericArrayNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericArrayNotEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericArrayNotEqualsFail.failGenericArrayNotEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IGenericArrayNotEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: E[] '%s' is NOT equal to E[] '%s'. Element#%s(%s) differs from Element#%s(%s).",
 			failMessageArguments = "fu0, fu1, fu2, cx0, cx1, cx0, cx2")
@@ -67,7 +68,8 @@ public interface IGenericArrayNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericArrayNotEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericArrayNotEqualsFail.failGenericArrayNotEquals(Object caller, String referenceAName, String referenceBName, String message)",
+		checkerSpecificationType = IGenericArrayNotEqualsCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: E[] '%s' is NOT equal to E[] '%s'. Element#%s(%s) differs from Element#%s(%s). %s.",
 		failMessageArguments = "fu0, fu1, fu2, cx0, cx1, cx0, cx2, fu3")

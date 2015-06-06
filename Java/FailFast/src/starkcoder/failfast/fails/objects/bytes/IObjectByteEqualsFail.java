@@ -47,7 +47,8 @@ public interface IObjectByteEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteEqualsFail.failByteEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectByteEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is equal to Byte '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectByteEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectByteEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectByteEqualsFail.failByteEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectByteEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Byte '%s'(%s) is equal to Byte '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

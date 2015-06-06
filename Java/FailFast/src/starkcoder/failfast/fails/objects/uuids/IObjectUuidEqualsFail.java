@@ -47,7 +47,8 @@ public interface IObjectUuidEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidEqualsFail.failUuidEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectUuidEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is equal to UUID '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectUuidEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidEqualsCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidEqualsFail.failUuidEquals(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectUuidEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is equal to UUID '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

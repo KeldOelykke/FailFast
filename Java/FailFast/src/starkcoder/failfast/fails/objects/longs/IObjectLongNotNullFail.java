@@ -45,7 +45,8 @@ public interface IObjectLongNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongNotNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongNotNullFail.failLongNotNull(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectLongNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is NOT null.",
 			failMessageArguments = "fu0, fu1, cu1")
@@ -63,7 +64,8 @@ public interface IObjectLongNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectLongNotNullCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectLongNotNullFail.failLongNotNull(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectLongNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is NOT null. %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2")

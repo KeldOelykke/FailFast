@@ -200,7 +200,7 @@ public class ShortNullTest implements IObjectNullTest<Short> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		Short referenceNotNull = new Short((short)0);
 		if(checker.isShortNull(this, referenceNotNull))
 		{

@@ -200,7 +200,7 @@ public class StringNullTest implements IObjectNullTest<String> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		String referenceNotNull = "notnull";
 		if(checker.isStringNull(this, referenceNotNull))
 		{

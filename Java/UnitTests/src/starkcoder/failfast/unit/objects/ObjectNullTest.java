@@ -189,7 +189,8 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		{
 			if(checker.isObjectNull(this, referenceNull))
 			{
-				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
+				contractor.getContractWithCaller(this).setCustomFailMessagePostfix(" Extra info goes here.");
+				failer.failObjectNull(this, "referenceNull");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -202,7 +203,7 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		Object referenceNotNull = new Object();
 		if(checker.isObjectNull(this, referenceNotNull))
 		{
@@ -212,8 +213,11 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
 	}
 	
+	
+	// Contract Customization
+	
 	@Test(expected=NullPointerException.class)
-	public void testObjectNullCustomNullPointerExceptionNoMessage() {
+	public void testObjectNullContractCustomNullPointerExceptionNoMessage() {
 		Object referenceNull = null;
 		try
 		{
@@ -232,14 +236,15 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 	}
 	
 	@Test(expected=NullPointerException.class)
-	public void testObjectNullCustomNullPointerExceptionMessage() {
+	public void testObjectNullContractCustomNullPointerExceptionMessage() {
 		Object referenceNull = null;
 		try
 		{
 			if(checker.isObjectNull(this, referenceNull))
 			{
 				contractor.getContractWithCaller(this).setCustomFailExceptionType(NullPointerException.class);
-				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
+				contractor.getContractWithCaller(this).setCustomFailMessagePostfix("Extra info goes here.");
+				failer.failObjectNull(this, "referenceNull");
 			}
 		}
 		catch(NullPointerException customException)
@@ -251,14 +256,14 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testObjectNullCustomFailMessageFormat() {
+	public void testObjectNullContractCustomFailMessageFormat() {
 		Object referenceNull = null;
 		try
 		{
 			if(checker.isObjectNull(this, referenceNull))
 			{
 				contractor.getContractWithCaller(this).setCustomFailMessageFormat("%s: I am so tired of Object '%s' being null.");
-				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
+				failer.failObjectNull(this, "referenceNull");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -271,7 +276,7 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 	}
 	
 	@Test(expected=FailFastException.class)
-	public void testObjectNullCustomFailMessageFormatAndArguments() {
+	public void testObjectNullContractCustomFailMessageFormatAndArguments() {
 		Object referenceNull = null;
 		try
 		{
@@ -279,7 +284,7 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 			{
 				contractor.getContractWithCaller(this).setCustomFailMessageFormat("Object '%s' is null - reported by Caller '%s'.");
 				contractor.getContractWithCaller(this).setCustomFailMessageArguments("fu1, fu0");
-				failer.failObjectNull(this, "referenceNull", "Extra info goes here");
+				failer.failObjectNull(this, "referenceNull");
 			}
 		}
 		catch(FailFastException failFastException)
@@ -291,5 +296,109 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		}
 	}
 
+	// Failer Customizations
+	
+	@Test(expected=NullPointerException.class)
+	public void testObjectNullFailerCustomNullPointerExceptionNoMessage() {
+		
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+			this.failer.registerCustomFailExceptionType(failerSpecificationAndMethodID, NullPointerException.class);
+		}
+		
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull");
+			}
+		}
+		catch(NullPointerException customException)
+		{
+			assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+			System.out.println(customException.getMessage());
+			throw customException;
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullFailerCustomNullPointerExceptionMessage() {
+
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName, String message)";
+			this.failer.registerCustomFailExceptionType(failerSpecificationAndMethodID, NullPointerException.class);
+			this.failer.unregisterCustomFailExceptionType(failerSpecificationAndMethodID); // revert to default
+		}
+
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here.");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullFailerCustomFailMessageFormat() {
+
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName, String message)";
+			this.failer.registerCustomFailMessageFormat(failerSpecificationAndMethodID, "%s: I am so tired of Object '%s' being null. %s");
+		}
+
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here.");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			String s = "ObjectNullTest.testObjectNullFailerCustomFailMessageFormat: I am so tired of Object 'referenceNull' being null. Extra info goes here.";
+			assertEquals("Expected exception in failer", s, failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullFailerCustomFailMessageFormatAndArguments() {
+		
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName, String message)";
+			this.failer.registerCustomFailMessageFormat(failerSpecificationAndMethodID, "Object '%s' is null - reported by Caller '%s'. %s");
+			this.failer.registerCustomFailMessageArguments(failerSpecificationAndMethodID, "fu1, fu0, fu2"); // just swapping them
+		}
+
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here.");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			String s = "Object 'referenceNull' is null - reported by Caller 'ObjectNullTest.testObjectNullFailerCustomFailMessageFormatAndArguments'. Extra info goes here.";
+			assertEquals("Expected exception in failer", s, failFastException.getMessage());
+			throw failFastException;
+		}
+	}	
 	
 }

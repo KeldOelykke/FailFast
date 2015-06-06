@@ -55,8 +55,10 @@ public class SomeOtherEntity extends AEntity
 		if (this.getMyFailFast().getMyChecker().isObjectNull(this, bar))
 		{
 			// expensive call creating strings and exception
+			this.getMyCallContractor().getContractWithCaller(this)
+					.setCustomFailMessagePostfix("Is it really closed?");
 			this.getMyFailFast().getMyFailer()
-					.failObjectNull(this, "bar", "Is it really closed?");
+					.failObjectNull(this, "bar");
 		}
 	}
 }

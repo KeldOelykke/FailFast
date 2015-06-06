@@ -200,7 +200,7 @@ public class DoubleNullTest implements IObjectNullTest<Double> {
 	}
 	
 	@Test
-	public void testObjectNotNullNoFail() {
+	public void testObjectNullNoFail() {
 		Double referenceNotNull = new Double(0d);
 		if(checker.isDoubleNull(this, referenceNotNull))
 		{

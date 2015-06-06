@@ -47,7 +47,8 @@ public interface IGenericObjectEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericObjectEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericObjectEqualsFail.failGenericObjectEquals(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IGenericObjectEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: '%s'(%s) is equal to '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")
@@ -67,7 +68,8 @@ public interface IGenericObjectEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IGenericObjectEqualsCheck.class, 
+	@NFail(failerSpecificationAndMethodID = "IGenericObjectEqualsFail.failGenericObjectEquals(Object caller, String referenceAName, String referenceBName, String message)",
+		checkerSpecificationType = IGenericObjectEqualsCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: '%s'(%s) is equal to '%s'(%s). %s.",
 		failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

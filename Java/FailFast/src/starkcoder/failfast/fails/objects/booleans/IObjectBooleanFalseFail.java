@@ -45,7 +45,8 @@ public interface IObjectBooleanFalseFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanFalseCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectBooleanFalseFail.failBooleanFalse(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectBooleanFalseCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Boolean '%s'(%s) is 'Boolean.False'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, cx0")
@@ -63,7 +64,8 @@ public interface IObjectBooleanFalseFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectBooleanFalseCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectBooleanFalseFail.failBooleanFalse(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectBooleanFalseCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Boolean '%s'(%s) is 'Boolean.False'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, cx0, fu2")

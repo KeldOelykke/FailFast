@@ -45,7 +45,8 @@ public interface IObjectUuidOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidOutsideFail.failUuidOutside(Object caller, String referenceAName)",
+			checkerSpecificationType = IObjectUuidOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is outside UUID range [%s;%s].",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3")			
@@ -63,7 +64,8 @@ public interface IObjectUuidOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectUuidOutsideCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectUuidOutsideFail.failUuidOutside(Object caller, String referenceAName, String message)",
+			checkerSpecificationType = IObjectUuidOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is outside UUID range [%s;%s]. %s.",
 			failMessageArguments = "fu0, fu1, cu1, cu2, cu3, fu2")			

@@ -201,7 +201,7 @@ public class FloatNotNullTest implements IObjectNotNullTest<Float>{
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		Float referenceNull = null;
 		if(checker.isFloatNotNull(this, referenceNull))
 		{

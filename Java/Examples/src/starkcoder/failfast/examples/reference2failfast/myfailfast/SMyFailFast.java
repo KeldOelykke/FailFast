@@ -91,4 +91,16 @@ public final class SMyFailFast {
 		return getMyFailFast().getMyFailer();
 	}
 
+	/**
+	 * Retrieves custom call contractor instead of ICallContractor.
+	 * <p>
+	 * Call methods of this (including your extensions) to do customizations between a checker-call and a failer-call.
+	 * </p>
+	 * @return custom call contractor.
+	 */
+	public static IMyCallContractor getMyCallContractor()
+	{
+		return getMyFailFast().getMyCallContractor();
+	}
+
 }

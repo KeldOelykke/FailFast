@@ -24,9 +24,6 @@
 package starkcoder.failfast.examples.reference2failfast.myfailfast;
 
 import starkcoder.failfast.AFailFast;
-import starkcoder.failfast.checks.IChecker;
-import starkcoder.failfast.contractors.ICallContractor;
-import starkcoder.failfast.fails.IFailer;
 
 /**
  * Custom fail-fast class.
@@ -43,6 +40,12 @@ public class MyFailFast extends AFailFast implements IMyFailFast {
 	@Override
 	public IMyFailer getMyFailer() {
 		return (IMyFailer)this.getFailer();
+	}
+	
+	@Override
+	public IMyCallContractor getMyCallContractor()
+	{
+		return (IMyCallContractor)this.getCallContractor();
 	}
 
 	/**
@@ -69,8 +72,8 @@ public class MyFailFast extends AFailFast implements IMyFailFast {
 	 * @param callContractor
 	 *            call contractor to use
 	 */
-	public MyFailFast(IChecker checker, IFailer failer,
-			ICallContractor callContractor)
+	public MyFailFast(IMyChecker checker, IMyFailer failer,
+			IMyCallContractor callContractor)
 	{
 		super(checker, failer, callContractor);
 	}

@@ -201,7 +201,7 @@ public class ObjectNotNullTest implements IObjectNotNullTest<Object> {
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		Object referenceNull = null;
 		if(checker.isObjectNotNull(this, referenceNull))
 		{

@@ -47,7 +47,8 @@ public interface IObjectEnumGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEnumGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectEnumGreaterFail.failEnumGreater(Object caller, String referenceAName, String referenceBName)",
+			checkerSpecificationType = IObjectEnumGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is greater than Enum '%s'(%s).",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2")			
@@ -67,7 +68,8 @@ public interface IObjectEnumGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(checkerSpecificationType = IObjectEnumGreaterCheck.class,
+	@NFail(failerSpecificationAndMethodID = "IObjectEnumGreaterFail.failEnumGreater(Object caller, String referenceAName, String referenceBName, String message)",
+			checkerSpecificationType = IObjectEnumGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is greater than Enum '%s'(%s). %s.",
 			failMessageArguments = "fu0, fu1, cu1, fu2, cu2, fu3")

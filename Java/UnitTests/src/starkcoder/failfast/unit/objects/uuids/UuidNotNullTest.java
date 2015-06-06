@@ -203,7 +203,7 @@ public class UuidNotNullTest implements IObjectNotNullTest<UUID>{
 	}
 	
 	@Test
-	public void testObjectNullNoFail() {
+	public void testObjectNotNullNoFail() {
 		UUID referenceNull = null;
 		if(checker.isUuidNotNull(this, referenceNull))
 		{
