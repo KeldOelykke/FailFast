@@ -30,7 +30,7 @@
     <path id="Web.classpath">
         <pathelement location="war/WEB-INF/classes"/>
         <path refid="App Engine SDK [App Engine - 1.9.18].libraryclasspath"/>
-        <pathelement location="war/WEB-INF/lib/starkcoder-failfast-1.0.jar"/>
+        <pathelement location="war/WEB-INF/lib/starkcoder-failfast-1.1.jar"/>
     </path>
     <target name="init">
         <mkdir dir="war/WEB-INF/classes"/>

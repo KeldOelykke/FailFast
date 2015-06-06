@@ -406,6 +406,118 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
+    <target name="DateDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateDefaultTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateGreaterOrEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateGreaterTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateInsideTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateInsideTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateLessOrEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateLessTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateLessTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateNotDefaultTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotDefaultTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateNotEqualsTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotEqualsTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateNotNullTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateNotSameTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotSameTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateNullTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateOutsideTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateOutsideTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="DateSameTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateSameTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="DoubleDefaultTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -1262,6 +1374,70 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
+    <target name="ObjectNullTest.testObjectNotNullNoFail">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectNullTest.testObjectNullCustomFailMessageFormat">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectNullTest.testObjectNullCustomFailMessageFormatAndArguments">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectNullTest.testObjectNullCustomNullPointerExceptionNoMessage">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectNullTest.testObjectNullFailerCustomFailMessageFormat">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectNullTest.testObjectNullFailerCustomFailMessageFormatAndArguments">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectNullTest.testObjectNullFailerCustomNullPointerExceptionMessage">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="ObjectNullTest.testObjectNullFailerCustomNullPointerExceptionNoMessage">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="ObjectSameTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -1666,6 +1842,27 @@
             <test name="starkcoder.failfast.unit.objects.characters.CharacterNullTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.characters.CharacterOutsideTest" todir="${junit.output.dir}"/>
             <test name="starkcoder.failfast.unit.objects.characters.CharacterSameTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
+    <target name="starkcoder.failfast.unit.objects.dates">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateInsideTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateLessOrEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateLessTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotDefaultTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotEqualsTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNotSameTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateNullTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateOutsideTest" todir="${junit.output.dir}"/>
+            <test name="starkcoder.failfast.unit.objects.dates.DateSameTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
@@ -2407,139 +2604,6 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="starkcoder.failfast.unit.objects.uuids.UuidSameTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateNullTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNullTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateNotNullTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotNullTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateSameTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateSameTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateNotSameTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotSameTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateDefaultTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateDefaultTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateNotDefaultTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotDefaultTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateOutsideTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateOutsideTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateNotEqualsTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotEqualsTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateLessTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateLessTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateLessOrEqualsTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateLessOrEqualsTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateInsideTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateInsideTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateGreaterTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateGreaterOrEqualsTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterOrEqualsTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="DateEqualsTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateEqualsTest" todir="${junit.output.dir}"/>
-            <classpath refid="UnitTests.classpath"/>
-        </junit>
-    </target>
-    <target name="starkcoder.failfast.unit.objects.dates">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateDefaultTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateEqualsTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterOrEqualsTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateGreaterTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateInsideTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateLessOrEqualsTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateLessTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotDefaultTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotEqualsTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotNullTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNotSameTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateNullTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateOutsideTest" todir="${junit.output.dir}"/>
-            <test name="starkcoder.failfast.unit.objects.dates.DateSameTest" todir="${junit.output.dir}"/>
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
