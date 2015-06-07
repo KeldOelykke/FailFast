@@ -45,7 +45,9 @@ With this library the above section is turned into
 				failer.failCONDITIONAL(FAILER_USER_ARGUMENTS));
 			}  
 
-Your code still owns the control point. Sometimes this section is collapsed into a single function call. This is however not an optimal solution, since the call - encapsulates the control point and therefore - requires all information as arguments, even if the CONDITIONAL is false. The result is 1 expensive one-liner without much room for customizations.
+Note! Sometimes this section is collapsed into a single function call. This is NOT an optimal solution, since the 1 call encapsulates the control point and therefore requires all information as arguments; even if the CONDITIONAL is false. The result is 1 expensive one-liner without much room for customizations.
+
+With this library your code still owns the control point. 
 
 So how does this look like? The library offers many checker-failer pairs e.g.
 
@@ -56,11 +58,13 @@ So how does this look like? The library offers many checker-failer pairs e.g.
 
 The arguments are the dynamic information that changes. 'this' is an Object that becomes the owner of the call contract that is started (if 'referenceNull' is in-fact null). 'this' is therefore needed as an argument to the engaded contract in the failer call. 'referenceNull' is an argument for the checker call and identified as a string argument in the failer call. 
 
-If the checker call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new instances are needed.
+If the checker-call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new instances are needed.
 
-If the checker call asserts, a contract is started and ended by the expensive failer call that throws an exception with a message format "%s: Object '%s' is null.". With an arguments mapping ("fu0, fu1") the 2 failer arguments supplied by the failer user the result is a thrown FailFastException with the message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
+If the checker-call asserts, a contract is started and ended by the expensive failer-call that throws an exception with a message format "%s: Object '%s' is null.". With an arguments mapping ("fu0, fu1") the 2 failer arguments supplied the failer-call a FailFastException is thrown with the message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
 
-Is this enough? Well, I don't know. Let's figure it out. Any feedback is appreciated.
+Is this enough for you? Well, I don't know. Let's figure that one out together. Any feedback is appreciated.
+
+Some of your questions might be answered in the FAQ below, otherwise please create an issue.
  
 
 Target Audience
@@ -68,6 +72,41 @@ Target Audience
 
 Object-Oriented software developers using Java (... and maybe other languages e.g. C# in the future).
 
+FAQ
+===
+ - Is the library free? Yes.
+ - Is the library open source? Yes.
+ - Is the library threadsafe? Yes.
+ - How do I get started? Download a jar, put in the classpath either use the library directly (https://github.com/KeldOelykke/FailFast/wiki/Setup-&-Shutdown) or wrap it yourself (see Can I extend and customize it?).
+ - Can I extend and customize it? Yes. No wiki yet, but have a look at the code examples (https://github.com/KeldOelykke/FailFast/tree/master/Java/Examples/src/starkcoder/failfast/examples/reference2failfast/myfailfast).
+ - Which types are supported? Please refer to the wiki (https://github.com/KeldOelykke/FailFast/wiki).
+ - Can I customize exceptions thrown? Yes (Since 1.3) in 3 ways. Dynamically per checker-failer-call by customizing the call contract: See section 'Contract Customization' in (https://github.com/KeldOelykke/FailFast/blob/master/Java/UnitTests/src/starkcoder/failfast/unit/objects/ObjectNullTest.java). Dynamically e.g. at application start by customizing the Failer instance: See section 'Failer Customizations' in (https://github.com/KeldOelykke/FailFast/blob/master/Java/UnitTests/src/starkcoder/failfast/unit/objects/ObjectNullTest.java). Statically by overriding specifications via inheritance (https://github.com/KeldOelykke/FailFast/tree/master/Java/Examples/src/starkcoder/failfast/examples/reference2failfast/myfailfast/withoverrides).
+ - Can I check if a failfast exception has been thrown? Yes (https://github.com/KeldOelykke/FailFast/tree/master/Java/Examples/src/starkcoder/failfast/examples/exceptionhandling).
+
+Examples
+========
+
+The wiki has a lot of test examples that hopefully makes sense to you:
+ - https://github.com/KeldOelykke/FailFast/wiki
+
+Continuous Integration
+======================
+
+Every new commit triggers a build and unit test run on Travis CI: 
+ - [![Build Status](https://travis-ci.org/KeldOelykke/FailFast.svg?branch=master)](https://travis-ci.org/KeldOelykke/FailFast)
+
+Releases
+===================
+
+Go to http://oelykke-failfast.appspot.com to:
+ - download jars
+ - view api (javadoc)
+ - view unit test results (junit)
+ - try the checker-failer pairs online
+ 
+Alternatively, jars can be downloaded from GitHub:
+ - https://github.com/KeldOelykke/FailFast/releases
+ - https://github.com/KeldOelykke/FailFast/tree/master/Java/Web/war/releases
 
 Goal
 ====
@@ -96,31 +135,6 @@ the check & fail-methods can be "managed" from another jar e.g. replaced and/or 
 The scope of the 1st major version is check & fail-pairs that can handle objects wrapping primitives and a few basic object types from the standard library. The 8 primitives are byte, short, int, long, float, double, boolean and char. Implementation is first done via the primitives' wrapping Objects (Byte, Short, etc.). Later on the primitives might be directly implemented to avoid boxing performance penalties. Additional Object types are Object, String, Enum, UUID and Date. 
 
 The scope of the 2nd major version is check & fail-pairs that can handle arrays and collection of above mentioned types. Furthermore, more types and check & fail-pairs might be added.
-
-Examples
-========
-
-The wiki has a lot of test examples that hopefully makes sense to you:
- - https://github.com/KeldOelykke/FailFast/wiki
-
-Continuous Integration
-======================
-
-Every new commit triggers a build and unit test run on Travis CI: 
- - [![Build Status](https://travis-ci.org/KeldOelykke/FailFast.svg?branch=master)](https://travis-ci.org/KeldOelykke/FailFast)
-
-Releases
-===================
-
-Go to http://oelykke-failfast.appspot.com to:
- - download jars
- - view api (javadoc)
- - view unit test results (junit)
- - try the checker-failer pairs online
- 
-Alternatively, jars can be downloaded from GitHub:
- - https://github.com/KeldOelykke/FailFast/releases
- - https://github.com/KeldOelykke/FailFast/tree/master/Java/Web/war/releases
 
 Dogma
 =====
