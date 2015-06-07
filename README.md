@@ -4,6 +4,12 @@ FailFast
 A tiny library to help developers build fail-fast systems.
 
 
+Target Audience
+===============
+
+Object-Oriented software developers using Java (... and maybe other languages e.g. C# in the future).
+
+
 The Principle
 =============
 
@@ -19,7 +25,8 @@ If this either makes no sense to you, or you just is not convinced, please visit
  
  2) http://martinfowler.com/ieeeSoftware/failFast.pdf - this turned stubborn me around
 
-In Practice
+
+The Practice
 =============
 
 As a developer you add throw sections in your code. Some of these are simple e.g. check an argument and throw an exception, if it is illegal. These standard sections are what this library tries to help you with. 
@@ -66,12 +73,7 @@ Is this enough for you? Well, I don't know. Let's figure that one out together. 
 
 Some of your questions might be answered in the FAQ below, otherwise please create an issue.
  
-
-Target Audience
-===============
-
-Object-Oriented software developers using Java (... and maybe other languages e.g. C# in the future).
-
+ 
 FAQ
 ===
  - Is the library free? Yes.
@@ -83,11 +85,16 @@ FAQ
  - Can I customize exceptions thrown? Yes (Since 1.3) in 3 ways. Dynamically per checker-failer-call by customizing the call contract: See section 'Contract Customization' in (https://github.com/KeldOelykke/FailFast/blob/master/Java/UnitTests/src/starkcoder/failfast/unit/objects/ObjectNullTest.java). Dynamically e.g. at application start by customizing the Failer instance: See section 'Failer Customizations' in (https://github.com/KeldOelykke/FailFast/blob/master/Java/UnitTests/src/starkcoder/failfast/unit/objects/ObjectNullTest.java). Statically by overriding specifications via inheritance (https://github.com/KeldOelykke/FailFast/tree/master/Java/Examples/src/starkcoder/failfast/examples/reference2failfast/myfailfast/withoverrides).
  - Can I check if a failfast exception has been thrown? Yes (https://github.com/KeldOelykke/FailFast/tree/master/Java/Examples/src/starkcoder/failfast/examples/exceptionhandling).
 
+
 Examples
 ========
 
 The wiki has a lot of test examples that hopefully makes sense to you:
  - https://github.com/KeldOelykke/FailFast/wiki
+
+The wiki is really a handedited proxy for 2 test packages:
+ - https://github.com/KeldOelykke/FailFast/tree/master/Java/Examples/src/starkcoder/failfast/examples
+ - https://github.com/KeldOelykke/FailFast/tree/master/Java/UnitTests/src/starkcoder/failfast/unit/objects
 
 Continuous Integration
 ======================
@@ -133,6 +140,8 @@ Confidence in the current design is getting high now, though it still needs some
 the check & fail-methods can be "managed" from another jar e.g. replaced and/or extended. Inheritance should take care of most, but it is unknown whether the failer-annotations can be modified e.g. to change failer-output formatting.
 
 The scope of the 1st major version is check & fail-pairs that can handle objects wrapping primitives and a few basic object types from the standard library. The 8 primitives are byte, short, int, long, float, double, boolean and char. Implementation is first done via the primitives' wrapping Objects (Byte, Short, etc.). Later on the primitives might be directly implemented to avoid boxing performance penalties. Additional Object types are Object, String, Enum, UUID and Date. 
+
+It seems to me that some runtime customization options could be very useful (and much easier than inheritance), so version 1.3 focuses on this functionality. 
 
 The scope of the 2nd major version is check & fail-pairs that can handle arrays and collection of above mentioned types. Furthermore, more types and check & fail-pairs might be added.
 
