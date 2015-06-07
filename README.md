@@ -28,10 +28,10 @@ So why do you need help for that?
 
 Your sections might be generalized into 
 
-  if(CONDITIONAL) 
-  { 
-    throw EXCEPTION(MESSAGE);
-  }  
+			if(CONDITIONAL) 
+			{ 
+				throw EXCEPTION(MESSAGE);
+			}  
 
 'CONDITIONAL' is code that this library encapsulates. This reduces duplicated code in your application and should make it easier for you to avoid errors.
 
@@ -39,11 +39,11 @@ The 'if(CONDITIONAL)' should always result in a throw part, so when using this l
 
 With this library the above section is turned into
 
-  if(checker.isCONDITIONAL(CHECKER_USER_ARGUMENTS)) 
-  { 
-    // call contract customizations can go here e.g. change EXCEPTION or MESSAGE format
-    failer.failCONDITIONAL(FAILER_USER_ARGUMENTS));
-  }  
+			if(checker.isCONDITIONAL(CHECKER_USER_ARGUMENTS)) 
+			{ 
+				// call contract customizations can go here e.g. change EXCEPTION or MESSAGE format
+				failer.failCONDITIONAL(FAILER_USER_ARGUMENTS));
+			}  
 
 Your code still owns the control point. Sometimes this section is collapsed into a single function call. This is however not an optimal solution, since the call - encapsulates the control point and therefore - requires all information as arguments, even if the CONDITIONAL is false. The result is 1 expensive one-liner without much room for customizations.
 
