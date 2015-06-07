@@ -1,0 +1,1 @@
+These examples are test files that via reflection gives an overview of the possible exceptions that can be customized.

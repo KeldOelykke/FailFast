@@ -56,33 +56,24 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 	private ICallContractor contractor;
 	private IChecker checker;
 	private IFailer failer;
-	private String toString = null;
-	
-	@Override
-	public String toString() {
-		return this.toString;
-	}
 
-	@Rule
-	public TestWatcher watcher = new TestWatcher() {
-	   protected void starting(Description description) {
-		   toString = description.getTestClass().getSimpleName() + "." + description.getMethodName();
-	   }
-	};
-
-	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		// this would be in you application startup section
+		// this trinity would be in you application startup section
 		ICallContractor callContractor = new CallContractor();
-		IFailFast failFastOrNull = new FailFast(new Checker(callContractor), new Failer(callContractor), callContractor);
-		SFailFast.setFailFastOrNull(failFastOrNull);
+		IChecker checker = new Checker(callContractor);
+		IFailer failer = new Failer(callContractor);
+		// easiest if you have access to each of the 3 from your code
 		this.contractor = callContractor;
-		this.checker = SFailFast.getChecker();
-		this.failer = SFailFast.getFailer();
+		this.checker = checker;
+		this.failer = failer;
+		// if you want 1 instance grouping the trinity
+		IFailFast failFastOrNull = new FailFast(checker, failer, callContractor);
+		// if you want static access to the trinity
+		SFailFast.setFailFastOrNull(failFastOrNull);
 	}
 
 	/**
@@ -94,7 +85,22 @@ public class ObjectNullTest implements IObjectNullTest<Object> {
 		SFailFast.setFailFastOrNull(null);
 		this.checker = null;
 		this.failer = null;
+		this.contractor = null;
 	}
+	
+	
+	private String toString = null;
+	@Override
+	public String toString() {
+		return this.toString;
+	}
+	@Rule
+	public TestWatcher watcher = new TestWatcher() {
+	   protected void starting(Description description) {
+		   toString = description.getTestClass().getSimpleName() + "." + description.getMethodName();
+	   }
+	};
+	
 
 	// 1st - caller checks
 	
