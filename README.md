@@ -67,7 +67,8 @@ The arguments are the dynamic information that changes. 'this' is an Object that
 
 If the checker-call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new instances are needed.
 
-If the checker-call asserts, a contract is started and ended by the expensive failer-call. The failer-call throws an exception with a message format "%s: Object '%s' is null.". With an arguments mapping ("fu0, fu1") the 2 failer arguments supplied the failer-call a FailFastException is thrown with the message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
+If the checker-call asserts, a contract is started and ended by the expensive failer-call. The failer-call throws a FailFastException with message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
+Each checker-failer pair is associated with an exception type, a message format and a message arguments mapping. The ObjectNull checker-failer pair is by default set to exception type FailFastException, message format "%s: Object '%s' is null." and arguments mapping "fu0, fu1" (meaning the 2 failer user arguments).
 
 Is this enough for you? Well, I don't know. Let's figure that one out together. Any feedback is appreciated.
 
