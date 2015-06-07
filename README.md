@@ -63,7 +63,7 @@ So how does this look like? The library offers many checker-failer pairs e.g.
 				failer.failObjectNull(this, "referenceNull");
 			}
 
-The arguments are the dynamic information that changes. 'this' is an Object that is to identify the caller the checker-failer methods. In the checker-call a contract with the caller is started, if 'referenceNull' is in-fact null, otherwise no contract is started. 'this' is therefore needed again as an argument in the failer-call - to end the engaged contract. 'referenceNull' is an argument for the checker call and as an identification argument in the failer call. 
+The arguments are the dynamic information that changes. 'this' is an Object that is to identify the caller of the checker-failer methods. In the checker-call a contract with the caller is started, if 'referenceNull' is in-fact null, otherwise no contract is started. 'this' is therefore needed again as an argument in the failer-call - to end the engaged contract. 'referenceNull' is an argument for the checker call and as an identification argument in the failer call. 
 
 If the checker-call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new instances are needed.
 
