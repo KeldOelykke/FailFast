@@ -63,11 +63,11 @@ So how does this look like? The library offers many checker-failer pairs e.g.
 				failer.failObjectNull(this, "referenceNull");
 			}
 
-The arguments are the dynamic information that changes. 'this' is an Object that becomes the owner of the call contract that is started (if 'referenceNull' is in-fact null). 'this' is therefore needed as an argument to the engaded contract in the failer call. 'referenceNull' is an argument for the checker call and identified as a string argument in the failer call. 
+The arguments are the dynamic information that changes. 'this' is an Object that is to identify the caller the checker-failer methods. In the checker-call a contract with the caller is started, if 'referenceNull' is in-fact null, otherwise no contract is started. 'this' is therefore needed again as an argument in the failer-call - to end the engaged contract. 'referenceNull' is an argument for the checker call and as an identification argument in the failer call. 
 
 If the checker-call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new instances are needed.
 
-If the checker-call asserts, a contract is started and ended by the expensive failer-call that throws an exception with a message format "%s: Object '%s' is null.". With an arguments mapping ("fu0, fu1") the 2 failer arguments supplied the failer-call a FailFastException is thrown with the message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
+If the checker-call asserts, a contract is started and ended by the expensive failer-call. The failer-call throws an exception with a message format "%s: Object '%s' is null.". With an arguments mapping ("fu0, fu1") the 2 failer arguments supplied the failer-call a FailFastException is thrown with the message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
 
 Is this enough for you? Well, I don't know. Let's figure that one out together. Any feedback is appreciated.
 
