@@ -18,6 +18,49 @@ If this either makes no sense to you, or you just is not convinced, please visit
  1) http://en.wikipedia.org/wiki/Fail-fast - an introduction with references
  
  2) http://martinfowler.com/ieeeSoftware/failFast.pdf - this turned stubborn me around
+
+In Practice
+=============
+
+As a developer you add throw sections in your code. Some of these are simple e.g. check an argument and throw an exception, if it is illegal. These standard sections are what this library tries to help you with. 
+
+So why do you need help for that?
+
+Your sections might be generalized into 
+
+  if(CONDITIONAL) 
+  { 
+    throw EXCEPTION(MESSAGE);
+  }  
+
+'CONDITIONAL' is code that this library encapsulates. This reduces duplicated code in your application and should make it easier for you to avoid errors.
+
+The 'if(CONDITIONAL)' should always result in a throw part, so when using this library a contract is started. The contract is ended with a 2nd call to the library that encapsulates 'throw EXCEPTION(MESSAGE);'. This also removes duplicated code in your application and increases consistency.
+
+With this library the above section is turned into
+
+  if(checker.isCONDITIONAL(CHECKER_USER_ARGUMENTS)) 
+  { 
+    // call contract customizations can go here e.g. change EXCEPTION or MESSAGE format
+    failer.failCONDITIONAL(FAILER_USER_ARGUMENTS));
+  }  
+
+Your code still owns the control point. Sometimes this section is collapsed into a single function call. This is however not an optimal solution, since the call - encapsulates the control point and therefore - requires all information as arguments, even if the CONDITIONAL is false. The result is 1 expensive one-liner without much room for customizations.
+
+So how does this look like? The library offers many checker-failer pairs e.g.
+
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull");
+			}
+
+The arguments are the dynamic information that changes. 'this' is an Object that becomes the owner of the call contract that is started (if 'referenceNull' is in-fact null). 'this' is therefore needed as an argument to the engaded contract in the failer call. 'referenceNull' is an argument for the checker call and identified as a string argument in the failer call. 
+
+If the checker call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new instances are needed.
+
+If the checker call asserts, a contract is started and ended by the expensive failer call that throws an exception with a message format "%s: Object '%s' is null.". With an arguments mapping ("fu0, fu1") the 2 failer arguments supplied by the failer user the result is a thrown FailFastException with the message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
+
+Is this enough? Well, I don't know. Let's figure it out. Any feedback is appreciated.
  
 
 Target Audience
