@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project basedir="." name="starkcoder-failfast">
-		
+	
+	<property name="version.major" value="0"/> 
+	<property name="version.minor" value="0"/>
+	
 	<property name="java.failfast.dir" value="Java/FailFast" />
 	<property name="java.failfast.build.xml" value="${java.failfast.dir}/build.xml" />
 	<property name="java.unittests.dir" value="Java/UnitTests" />
 	<property name="java.unittests.build.xml" value="${java.unittests.dir}/build.xml" />
+	<property name="java.examplestests.dir" value="Java/Examples" />
+	<property name="java.examplestests.build.xml" value="${java.examplestests.dir}/build.xml" />
 	
 	<!-- ================================= 
           target: init              
@@ -24,20 +29,37 @@
     <target name="cleanall" depends="init" description="Removes temporary directories and files">
     	<ant dir="${java.failfast.dir}" target="cleanall"/>
     	<ant dir="${java.unittests.dir}" target="cleanall"/>
+    	<ant dir="${java.examplestests.dir}" target="cleanall"/>
     </target>
 
 	<!-- ================================= 
           target: build              
          ================================= -->
     <target name="build" depends="init" description="Builds the code">
-    	<ant dir="${java.failfast.dir}" target="build"/>
+    	<ant dir="${java.failfast.dir}" target="build">
+    		<property name="version.major" value="${version.major}"/>
+    		<property name="version.minor" value="${version.minor}"/>
+    	</ant>
     </target>
 	
    	<!-- ================================= 
          target: unitreport              
         ================================= -->
-    <target name="unitreport" depends="init" description="Runs tests and creates report">
-       	<ant dir="${java.unittests.dir}" target="unitreport"/>
+    <target name="unitreport" depends="init" description="Runs unit tests and creates report">
+       	<ant dir="${java.unittests.dir}" target="unitreport">
+    		<property name="version.major" value="${version.major}"/>
+    		<property name="version.minor" value="${version.minor}"/>
+    	</ant>
+    </target>
+	
+   	<!-- ================================= 
+         target: examplesreport              
+        ================================= -->
+    <target name="examplesreport" depends="init" description="Runs examples tests and creates report">
+       	<ant dir="${java.examplestests.dir}" target="unitreport">
+    		<property name="version.major" value="${version.major}"/>
+    		<property name="version.minor" value="${version.minor}"/>
+    	</ant>
     </target>
 	
 </project>

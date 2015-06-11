@@ -1,1 +1,3 @@
-These examples are test files that via reflection gives an overview of the possible exceptions that can be customized.
+These test files 
+ - shows how to make per call contract customization of exception type, message and arguments,
+ - gives an overview of all the available failer exceptions that can be customized (using reflection).

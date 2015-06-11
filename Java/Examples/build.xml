@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." name="starkcoder-failfast-examples">
+	
+	<import file="build-eclipse-generated.xml"/>
+	
+	<property name="version.major" value="0"/> 
+	<property name="version.minor" value="0"/>
+	
+	<property name="src.dir" value="src" />
+	<property name="bin.dir" value="bin" />
+	<property name="dist.dir" value="dist" />
+	<property name="jar.dir" value="${bin.dir}/jar" />
+    <property name="doc.dir" value="${bin.dir}/doc" />
+	<property name="api.dir" value="${doc.dir}/api" />
+	
+    <property name="main-class"	value="starkcoder.failfast.SFailFast" />
+	
+	<!-- ================================= 
+          target: init              
+         ================================= -->
+    <target name="init" depends="Examples.init" description="Initializes settings and filesystem">
+		<echo message="ANT_HOME=${env.ANT_HOME}"/>
+		<echo message="JAVA_HOME=${env.JAVA_HOME}"/>
+		<echo message="source=${source}"/>
+		<echo message="target=${target}"/>
+		<echo message="debuglevel=${debuglevel}"/>
+		<echo message="ant.project.name=${ant.project.name}"/>
+<!--		<echo message="version.major=${version.major}"/>
+		<echo message="version.minor=${version.minor}"/>
+		
+		<tstamp>
+		    <format property="now.mdd" pattern="MDD" locale="UTC"/>
+		</tstamp>
+		<tstamp>
+		    <format property="now.hmm" pattern="Hmm" locale="UTC"/>
+		</tstamp>
+						
+	    <property name="version" value="${version.major}.${version.minor}.${now.mdd}.${now.hmm}" />
+		<echo message="version=${version}"/>
+		<echo message="jar=${jar.dir}"/> -->
+    </target>
+
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean" depends="init,Examples.clean" description="Removes temporary directories and files">
+    </target>
+
+	<!-- ================================= 
+          target: cleanall              
+         ================================= -->
+    <target name="cleanall" depends="init,Examples.cleanall" description="Removes temporary directories and files">
+    	<!-- <delete dir="${dist.dir}"/>  -->
+    </target>
+
+	<!-- ================================= 
+          target: build              
+         ================================= -->
+    <target name="build" depends="init,Examples.build" description="Builds the code">
+    </target>
+	
+   	<!-- ================================= 
+         target: jar              
+        ================================= -->
+    <target name="jar" depends="build" description="Builds a jar file">
+       	
+            <mkdir dir="${jar.dir}"/>
+    		<jar destfile="${jar.dir}/${ant.project.name}-${version.major}.${version.minor}.jar">
+                <manifest>
+                    <attribute name="Main-Class" value="${main-class}"/>
+                </manifest>
+               	<fileset dir="${bin.dir}"
+             		includes="**/*.class"
+             		excludes="jar,doc"
+    			/>
+            </jar>
+    </target>
+    
+   	<!-- ================================= 
+         target: jar-src              
+        ================================= -->
+    <target name="jar-src" depends="build" description="Builds a jar file with source files">
+       	
+            <mkdir dir="${jar.dir}"/>
+    		<jar destfile="${jar.dir}/${ant.project.name}-${version.major}.${version.minor}-src.jar">
+                <manifest>
+                    <attribute name="Main-Class" value="${main-class}"/>
+                </manifest>
+               	<fileset dir="${src.dir}"
+             		includes="**/*.java"
+    			/>
+            </jar>
+    </target>
+    
+    
+	<!-- ================================= 
+          target: jar-javadoc              
+         ================================= -->
+    <target name="jar-javadoc" depends="build,javadoc" description="Builds a jar file with api files">
+       	
+            <mkdir dir="${jar.dir}"/>
+    		<jar destfile="${jar.dir}/${ant.project.name}-${version.major}.${version.minor}-javadoc.jar">
+                <manifest>
+                    <attribute name="Main-Class" value="${main-class}"/>
+                </manifest>
+               	<fileset dir="${api.dir}"
+             		includes="**/*.*"
+    			/>
+            </jar>
+    </target>
+
+	<!-- ================================= 
+          target: jar-all              
+         ================================= -->
+    <target name="jar-all" depends="build" description="Builds a jar file with source and class files">
+       	
+            <mkdir dir="${jar.dir}"/>
+    		<jar destfile="${jar.dir}/${ant.project.name}-${version.major}.${version.minor}-all.jar">
+                <manifest>
+                    <attribute name="Main-Class" value="${main-class}"/>
+                </manifest>
+               	<fileset dir="${src.dir}"
+             		includes="**/*.java"
+    			/>
+              	<fileset dir="${bin.dir}"
+             		includes="**/*.class"
+             		excludes="jar"
+    			/>
+              	<fileset dir="${api.dir}"
+             		includes="**/*.*"
+    			/>
+             </jar>
+    </target>
+	
+	<!-- ================================= 
+          target: javadoc              
+         ================================= -->
+    <target name="javadoc" depends="build" description="Builds a javadoc">
+    	
+	  <javadoc packagenames="starkcoder.failfast.examples.*"
+	           sourcepath="src"
+	           excludepackagenames="org.junit*"
+	           defaultexcludes="yes"
+	           destdir="${doc.dir}/api"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="FailFast v.${version.major}.${version.minor}">
+	    <doctitle><![CDATA[<h1>FailFast v.${version.major}.${version.minor}</h1>]]></doctitle>
+	    <bottom><![CDATA[<i>The MIT License (MIT) - Copyright &#169; 2014-2015 Keld Oelykke. All Rights Reserved.</i>]]></bottom>
+	    <tag name="todo" scope="all" description="To do:"/>
+	    <group title="Example Tests" packages="starkcoder.failfast.example*"/>
+	    <link offline="true" href="http://docs.oracle.com/javase/7/docs/api/" packagelistLoc="C:\tmp"/>
+	    <link href="http://docs.oracle.com/javase/7/docs/api/"/>
+	  </javadoc>
+    	
+    </target>
+    
+	<!-- ================================= 
+          target: unitreport              
+         ================================= -->
+    <target name="unitreport" depends="build, Examples.Examples, Examples.junitreport" description="Runs tests and builds an examples test report">
+    </target>
+	
+</project>

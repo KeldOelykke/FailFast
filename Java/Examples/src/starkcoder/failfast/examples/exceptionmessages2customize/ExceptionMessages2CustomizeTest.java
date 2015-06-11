@@ -23,6 +23,9 @@
  */
 package starkcoder.failfast.examples.exceptionmessages2customize;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.TreeMap;
@@ -41,6 +44,7 @@ import starkcoder.failfast.checks.Checker;
 import starkcoder.failfast.checks.IChecker;
 import starkcoder.failfast.contractors.CallContractor;
 import starkcoder.failfast.contractors.ICallContractor;
+import starkcoder.failfast.fails.FailFastException;
 import starkcoder.failfast.fails.Failer;
 import starkcoder.failfast.fails.IFail;
 import starkcoder.failfast.fails.IFailer;
@@ -72,7 +76,7 @@ public class ExceptionMessages2CustomizeTest {
 		this.checker = checker;
 		this.failer = failer;
 		// if you want 1 instance grouping the trinity
-		IFailFast failFastOrNull = new FailFast(checker, failer, callContractor);
+		IFailFast failFastOrNull = new FailFast(this.checker, this.failer, this.contractor);
 		// if you want static access to the trinity
 		SFailFast.setFailFastOrNull(failFastOrNull);
 	}
@@ -102,33 +106,212 @@ public class ExceptionMessages2CustomizeTest {
 	   }
 	};
 	
+	
+	
+	
+	// Contract Customization
+	
+	@Test(expected=NullPointerException.class)
+	public void testObjectNullContractCustomNullPointerExceptionNoMessage() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailExceptionType(NullPointerException.class);
+				failer.failObjectNull(this, "referenceNull");
+			}
+		}
+		catch(NullPointerException customException)
+		{
+			assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+			System.out.println(customException.getMessage());
+			throw customException;
+		}
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testObjectNullContractCustomNullPointerExceptionMessage() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailExceptionType(NullPointerException.class);
+				contractor.getContractWithCaller(this).setCustomFailMessagePostfix("Extra info goes here.");
+				failer.failObjectNull(this, "referenceNull");
+			}
+		}
+		catch(NullPointerException customException)
+		{
+			assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+			System.out.println(customException.getMessage());
+			throw customException;
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullContractCustomFailMessageFormat() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailMessageFormat("%s: I am so tired of Object '%s' being null.");
+				failer.failObjectNull(this, "referenceNull");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
 
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullContractCustomFailMessageFormatAndArguments() {
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				contractor.getContractWithCaller(this).setCustomFailMessageFormat("Object '%s' is null - reported by Caller '%s'.");
+				contractor.getContractWithCaller(this).setCustomFailMessageArguments("fu1, fu0");
+				failer.failObjectNull(this, "referenceNull");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+
+	// Failer Customizations
+	
+	@Test(expected=NullPointerException.class)
+	public void testObjectNullFailerCustomNullPointerExceptionNoMessage() {
+		
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+			this.failer.registerCustomFailExceptionType(failerSpecificationAndMethodID, NullPointerException.class);
+		}
+		
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull");
+			}
+		}
+		catch(NullPointerException customException)
+		{
+			assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+			System.out.println(customException.getMessage());
+			throw customException;
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullFailerCustomNullPointerExceptionMessage() {
+
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName, String message)";
+			this.failer.registerCustomFailExceptionType(failerSpecificationAndMethodID, NullPointerException.class);
+			this.failer.unregisterCustomFailExceptionType(failerSpecificationAndMethodID); // revert to default
+		}
+
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here.");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			throw failFastException;
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullFailerCustomFailMessageFormat() {
+
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName, String message)";
+			this.failer.registerCustomFailMessageFormat(failerSpecificationAndMethodID, "%s: I am so tired of Object '%s' being null. %s");
+		}
+
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here.");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			String s = this.getClass().getSimpleName() + ".testObjectNullFailerCustomFailMessageFormat: I am so tired of Object 'referenceNull' being null. Extra info goes here.";
+			assertEquals("Expected exception in failer", s, failFastException.getMessage());
+			throw failFastException;
+
+		}
+	}
+	
+	@Test(expected=FailFastException.class)
+	public void testObjectNullFailerCustomFailMessageFormatAndArguments() {
+		
+		{ // Failer costumizations could be done at application startup
+			String failerSpecificationAndMethodID = "IObjectNullFail.failObjectNull(Object caller, String referenceName, String message)";
+			this.failer.registerCustomFailMessageFormat(failerSpecificationAndMethodID, "Object '%s' is null - reported by Caller '%s'. %s");
+			this.failer.registerCustomFailMessageArguments(failerSpecificationAndMethodID, "fu1, fu0, fu2"); // just swapping them
+		}
+
+		Object referenceNull = null;
+		try
+		{
+			if(checker.isObjectNull(this, referenceNull))
+			{
+				failer.failObjectNull(this, "referenceNull", "Extra info goes here.");
+			}
+		}
+		catch(FailFastException failFastException)
+		{
+			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
+			System.out.println(failFastException.getMessage());
+			String s = "Object 'referenceNull' is null - reported by Caller '" + this.getClass().getSimpleName() + ".testObjectNullFailerCustomFailMessageFormatAndArguments'. Extra info goes here.";
+			assertEquals("Expected exception in failer", s, failFastException.getMessage());
+			throw failFastException;
+		}
+	}		
+	
+
+	// Output defaults
+	
 	@Test
-	public void testOutputDefaults() 
+	public void testOutputExceptionDefaults() 
 	{
 		StringBuilder stringBuilder = new StringBuilder();
-		
-//		{ // output memory usage
-//			stringBuilder.append(" - - - \n");
-//			stringBuilder.append(" Primitive - boolean \n");
-//			stringBuilder.append(" - - - \n");
-//			stringBuilder.append("Before: used=");
-//			stringBuilder.append(usedBefore);
-//			stringBuilder.append(" [bytes]\n");
-//			stringBuilder.append("After: used=");
-//			stringBuilder.append(usedAfter);
-//			stringBuilder.append(" [bytes]\n");
-//			stringBuilder.append("Delta: delta=");
-//			stringBuilder.append(delta);
-//			stringBuilder.append(" [bytes]\n");
-//			stringBuilder.append("Delta: costPerCall=");
-//			stringBuilder.append(deltaPerCall);
-//			stringBuilder.append(" [bytes/call]\n");
-//			stringBuilder.append("GC: callDuration=");
-//			stringBuilder.append(gcCallDurationMS);
-//			stringBuilder.append(" [ms]\n");
-//			stringBuilder.append(" - - - \n");
-//		}
+		stringBuilder.append("\n --- EXCEPTION DEFAULTS & CUSTOMIZATIONS --- (START)\n");
+		stringBuilder.append("\n");
+		stringBuilder.append(" Below is a table of defaults for the different failer methods.\n");
+		stringBuilder.append(" The exception type, message format and message arguments identification string can be customized as you please.\n");
+		stringBuilder.append(" Static customizations can be done via inheritance by overriding which failer specifications to use.\n");
+		stringBuilder.append(" Runtime customizations can be done via a call contract (where you call a checker-failer pair) or globally via a failer (e.g. in your startup code).\n");
+		stringBuilder.append(" For call contract customizations refer to ICallContract (instance fetched via ICallContractor), the other tests in this file and use below table as inputs.\n");
+		stringBuilder.append(" For global runtime customizations refer to IFailerCustomizer (inherited by IFailer), the other tests in this file and use below table as inputs.\n");
+		stringBuilder.append("\n");
 		
 		HashSet<Class<?>> investigatedClasses = new HashSet<Class<?>>();
 		this.populateWithAllSupers(investigatedClasses, this.failer.getClass());
@@ -144,66 +327,57 @@ public class ExceptionMessages2CustomizeTest {
 			}
 		}
 
+		int columnSizeFailerSpecificationAndMethodID = 150;
+		int columnSizeFailExceptionType = 30;
+		int columnSizeFailMessageFormat = 110;
+		int columnSizeFailMessageArguments = 50;
+		int columnSizeAll = columnSizeFailerSpecificationAndMethodID 
+			+ columnSizeFailExceptionType 
+			+ columnSizeFailMessageFormat 
+			+ columnSizeFailMessageArguments + 9;
+		stringBuilder.append(" /-");
+		stringBuilder.append(padWithChars("", '-', columnSizeAll));
+		stringBuilder.append("-\\\n");
+		{
+			stringBuilder.append(" | ");
+			stringBuilder.append(padWithChars("failerSpecificationAndMethodID", ' ', columnSizeFailerSpecificationAndMethodID));
+			stringBuilder.append(" | ");
+			stringBuilder.append(padWithChars("failExceptionType", ' ', columnSizeFailExceptionType));
+			stringBuilder.append(" | ");
+			stringBuilder.append(padWithChars("failMessageFormat", ' ', columnSizeFailMessageFormat));
+			stringBuilder.append(" | ");
+			stringBuilder.append(padWithChars("failMessageArguments", ' ', columnSizeFailMessageArguments));
+			stringBuilder.append(" |\n");
+		}
+		stringBuilder.append(" |-");
+		stringBuilder.append(padWithChars("", '-', columnSizeAll));
+		stringBuilder.append("-|\n");
 		for(Class<?> sortedInterface : sortedMap.values())
 		{
-			stringBuilder.append("\\\n");
-			stringBuilder.append(" | " + sortedInterface.getName() + "\n");
-			stringBuilder.append(" | -\n");
-
+			Method[] methods = sortedInterface.getDeclaredMethods();
+			for(Method method : methods)
 			{
-				Method[] methods = sortedInterface.getDeclaredMethods();
-				for(Method method : methods)
+				NFail nFail = method.getAnnotation(NFail.class);
+				if(null != nFail)
 				{
-					NFail nFail = method.getAnnotation(NFail.class);
-					if(null != nFail)
-					{
-						stringBuilder.append(" | ");
-						stringBuilder.append("\"");
-						stringBuilder.append(nFail.failerSpecificationAndMethodID());
-						stringBuilder.append("\"");
-						stringBuilder.append(", ");
-						stringBuilder.append("\"");
-						stringBuilder.append(nFail.failExceptionType().getSimpleName());
-						stringBuilder.append("\"");
-						stringBuilder.append(", ");
-						stringBuilder.append("\"");
-						stringBuilder.append(nFail.failMessageFormat());
-						stringBuilder.append("\"");
-						stringBuilder.append(", ");
-						stringBuilder.append("\"");
-						stringBuilder.append(nFail.failMessageArguments());
-						stringBuilder.append("\"\n");
-					}
+					stringBuilder.append(" | ");
+					stringBuilder.append(padWithChars("\"" + nFail.failerSpecificationAndMethodID() + "\"", ' ', columnSizeFailerSpecificationAndMethodID));
+					stringBuilder.append(" | ");
+					stringBuilder.append(padWithChars(nFail.failExceptionType().getSimpleName() + ".class", ' ', columnSizeFailExceptionType));
+					stringBuilder.append(" | ");
+					stringBuilder.append(padWithChars("\"" + nFail.failMessageFormat() + "\"", ' ', columnSizeFailMessageFormat));
+					stringBuilder.append(" | ");
+					stringBuilder.append(padWithChars("\"" + nFail.failMessageArguments() + "\"", ' ', columnSizeFailMessageArguments));
+					stringBuilder.append(" |\n");
 				}
 			}
-			
-			stringBuilder.append("/\n");
 		}
+		stringBuilder.append(" \\-");
+		stringBuilder.append(padWithChars("", '-', columnSizeAll));
+		stringBuilder.append("-/\n");
+		stringBuilder.append("\n");
+		stringBuilder.append(" --- EXCEPTION DEFAULTS & CUSTOMIZATIONS --- (END)\n");
 
-//		HashSet<Class<?>> failInterfaces = new HashSet<Class<?>>();
-//		
-//		Class<? extends IFailer> failerInterface = this.failer.getClass();
-//		
-//		Class<?>[] interfaces = failerInterface.getInterfaces();
-//		Class<?> superClass = failerInterface.getSuperclass();
-//		Class<?>[] failerClassInterfaces = failerClass.getClasses();
-//		for(Class<?> failerClassInterface : failerClassInterfaces)
-//		{
-//			if(IFail.class.isAssignableFrom(failerClassInterface))
-//			{
-//				stringBuilder.append(failerClassInterface.getName() + "\n");
-//			}
-//		}
-//		Method[] methods = .getMethods();
-//		for(Method method : methods)
-//		{
-//			String methodName = method.getName();
-//			if(methodName.startsWith("fail"))
-//			{
-//				
-//			}
-//		}
-		
 		System.out.println(stringBuilder.toString());
 	}
 
@@ -221,6 +395,24 @@ public class ExceptionMessages2CustomizeTest {
 		{
 			this.populateWithAllSupers(investigatedClasses, superClass);
 		}
+	}
+	
+	private String padWithChars(String source, char paddingChar, int totalSize)
+	{
+		String result = source;
+		
+		if(source.length() < totalSize)
+		{
+			int numberSpaces2Append = totalSize - source.length();
+			char[] spaces = new char[numberSpaces2Append];
+			for(int index = 0; index < spaces.length; ++index)
+			{
+				spaces[index] = paddingChar;
+			}
+			result = source + new String(spaces);
+		}
+		
+		return result;
 	}
 	
 	

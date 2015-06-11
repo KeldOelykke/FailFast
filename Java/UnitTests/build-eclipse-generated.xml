@@ -1438,6 +1438,14 @@
             <classpath refid="UnitTests.classpath"/>
         </junit>
     </target>
+    <target name="ObjectNullTest.testObjectNullFailNoMessage">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="starkcoder.failfast.unit.objects.ObjectNullTest" todir="${junit.output.dir}"/>
+            <classpath refid="UnitTests.classpath"/>
+        </junit>
+    </target>
     <target name="ObjectSameTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
