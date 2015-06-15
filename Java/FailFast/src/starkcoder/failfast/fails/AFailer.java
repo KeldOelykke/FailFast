@@ -26,8 +26,10 @@ package starkcoder.failfast.fails;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.UUID;
 
 import starkcoder.failfast.contractors.ICallContractor;
 import starkcoder.failfast.contractors.contracts.ICallContract;
@@ -455,6 +457,82 @@ public abstract class AFailer implements IFailer
 	
 	
 	// IFailerCustomizer - END -------------------------------
+	
+	
+	// IFailerPublisher - BEGIN -------------------------------
+	
+	@Override
+	public Object registerFailerObserver(IFailerObserver failerObserver)
+	{
+		Object result = null;
+		
+        if (null == failerObserver)
+        {
+            throw new IllegalArgumentException("failerObserver is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			ArrayList<IFailerObserver> failerObservers = this.getFailerObservers();
+			if(failerObservers.contains(failerObserver))
+			{
+	            throw new IllegalStateException("failerObserver " + failerObserver + " is already registered.");
+			}
+			ArrayList<Object> registrationKeys = this.getFailerObserverRegistrationKeys();
+			Object registrationKey = UUID.randomUUID();
+			boolean added = failerObservers.add(failerObserver);
+			if(!added)
+			{
+				throw new RuntimeException("Unexpected problem - failerObserver " + failerObserver + " could not be added list " + failerObservers + ".");
+			}
+			added = registrationKeys.add(registrationKey);
+			if(!added)
+			{
+				throw new RuntimeException("Unexpected problem - registrationKey " + registrationKey + " could not be added list " + registrationKeys + ".");
+			}
+			result = registrationKey;
+		}       
+        
+		return result;
+	}
+	@Override
+	public void unregisterFailerObserver(IFailerObserver failerObserver,
+			Object registrationKey)
+	{
+        if (null == failerObserver)
+        {
+            throw new IllegalArgumentException("failerObserver is null");
+        }
+        if (null == registrationKey)
+        {
+            throw new IllegalArgumentException("registrationKey is null");
+        }
+		synchronized(this.getSynchronizationObject())
+		{
+			ArrayList<IFailerObserver> failerObservers = this.getFailerObservers();
+			if(!failerObservers.contains(failerObserver))
+			{
+	            throw new IllegalStateException("failerObserver " + failerObserver + " is NOT registered.");
+			}
+			ArrayList<Object> registrationKeys = this.getFailerObserverRegistrationKeys();
+			if(!registrationKeys.contains(registrationKey))
+			{
+	            throw new IllegalStateException("registrationKey " + registrationKey + " is NOT registered.");
+			}
+			boolean removed = failerObservers.remove(failerObserver);
+			if(!removed)
+			{
+				throw new RuntimeException("Unexpected problem - failerObserver " + failerObserver + " could not be removed from list " + failerObservers + ".");
+			}
+			removed = registrationKeys.remove(registrationKey);
+			if(!removed)
+			{
+				throw new RuntimeException("Unexpected problem - registrationKey " + registrationKey + " could not be removed from list " + registrationKeys + ".");
+			}
+		}        
+	}
+	
+	// IFailerPublisher - END -------------------------------
+	
 	
 	
 //	// GENERIC OBJECT - START -------------------------------
@@ -3868,11 +3946,24 @@ public abstract class AFailer implements IFailer
         }
         		
         RuntimeException exception = this.constructFailException(failerSpecificationType, failAnnotation, callContract, failerArguments, failerExtraArguments);
-        if(exception instanceof IFailFastException)
-        { // remember first exception
-        	this.setFailFastExceptionOrNull((IFailFastException)exception);
+      
+        // notify any observers
+        ArrayList<IFailerObserver> failerObserversOrNull = this.cloneFailerObserversOrNull();
+        if(null != failerObserversOrNull)
+        {
+        	for(IFailerObserver failerObserver : failerObserversOrNull)
+        	{
+        		failerObserver.notifyExceptionBeforeThrow(this, callContract, exception);
+        	}
         }
-        throw exception;
+       
+        { // remember the exception and throw it
+	        if(exception instanceof IFailFastException)
+	        { // remember first exception
+	        	this.setFailFastExceptionOrNull((IFailFastException)exception);
+	        }
+	        throw exception;
+        }
     }
 
 	protected NFail LookupFailAnnotation(Class<?> failSpecificationType, Object[] messageFormatArguments)
@@ -4189,5 +4280,42 @@ public abstract class AFailer implements IFailer
 
         return exception;
     }
-    
+	
+	
+	private ArrayList<IFailerObserver> failerObservers = new ArrayList<IFailerObserver>();
+	protected ArrayList<IFailerObserver> getFailerObservers()
+	{
+		return failerObservers;
+	}
+	protected void setFailerObservers(ArrayList<IFailerObserver> failerObservers)
+	{
+		this.failerObservers = failerObservers;
+	}
+	protected ArrayList<IFailerObserver> cloneFailerObserversOrNull()
+	{
+		ArrayList<IFailerObserver> result = null;
+		
+		synchronized(this.getSynchronizationObject())
+		{
+			ArrayList<IFailerObserver> failerObservers = this.getFailerObservers();
+			if(0 < failerObservers.size())
+			{
+				ArrayList<IFailerObserver> clone = new ArrayList<IFailerObserver>(failerObservers);
+				result = clone;
+			}
+		}
+		
+		return result;
+	}
+
+	private ArrayList<Object> failerObserverRegistrationKeys = new ArrayList<Object>();
+	protected ArrayList<Object> getFailerObserverRegistrationKeys()
+	{
+		return failerObserverRegistrationKeys;
+	}
+	protected void setFailerObserverRegistrationKeys(
+			ArrayList<Object> failerObserverRegistrationKeys)
+	{
+		this.failerObserverRegistrationKeys = failerObserverRegistrationKeys;
+	}
 }

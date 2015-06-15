@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  * 
- * Copyright (c) 2014-2015 Keld Oelykke
+ * Copyright (c) 2014 Keld Ølykke
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,31 +23,24 @@
  */
 package starkcoder.failfast.fails;
 
-import starkcoder.failfast.contractors.ICallContractorReference;
-import starkcoder.failfast.fails.objects.IObjectFailer;
+import starkcoder.failfast.contractors.contracts.ICallContract;
 
 /**
- * Failer specification.
+ * This is a specification for instances that would like to be notified when an exception is about to be thrown.
  * <p>
- * The Failer is used to throw fail-fast exceptions when a checker asserts.
+ * The notifications can be used for communication purposes e.g. logging.
  * </p>
- * A checker that asserts starts a contract that this must end (via the call contractor).
- * </p>
- * <p>
- * Threads can poll this to check if a fail-fast exception has been thrown.
- * </p>
- * <p>
- * Implementations of this should be extensible (not final).
- * </p>
+ * 
  * @author Keld Oelykke
  */
-public interface IFailer extends ICallContractorReference, IFailFastExceptionReference, 
-	IObjectFailer,
-	//IPrimitiveFailer, -- TODO: make this to avoid boxing/unboxing penalties?
-	//IGenericsFailer -- TODO: determine whether this is needed at all?
-	IFailerPublisher,
-	IFailerCustomizer
+public interface IFailerObserver
 {
-
-	
+	/**
+	 * Notifies an exception about to be thrown due to the specified engaged call contract.
+	 * 
+	 * @param failer instance about to throw an exception 
+	 * @param contract engaged contract between checker and failer 
+	 * @param runtimeException exception about to be thrown
+	 */
+	void notifyExceptionBeforeThrow(IFailer failer, ICallContract contract, RuntimeException runtimeException);
 }
