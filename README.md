@@ -65,12 +65,12 @@ So how does this look like? The library offers many checker-failer pairs e.g.
 
 The arguments are the dynamic information that changes. 'this' is an Object that is to identify the caller of the checker-failer methods. In the checker-call a contract with the caller is started, if 'referenceNull' is in-fact null, otherwise no contract is started. 'this' is therefore needed again as an argument in the failer-call - to end the engaged contract. 'referenceNull' is an argument for the checker call and as an identification argument in the failer call. 
 
-If the checker-call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new instances are needed.
+If the checker-call returns false, no contract has been started and the failer method will - and should not - be called. This is the cheap outcome, where no new allocations are needed e.g. "referenceNull" in above example.
 
 If the checker-call asserts, a contract is started and ended by the expensive failer-call. In above example the failer-call throws a FailFastException with message "ObjectNullTest.testObjectNullFailNoMessage: Object 'referenceNull' is null. " (for more information see https://github.com/KeldOelykke/FailFast/wiki/isObjectNull-&-failObjectNull).
-Each checker-failer pair is associated with an exception type, a message format and a message arguments mapping. In above ObjectNull example the checker-failer pair is by default set to exception type FailFastException, message format "%s: Object '%s' is null." and arguments mapping "fu0, fu1" (meaning the 2 failer user arguments).
+Each checker-failer pair is associated with an exception type, a message format and a message arguments mapping. In above example the checker-failer pair is by default set to exception type FailFastException, message format "%s: Object '%s' is null." and arguments mapping "fu0, fu1" (meaning the 2 failer user arguments).
 
-Is this enough for you? Well, I don't know. Let's figure that one out together. Any feedback is appreciated.
+Is this enough for you? Well, I don't know. Let's figure that one out together. Any feedback is greatly appreciated.
 
 Some of your questions might be answered in the FAQ below, otherwise please create an issue.
  
