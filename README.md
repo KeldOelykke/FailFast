@@ -42,7 +42,7 @@ Your sections might be generalized into
 
 'CONDITIONAL' is code that this library encapsulates. This reduces duplicated code in your application and should make it easier for you to avoid errors.
 
-The 'if(CONDITIONAL)' should - when true - result in a throw part, why a 'CONDITIONAL' when using this library start a contract. The contract is ended with a 2nd call to the library that encapsulates 'throw EXCEPTION(MESSAGE);'. This also removes duplicated code in your application and increases consistency.
+The 'if(CONDITIONAL)' should - when true - result in a throw part, why a 'CONDITIONAL' when using this library starts a contract. The contract is ended with a 2nd call to the library that encapsulates 'throw EXCEPTION(MESSAGE);'. This also removes duplicated code in your application and increases consistency.
 
 With this library the above section is a bit more specific
 
