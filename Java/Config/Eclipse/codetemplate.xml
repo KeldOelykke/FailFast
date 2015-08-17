@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////////////////
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="false" context="filecomment_context" deleted="false" description="Comment for created Java files" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.filecomment" name="filecomment">/////////////////////////////////////////////////////////////////////////////////////////
 //
 // The MIT License (MIT)
 // 
@@ -22,49 +22,4 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-/////////////////////////////////////////////////////////////////////////////////////////
-
-package starkcoder.failfast.checks;
-
-import starkcoder.failfast.contractors.ICallContractor;
-
-/**
- * Default concrete implementation of {@link IChecker} using abstract implementation
- * {@link AChecker}.
- * <p>
- * This implements all the checkers supported.
- * </p>
- * <p>
- * Extend {@link IChecker} and this to support custom checkers.
- * </p>
- * 
- * @author Keld Oelykke
- */
-public class Checker extends AChecker
-{
-  /**
-   * Default constructor.
-   * <p>
-   * Remember to set call contractor before usage.
-   * </p>
-   */
-  public Checker()
-  {
-    super();
-  }
-
-  /**
-   * Recommended constructor receiving required references (manual constructor dependency
-   * injection).
-   * <p>
-   * This is ready for use after this call.
-   * </p>
-   * 
-   * @param callContractor
-   *          used by this
-   */
-  public Checker(ICallContractor callContractor)
-  {
-    super(callContractor);
-  }
-}
+/////////////////////////////////////////////////////////////////////////////////////////</template></templates>
