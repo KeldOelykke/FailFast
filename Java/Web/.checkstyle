@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
-  <local-check-config name="StarkCoder" location="/Users/kro/Git/FailFast/Java/Config/Checkstyle/checkstyle_googlebased_changed.xml" type="external" description="">
+  <local-check-config name="checkstyle_googlebased_changed" location="/Config/Checkstyle/checkstyle_googlebased_changed.xml" type="project" description="">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="StarkCoder" local="true">
+  <fileset name="all" enabled="true" check-config-name="checkstyle_googlebased_changed" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>
