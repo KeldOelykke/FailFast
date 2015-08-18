@@ -45,7 +45,7 @@ public interface IObjectStringNotNullAndNotEmptyFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringNotNullAndNotEmptyFail.failStringNotNullAndNotEmpty(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringNotNullAndNotEmptyFail.failStringNotNullAndNotEmpty(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectStringNotNullAndNotEmptyCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is NOT null and NOT empty(%s).",
@@ -64,7 +64,7 @@ public interface IObjectStringNotNullAndNotEmptyFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringNotNullAndNotEmptyFail.failStringNotNullAndNotEmpty(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringNotNullAndNotEmptyFail.failStringNotNullAndNotEmpty(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectStringNotNullAndNotEmptyCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is NOT null and NOT empty(%s). %s.",

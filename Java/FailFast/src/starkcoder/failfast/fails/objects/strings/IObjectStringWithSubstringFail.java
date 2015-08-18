@@ -45,7 +45,7 @@ public interface IObjectStringWithSubstringFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithSubstringFail.failStringWithSubstring(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithSubstringFail.failStringWithSubstring(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectStringWithSubstringCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) has substring(%s).",
@@ -64,7 +64,7 @@ public interface IObjectStringWithSubstringFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithSubstringFail.failStringWithSubstring(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithSubstringFail.failStringWithSubstring(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectStringWithSubstringCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) has substring(%s). %s.",

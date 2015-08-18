@@ -47,7 +47,7 @@ public interface IObjectDoubleLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleLessFail.failDoubleLess(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleLessFail.failDoubleLess(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectDoubleLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is less than Double '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectDoubleLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleLessFail.failDoubleLess(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleLessFail.failDoubleLess(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectDoubleLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is less than Double '%s'(%s). %s.",

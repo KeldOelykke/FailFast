@@ -45,7 +45,7 @@ public interface IObjectDateOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateOutsideFail.failDateOutside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateOutsideFail.failDateOutside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectDateOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is outside Date range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectDateOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateOutsideFail.failDateOutside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateOutsideFail.failDateOutside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectDateOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is outside Date range [%s;%s]. %s.",

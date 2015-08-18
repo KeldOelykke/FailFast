@@ -45,7 +45,7 @@ public interface IObjectDateInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateInsideFail.failDateInside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateInsideFail.failDateInside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectDateInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is inside Date range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectDateInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateInsideFail.failDateInside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateInsideFail.failDateInside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectDateInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is inside Date range [%s;%s]. %s.",

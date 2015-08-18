@@ -44,7 +44,7 @@ public interface IMyObjectNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IMyObjectNullFail.failObjectNull(Object caller, String referenceName)",
+	@NFail(failerSpecificationAndMethodId = "IMyObjectNullFail.failObjectNull(Object caller, String referenceName)",
 			checkerSpecificationType = IMyObjectNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: My custom format says ... Object '%s' is null.",
@@ -63,7 +63,7 @@ public interface IMyObjectNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IMyObjectNullFail.failObjectNull(Object caller, String referenceName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IMyObjectNullFail.failObjectNull(Object caller, String referenceName, String message)",
 			checkerSpecificationType = IMyObjectNullCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: My custom format says ... Object '%s' is null. %s.",

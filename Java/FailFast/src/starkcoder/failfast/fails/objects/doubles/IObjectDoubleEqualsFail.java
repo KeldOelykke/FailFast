@@ -47,7 +47,7 @@ public interface IObjectDoubleEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleEqualsFail.failDoubleEquals(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleEqualsFail.failDoubleEquals(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectDoubleEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is equal to Double '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectDoubleEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleEqualsFail.failDoubleEquals(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleEqualsFail.failDoubleEquals(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectDoubleEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is equal to Double '%s'(%s). %s.",

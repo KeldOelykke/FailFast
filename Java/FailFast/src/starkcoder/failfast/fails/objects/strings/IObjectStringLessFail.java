@@ -47,7 +47,7 @@ public interface IObjectStringLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringLessFail.failStringLess(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringLessFail.failStringLess(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectStringLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is less than String '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectStringLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringLessFail.failStringLess(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringLessFail.failStringLess(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectStringLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is less than String '%s'(%s). %s.",

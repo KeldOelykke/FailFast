@@ -47,7 +47,7 @@ public interface IObjectDateEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateEqualsFail.failDateEquals(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateEqualsFail.failDateEquals(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectDateEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is equal to Date '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectDateEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateEqualsFail.failDateEquals(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateEqualsFail.failDateEquals(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectDateEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is equal to Date '%s'(%s). %s.",

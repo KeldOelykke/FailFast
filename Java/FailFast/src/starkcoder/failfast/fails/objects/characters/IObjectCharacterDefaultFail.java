@@ -45,7 +45,7 @@ public interface IObjectCharacterDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterDefaultFail.failCharacterDefault(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterDefaultFail.failCharacterDefault(Object caller, String referenceAName)",
 		checkerSpecificationType = IObjectCharacterDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Character '%s'(%s) is default(%s).",
@@ -64,7 +64,7 @@ public interface IObjectCharacterDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterDefaultFail.failCharacterDefault(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterDefaultFail.failCharacterDefault(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectCharacterDefaultCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is default(%s). %s.",

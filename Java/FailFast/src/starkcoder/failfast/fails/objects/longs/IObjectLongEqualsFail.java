@@ -47,7 +47,7 @@ public interface IObjectLongEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongEqualsFail.failLongEquals(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongEqualsFail.failLongEquals(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectLongEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is equal to Long '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectLongEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongEqualsFail.failLongEquals(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongEqualsFail.failLongEquals(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectLongEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is equal to Long '%s'(%s). %s.",

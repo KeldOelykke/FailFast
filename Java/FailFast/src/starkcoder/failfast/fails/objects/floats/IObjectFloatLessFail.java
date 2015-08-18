@@ -47,7 +47,7 @@ public interface IObjectFloatLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatLessFail.failFloatLess(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatLessFail.failFloatLess(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectFloatLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is less than Float '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectFloatLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatLessFail.failFloatLess(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatLessFail.failFloatLess(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectFloatLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is less than Float '%s'(%s). %s.",

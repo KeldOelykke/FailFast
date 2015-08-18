@@ -47,7 +47,7 @@ public interface IObjectEnumNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumNotSameFail.failEnumNotSame(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumNotSameFail.failEnumNotSame(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectEnumNotSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is NOT same as Enum '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectEnumNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumNotSameFail.failEnumNotSame(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumNotSameFail.failEnumNotSame(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectEnumNotSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is NOT same as Enum '%s'(%s). %s.",

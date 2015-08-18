@@ -47,7 +47,7 @@ public interface IObjectDateSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateSameFail.failDateSame(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateSameFail.failDateSame(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectDateSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is same as Date '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectDateSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateSameFail.failDateSame(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateSameFail.failDateSame(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectDateSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is same as Date '%s'(%s). %s.",

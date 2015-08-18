@@ -47,7 +47,7 @@ public interface IObjectFloatNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatNotEqualsFail.failFloatNotEquals(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatNotEqualsFail.failFloatNotEquals(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectFloatNotEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is NOT equal to Float '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectFloatNotEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatNotEqualsFail.failFloatNotEquals(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatNotEqualsFail.failFloatNotEquals(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectFloatNotEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is NOT equal to Float '%s'(%s). %s.",

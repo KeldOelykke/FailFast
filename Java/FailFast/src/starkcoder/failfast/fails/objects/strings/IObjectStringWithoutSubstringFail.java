@@ -45,7 +45,7 @@ public interface IObjectStringWithoutSubstringFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithoutSubstringFail.failStringWithoutSubstring(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithoutSubstringFail.failStringWithoutSubstring(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectStringWithoutSubstringCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) does NOT have substring(%s).",
@@ -64,7 +64,7 @@ public interface IObjectStringWithoutSubstringFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithoutSubstringFail.failStringWithoutSubstring(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithoutSubstringFail.failStringWithoutSubstring(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectStringWithoutSubstringCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) does NOT have substring(%s). %s.",

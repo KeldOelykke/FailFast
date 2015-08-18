@@ -47,7 +47,7 @@ public interface IObjectEnumLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumLessFail.failEnumLess(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumLessFail.failEnumLess(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectEnumLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is less than Enum '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectEnumLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumLessFail.failEnumLess(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumLessFail.failEnumLess(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectEnumLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is less than Enum '%s'(%s). %s.",

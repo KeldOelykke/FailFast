@@ -47,7 +47,7 @@ public interface IObjectFloatEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatEqualsAlmostFail.failFloatEqualsAlmost(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatEqualsAlmostFail.failFloatEqualsAlmost(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectFloatEqualsAlmostCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is equal or almost equal to Float '%s'(%s) - it is within range [%s;%s].",
@@ -68,7 +68,7 @@ public interface IObjectFloatEqualsAlmostFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatEqualsAlmostFail.failFloatEqualsAlmost(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatEqualsAlmostFail.failFloatEqualsAlmost(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectFloatEqualsAlmostCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is equal or almost equal to Float '%s'(%s) - it is within range [%s;%s]. %s.",

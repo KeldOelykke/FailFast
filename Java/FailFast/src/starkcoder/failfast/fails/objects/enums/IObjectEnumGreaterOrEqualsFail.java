@@ -47,7 +47,7 @@ public interface IObjectEnumGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumGreaterOrEqualsFail.failEnumGreaterOrEquals(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumGreaterOrEqualsFail.failEnumGreaterOrEquals(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectEnumGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is greater than or equal to Enum '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectEnumGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumGreaterOrEqualsFail.failEnumGreaterOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumGreaterOrEqualsFail.failEnumGreaterOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectEnumGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is greater than or equal to Enum '%s'(%s). %s.",

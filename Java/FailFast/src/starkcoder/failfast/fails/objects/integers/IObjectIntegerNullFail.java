@@ -45,7 +45,7 @@ public interface IObjectIntegerNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectIntegerNullFail.failIntegerNull(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectIntegerNullFail.failIntegerNull(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectIntegerNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is null.",
@@ -64,7 +64,7 @@ public interface IObjectIntegerNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectIntegerNullFail.failIntegerNull(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectIntegerNullFail.failIntegerNull(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectIntegerNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is null. %s.",

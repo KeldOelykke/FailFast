@@ -47,7 +47,7 @@ public interface IObjectDoubleNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNotSameFail.failDoubleNotSame(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleNotSameFail.failDoubleNotSame(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectDoubleNotSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is NOT same as Double '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectDoubleNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNotSameFail.failDoubleNotSame(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleNotSameFail.failDoubleNotSame(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectDoubleNotSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is NOT same as Double '%s'(%s). %s.",

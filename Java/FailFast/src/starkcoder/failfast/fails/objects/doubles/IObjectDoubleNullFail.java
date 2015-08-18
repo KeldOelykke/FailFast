@@ -45,7 +45,7 @@ public interface IObjectDoubleNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNullFail.failDoubleNull(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleNullFail.failDoubleNull(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectDoubleNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is null.",
@@ -64,7 +64,7 @@ public interface IObjectDoubleNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleNullFail.failDoubleNull(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleNullFail.failDoubleNull(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectDoubleNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is null. %s.",

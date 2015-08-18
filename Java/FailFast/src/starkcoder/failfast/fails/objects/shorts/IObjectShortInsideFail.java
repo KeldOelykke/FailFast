@@ -45,7 +45,7 @@ public interface IObjectShortInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortInsideFail.failShortInside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortInsideFail.failShortInside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectShortInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is inside Short range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectShortInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortInsideFail.failShortInside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortInsideFail.failShortInside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectShortInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is inside Short range [%s;%s]. %s.",

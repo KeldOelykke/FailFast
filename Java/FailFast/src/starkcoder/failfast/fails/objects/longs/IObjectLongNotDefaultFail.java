@@ -45,7 +45,7 @@ public interface IObjectLongNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongNotDefaultFail.failLongNotDefault(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongNotDefaultFail.failLongNotDefault(Object caller, String referenceAName)",
 		checkerSpecificationType = IObjectLongNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Long '%s'(%s) is NOT default(%s).",
@@ -64,7 +64,7 @@ public interface IObjectLongNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongNotDefaultFail.failLongNotDefault(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongNotDefaultFail.failLongNotDefault(Object caller, String referenceAName, String message)",
 		checkerSpecificationType = IObjectLongNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Long '%s'(%s) is NOT default(%s). %s.",

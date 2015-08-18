@@ -45,7 +45,7 @@ public interface IObjectDoubleInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleInsideFail.failDoubleInside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleInsideFail.failDoubleInside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectDoubleInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is inside Double range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectDoubleInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleInsideFail.failDoubleInside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleInsideFail.failDoubleInside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectDoubleInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is inside Double range [%s;%s]. %s.",

@@ -45,7 +45,7 @@ public interface IObjectEnumNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumNotNullFail.failEnumNotNull(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumNotNullFail.failEnumNotNull(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectEnumNotNullCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is NOT null.",
@@ -64,7 +64,7 @@ public interface IObjectEnumNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumNotNullFail.failEnumNotNull(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumNotNullFail.failEnumNotNull(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectEnumNotNullCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is NOT null. %s.",

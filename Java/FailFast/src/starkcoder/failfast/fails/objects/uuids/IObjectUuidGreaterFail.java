@@ -47,7 +47,7 @@ public interface IObjectUuidGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectUuidGreaterFail.failUuidGreater(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectUuidGreaterFail.failUuidGreater(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectUuidGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is greater than UUID '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectUuidGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectUuidGreaterFail.failUuidGreater(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectUuidGreaterFail.failUuidGreater(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectUuidGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is greater than UUID '%s'(%s). %s.",

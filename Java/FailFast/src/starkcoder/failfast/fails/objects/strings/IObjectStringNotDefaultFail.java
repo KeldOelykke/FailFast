@@ -45,7 +45,7 @@ public interface IObjectStringNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringNotDefaultFail.failStringNotDefault(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringNotDefaultFail.failStringNotDefault(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectStringNotDefaultCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is NOT default(%s).",
@@ -64,7 +64,7 @@ public interface IObjectStringNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringNotDefaultFail.failStringNotDefault(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringNotDefaultFail.failStringNotDefault(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectStringNotDefaultCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is NOT default(%s). %s.",

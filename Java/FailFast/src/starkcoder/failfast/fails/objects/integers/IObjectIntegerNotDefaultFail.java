@@ -45,7 +45,7 @@ public interface IObjectIntegerNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectIntegerNotDefaultFail.failIntegerNotDefault(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectIntegerNotDefaultFail.failIntegerNotDefault(Object caller, String referenceAName)",
 		checkerSpecificationType = IObjectIntegerNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Integer '%s'(%s) is NOT default(%s).",
@@ -64,7 +64,7 @@ public interface IObjectIntegerNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectIntegerNotDefaultFail.failIntegerNotDefault(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectIntegerNotDefaultFail.failIntegerNotDefault(Object caller, String referenceAName, String message)",
 		checkerSpecificationType = IObjectIntegerNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Integer '%s'(%s) is NOT default(%s). %s.",

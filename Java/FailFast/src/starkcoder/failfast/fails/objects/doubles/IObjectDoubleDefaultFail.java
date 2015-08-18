@@ -45,7 +45,7 @@ public interface IObjectDoubleDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleDefaultFail.failDoubleDefault(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleDefaultFail.failDoubleDefault(Object caller, String referenceAName)",
 		checkerSpecificationType = IObjectDoubleDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Double '%s'(%s) is default(%s).",
@@ -64,7 +64,7 @@ public interface IObjectDoubleDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleDefaultFail.failDoubleDefault(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleDefaultFail.failDoubleDefault(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectDoubleDefaultCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is default(%s). %s.",

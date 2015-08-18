@@ -45,7 +45,7 @@ public interface IObjectCharacterNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterNullFail.failCharacterNull(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterNullFail.failCharacterNull(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectCharacterNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is null.",
@@ -64,7 +64,7 @@ public interface IObjectCharacterNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterNullFail.failCharacterNull(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterNullFail.failCharacterNull(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectCharacterNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is null. %s.",

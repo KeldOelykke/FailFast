@@ -47,7 +47,7 @@ public interface IObjectDoubleGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleGreaterOrEqualsFail.failDoubleGreaterOrEquals(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleGreaterOrEqualsFail.failDoubleGreaterOrEquals(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectDoubleGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is greater than or equal to Double '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectDoubleGreaterOrEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleGreaterOrEqualsFail.failDoubleGreaterOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleGreaterOrEqualsFail.failDoubleGreaterOrEquals(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectDoubleGreaterOrEqualsCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is greater than or equal to Double '%s'(%s). %s.",

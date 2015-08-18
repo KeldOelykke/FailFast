@@ -45,7 +45,7 @@ public interface IObjectEnumInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumInsideFail.failEnumInside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumInsideFail.failEnumInside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectEnumInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is inside Enum range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectEnumInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectEnumInsideFail.failEnumInside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectEnumInsideFail.failEnumInside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectEnumInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Enum '%s'(%s) is inside Enum range [%s;%s]. %s.",

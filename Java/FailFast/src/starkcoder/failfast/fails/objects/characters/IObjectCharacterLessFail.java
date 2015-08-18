@@ -47,7 +47,7 @@ public interface IObjectCharacterLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterLessFail.failCharacterLess(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterLessFail.failCharacterLess(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectCharacterLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is less than Character '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectCharacterLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterLessFail.failCharacterLess(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterLessFail.failCharacterLess(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectCharacterLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is less than Character '%s'(%s). %s.",

@@ -45,7 +45,7 @@ public interface IObjectShortOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortOutsideFail.failShortOutside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortOutsideFail.failShortOutside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectShortOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is outside Short range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectShortOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortOutsideFail.failShortOutside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortOutsideFail.failShortOutside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectShortOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is outside Short range [%s;%s]. %s.",

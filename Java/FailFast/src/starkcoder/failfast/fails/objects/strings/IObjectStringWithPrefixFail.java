@@ -45,7 +45,7 @@ public interface IObjectStringWithPrefixFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithPrefixFail.failStringWithPrefix(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithPrefixFail.failStringWithPrefix(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectStringWithPrefixCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) has prefix(%s).",
@@ -64,7 +64,7 @@ public interface IObjectStringWithPrefixFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithPrefixFail.failStringWithPrefix(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithPrefixFail.failStringWithPrefix(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectStringWithPrefixCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) has prefix(%s). %s.",

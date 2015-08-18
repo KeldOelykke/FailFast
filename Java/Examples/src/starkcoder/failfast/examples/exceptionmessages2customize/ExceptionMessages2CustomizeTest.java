@@ -361,7 +361,7 @@ public class ExceptionMessages2CustomizeTest {
 				if(null != nFail)
 				{
 					stringBuilder.append(" | ");
-					stringBuilder.append(padWithChars("\"" + nFail.failerSpecificationAndMethodID() + "\"", ' ', columnSizeFailerSpecificationAndMethodID));
+					stringBuilder.append(padWithChars("\"" + nFail.failerSpecificationAndMethodId() + "\"", ' ', columnSizeFailerSpecificationAndMethodID));
 					stringBuilder.append(" | ");
 					stringBuilder.append(padWithChars(nFail.failExceptionType().getSimpleName() + ".class", ' ', columnSizeFailExceptionType));
 					stringBuilder.append(" | ");

@@ -47,7 +47,7 @@ public interface IObjectLongSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongSameFail.failLongSame(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongSameFail.failLongSame(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectLongSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is same as Long '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectLongSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongSameFail.failLongSame(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongSameFail.failLongSame(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectLongSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is same as Long '%s'(%s). %s.",

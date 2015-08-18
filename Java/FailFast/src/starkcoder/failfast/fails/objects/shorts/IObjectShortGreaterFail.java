@@ -47,7 +47,7 @@ public interface IObjectShortGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortGreaterFail.failShortGreater(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortGreaterFail.failShortGreater(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectShortGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is greater than Short '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectShortGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortGreaterFail.failShortGreater(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortGreaterFail.failShortGreater(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectShortGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Short '%s'(%s) is greater than Short '%s'(%s). %s.",

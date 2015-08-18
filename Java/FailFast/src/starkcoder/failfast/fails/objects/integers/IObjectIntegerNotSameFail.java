@@ -47,7 +47,7 @@ public interface IObjectIntegerNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectIntegerNotSameFail.failIntegerNotSame(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectIntegerNotSameFail.failIntegerNotSame(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectIntegerNotSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is NOT same as Integer '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectIntegerNotSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectIntegerNotSameFail.failIntegerNotSame(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectIntegerNotSameFail.failIntegerNotSame(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectIntegerNotSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Integer '%s'(%s) is NOT same as Integer '%s'(%s). %s.",

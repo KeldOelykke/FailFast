@@ -45,7 +45,7 @@ public interface IObjectDateNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateNotNullFail.failDateNotNull(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateNotNullFail.failDateNotNull(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectDateNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is NOT null.",
@@ -64,7 +64,7 @@ public interface IObjectDateNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDateNotNullFail.failDateNotNull(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDateNotNullFail.failDateNotNull(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectDateNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Date '%s'(%s) is NOT null. %s.",

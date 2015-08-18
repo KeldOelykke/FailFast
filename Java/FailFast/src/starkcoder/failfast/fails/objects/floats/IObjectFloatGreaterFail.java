@@ -47,7 +47,7 @@ public interface IObjectFloatGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatGreaterFail.failFloatGreater(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatGreaterFail.failFloatGreater(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectFloatGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is greater than Float '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectFloatGreaterFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatGreaterFail.failFloatGreater(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatGreaterFail.failFloatGreater(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectFloatGreaterCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is greater than Float '%s'(%s). %s.",

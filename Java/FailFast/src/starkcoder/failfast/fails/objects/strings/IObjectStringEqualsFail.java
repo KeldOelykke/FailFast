@@ -47,7 +47,7 @@ public interface IObjectStringEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringEqualsFail.failStringEquals(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringEqualsFail.failStringEquals(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectStringEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is equal to String '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectStringEqualsFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringEqualsFail.failStringEquals(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringEqualsFail.failStringEquals(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectStringEqualsCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is equal to String '%s'(%s). %s.",

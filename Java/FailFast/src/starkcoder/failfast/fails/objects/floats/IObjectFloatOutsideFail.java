@@ -45,7 +45,7 @@ public interface IObjectFloatOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatOutsideFail.failFloatOutside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatOutsideFail.failFloatOutside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectFloatOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is outside Float range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectFloatOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatOutsideFail.failFloatOutside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatOutsideFail.failFloatOutside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectFloatOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is outside Float range [%s;%s]. %s.",

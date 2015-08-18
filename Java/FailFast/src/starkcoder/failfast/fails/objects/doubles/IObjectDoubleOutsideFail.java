@@ -45,7 +45,7 @@ public interface IObjectDoubleOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleOutsideFail.failDoubleOutside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleOutsideFail.failDoubleOutside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectDoubleOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is outside Double range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectDoubleOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectDoubleOutsideFail.failDoubleOutside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectDoubleOutsideFail.failDoubleOutside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectDoubleOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Double '%s'(%s) is outside Double range [%s;%s]. %s.",

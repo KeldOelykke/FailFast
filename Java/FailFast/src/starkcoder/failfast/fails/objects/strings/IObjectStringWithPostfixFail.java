@@ -45,7 +45,7 @@ public interface IObjectStringWithPostfixFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithPostfixFail.failStringWithPostfix(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithPostfixFail.failStringWithPostfix(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectStringWithPostfixCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) has postfix(%s).",
@@ -64,7 +64,7 @@ public interface IObjectStringWithPostfixFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringWithPostfixFail.failStringWithPostfix(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringWithPostfixFail.failStringWithPostfix(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectStringWithPostfixCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) has postfix(%s). %s.",

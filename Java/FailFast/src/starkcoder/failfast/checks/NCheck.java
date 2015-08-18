@@ -44,9 +44,6 @@ public @interface NCheck
 {
   /**
    * The corresponding fail specification to call when check asserts.
-   * <p>
-   * returns fail specification to call when check asserts.
-   * </p>
    */
   public Class<? extends IFail> failSpecificationType();
 }

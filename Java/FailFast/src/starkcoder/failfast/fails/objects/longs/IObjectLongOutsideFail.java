@@ -45,7 +45,7 @@ public interface IObjectLongOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongOutsideFail.failLongOutside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongOutsideFail.failLongOutside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectLongOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is outside Long range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectLongOutsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectLongOutsideFail.failLongOutside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectLongOutsideFail.failLongOutside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectLongOutsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Long '%s'(%s) is outside Long range [%s;%s]. %s.",

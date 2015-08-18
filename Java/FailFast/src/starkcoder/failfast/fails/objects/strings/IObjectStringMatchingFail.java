@@ -45,7 +45,7 @@ public interface IObjectStringMatchingFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringMatchingFail.failStringMatching(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringMatchingFail.failStringMatching(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectStringMatchingCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is a match(%s).",
@@ -64,7 +64,7 @@ public interface IObjectStringMatchingFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectStringMatchingFail.failStringMatching(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectStringMatchingFail.failStringMatching(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectStringMatchingCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: String '%s'(%s) is a match(%s). %s.",

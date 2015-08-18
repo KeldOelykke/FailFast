@@ -45,7 +45,7 @@ public interface IObjectShortNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortNotDefaultFail.failShortNotDefault(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortNotDefaultFail.failShortNotDefault(Object caller, String referenceAName)",
 		checkerSpecificationType = IObjectShortNotDefaultCheck.class, 
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Short '%s'(%s) is NOT default(%s).",
@@ -64,7 +64,7 @@ public interface IObjectShortNotDefaultFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectShortNotDefaultFail.failShortNotDefault(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectShortNotDefaultFail.failShortNotDefault(Object caller, String referenceAName, String message)",
 		checkerSpecificationType = IObjectShortNotDefaultCheck.class,
 		failExceptionType = FailFastException.class, 
 		failMessageFormat = "%s: Short '%s'(%s) is NOT default(%s). %s.",

@@ -45,7 +45,7 @@ public interface IObjectCharacterInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterInsideFail.failCharacterInside(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterInsideFail.failCharacterInside(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectCharacterInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is inside Character range [%s;%s].",
@@ -64,7 +64,7 @@ public interface IObjectCharacterInsideFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectCharacterInsideFail.failCharacterInside(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectCharacterInsideFail.failCharacterInside(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectCharacterInsideCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Character '%s'(%s) is inside Character range [%s;%s]. %s.",

@@ -47,7 +47,7 @@ public interface IObjectFloatSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatSameFail.failFloatSame(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatSameFail.failFloatSame(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectFloatSameCheck.class, 
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is same as Float '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectFloatSameFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectFloatSameFail.failFloatSame(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectFloatSameFail.failFloatSame(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectFloatSameCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: Float '%s'(%s) is same as Float '%s'(%s). %s.",

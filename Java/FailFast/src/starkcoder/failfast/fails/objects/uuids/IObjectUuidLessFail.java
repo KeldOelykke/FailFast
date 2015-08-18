@@ -47,7 +47,7 @@ public interface IObjectUuidLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectUuidLessFail.failUuidLess(Object caller, String referenceAName, String referenceBName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectUuidLessFail.failUuidLess(Object caller, String referenceAName, String referenceBName)",
 			checkerSpecificationType = IObjectUuidLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is less than UUID '%s'(%s).",
@@ -68,7 +68,7 @@ public interface IObjectUuidLessFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectUuidLessFail.failUuidLess(Object caller, String referenceAName, String referenceBName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectUuidLessFail.failUuidLess(Object caller, String referenceAName, String referenceBName, String message)",
 			checkerSpecificationType = IObjectUuidLessCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is less than UUID '%s'(%s). %s.",

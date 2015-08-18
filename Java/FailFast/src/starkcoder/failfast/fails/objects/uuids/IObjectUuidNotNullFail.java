@@ -45,7 +45,7 @@ public interface IObjectUuidNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectUuidNotNullFail.failUuidNotNull(Object caller, String referenceAName)",
+	@NFail(failerSpecificationAndMethodId = "IObjectUuidNotNullFail.failUuidNotNull(Object caller, String referenceAName)",
 			checkerSpecificationType = IObjectUuidNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is NOT null.",
@@ -64,7 +64,7 @@ public interface IObjectUuidNotNullFail extends IFail
 	 * @throws IllegalArgumentException
 	 *             if caller is null
 	 */
-	@NFail(failerSpecificationAndMethodID = "IObjectUuidNotNullFail.failUuidNotNull(Object caller, String referenceAName, String message)",
+	@NFail(failerSpecificationAndMethodId = "IObjectUuidNotNullFail.failUuidNotNull(Object caller, String referenceAName, String message)",
 			checkerSpecificationType = IObjectUuidNotNullCheck.class,
 			failExceptionType = FailFastException.class, 
 			failMessageFormat = "%s: UUID '%s'(%s) is NOT null. %s.",
