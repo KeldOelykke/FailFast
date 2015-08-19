@@ -56,6 +56,7 @@ public interface IObjectDoubleInsideCheck extends ICheck
    *           if caller is null
    */
   @NCheck(failSpecificationType = IObjectDoubleInsideFail.class)
-  boolean isDoubleInside(Object caller, Double referenceA, Double referenceMin, Double referenceMax);
+  boolean isDoubleInside(
+      Object caller, Double referenceA, Double referenceMin, Double referenceMax);
 
 }
