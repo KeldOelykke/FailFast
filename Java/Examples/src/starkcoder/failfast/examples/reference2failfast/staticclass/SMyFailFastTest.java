@@ -1,26 +1,29 @@
-/**
- * The MIT License (MIT)
- * 
- * Copyright (c) 2014-2015 Keld Oelykke
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+// The MIT License (MIT)
+// 
+// Copyright (c) 2014-2015 Keld Oelykke
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
 package starkcoder.failfast.examples.reference2failfast.staticclass;
 
 import static org.junit.Assert.assertTrue;
@@ -49,48 +52,55 @@ import starkcoder.failfast.fails.FailFastException;
  * <p>
  * The static reference is cleared at application shutdown.
  * </p>
+ * 
  * @author Keld Oelykke
  *
  */
-public class SMyFailFastTest {
+public class SMyFailFastTest
+{
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-		// this would be in you application startup section
-		IMyCallContractor callContractor = new MyCallContractor();
-		IMyFailFast myFailFastOrNull = new MyFailFast(new MyChecker(callContractor), new MyFailer(callContractor), callContractor);
-		SMyFailFast.setMyFailFastOrNull(myFailFastOrNull);
-	}
+  /**
+   * Setup fail-fast instances.
+   */
+  @Before
+  public void setUp() throws Exception
+  {
+    // this would be in you application startup section
+    IMyCallContractor callContractor = new MyCallContractor();
+    IMyFailFast myFailFastOrNull = new MyFailFast(new MyChecker(callContractor), new MyFailer(
+        callContractor), callContractor);
+    SMyFailFast.setMyFailFastOrNull(myFailFastOrNull);
+  }
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		// this would be in you application shutdown section
-		SMyFailFast.setMyFailFastOrNull(null);
-	}
+  /**
+   * Clear fail-fast instances.
+   */
+  @After
+  public void tearDown() throws Exception
+  {
+    // this would be in you application shutdown section
+    SMyFailFast.setMyFailFastOrNull(null);
+  }
 
-	@Test(expected=FailFastException.class)
-	public void testObjectIsNull() {
-		Object referenceNull = null;
-		if(SMyFailFast.getMyChecker().isObjectNull(this, referenceNull))
-		{
-			SMyFailFast.getMyFailer().failObjectNull(this, "referenceNull");
-		}
-	}
-	
-	@Test
-	public void testObjectIsNotNull() {
-		Object referenceNotNull = new Object();
-		if(SMyFailFast.getMyChecker().isObjectNull(this, referenceNotNull))
-		{
-			SMyFailFast.getMyFailer().failObjectNull(this, "referenceNotNull");
-		}
-		assertTrue("Expected referenceNotNull to pass the null check", true);
-	}
+  @Test(expected = FailFastException.class)
+  public void testObjectIsNull()
+  {
+    Object referenceNull = null;
+    if (SMyFailFast.getMyChecker().isObjectNull(this, referenceNull))
+    {
+      SMyFailFast.getMyFailer().failObjectNull(this, "referenceNull");
+    }
+  }
+
+  @Test
+  public void testObjectIsNotNull()
+  {
+    Object referenceNotNull = new Object();
+    if (SMyFailFast.getMyChecker().isObjectNull(this, referenceNotNull))
+    {
+      SMyFailFast.getMyFailer().failObjectNull(this, "referenceNotNull");
+    }
+    assertTrue("Expected referenceNotNull to pass the null check", true);
+  }
 
 }
