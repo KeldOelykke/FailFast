@@ -1,27 +1,30 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+// The MIT License (MIT)
+// 
+// Copyright (c) 2014-2015 Keld Oelykke
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
 package starkcoder.failfast.unit.objects.enums;
-/**
- * The MIT License (MIT)
- * 
- * Copyright (c) 2014-2015 Keld Oelykke
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -47,216 +50,237 @@ import starkcoder.failfast.fails.IFailer;
 import starkcoder.failfast.templates.comparables.IComparableGreaterOrEqualsTest;
 
 /**
- * Fail-fast unit test of {link:IPrimitiveEnumGreaterOrEqualsCheck} and {link:IPrimitiveEnumGreaterOrEqualsFail}.
+ * Fail-fast unit test of {link:IPrimitiveEnumGreaterOrEqualsCheck} and
+ * {link:IPrimitiveEnumGreaterOrEqualsFail}.
  * 
  * @author Keld Oelykke
  */
-public class EnumGreaterOrEqualsTest implements IComparableGreaterOrEqualsTest<EBar> {
+public class EnumGreaterOrEqualsTest implements IComparableGreaterOrEqualsTest<EBar>
+{
 
-	private IChecker checker;
-	private IFailer failer;
-	private String toString = null;
-	
-	@Override
-	public String toString() {
-		return this.toString;
-	}
+  private IChecker checker;
+  private IFailer failer;
+  private String toString = null;
 
-	@Rule
-	public TestWatcher watcher = new TestWatcher() {
-	   protected void starting(Description description) {
-		   toString = description.getTestClass().getSimpleName() + "." + description.getMethodName();
-	   }
-	};
+  @Override
+  public String toString()
+  {
+    return this.toString;
+  }
 
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-		// this would be in you application startup section
-		ICallContractor callContractor = new CallContractor();
-		IFailFast failFastOrNull = new FailFast(new Checker(callContractor), new Failer(callContractor), callContractor);
-		SFailFast.setFailFastOrNull(failFastOrNull);
-		this.checker = SFailFast.getChecker();
-		this.failer = SFailFast.getFailer();
-	}
+  @Rule
+  public TestWatcher watcher = new TestWatcher()
+  {
+    protected void starting(Description description)
+    {
+      toString = description.getTestClass().getSimpleName() + "." + description.getMethodName();
+    }
+  };
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-		// this would be in you application shutdown section
-		SFailFast.setFailFastOrNull(null);
-		this.checker = null;
-		this.failer = null;
-	}
+  /**
+   * Setup FailFast instances.
+   */
+  @Before
+  public void setUp()
+  {
+    // this would be in you application startup section
+    ICallContractor callContractor = new CallContractor();
+    IFailFast failFastOrNull = new FailFast(new Checker(callContractor),
+        new Failer(callContractor), callContractor);
+    SFailFast.setFailFastOrNull(failFastOrNull);
+    this.checker = SFailFast.getChecker();
+    this.failer = SFailFast.getFailer();
+  }
 
-	// 1st - caller checks
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterOrEqualsCheckerCallerIsNull() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_B;
-		if(checker.isEnumGreaterOrEquals(null, valueA, valueB))
-		{
-			failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
-		}
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testComparableGreaterOrEqualsFailerCallerIsNull() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_B;
-		if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-		{
-			failer.failEnumGreaterOrEquals(null, "valueA", "valueB");
-		}
-	}
-	
-	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterOrEqualsFailerCallerIsWrong() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_B;
-		if(checker.isEnumGreaterOrEquals(new String("Foo"), valueA, valueB))
-		{
-			failer.failEnumGreaterOrEquals(new String("Bar"), "valueA", "valueB");
-		}
-	}
-	
-	
-	// 2nd - mismatch calls
-	
-	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterOrEqualsMismatchCheckCheck() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_B;
-		if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-		{
-			checker.isEnumGreaterOrEquals(this, valueA, valueB);
-		}
-	}
-	
-	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterOrEqualsMismatchFail() {
-		failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
-	}
+  /**
+   * Clear FailFast instances.
+   */
+  @After
+  public void tearDown()
+  {
+    // this would be in you application shutdown section
+    SFailFast.setFailFastOrNull(null);
+    this.checker = null;
+    this.failer = null;
+  }
 
-	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterOrEqualsMismatchWrongCheck() {
-		EBar valueA = EBar.VALUE_A;
-		EBar valueB = EBar.VALUE_B;
-		if(checker.isEnumLess(this, valueA, valueB)) // wrong call
-		{
-			failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
-		}
-	}
-	
-	@Test(expected=IllegalStateException.class)
-	public void testComparableGreaterOrEqualsMismatchWrongFail() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_B;
-		if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-		{
-			failer.failEnumLess(this, "valueA", "valueB"); // wrong call
-		}
-	}
-	
-	
-	// 3rd - normal cases
-	
-	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailNoMessage() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_B;
-		try
-		{
-			if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-			{
-				failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
+  // 1st - caller checks
 
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testComparableGreaterFailMessage() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_B;
-		try
-		{
-			if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-			{
-				failer.failEnumGreaterOrEquals(this, "valueA", "valueB", "Extra info goes here");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
+  @Test(expected = IllegalArgumentException.class)
+  public void testComparableGreaterOrEqualsCheckerCallerIsNull()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_B;
+    if (checker.isEnumGreaterOrEquals(null, valueA, valueB))
+    {
+      failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
+    }
+  }
 
-		}
-	}
+  @Test(expected = IllegalArgumentException.class)
+  public void testComparableGreaterOrEqualsFailerCallerIsNull()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_B;
+    if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+    {
+      failer.failEnumGreaterOrEquals(null, "valueA", "valueB");
+    }
+  }
 
-	@Test(expected=FailFastException.class)
-	public void testComparableEqualsFailNoMessage() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_C;
-		try
-		{
-			if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-			{
-				failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
+  @Test(expected = IllegalStateException.class)
+  public void testComparableGreaterOrEqualsFailerCallerIsWrong()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_B;
+    if (checker.isEnumGreaterOrEquals(new String("Foo"), valueA, valueB))
+    {
+      failer.failEnumGreaterOrEquals(new String("Bar"), "valueA", "valueB");
+    }
+  }
 
-		}
-	}
-	
-	@Test(expected=FailFastException.class)
-	public void testComparableEqualsFailMessage() {
-		EBar valueA = EBar.VALUE_C;
-		EBar valueB = EBar.VALUE_C;
-		try
-		{
-			if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-			{
-				failer.failEnumGreaterOrEquals(this, "valueA", "valueB", "Extra info goes here");
-			}
-		}
-		catch(FailFastException failFastException)
-		{
-			assertEquals("Expected registered exception in failer", failFastException, failer.getFailFastExceptionOrNull());
-			System.out.println(failFastException.getMessage());
-			throw failFastException;
+  // 2nd - mismatch calls
 
-		}
-	}
-	
-	@Test
-	public void testComparableGreaterOrEqualsNoFail() {
-		EBar valueA = EBar.VALUE_A;
-		EBar valueB = EBar.VALUE_B;
-		if(checker.isEnumGreaterOrEquals(this, valueA, valueB))
-		{
-			failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
-		}
-		assertTrue("Expected valueA & valueB to pass the equals check", true);
-		assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
-	}
+  @Test(expected = IllegalStateException.class)
+  public void testComparableGreaterOrEqualsMismatchCheckCheck()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_B;
+    if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+    {
+      checker.isEnumGreaterOrEquals(this, valueA, valueB);
+    }
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testComparableGreaterOrEqualsMismatchFail()
+  {
+    failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testComparableGreaterOrEqualsMismatchWrongCheck()
+  {
+    EBar valueA = EBar.VALUE_A;
+    EBar valueB = EBar.VALUE_B;
+    if (checker.isEnumLess(this, valueA, valueB)) // wrong call
+    {
+      failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
+    }
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testComparableGreaterOrEqualsMismatchWrongFail()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_B;
+    if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+    {
+      failer.failEnumLess(this, "valueA", "valueB"); // wrong call
+    }
+  }
+
+  // 3rd - normal cases
+
+  @Test(expected = FailFastException.class)
+  public void testComparableGreaterFailNoMessage()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_B;
+    try
+    {
+      if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+      {
+        failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+
+    }
+  }
+
+  @Test(expected = FailFastException.class)
+  public void testComparableGreaterFailMessage()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_B;
+    try
+    {
+      if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+      {
+        failer.failEnumGreaterOrEquals(this, "valueA", "valueB", "Extra info goes here");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+
+    }
+  }
+
+  @Test(expected = FailFastException.class)
+  public void testComparableEqualsFailNoMessage()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_C;
+    try
+    {
+      if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+      {
+        failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+
+    }
+  }
+
+  @Test(expected = FailFastException.class)
+  public void testComparableEqualsFailMessage()
+  {
+    EBar valueA = EBar.VALUE_C;
+    EBar valueB = EBar.VALUE_C;
+    try
+    {
+      if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+      {
+        failer.failEnumGreaterOrEquals(this, "valueA", "valueB", "Extra info goes here");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+
+    }
+  }
+
+  @Test
+  public void testComparableGreaterOrEqualsNoFail()
+  {
+    EBar valueA = EBar.VALUE_A;
+    EBar valueB = EBar.VALUE_B;
+    if (checker.isEnumGreaterOrEquals(this, valueA, valueB))
+    {
+      failer.failEnumGreaterOrEquals(this, "valueA", "valueB");
+    }
+    assertTrue("Expected valueA & valueB to pass the equals check", true);
+    assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+  }
 
 }

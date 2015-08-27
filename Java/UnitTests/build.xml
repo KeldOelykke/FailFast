@@ -11,7 +11,11 @@
 	<property name="dist.dir" value="dist" />
 	<property name="jar.dir" value="${bin.dir}/jar" />
     <property name="doc.dir" value="${bin.dir}/doc" />
+	<property name="checkstyle.dir" value="${bin.dir}/checkstyle" />
 	<property name="api.dir" value="${doc.dir}/api" />
+	
+	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+	         classpath="${3rd.dir}/checkstyle-6.9/lib/checkstyle-6.9-all.jar"/>
 	
     <property name="main-class"	value="starkcoder.failfast.SFailFast" />
 	
@@ -56,8 +60,22 @@
 	<!-- ================================= 
           target: build              
          ================================= -->
-    <target name="build" depends="init,UnitTests.build" description="Builds the code">
+    <target name="build" depends="init,UnitTests.build,checkstyle" description="Builds the code">
     </target>
+
+	<!-- ================================= 
+          target: checkstyle              
+         ================================= -->
+    <target name="checkstyle" depends="init" description="Runs checkstyle against the code">
+        
+    	<mkdir dir="${checkstyle.dir}"/>
+
+    	<checkstyle config="${config.dir}/Checkstyle/checkstyle_googlebased_changed.xml">
+    	  <fileset dir="${src.dir}" includes="**/*.java"/>
+    	  <formatter type="plain"/>
+    	  <!-- <formatter type="xml" toFile="${checkstyle.dir}/checkstyle_errors.xml"/> -->
+    	</checkstyle>
+     </target>	
 	
    	<!-- ================================= 
          target: jar              

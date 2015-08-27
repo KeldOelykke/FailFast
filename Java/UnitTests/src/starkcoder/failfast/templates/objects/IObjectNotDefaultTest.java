@@ -1,26 +1,29 @@
-/**
- * The MIT License (MIT)
- * 
- * Copyright (c) 2014-2015 Keld Oelykke
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+// The MIT License (MIT)
+// 
+// Copyright (c) 2014-2015 Keld Oelykke
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
 package starkcoder.failfast.templates.objects;
 
 import org.junit.Test;
@@ -36,49 +39,48 @@ import starkcoder.failfast.fails.FailFastException;
  * @author Keld Oelykke
  *
  */
-public interface IObjectNotDefaultTest<T extends Object> {
+public interface IObjectNotDefaultTest<T extends Object>
+{
 
-	// 1st - caller checks
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testObjectNotDefaultCheckerCallerIsNull();
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void testObjectNotDefaultFailerCallerIsNull();
-	
-	@Test(expected=IllegalStateException.class)
-	public void testObjectFailerCallerIsWrong();
-	
-	
-	// 2nd - mismatch calls
-	
-	@Test(expected=IllegalStateException.class)
-	public void testObjectNotDefaultMismatchCheckCheck();
-	
-	@Test(expected=IllegalStateException.class)
-	public void testObjectNotDefaultMismatchFail();
+  // 1st - caller checks
 
-	@Test(expected=IllegalStateException.class)
-	public void testObjectNotDefaultMismatchWrongCheck();
-	
-	@Test(expected=IllegalStateException.class)
-	public void testObjectNotDefaultMismatchWrongFail();
-	
-	
-	// 3rd - normal cases
-	
-	@Test(expected=FailFastException.class)
-	public void testObjectNotDefaultFailNoMessage();
-	
-	@Test(expected=FailFastException.class)
-	public void testObjectNotDefaultFailMessage();
-	
-	@Test(expected=FailFastException.class)
-	public void testObjectNullFail();
+  @Test(expected = IllegalArgumentException.class)
+  public void testObjectNotDefaultCheckerCallerIsNull();
 
-	@Test
-	public void testObjectDefaultNoFail();
-	
-	@Test
-	public void testObjectDefaultChangedNoFail();
+  @Test(expected = IllegalArgumentException.class)
+  public void testObjectNotDefaultFailerCallerIsNull();
+
+  @Test(expected = IllegalStateException.class)
+  public void testObjectFailerCallerIsWrong();
+
+  // 2nd - mismatch calls
+
+  @Test(expected = IllegalStateException.class)
+  public void testObjectNotDefaultMismatchCheckCheck();
+
+  @Test(expected = IllegalStateException.class)
+  public void testObjectNotDefaultMismatchFail();
+
+  @Test(expected = IllegalStateException.class)
+  public void testObjectNotDefaultMismatchWrongCheck();
+
+  @Test(expected = IllegalStateException.class)
+  public void testObjectNotDefaultMismatchWrongFail();
+
+  // 3rd - normal cases
+
+  @Test(expected = FailFastException.class)
+  public void testObjectNotDefaultFailNoMessage();
+
+  @Test(expected = FailFastException.class)
+  public void testObjectNotDefaultFailMessage();
+
+  @Test(expected = FailFastException.class)
+  public void testObjectNullFail();
+
+  @Test
+  public void testObjectDefaultNoFail();
+
+  @Test
+  public void testObjectDefaultChangedNoFail();
 }
