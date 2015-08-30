@@ -109,9 +109,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testComparableOutsideCheckerCallerIsNull()
   {
-    char valueA = 'æ';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '0';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterOutside(null, valueA, valueMin, valueMax))
     {
       failer.failCharacterOutside(this, "valueA");
@@ -121,9 +121,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testComparableOutsideFailerCallerIsNull()
   {
-    char valueA = 'æ';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '0';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterOutside(this, valueA, valueMin, valueMax))
     {
       failer.failCharacterOutside(null, "valueA");
@@ -133,9 +133,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableOutsideFailerCallerIsWrong()
   {
-    char valueA = 'æ';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '0';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterOutside(new String("Foo"), valueA, valueMin, valueMax))
     {
       failer.failCharacterOutside(new String("Bar"), "valueA");
@@ -147,9 +147,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableOutsideMismatchCheckCheck()
   {
-    char valueA = 'æ';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '0';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterOutside(this, valueA, valueMin, valueMax))
     {
       checker.isCharacterOutside(this, valueA, valueMin, valueMax);
@@ -165,9 +165,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableOutsideMismatchWrongCheck()
   {
-    char valueA = 'å';
-    char valueMin = '€';
-    char valueMax = 'å';
+    char valueA = '2';
+    char valueMin = '3';
+    char valueMax = '2';
     if (checker.isCharacterInside(this, valueA, valueMin, valueMax)) // wrong call
     {
       failer.failCharacterOutside(this, "valueA");
@@ -177,9 +177,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableOutsideMismatchWrongFail()
   {
-    char valueA = 'æ';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '0';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterOutside(this, valueA, valueMin, valueMax))
     {
       failer.failCharacterInside(this, "valueA"); // wrong call
@@ -192,8 +192,8 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   public void testComparableOutsideFailNoMessage()
   {
     char valueA = 121;
-    char valueMin = 'æ';
-    char valueMax = 'ø';
+    char valueMin = '0';
+    char valueMax = '1';
     try
     {
       if (checker.isCharacterOutside(this, valueA, valueMin, valueMax))
@@ -214,9 +214,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test(expected = FailFastException.class)
   public void testComparableOutsideFailMessage()
   {
-    char valueA = 'æ';
-    char valueMin = 'å';
-    char valueMax = 'ø';
+    char valueA = '0';
+    char valueMin = '2';
+    char valueMax = '1';
     try
     {
       if (checker.isCharacterOutside(this, valueA, valueMin, valueMax))
@@ -237,9 +237,9 @@ public class CharacterOutsideTest implements IComparableOutsideTest<Character>
   @Test
   public void testComparableOutsideNoFail()
   {
-    char valueA = 'ø';
-    char valueMin = 'ø';
-    char valueMax = 'å';
+    char valueA = '1';
+    char valueMin = '1';
+    char valueMax = '2';
     if (checker.isCharacterOutside(this, valueA, valueMin, valueMax))
     {
       failer.failCharacterOutside(this, "valueA");

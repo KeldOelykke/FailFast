@@ -108,9 +108,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testComparableInsideCheckerCallerIsNull()
   {
-    char valueA = 'ø';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '1';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterInside(null, valueA, valueMin, valueMax))
     {
       failer.failCharacterInside(this, "valueA");
@@ -120,9 +120,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testComparableInsideFailerCallerIsNull()
   {
-    char valueA = 'ø';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '1';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterInside(this, valueA, valueMin, valueMax))
     {
       failer.failCharacterInside(null, "valueA");
@@ -132,9 +132,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableInsideFailerCallerIsWrong()
   {
-    char valueA = 'ø';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '1';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterInside(new String("Foo"), valueA, valueMin, valueMax))
     {
       failer.failCharacterInside(new String("Bar"), "valueA");
@@ -146,9 +146,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableInsideMismatchCheckCheck()
   {
-    char valueA = 'ø';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '1';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterInside(this, valueA, valueMin, valueMax))
     {
       checker.isCharacterInside(this, valueA, valueMin, valueMax);
@@ -164,9 +164,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableInsideMismatchWrongCheck()
   {
-    char valueA = 'ø';
-    char valueMin = '€';
-    char valueMax = 'å';
+    char valueA = '1';
+    char valueMin = '3';
+    char valueMax = '2';
     if (checker.isCharacterOutside(this, valueA, valueMin, valueMax)) // wrong call
     {
       failer.failCharacterInside(this, "valueA");
@@ -176,9 +176,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableInsideMismatchWrongFail()
   {
-    char valueA = 'ø';
-    char valueMin = 'ø';
-    char valueMax = 'ø';
+    char valueA = '1';
+    char valueMin = '1';
+    char valueMax = '1';
     if (checker.isCharacterInside(this, valueA, valueMin, valueMax))
     {
       failer.failCharacterOutside(this, "valueA"); // wrong call
@@ -190,9 +190,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = FailFastException.class)
   public void testComparableInsideFailNoMessage()
   {
-    char valueA = 'ø';
-    char valueMin = 'æ';
-    char valueMax = 'å';
+    char valueA = '1';
+    char valueMin = '0';
+    char valueMax = '2';
     try
     {
       if (checker.isCharacterInside(this, valueA, valueMin, valueMax))
@@ -213,9 +213,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test(expected = FailFastException.class)
   public void testComparableInsideFailMessage()
   {
-    char valueA = 'ø';
-    char valueMin = 'å';
-    char valueMax = 'æ';
+    char valueA = '1';
+    char valueMin = '2';
+    char valueMax = '0';
     try
     {
       if (checker.isCharacterInside(this, valueA, valueMin, valueMax))
@@ -236,9 +236,9 @@ public class CharacterInsideTest implements IComparableInsideTest<Character>
   @Test
   public void testComparableInsideNoFail()
   {
-    char valueA = '€';
-    char valueMin = 'ø';
-    char valueMax = 'å';
+    char valueA = '3';
+    char valueMin = '1';
+    char valueMax = '2';
     if (checker.isCharacterInside(this, valueA, valueMin, valueMax))
     {
       failer.failCharacterInside(this, "valueA");

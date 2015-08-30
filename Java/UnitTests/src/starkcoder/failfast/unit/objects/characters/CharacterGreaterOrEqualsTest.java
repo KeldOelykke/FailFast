@@ -109,8 +109,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = IllegalArgumentException.class)
   public void testComparableGreaterOrEqualsCheckerCallerIsNull()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterGreaterOrEquals(null, valueA, valueB))
     {
       failer.failCharacterGreaterOrEquals(this, "valueA", "valueB");
@@ -120,8 +120,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = IllegalArgumentException.class)
   public void testComparableGreaterOrEqualsFailerCallerIsNull()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
     {
       failer.failCharacterGreaterOrEquals(null, "valueA", "valueB");
@@ -131,8 +131,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = IllegalStateException.class)
   public void testComparableGreaterOrEqualsFailerCallerIsWrong()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterGreaterOrEquals(new String("Foo"), valueA, valueB))
     {
       failer.failCharacterGreaterOrEquals(new String("Bar"), "valueA", "valueB");
@@ -144,8 +144,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = IllegalStateException.class)
   public void testComparableGreaterOrEqualsMismatchCheckCheck()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
     {
       checker.isCharacterGreaterOrEquals(this, valueA, valueB);
@@ -161,8 +161,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = IllegalStateException.class)
   public void testComparableGreaterOrEqualsMismatchWrongCheck()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLess(this, valueA, valueB)) // wrong call
     {
       failer.failCharacterGreaterOrEquals(this, "valueA", "valueB");
@@ -172,8 +172,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = IllegalStateException.class)
   public void testComparableGreaterOrEqualsMismatchWrongFail()
   {
-    char valueA = 'ø';
-    char valueB = 'æ';
+    char valueA = '1';
+    char valueB = '0';
     if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
     {
       failer.failCharacterLess(this, "valueA", "valueB"); // wrong call
@@ -185,8 +185,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = FailFastException.class)
   public void testComparableGreaterFailNoMessage()
   {
-    char valueA = '€';
-    char valueB = 'å';
+    char valueA = '3';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
@@ -207,8 +207,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = FailFastException.class)
   public void testComparableGreaterFailMessage()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     try
     {
       if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
@@ -229,8 +229,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = FailFastException.class)
   public void testComparableEqualsFailNoMessage()
   {
-    char valueA = 'å';
-    char valueB = 'å';
+    char valueA = '2';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
@@ -251,8 +251,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test(expected = FailFastException.class)
   public void testComparableEqualsFailMessage()
   {
-    char valueA = '€';
-    char valueB = '€';
+    char valueA = '3';
+    char valueB = '3';
     try
     {
       if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
@@ -273,8 +273,8 @@ public class CharacterGreaterOrEqualsTest implements IComparableGreaterOrEqualsT
   @Test
   public void testComparableGreaterOrEqualsNoFail()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterGreaterOrEquals(this, valueA, valueB))
     {
       failer.failCharacterGreaterOrEquals(this, "valueA", "valueB");

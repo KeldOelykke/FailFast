@@ -108,8 +108,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testComparableLessCheckerCallerIsNull()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLess(null, valueA, valueB))
     {
       failer.failCharacterLess(this, "valueA", "valueB");
@@ -119,8 +119,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testComparableLessFailerCallerIsNull()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLess(this, valueA, valueB))
     {
       failer.failCharacterLess(null, "valueA", "valueB");
@@ -130,8 +130,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableLessFailerCallerIsWrong()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLess(new String("Foo"), valueA, valueB))
     {
       failer.failCharacterLess(new String("Bar"), "valueA", "valueB");
@@ -143,8 +143,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableLessMismatchCheckCheck()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLess(this, valueA, valueB))
     {
       checker.isCharacterLess(this, valueA, valueB);
@@ -160,8 +160,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableLessMismatchWrongCheck()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterGreater(this, valueA, valueB)) // wrong call
     {
       failer.failCharacterLess(this, "valueA", "valueB");
@@ -171,8 +171,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testComparableLessMismatchWrongFail()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     if (checker.isCharacterLess(this, valueA, valueB))
     {
       failer.failCharacterGreater(this, "valueA", "valueB"); // wrong call
@@ -184,8 +184,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = FailFastException.class)
   public void testComparableLessFailNoMessage()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterLess(this, valueA, valueB))
@@ -206,8 +206,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test(expected = FailFastException.class)
   public void testComparableLessFailMessage()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterLess(this, valueA, valueB))
@@ -228,8 +228,8 @@ public class CharacterLessTest implements IComparableLessTest<Character>
   @Test
   public void testComparableLessNoFail()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterLess(this, valueA, valueB))
     {
       failer.failCharacterLess(this, "valueA", "valueB");

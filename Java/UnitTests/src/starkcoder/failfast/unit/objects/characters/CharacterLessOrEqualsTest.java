@@ -109,8 +109,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = IllegalArgumentException.class)
   public void testComparableLessOrEqualsCheckerCallerIsNull()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLessOrEquals(null, valueA, valueB))
     {
       failer.failCharacterLessOrEquals(this, "valueA", "valueB");
@@ -120,8 +120,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = IllegalArgumentException.class)
   public void testComparableLessOrEqualsFailerCallerIsNull()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLessOrEquals(this, valueA, valueB))
     {
       failer.failCharacterLessOrEquals(null, "valueA", "valueB");
@@ -131,8 +131,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = IllegalStateException.class)
   public void testComparableLessOrEqualsFailerCallerIsWrong()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLessOrEquals(new String("Foo"), valueA, valueB))
     {
       failer.failCharacterLessOrEquals(new String("Bar"), "valueA", "valueB");
@@ -144,8 +144,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = IllegalStateException.class)
   public void testComparableLessOrEqualsMismatchCheckCheck()
   {
-    char valueA = 'æ';
-    char valueB = 'ø';
+    char valueA = '0';
+    char valueB = '1';
     if (checker.isCharacterLessOrEquals(this, valueA, valueB))
     {
       checker.isCharacterLessOrEquals(this, valueA, valueB);
@@ -161,8 +161,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = IllegalStateException.class)
   public void testComparableLessOrEqualsMismatchWrongCheck()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterGreater(this, valueA, valueB)) // wrong call
     {
       failer.failCharacterLessOrEquals(this, "valueA", "valueB");
@@ -172,8 +172,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = IllegalStateException.class)
   public void testComparableLessOrEqualsMismatchWrongFail()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     if (checker.isCharacterLessOrEquals(this, valueA, valueB))
     {
       failer.failCharacterGreater(this, "valueA", "valueB"); // wrong call
@@ -185,8 +185,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = FailFastException.class)
   public void testComparableLessFailNoMessage()
   {
-    char valueA = 'ø';
-    char valueB = 'ø';
+    char valueA = '1';
+    char valueB = '1';
     try
     {
       if (checker.isCharacterLessOrEquals(this, valueA, valueB))
@@ -207,8 +207,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = FailFastException.class)
   public void testComparableLessFailMessage()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterLessOrEquals(this, valueA, valueB))
@@ -229,8 +229,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = FailFastException.class)
   public void testComparableEqualsFailNoMessage()
   {
-    char valueA = 'å';
-    char valueB = 'å';
+    char valueA = '2';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterLessOrEquals(this, valueA, valueB))
@@ -251,8 +251,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test(expected = FailFastException.class)
   public void testComparableEqualsFailMessage()
   {
-    char valueA = 'å';
-    char valueB = 'å';
+    char valueA = '2';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterLessOrEquals(this, valueA, valueB))
@@ -273,8 +273,8 @@ public class CharacterLessOrEqualsTest implements IComparableLessOrEqualsTest<Ch
   @Test
   public void testComparableLessOrEqualsNoFail()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     if (checker.isCharacterLessOrEquals(this, valueA, valueB))
     {
       failer.failCharacterLessOrEquals(this, "valueA", "valueB");

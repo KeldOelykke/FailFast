@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." name="starkcoder-failfast-unittests">
+<project basedir="." name="starkcoder-failfast-unittests" xmlns:jacoco="antlib:org.jacoco.ant">
 	
 	<import file="build-eclipse-generated.xml"/>
 	
@@ -14,10 +14,16 @@
 	<property name="jar.dir" value="${bin.dir}/jar" />
     <property name="doc.dir" value="${bin.dir}/doc" />
 	<property name="checkstyle.dir" value="${bin.dir}/checkstyle" />
+	<property name="jacoco.dir" value="${bin.dir}/jacoco" />
 	<property name="api.dir" value="${doc.dir}/api" />
 	
 	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
 	         classpath="${3rd.dir}/checkstyle-6.9/lib/checkstyle-6.9-all.jar"/>
+	
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="${3rd.dir}/jacoco-0.7.5.201505241946/lib/jacocoant.jar"/>
+    </taskdef>
+
 	
     <property name="main-class"	value="starkcoder.failfast.SFailFast" />
 	
@@ -180,7 +186,68 @@
 	<!-- ================================= 
           target: unitreport              
          ================================= -->
-    <target name="unitreport" depends="build, UnitTests.UnitTests, UnitTests.junitreport" description="Runs tests and builds a unit test report">
+    <target name="unitreport" depends="build, unitcoveragereport, UnitTests.junitreport" description="Runs tests and builds a unit test report">
+    </target>
+	
+    
+	<!-- ================================= 
+          target: unitcoverage              
+         ================================= -->
+    <target name="unitcoverage" depends="build" description="Runs tests and records coverage">
+    	
+        <mkdir dir="${junit.output.dir}"/>
+        
+    	<jacoco:coverage destfile="${jacoco.dir}/jacoco.exec">
+			<junit fork="true" forkmode="once">
+				<formatter type="xml"/>
+    	        <!--<test name="starkcoder.failfast.unit.objects.ObjectNullTest"/> -->
+				<batchtest fork="yes" todir="${junit.output.dir}">
+					<fileset dir="${src.dir}">
+						<include name="**/*Test.java"/>
+						<exclude name="**/templates/**/*.java"/>
+					</fileset>
+				</batchtest>
+    	        <classpath>
+    	        	<path refid="UnitTests.classpath"/>
+    	        </classpath>
+    	    </junit>
+    	</jacoco:coverage>
+    	
+    </target>
+	
+	<!-- ================================= 
+          target: unitcoveragereport              
+         ================================= -->
+    <target name="unitcoveragereport" depends="unitcoverage" description="Creates report from unitcoverage">
+    	
+    	<jacoco:report>
+    	                        
+    	    <executiondata>
+    	        <file file="${jacoco.dir}/jacoco.exec"/>
+    	    </executiondata>
+    	                        
+    	    <structure name="UnitTests Project">
+    	        <classfiles>
+    	            <fileset dir="${FailFast.location}/bin"/>
+    	        </classfiles>
+    	        <sourcefiles encoding="UTF-8">
+    	            <fileset dir="${FailFast.location}/src"/>
+    	        </sourcefiles>
+    	    </structure>
+    		
+        	<check>
+        	    <rule element="CLASS">
+        	        <limit counter="LINE" value="COVEREDRATIO" minimum="0.10"/>
+        	        <limit counter="CLASS" value="MISSEDCOUNT" maximum="0"/>
+        	    </rule>
+        	</check>
+    	                        
+    	    <html destdir="${jacoco.dir}"/>
+    	                        
+    	</jacoco:report>
+    	
+
+    	
     </target>
 	
 </project>

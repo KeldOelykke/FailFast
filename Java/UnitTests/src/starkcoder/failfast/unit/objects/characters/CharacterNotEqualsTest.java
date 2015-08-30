@@ -109,8 +109,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testObjectNotEqualsCheckerCallerIsNull()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     if (checker.isCharacterNotEquals(null, valueA, valueB))
     {
       failer.failCharacterNotEquals(this, "valueA", "valueB");
@@ -120,8 +120,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = IllegalArgumentException.class)
   public void testObjectNotEqualsFailerCallerIsNull()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     if (checker.isCharacterNotEquals(this, valueA, valueB))
     {
       failer.failCharacterNotEquals(null, "valueA", "valueB");
@@ -132,8 +132,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testObjectNotEqualsFailerCallerIsWrong()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     if (checker.isCharacterNotEquals(new String("Foo"), valueA, valueB))
     {
       failer.failCharacterNotEquals(new String("Bar"), "valueA", "valueB");
@@ -145,8 +145,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testObjectNotEqualsMismatchCheckCheck()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     if (checker.isCharacterNotEquals(this, valueA, valueB))
     {
       checker.isCharacterNotEquals(this, valueA, valueB);
@@ -162,8 +162,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testObjectNotEqualsMismatchWrongCheck()
   {
-    char valueA = 'ø';
-    char valueB = 'ø';
+    char valueA = '1';
+    char valueB = '1';
     if (checker.isCharacterEquals(this, valueA, valueB)) // wrong call
     {
       failer.failCharacterNotEquals(this, "valueA", "valueB");
@@ -173,8 +173,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = IllegalStateException.class)
   public void testObjectNotEqualsMismatchWrongFail()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     if (checker.isCharacterNotEquals(this, valueA, valueB))
     {
       failer.failCharacterEquals(this, "valueA", "valueB"); // wrong call
@@ -186,8 +186,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = FailFastException.class)
   public void testObjectNotEqualsFailNoMessage()
   {
-    char valueA = 'ø';
-    char valueB = 'å';
+    char valueA = '1';
+    char valueB = '2';
     try
     {
       if (checker.isCharacterNotEquals(this, valueA, valueB))
@@ -208,8 +208,8 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test(expected = FailFastException.class)
   public void testObjectNotEqualsFailMessage()
   {
-    char valueA = 'å';
-    char valueB = 'ø';
+    char valueA = '2';
+    char valueB = '1';
     try
     {
       if (checker.isCharacterNotEquals(this, valueA, valueB))
@@ -230,7 +230,7 @@ public class CharacterNotEqualsTest implements IObjectNotEqualsTest<Character>
   @Test
   public void testObjectNotEqualsNoFail()
   {
-    char valueA = 'å';
+    char valueA = '2';
     char valueB = valueA;
     if (checker.isCharacterNotEquals(this, valueA, valueB))
     {
