@@ -3,8 +3,8 @@
 	
 	<import file="build-eclipse-generated.xml"/>
 	
-	<property name="version.major" value="0"/> 
-	<property name="version.minor" value="0"/>
+	<property name="version.major" value="1"/> 
+	<property name="version.minor" value="3"/>
 	
 	<property name="3rd.dir" value="../3rd" />
 	<property name="config.dir" value="../Config" />
@@ -93,6 +93,7 @@
 	<property name="dist.html.heading" value="&lt;h3&gt;FailFast v.${version.major}.${version.minor}&lt;/h3&gt;" />
 	<property name="dist.html.apistart" value="&lt;a href='api/index.html'&gt;api (javadoc)&lt;/a&gt;" />
 	<property name="dist.html.unitstart" value="&lt;a href='unit/index.html'&gt;unit tests (junit)&lt;/a&gt;" />
+	<property name="dist.html.unitcoveragestart" value="&lt;a href='unitcoverage/index.html'&gt;unit test coverage (cobertura)&lt;/a&gt;" />
 	<property name="dist.html.examplesstart" value="&lt;a href='examples/index.html'&gt;examples tests (junit)&lt;/a&gt;" />
 	<property name="dist.html.break" value="&lt;br/&gt;" />
 	<property name="dist.html.jar" value="&lt;a href='jar/${ant.project.name}-${version.major}.${version.minor}.jar'&gt;${ant.project.name}-${version.major}.${version.minor}.jar&lt;/a&gt;" />
@@ -140,6 +141,11 @@
     		>
     		</fileset>
     	</copy>
+
+    	<copy todir="${dist.version.dir}/unitcoverage">
+    		<fileset dir="${UnitTests.location}/bin/cobertura/report">
+    		</fileset>
+    	</copy>
     	
     	<copy todir="${dist.version.dir}/examples">
     		<fileset dir="${Examples.location}/bin/junit"
@@ -158,6 +164,8 @@
 			${dist.html.apistart}
 			${dist.html.break}
 			${dist.html.unitstart}
+			${dist.html.break}
+			${dist.html.unitcoveragestart}
 			${dist.html.break}
 			${dist.html.examplesstart}
 			${dist.html.break}
