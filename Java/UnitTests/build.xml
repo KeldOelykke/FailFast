@@ -209,6 +209,8 @@
     	    <ignore regex="org.apache.log4j.*" />
     	    <fileset dir="${FailFast.location}/bin">
     	        <include name="**/*.class" />
+    	    	<exclude name="**/I*.class" /> <!-- exclude interfaces -->
+    	    	<exclude name="**/N*.class" /> <!-- exclude annotations -->
     	    </fileset>
     	</cobertura-instrument>
    	
@@ -257,6 +259,8 @@
     	<cobertura-report format="html" datafile="${cobertura.dir}/cobertura.ser" destdir="${cobertura.dir}/report" >
     	    <fileset dir="${FailFast.location}/src">
     	        <include name="**/*.java" />
+    	    	<exclude name="**/I*.java" />
+    	    	<exclude name="**/N*.java" />
     	    </fileset>
     	</cobertura-report>
     	
