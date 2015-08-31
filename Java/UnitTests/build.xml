@@ -7,6 +7,7 @@
 	<property name="version.minor" value="0"/>
 	
 	<property name="3rd.dir" value="../3rd" />
+	<property name="3rd.cobertura.dir" value="${3rd.dir}/cobertura-2.1.1" />
 	<property name="config.dir" value="../Config" />
 	<property name="src.dir" value="src" />
 	<property name="bin.dir" value="bin" />
@@ -14,16 +15,20 @@
 	<property name="jar.dir" value="${bin.dir}/jar" />
     <property name="doc.dir" value="${bin.dir}/doc" />
 	<property name="checkstyle.dir" value="${bin.dir}/checkstyle" />
-	<property name="jacoco.dir" value="${bin.dir}/jacoco" />
+	<property name="cobertura.dir" value="${bin.dir}/cobertura" />
 	<property name="api.dir" value="${doc.dir}/api" />
 	
 	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
 	         classpath="${3rd.dir}/checkstyle-6.9/lib/checkstyle-6.9-all.jar"/>
 	
-    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-        <classpath path="${3rd.dir}/jacoco-0.7.5.201505241946/lib/jacocoant.jar"/>
-    </taskdef>
+	<path id="cobertura.classpath">
+	    <fileset dir="${3rd.cobertura.dir}">
+	        <include name="cobertura-2.1.1.jar" />
+	        <include name="lib/**/*.jar" />
+	    </fileset>
+	</path>
 
+	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 	
     <property name="main-class"	value="starkcoder.failfast.SFailFast" />
 	
@@ -196,57 +201,71 @@
     <target name="unitcoverage" depends="build" description="Runs tests and records coverage">
     	
         <mkdir dir="${junit.output.dir}"/>
-        
-    	<jacoco:coverage destfile="${jacoco.dir}/jacoco.exec">
-			<junit fork="true" forkmode="once">
-				<formatter type="xml"/>
-    	        <!--<test name="starkcoder.failfast.unit.objects.ObjectNullTest"/> -->
-				<batchtest fork="yes" todir="${junit.output.dir}">
-					<fileset dir="${src.dir}">
-						<include name="**/*Test.java"/>
-						<exclude name="**/templates/**/*.java"/>
-					</fileset>
-				</batchtest>
-    	        <classpath>
-    	        	<path refid="UnitTests.classpath"/>
-    	        </classpath>
-    	    </junit>
-    	</jacoco:coverage>
-    	
+ 
+    	<delete file="${cobertura.dir}/cobertura.ser" />
+        <mkdir dir="${cobertura.dir}/instrumented"/>
+
+    	<cobertura-instrument todir="${cobertura.dir}/instrumented" datafile="${cobertura.dir}/cobertura.ser">
+    	    <ignore regex="org.apache.log4j.*" />
+    	    <fileset dir="${FailFast.location}/bin">
+    	        <include name="**/*.class" />
+    	    </fileset>
+    	</cobertura-instrument>
+   	
+    	<junit fork="true" forkmode="once" failureProperty="test.failed">
+    	    <!--
+    	        Specify the name of the coverage data file to use.
+    	        The value specified below is the default.
+    	    -->
+    	    <sysproperty key="net.sourceforge.cobertura.datafile"
+    	        file="${cobertura.dir}/cobertura.ser" />
+
+    	    <!--
+    	        Note the classpath order: instrumented classes are before the
+    	        original (uninstrumented) classes.  This is important.
+    	    -->
+    	    <classpath location="${cobertura.dir}/instrumented" />
+	        <classpath>
+	        	<path refid="UnitTests.classpath"/>
+	        </classpath>
+
+    	    <!--
+    	        The instrumented classes reference classes used by the
+    	        Cobertura runtime, so Cobertura and its dependencies
+    	        must be on your classpath.
+    	    -->
+    	    <classpath refid="cobertura.classpath" />
+
+    	    <formatter type="xml" />
+    		
+    		<batchtest fork="yes" todir="${junit.output.dir}" unless="testcase">
+				<fileset dir="${src.dir}">
+					<include name="**/*Test.java"/>
+					<exclude name="**/templates/**/*.java"/>
+				</fileset>
+			</batchtest>
+
+    	</junit>
+   	
     </target>
 	
 	<!-- ================================= 
           target: unitcoveragereport              
          ================================= -->
     <target name="unitcoveragereport" depends="unitcoverage" description="Creates report from unitcoverage">
-    	
-    	<jacoco:report>
-    	                        
-    	    <executiondata>
-    	        <file file="${jacoco.dir}/jacoco.exec"/>
-    	    </executiondata>
-    	                        
-    	    <structure name="UnitTests Project">
-    	        <classfiles>
-    	            <fileset dir="${FailFast.location}/bin"/>
-    	        </classfiles>
-    	        <sourcefiles encoding="UTF-8">
-    	            <fileset dir="${FailFast.location}/src"/>
-    	        </sourcefiles>
-    	    </structure>
-    		
-        	<check>
-        	    <rule element="CLASS">
-        	        <limit counter="LINE" value="COVEREDRATIO" minimum="0.10"/>
-        	        <limit counter="CLASS" value="MISSEDCOUNT" maximum="0"/>
-        	    </rule>
-        	</check>
-    	                        
-    	    <html destdir="${jacoco.dir}"/>
-    	                        
-    	</jacoco:report>
-    	
 
+    	<cobertura-report format="html" datafile="${cobertura.dir}/cobertura.ser" destdir="${cobertura.dir}/report" >
+    	    <fileset dir="${FailFast.location}/src">
+    	        <include name="**/*.java" />
+    	    </fileset>
+    	</cobertura-report>
+    	
+    	<cobertura-check branchrate="30" totalbranchrate="60" totallinerate="80">
+<!--    	    
+			<regex pattern="com.example.reallyimportant.*" branchrate="80" linerate="90"/>
+    	    <regex pattern="com.example.boringcode.*" branchrate="40" linerate="30"/>
+-->
+    	</cobertura-check>
     	
     </target>
 	
