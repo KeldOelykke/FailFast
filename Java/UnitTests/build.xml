@@ -191,7 +191,7 @@
 	<!-- ================================= 
           target: unitreport              
          ================================= -->
-    <target name="unitreport" depends="build, unitcoveragereport, UnitTests.junitreport" description="Runs tests and builds a unit test report">
+    <target name="unitreport" depends="build, unitcoveragereport, unitcoveragecheck, UnitTests.junitreport" description="Runs tests and builds a unit test report">
     </target>
 	
     
@@ -263,14 +263,15 @@
     	    	<exclude name="**/N*.java" />
     	    </fileset>
     	</cobertura-report>
-    	
-    	<cobertura-check branchrate="30" totalbranchrate="60" totallinerate="80">
-<!--    	    
-			<regex pattern="com.example.reallyimportant.*" branchrate="80" linerate="90"/>
-    	    <regex pattern="com.example.boringcode.*" branchrate="40" linerate="30"/>
--->
-    	</cobertura-check>
-    	
+
     </target>
+	
+	<!-- ================================= 
+          target: unitcoveragecheck              
+         ================================= -->
+	<target name="unitcoveragecheck" depends="unitcoverage">
+		<cobertura-check datafile="${cobertura.dir}/cobertura.ser" linerate="50" branchrate="45" packagelinerate="70" packagebranchrate="65" totallinerate="70" totalbranchrate="65" />
+	</target>
+
 	
 </project>
