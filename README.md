@@ -107,10 +107,11 @@ Releases
 ===================
 
 Go to http://oelykke-failfast.appspot.com to:
- - download jars
- - view api (javadoc)
- - view unit test results (junit)
- - try the checker-failer pairs online
+ - download jars,
+ - view api (javadoc),
+ - view unit test results (junit) and coverage (cobertura),
+ - view example test results (junit), and
+ - try the checker-failer pairs online.
  
 Alternatively, jars can be downloaded from GitHub:
  - https://github.com/KeldOelykke/FailFast/releases
