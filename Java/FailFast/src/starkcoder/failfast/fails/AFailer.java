@@ -5631,6 +5631,7 @@ public abstract class AFailer implements IFailer
   protected AFailer()
   {
     super();
+    this.initFields();
   }
 
   /**
@@ -5646,6 +5647,7 @@ public abstract class AFailer implements IFailer
   public AFailer(ICallContractor callContractor)
   {
     super();
+    this.initFields();
     {
       if (null == callContractor)
       {
@@ -5656,11 +5658,25 @@ public abstract class AFailer implements IFailer
   }
 
   /**
+   * Sets all fields "owned" by AFailer.
+   */
+  protected void initFields()
+  {
+    this.setSynchronizationObject(new Object());
+    this.setFailSpecification2CustomFailExceptionType(
+        new HashMap<String, Class<? extends RuntimeException>>());
+    this.setFailSpecification2CustomFailMessageFormat(new HashMap<String, String>());
+    this.setFailSpecification2CustomFailMessageArguments(new HashMap<String, String>());
+    this.setFailerObservers(new ArrayList<IFailerObserver>());
+    this.setFailerObserverRegistrationKeys(new ArrayList<Object>());
+  }
+  
+  /**
    * Empty object array to reuse with calls to popContractWithCallerAndThrowException.
    */
   protected static final Object[] EmptyObjectArray = new Object[] {};
 
-  private Object synchronizationObject = new Object();
+  private Object synchronizationObject;
 
   /*
    * Use this for synchronized sections that uses fields with states. <p> This is used for
@@ -5680,8 +5696,7 @@ public abstract class AFailer implements IFailer
   }
 
   private HashMap<String, Class<? extends RuntimeException>> 
-      failSpecification2CustomFailExceptionType = 
-        new HashMap<String, Class<? extends RuntimeException>>();
+      failSpecification2CustomFailExceptionType;
 
   protected HashMap<String, Class<? extends RuntimeException>> 
       getFailSpecification2CustomFailExceptionType()
@@ -5695,8 +5710,7 @@ public abstract class AFailer implements IFailer
     this.failSpecification2CustomFailExceptionType = failSpecification2CustomFailExceptionType;
   }
 
-  private HashMap<String, String> failSpecification2CustomMessageFormat = 
-       new HashMap<String, String>();
+  private HashMap<String, String> failSpecification2CustomMessageFormat;
 
   protected HashMap<String, String> getFailSpecification2CustomFailMessageFormat()
   {
@@ -5709,8 +5723,7 @@ public abstract class AFailer implements IFailer
     this.failSpecification2CustomMessageFormat = failSpecification2CustomMessageFormat;
   }
 
-  private HashMap<String, String> failSpecification2CustomMessageArguments = 
-      new HashMap<String, String>();
+  private HashMap<String, String> failSpecification2CustomMessageArguments;
 
   protected HashMap<String, String> getFailSpecification2CustomFailMessageArguments()
   {
@@ -6154,7 +6167,7 @@ public abstract class AFailer implements IFailer
     return exception;
   }
 
-  private ArrayList<IFailerObserver> failerObservers = new ArrayList<IFailerObserver>();
+  private ArrayList<IFailerObserver> failerObservers;
 
   protected ArrayList<IFailerObserver> getFailerObservers()
   {
@@ -6183,7 +6196,7 @@ public abstract class AFailer implements IFailer
     return result;
   }
 
-  private ArrayList<Object> failerObserverRegistrationKeys = new ArrayList<Object>();
+  private ArrayList<Object> failerObserverRegistrationKeys;
 
   protected ArrayList<Object> getFailerObserverRegistrationKeys()
   {

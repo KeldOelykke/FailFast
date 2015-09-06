@@ -270,7 +270,7 @@
           target: unitcoveragecheck              
          ================================= -->
 	<target name="unitcoveragecheck" depends="unitcoverage">
-		<cobertura-check datafile="${cobertura.dir}/cobertura.ser" linerate="50" branchrate="45" packagelinerate="70" packagebranchrate="65" totallinerate="70" totalbranchrate="65" />
+		<cobertura-check datafile="${cobertura.dir}/cobertura.ser" linerate="50" branchrate="50" packagelinerate="70" packagebranchrate="50" totallinerate="80" totalbranchrate="75" />
 	</target>
 
 	
