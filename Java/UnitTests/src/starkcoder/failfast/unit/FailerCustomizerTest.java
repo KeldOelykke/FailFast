@@ -110,7 +110,314 @@ public class FailerCustomizerTest
     }
   };
 
-  // Failer Customizations
+  // Failer Customizations - illegal usages
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetCustomFailExceptionTypeOrNullWithNullArgument()
+  {
+    try
+    {
+      this.failer.getCustomFailExceptionTypeOrNull(null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testRegisterCustomFailExceptionTypeWithNullArgument0()
+  {
+    try
+    {
+      this.failer.registerCustomFailExceptionType(null,
+          NullPointerException.class);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testRegisterCustomFailExceptionTypeWithNullArgument1()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    try
+    {
+      this.failer.registerCustomFailExceptionType(failerSpecificationAndMethodId,
+          null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failExceptionType is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalStateException.class)
+  public void testRegisterCustomFailExceptionTypeTwice()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    try
+    {
+      this.failer.registerCustomFailExceptionType(failerSpecificationAndMethodId,
+          NullPointerException.class);
+      this.failer.registerCustomFailExceptionType(failerSpecificationAndMethodId,
+          NullPointerException.class);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = "A custom fail exception '" + NullPointerException.class
+          + "' has already been registered for failer specification method '"
+          + failerSpecificationAndMethodId + "'";
+      assertEquals(expected, illegalStateException.getMessage());
+      throw illegalStateException;
+    }
+  }
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testUnregisterCustomFailExceptionTypeWithNullArgument()
+  {
+    try
+    {
+      this.failer.unregisterCustomFailExceptionType(null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalStateException.class)
+  public void testUnregisterCustomFailExceptionTypeWithoutAnyRegistration()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    try
+    {
+      this.failer.unregisterCustomFailExceptionType(failerSpecificationAndMethodId);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = "Can't unregister a custom fail exception for failer specification method '"
+          + failerSpecificationAndMethodId + "' since none is registered.";
+      assertEquals(expected, illegalStateException.getMessage());
+      throw illegalStateException;
+    }
+  }
+  
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetCustomFailMessageFormatOrNullWithNullArgument()
+  {
+    try
+    {
+      this.failer.getCustomFailMessageFormatOrNull(null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testRegisterCustomFailMessageFormatWithNullArgument0()
+  {
+    try
+    {
+      this.failer.registerCustomFailMessageFormat(null, "");
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRegisterCustomFailMessageFormatWithNullArgument1()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    try
+    {
+      this.failer.registerCustomFailMessageFormat(failerSpecificationAndMethodId, null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failMessageFormat is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testRegisterCustomFailMessageFormatTwice()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    String customFailMessageFormat = "some format";
+    try
+    {
+      this.failer.registerCustomFailMessageFormat(failerSpecificationAndMethodId, 
+          customFailMessageFormat);
+      this.failer.registerCustomFailMessageFormat(failerSpecificationAndMethodId, 
+          customFailMessageFormat);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = "A custom fail message format '" + customFailMessageFormat
+          + "' has already been registered for failer specification method '"
+          + failerSpecificationAndMethodId + "'";
+      assertEquals(expected, illegalStateException.getMessage());
+      throw illegalStateException;
+    }
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testUnregisterCustomFailMessageFormatWithNullArgument()
+  {
+    try
+    {
+      this.failer.unregisterCustomFailMessageFormat(null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalStateException.class)
+  public void testUnregisterCustomFailMessageFormatWithoutAnyRegistration()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    try
+    {
+      this.failer.unregisterCustomFailMessageFormat(failerSpecificationAndMethodId);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = 
+          "Can't unregister a custom fail message format for failer specification method '"
+          + failerSpecificationAndMethodId + "' since none is registered.";
+      assertEquals(expected, illegalStateException.getMessage());
+      throw illegalStateException;
+    }
+  }
+
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testGetCustomFailMessageArgumentsOrNullWithNullArgument()
+  {
+    try
+    {
+      this.failer.getCustomFailMessageArgumentsOrNull(null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testRegisterCustomFailMessageArgumentsWithNullArgument0()
+  {
+    try
+    {
+      this.failer.registerCustomFailMessageArguments(null, "");
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRegisterCustomFailMessageArgumentsWithNullArgument1()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    try
+    {
+      this.failer.registerCustomFailMessageArguments(failerSpecificationAndMethodId, null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failMessageArguments is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+
+
+  @Test(expected = IllegalStateException.class)
+  public void testRegisterCustomFailMessageArgumentsTwice()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    String customFailMessageArguments = "some arguments";
+    try
+    {
+      this.failer.registerCustomFailMessageArguments(failerSpecificationAndMethodId, 
+          customFailMessageArguments);
+      this.failer.registerCustomFailMessageArguments(failerSpecificationAndMethodId, 
+          customFailMessageArguments);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = "A custom fail message arguments '"
+          + customFailMessageArguments
+          + "' has already been registered for failer specification method '"
+          + failerSpecificationAndMethodId + "'";
+      assertEquals(expected, illegalStateException.getMessage());
+      throw illegalStateException;
+    }
+  }
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testUnregisterCustomFailMessageArgumentsWithNullArgument()
+  {
+    try
+    {
+      this.failer.unregisterCustomFailMessageArguments(null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerSpecificationAndMethodId is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalStateException.class)
+  public void testUnregisterCustomFailMessageArgumentsWithoutAnyRegistration()
+  {
+    String failerSpecificationAndMethodId = 
+        "IObjectNullFail.failObjectNull(Object caller, String referenceName)";
+    try
+    {
+      this.failer.unregisterCustomFailMessageArguments(failerSpecificationAndMethodId);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = 
+          "Can't unregister a custom fail message arguments for failer specification method '"
+          + failerSpecificationAndMethodId + "' since none is registered.";
+      assertEquals(expected, illegalStateException.getMessage());
+      throw illegalStateException;
+    }
+  }  
+
+  // Failer Customizations - legal usages
 
   @Test(expected = NullPointerException.class)
   public void testObjectNullFailerRegisterCustomNullPointerExceptionNoMessage()

@@ -114,6 +114,116 @@ public class FailerObserverTest implements IFailerObserver
     }
   };
 
+  // Failer Observer - illegal usages
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRegisterFailerObserverWithNullArgument()
+  {
+    try
+    {
+      this.failer.registerFailerObserver(null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerObserver is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalStateException.class)
+  public void testRegisterFailerObserverTwice()
+  {
+    this.failer.unregisterFailerObserver(this, this.observerRegistrationKey); // undo setup
+    Object registrationKey = null;
+    try
+    {
+      registrationKey = this.failer.registerFailerObserver(this);
+      this.failer.registerFailerObserver(this);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = "failerObserver " + this
+          + " is already registered.";
+      assertEquals(expected, illegalStateException.getMessage());
+      this.failer.unregisterFailerObserver(this, registrationKey);
+      this.observerRegistrationKey = this.failer.registerFailerObserver(this); // re-do setup
+      throw illegalStateException;
+    }
+  }
+  
+  @Test(expected = IllegalArgumentException.class)
+  public void testUnregisterFailerObserverWithNullArgument0()
+  {
+    Object registrationKey = new Object();
+    try
+    {
+      this.failer.unregisterFailerObserver(null, registrationKey);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("failerObserver is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testUnregisterFailerObserverWithNullArgument1()
+  {
+    try
+    {
+      this.failer.unregisterFailerObserver(this, null);
+    }
+    catch (IllegalArgumentException illegalArgumentException)
+    {
+      assertEquals("registrationKey is null", illegalArgumentException.getMessage());
+      throw illegalArgumentException;
+    }
+  }
+  
+  @Test(expected = IllegalStateException.class)
+  public void testUnregisterFailerObserverWithoutAnyRegistration()
+  {
+    this.failer.unregisterFailerObserver(this, this.observerRegistrationKey); // undo setup
+    try
+    {
+      this.failer.unregisterFailerObserver(this, new Object());
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = "failerObserver " + this + " is NOT registered.";
+      assertEquals(expected, illegalStateException.getMessage());
+      this.observerRegistrationKey = this.failer.registerFailerObserver(this); // re-do setup
+      throw illegalStateException;
+    }
+  }
+  
+  @Test(expected = IllegalStateException.class)
+  public void testUnregisterFailerObserverWithoutRegistrationKey()
+  {
+    this.failer.unregisterFailerObserver(this, this.observerRegistrationKey); // undo setup
+    Object registrationKey0 = null;
+    Object registrationKey1 = null;
+    try
+    {
+      registrationKey0 = this.failer.registerFailerObserver(this);
+      registrationKey1 = new Object();
+      this.failer.unregisterFailerObserver(this, registrationKey1);
+    }
+    catch (IllegalStateException illegalStateException)
+    {
+      String expected = "registrationKey " + registrationKey1
+          + " is NOT registered.";
+      assertEquals(expected, illegalStateException.getMessage());
+      this.failer.unregisterFailerObserver(this, registrationKey0);
+      this.observerRegistrationKey = this.failer.registerFailerObserver(this); // re-do setup
+      throw illegalStateException;
+    }
+  }
+  
+
+  
+  // Failer Observer - legal usages
+  
   @Test(expected = FailFastException.class)
   public void testObjectNullFailObserver()
   {
