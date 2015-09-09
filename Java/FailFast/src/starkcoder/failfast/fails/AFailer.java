@@ -131,6 +131,7 @@ import starkcoder.failfast.fails.objects.enums.IObjectEnumNotSameFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumNullFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumOutsideFail;
 import starkcoder.failfast.fails.objects.enums.IObjectEnumSameFail;
+import starkcoder.failfast.fails.objects.exceptions.IObjectExceptionFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatDefaultFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsAlmostFail;
 import starkcoder.failfast.fails.objects.floats.IObjectFloatEqualsFail;
@@ -2968,6 +2969,46 @@ public abstract class AFailer implements IFailer
 
   // OBJECTS - ENUM - END ---------------------------------
 
+  
+  // EXCEPTION - START ---------------------------------
+
+
+  /* (non-Javadoc)
+   * @see starkcoder.failfast.fails.objects.exceptions.IObjectExceptionFail#failException(
+   * java.lang.Object, java.lang.String)
+   */
+  @Override
+  public void failException(Object caller, String referenceAName)
+  {
+    this.popContractWithCallerAndThrowException(caller, IObjectExceptionFail.class, new Object[]
+    {
+        caller, referenceAName
+    }, new Object[]
+    {
+        this.getCallContractor().getContractWithCaller(caller).getCheckArguments()[1]
+    }
+    );
+  }
+
+  /* (non-Javadoc)
+   * @see starkcoder.failfast.fails.objects.exceptions.IObjectExceptionFail#failException(
+   * java.lang.Object, java.lang.String, java.lang.String)
+   */
+  @Override
+  public void failException(Object caller, String referenceAName, String message)
+  {
+    this.popContractWithCallerAndThrowException(caller, IObjectExceptionFail.class, new Object[]
+    {
+        caller, referenceAName, message
+    }, new Object[]
+    {
+        this.getCallContractor().getContractWithCaller(caller).getCheckArguments()[1]
+    });
+  }  
+  
+  // EXCEPTION - END ---------------------------------
+  
+  
   // OBJECTS - FLOAT - START ---------------------------------
 
   /*
@@ -2985,6 +3026,7 @@ public abstract class AFailer implements IFailer
         caller, referenceAName, referenceBName
     });
   }
+
 
   /*
    * (non-Javadoc)
@@ -6128,11 +6170,27 @@ public abstract class AFailer implements IFailer
           failerExtraArguments);
     }
 
+    Throwable innerCauseOrNull = null;
+    for (int index = 0; index < failerExtraArguments.length; ++index)
+    {
+      Object failerExtraArgument = failerExtraArguments[index];
+      if (failerExtraArgument instanceof Throwable)
+      {
+        innerCauseOrNull = (Throwable) failerExtraArgument;
+      }
+    }
     // find concrete exception constructor taking message
     Constructor<? extends RuntimeException> constructor;
     try
     {
-      constructor = exceptionType.getConstructor(String.class);
+      if (null == innerCauseOrNull)
+      {
+        constructor = exceptionType.getConstructor(String.class);
+      }
+      else
+      {
+        constructor = exceptionType.getConstructor(String.class, Throwable.class);
+      }
     }
     catch (NoSuchMethodException | SecurityException e)
     {
@@ -6143,7 +6201,14 @@ public abstract class AFailer implements IFailer
     // construct exception with concrete constructor
     try
     {
-      exception = constructor.newInstance(message);
+      if (null == innerCauseOrNull)
+      {
+        exception = constructor.newInstance(message);
+      }
+      else
+      {
+        exception = constructor.newInstance(message, innerCauseOrNull);
+      }
       if (exception instanceof IFailFastException)
       { // handy to remember production circumstances, if a failfast exception
         IFailFastException failFastException = (IFailFastException) exception;

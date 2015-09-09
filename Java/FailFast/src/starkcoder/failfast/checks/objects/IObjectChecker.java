@@ -32,6 +32,7 @@ import starkcoder.failfast.checks.objects.characters.IObjectCharacterChecker;
 import starkcoder.failfast.checks.objects.dates.IObjectDateChecker;
 import starkcoder.failfast.checks.objects.doubles.IObjectDoubleChecker;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumChecker;
+import starkcoder.failfast.checks.objects.exceptions.IObjectExceptionChecker;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatChecker;
 import starkcoder.failfast.checks.objects.integers.IObjectIntegerChecker;
 import starkcoder.failfast.checks.objects.longs.IObjectLongChecker;
@@ -52,8 +53,8 @@ public interface IObjectChecker extends IObjectNullCheck, IObjectNotNullCheck, I
     IObjectNotSameCheck, IObjectArrayChecker, IObjectListChecker, IObjectCollectionChecker,
     IObjectsEqualsCheck, IObjectsNotEqualsCheck, IObjectBooleanChecker, IObjectByteChecker,
     IObjectCharacterChecker, IObjectDateChecker, IObjectDoubleChecker, IObjectEnumChecker,
-    IObjectFloatChecker, IObjectIntegerChecker, IObjectLongChecker, IObjectShortChecker,
-    IObjectStringChecker, IObjectUuidChecker
+    IObjectExceptionChecker, IObjectFloatChecker, IObjectIntegerChecker, IObjectLongChecker,
+    IObjectShortChecker, IObjectStringChecker, IObjectUuidChecker
 {
 
 }

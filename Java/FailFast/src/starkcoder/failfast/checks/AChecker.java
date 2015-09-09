@@ -128,6 +128,7 @@ import starkcoder.failfast.checks.objects.enums.IObjectEnumNotSameCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumNullCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumOutsideCheck;
 import starkcoder.failfast.checks.objects.enums.IObjectEnumSameCheck;
+import starkcoder.failfast.checks.objects.exceptions.IObjectExceptionCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatDefaultCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatEqualsAlmostCheck;
 import starkcoder.failfast.checks.objects.floats.IObjectFloatEqualsCheck;
@@ -2213,6 +2214,43 @@ public abstract class AChecker implements IChecker
 
   // OBJECTS - ENUM - END
 
+  
+  // EXCEPTION - START
+  
+  /* (non-Javadoc)
+   * @see starkcoder.failfast.checks.exceptions.IExceptionCheck#isException(
+   *  java.lang.Object, java.lang.Exception)
+   */
+  @Override
+  public <A extends Exception> boolean isException(Object caller, A exception)
+  {
+    boolean result = false;
+
+    if (null == caller)
+    {
+      throw new IllegalArgumentException("caller is null");
+    }    
+    if (null == exception)
+    {
+      throw new IllegalArgumentException("exception is null");
+    }
+
+    {
+      result = true;
+    }
+    {
+      this.pushContractWithCaller(caller, IObjectExceptionCheck.class, new Object[]
+      {
+          caller, exception
+      });
+    }
+
+    return result;
+  }
+  
+  // EXCEPTION - END
+
+  
   // OBJECTS - FLOAT - START
 
   @Override
@@ -2225,6 +2263,7 @@ public abstract class AChecker implements IChecker
 
     return result;
   }
+
 
   @Override
   public boolean isFloatSame(Object caller, Float referenceA, Float referenceB)
