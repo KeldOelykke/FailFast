@@ -96,7 +96,9 @@ public class MainExceptionHandlerThreadedTest
     { // main - this would be your main controller code e.g. event processor
       for (int i = 0; i < noOfThreads; ++i)
       {
+        System.out.println(Thread.currentThread() + ": starting thread " + threads[i]);
         threads[i].start();
+        System.out.println(Thread.currentThread() + ": started thread " + threads[i]);
       }
 
       boolean shutdown = false;
@@ -128,11 +130,15 @@ public class MainExceptionHandlerThreadedTest
         catch (FailFastException failFastException)
         {
           // developer error - logging goes here
+          System.out.println(Thread.currentThread() + ": Caught failfast exception: " 
+              + failFastException);
           shutdown = true;
         }
         catch (Exception exception)
         {
           // unexpected error - logging goes here
+          System.out.println(Thread.currentThread() + ": Caught unexpected exception: " 
+              + exception);
           shutdown = true;
         }
       }
@@ -143,7 +149,9 @@ public class MainExceptionHandlerThreadedTest
       {
         try
         {
+          System.out.println(Thread.currentThread() + ": joining thread " + threads[i]);
           threads[i].join();
+          System.out.println(Thread.currentThread() + ": joined thread " + threads[i]);
         }
         catch (InterruptedException e)
         {
@@ -156,6 +164,7 @@ public class MainExceptionHandlerThreadedTest
     { // this would be in you application shutdown section
       SFailFast.setFailFastOrNull(null);
     }
+    System.out.println(Thread.currentThread() + ": application shutdown as expected");
     assertTrue("application shutdown as expected", true);
   }
 
