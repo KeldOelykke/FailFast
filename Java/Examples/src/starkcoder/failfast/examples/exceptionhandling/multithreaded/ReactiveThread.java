@@ -54,11 +54,12 @@ public class ReactiveThread extends Thread
           // and it could catch and discard a fail-fast exception
           try
           {
-            System.out.println(this.getName() + ": Detected failfast exception => exiting thread.");
+            System.out.println(this.getName() + ": null check.");
             
             String someReference = null;
             if (SFailFast.getChecker().isObjectNull(this, someReference))
             {
+              System.out.println(this.getName() + ": null fail.");
               SFailFast.getFailer().failObjectNull(this, "someReference");
             }
           }
@@ -82,6 +83,7 @@ public class ReactiveThread extends Thread
     }
 
     // thread exit code goes here
+    System.out.println(this.getName() + ": exited thread.");
   }
 
 }

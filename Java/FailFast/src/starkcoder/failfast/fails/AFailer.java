@@ -278,12 +278,18 @@ public abstract class AFailer implements IFailer
   @Override
   public IFailFastException getFailFastExceptionOrNull()
   {
-    return this.failFastExceptionOrNull;
+    synchronized (this.getSynchronizationObject())
+    {
+      return this.failFastExceptionOrNull;
+    }
   }
 
   protected void setFailFastExceptionOrNull(IFailFastException failFastExceptionOrNull)
   {
-    this.failFastExceptionOrNull = failFastExceptionOrNull;
+    synchronized (this.getSynchronizationObject())
+    {
+      this.failFastExceptionOrNull = failFastExceptionOrNull;
+    }
   }
 
   // IFailerCustomizer - START -------------------------------
@@ -5830,42 +5836,45 @@ public abstract class AFailer implements IFailer
       throw new IllegalArgumentException("caller is null");
     }
 
-    NFail failAnnotation = this.lookupFailAnnotation(failerSpecificationType, failerArguments);
-    ICallContract callContract = this.popContractWithCaller(caller, failerSpecificationType);
-    // Object[] checkerArguments = entry.getKey();
-    // Object[] checkerExtraArguments = entry.getValue();
-    // String message = this.formatMessage(failerSpecificationType, failAnnotation,
-    // checkerArguments, failerArguments);
-    // String message = String.format(failAnnotation.failMessageFormat(), failerArguments);
-    // String message = this.constructFailMessage(failerSpecificationType, failAnnotation,
-    // checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
-
-    Class<? extends RuntimeException> customExceptionOrNull = callContract
-        .getCustomFailExceptionTypeOrNull();
-    if (null == customExceptionOrNull)
+    synchronized (this.getSynchronizationObject())
     {
-      customExceptionOrNull = failAnnotation.failExceptionType();
-    }
-
-    RuntimeException exception = this.constructFailException(failerSpecificationType,
-        failAnnotation, callContract, failerArguments, failerExtraArguments);
-
-    // notify any observers
-    ArrayList<IFailerObserver> failerObserversOrNull = this.cloneFailerObserversOrNull();
-    if (null != failerObserversOrNull)
-    {
-      for (IFailerObserver failerObserver : failerObserversOrNull)
+      NFail failAnnotation = this.lookupFailAnnotation(failerSpecificationType, failerArguments);
+      ICallContract callContract = this.popContractWithCaller(caller, failerSpecificationType);
+      // Object[] checkerArguments = entry.getKey();
+      // Object[] checkerExtraArguments = entry.getValue();
+      // String message = this.formatMessage(failerSpecificationType, failAnnotation,
+      // checkerArguments, failerArguments);
+      // String message = String.format(failAnnotation.failMessageFormat(), failerArguments);
+      // String message = this.constructFailMessage(failerSpecificationType, failAnnotation,
+      // checkerArguments, checkerExtraArguments, failerArguments, failerExtraArguments);
+  
+      Class<? extends RuntimeException> customExceptionOrNull = callContract
+          .getCustomFailExceptionTypeOrNull();
+      if (null == customExceptionOrNull)
       {
-        failerObserver.notifyExceptionBeforeThrow(this, callContract, exception);
+        customExceptionOrNull = failAnnotation.failExceptionType();
       }
-    }
-
-    { // remember the exception and throw it
-      if (exception instanceof IFailFastException)
-      { // remember first exception
-        this.setFailFastExceptionOrNull((IFailFastException) exception);
+  
+      RuntimeException exception = this.constructFailException(failerSpecificationType,
+          failAnnotation, callContract, failerArguments, failerExtraArguments);
+  
+      // notify any observers
+      ArrayList<IFailerObserver> failerObserversOrNull = this.cloneFailerObserversOrNull();
+      if (null != failerObserversOrNull)
+      {
+        for (IFailerObserver failerObserver : failerObserversOrNull)
+        {
+          failerObserver.notifyExceptionBeforeThrow(this, callContract, exception);
+        }
       }
-      throw exception;
+  
+      { // remember the exception and throw it
+        if (exception instanceof IFailFastException && null == this.getFailFastExceptionOrNull())
+        { // remember first exception
+          this.setFailFastExceptionOrNull((IFailFastException) exception);
+        }
+        throw exception;
+      }
     }
   }
 

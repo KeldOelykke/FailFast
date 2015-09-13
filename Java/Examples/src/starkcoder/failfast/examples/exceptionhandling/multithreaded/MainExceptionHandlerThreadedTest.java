@@ -78,94 +78,96 @@ public class MainExceptionHandlerThreadedTest
   @Test
   public void testApplicationMainLoopThreaded()
   {
-
-    int noOfThreads = 5;
-    ReactiveThread[] threads = new ReactiveThread[noOfThreads];
-
-    { // main - this would be in you application startup section
-      ICallContractor callContractor = new CallContractor();
-      IFailFast failFastOrNull = new FailFast(new Checker(callContractor), new Failer(
-          callContractor), callContractor);
-      SFailFast.setFailFastOrNull(failFastOrNull);
-      for (int i = 0; i < noOfThreads; ++i)
-      {
-        threads[i] = new ReactiveThread();
-      }
-    }
-
-    { // main - this would be your main controller code e.g. event processor
-      for (int i = 0; i < noOfThreads; ++i)
-      {
-        System.out.println(Thread.currentThread() + ": starting thread " + threads[i]);
-        threads[i].start();
-        System.out.println(Thread.currentThread() + ": started thread " + threads[i]);
-      }
-
-      boolean shutdown = false;
-      while (!shutdown)
-      {
-        try
+    for (int reruns = 100; 0 < reruns; --reruns)
+    {
+      int noOfThreads = 10;
+      ReactiveThread[] threads = new ReactiveThread[noOfThreads];
+  
+      { // main - this would be in you application startup section
+        ICallContractor callContractor = new CallContractor();
+        IFailFast failFastOrNull = new FailFast(new Checker(callContractor), new Failer(
+            callContractor), callContractor);
+        SFailFast.setFailFastOrNull(failFastOrNull);
+        for (int i = 0; i < noOfThreads; ++i)
         {
-          // add processing calls here
-
-          { // reactive code that detects if a fail-fast exception has occurred
-            IFailFastException failFastExceptionOrNull = SFailFast.getFailer()
-                .getFailFastExceptionOrNull();
-            if (null != failFastExceptionOrNull)
-            {
-              // add logging to warn that a fail-fast exception has been registered
-              // Nest the fail-fast exception into a new fail-fast exception to end the application
-              throw new FailFastException("A fail-fast exception has occurred.",
-                  (Exception) failFastExceptionOrNull);
+          threads[i] = new ReactiveThread();
+        }
+      }
+  
+      { // main - this would be your main controller code e.g. event processor
+        for (int i = 0; i < noOfThreads; ++i)
+        {
+          System.out.println(Thread.currentThread() + ": starting thread " + threads[i]);
+          threads[i].start();
+          System.out.println(Thread.currentThread() + ": started thread " + threads[i]);
+        }
+  
+        boolean shutdown = false;
+        while (!shutdown)
+        {
+          try
+          {
+            // add processing calls here
+  
+            { // reactive code that detects if a fail-fast exception has occurred
+              IFailFastException failFastExceptionOrNull = SFailFast.getFailer()
+                  .getFailFastExceptionOrNull();
+              if (null != failFastExceptionOrNull)
+              {
+                // add logging to warn that a fail-fast exception has been registered
+                // Nest the fail-fast exception into a new fail-fast exception to end application
+                throw new FailFastException("A fail-fast exception has occurred.",
+                    (Exception) failFastExceptionOrNull);
+              }
             }
+  
           }
-
-        }
-        // catch to continue looping for a know non-fatal exception, if needed
-        // catch(SomeNonFatalException someNonFatalException)
-        // {
-        // // a non-fatal exception is ignored - logging goes here
-        // // shutdown is false => main-loop continues
-        // }
-        catch (FailFastException failFastException)
-        {
-          // developer error - logging goes here
-          System.out.println(Thread.currentThread() + ": Caught failfast exception: " 
-              + failFastException);
-          shutdown = true;
-        }
-        catch (Exception exception)
-        {
-          // unexpected error - logging goes here
-          System.out.println(Thread.currentThread() + ": Caught unexpected exception: " 
-              + exception);
-          shutdown = true;
-        }
-      }
-    }
-
-    { // wait for threads
-      for (int i = 0; i < noOfThreads; ++i)
-      {
-        try
-        {
-          System.out.println(Thread.currentThread() + ": joining thread " + threads[i]);
-          threads[i].join();
-          System.out.println(Thread.currentThread() + ": joined thread " + threads[i]);
-        }
-        catch (InterruptedException e)
-        {
-          // logging goes here
-          // maybe do something about it?
+          // catch to continue looping for a know non-fatal exception, if needed
+          // catch(SomeNonFatalException someNonFatalException)
+          // {
+          // // a non-fatal exception is ignored - logging goes here
+          // // shutdown is false => main-loop continues
+          // }
+          catch (FailFastException failFastException)
+          {
+            // developer error - logging goes here
+            System.out.println(Thread.currentThread() + ": Caught failfast exception: " 
+                + failFastException);
+            shutdown = true;
+          }
+          catch (Exception exception)
+          {
+            // unexpected error - logging goes here
+            System.out.println(Thread.currentThread() + ": Caught unexpected exception: " 
+                + exception);
+            shutdown = true;
+          }
         }
       }
+  
+      { // wait for threads
+        for (int i = 0; i < noOfThreads; ++i)
+        {
+          try
+          {
+            System.out.println(Thread.currentThread() + ": joining thread " + threads[i]);
+            threads[i].join();
+            System.out.println(Thread.currentThread() + ": joined thread " + threads[i]);
+          }
+          catch (InterruptedException e)
+          {
+            // logging goes here
+            // maybe do something about it?
+          }
+        }
+      }
+  
+      { // this would be in you application shutdown section
+        SFailFast.setFailFastOrNull(null);
+      }
+      System.out.println(Thread.currentThread() + ": application shutdown as expected");
+      assertTrue("application shutdown as expected", true);
     }
-
-    { // this would be in you application shutdown section
-      SFailFast.setFailFastOrNull(null);
-    }
-    System.out.println(Thread.currentThread() + ": application shutdown as expected");
-    assertTrue("application shutdown as expected", true);
   }
 
 }
