@@ -204,6 +204,28 @@ public class FloatEqualsAlmostTest
   }
 
   @Test(expected = FailFastException.class)
+  public void testFloatEqualsAlmostSameReferenceFailNoMessage()
+  {
+    Float referenceA = 0.123f;
+    Float referenceB = referenceA;
+    try
+    {
+      if (checker.isFloatEqualsAlmost(this, referenceA, referenceB))
+      {
+        failer.failFloatEqualsAlmost(this, "referenceA", "referenceB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+
+    }
+  }
+  
+  @Test(expected = FailFastException.class)
   public void testFloatEqualsAlmostFailMessage()
   {
     float valueA = 0.1234f;
@@ -226,10 +248,23 @@ public class FloatEqualsAlmostTest
   }
 
   @Test
-  public void testFloatEqualsAlmostNoFail()
+  public void testFloatEqualsAlmostBBelowARangeNoFail()
   {
     float valueA = 0.1241f;
     float valueB = 0.123f;
+    if (checker.isFloatEqualsAlmost(this, valueA, valueB))
+    {
+      failer.failFloatEqualsAlmost(this, "valueA", "valueB");
+    }
+    assertTrue("Expected valueA & valueB to pass the equals check", true);
+    assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+  }
+
+  @Test
+  public void testFloatEqualsAlmostBAboveARangeNoFail()
+  {
+    float valueA = 0.123f;
+    float valueB = 0.1241f;
     if (checker.isFloatEqualsAlmost(this, valueA, valueB))
     {
       failer.failFloatEqualsAlmost(this, "valueA", "valueB");
@@ -416,4 +451,108 @@ public class FloatEqualsAlmostTest
 
     }
   }
+  
+  // 6th - override defaults
+  
+  @Test(expected = FailFastException.class)
+  public void testFloatEqualsAlmostBBelowARangeNoMoreAbsoluteFailNoMessage()
+  {
+    float defaultAbsoluteEpsilon = 0.01f;
+    checker.setFloatEqualsAlmostDefaultAbsoluteEpsilon(defaultAbsoluteEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Float)defaultAbsoluteEpsilon, checker.getFloatEqualsAlmostDefaultAbsoluteEpsilon());
+    float valueA = 0.1241f;
+    float valueB = 0.123f;
+    try
+    {
+      if (checker.isFloatEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failFloatEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+    }
+  }
+
+  @Test(expected = FailFastException.class)
+  public void testFloatEqualsAlmostBAboveARangeNoMoreAbsoluteFailNoMessage()
+  {
+    float defaultAbsoluteEpsilon = 0.01f;
+    checker.setFloatEqualsAlmostDefaultAbsoluteEpsilon(defaultAbsoluteEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Float)defaultAbsoluteEpsilon, checker.getFloatEqualsAlmostDefaultAbsoluteEpsilon());
+    float valueA = 0.123f;
+    float valueB = 0.1241f;
+    try
+    {
+      if (checker.isFloatEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failFloatEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+    }
+  }
+  
+  
+  @Test(expected = FailFastException.class)
+  public void testFloatEqualsAlmostBBelowARangeNoMoreRelativeFailNoMessage()
+  {
+    float defaultRelativeEpsilon = 0.1f;
+    checker.setFloatEqualsAlmostDefaultRelativeEpsilon(defaultRelativeEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Float)defaultRelativeEpsilon, checker.getFloatEqualsAlmostDefaultRelativeEpsilon());
+    float valueA = 1f * (float)Math.pow(10f, 10f);
+    float valueB = 0.9f * (float)Math.pow(10f, 10f);
+    try
+    {
+      if (checker.isFloatEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failFloatEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+    }
+  }
+
+  @Test(expected = FailFastException.class)
+  public void testFloatEqualsAlmostBAboveARangeNoMoreRelativeFailNoMessage()
+  {
+    float defaultRelativeEpsilon = 0.1f;
+    checker.setFloatEqualsAlmostDefaultRelativeEpsilon(defaultRelativeEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Float)defaultRelativeEpsilon, checker.getFloatEqualsAlmostDefaultRelativeEpsilon());
+    float valueB = 0.9f * (float)Math.pow(10f, 10f);
+    float valueA = 1f * (float)Math.pow(10f, 10f);
+    try
+    {
+      if (checker.isFloatEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failFloatEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+    }
+  }
+
 }

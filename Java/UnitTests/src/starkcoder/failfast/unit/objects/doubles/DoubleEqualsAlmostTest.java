@@ -205,6 +205,28 @@ public class DoubleEqualsAlmostTest
   }
 
   @Test(expected = FailFastException.class)
+  public void testDoubleEqualsAlmostSameReferenceFailNoMessage()
+  {
+    Double referenceA = 0.123;
+    Double referenceB = referenceA;
+    try
+    {
+      if (checker.isDoubleEqualsAlmost(this, referenceA, referenceB))
+      {
+        failer.failDoubleEqualsAlmost(this, "referenceA", "referenceB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+
+    }
+  }
+  
+  @Test(expected = FailFastException.class)
   public void testDoubleEqualsAlmostFailMessage()
   {
     double valueA = 0.1234f;
@@ -231,6 +253,32 @@ public class DoubleEqualsAlmostTest
   {
     double valueA = 0.1241d;
     double valueB = 0.123f;
+    if (checker.isDoubleEqualsAlmost(this, valueA, valueB))
+    {
+      failer.failDoubleEqualsAlmost(this, "valueA", "valueB");
+    }
+    assertTrue("Expected valueA & valueB to pass the equals check", true);
+    assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+  }
+
+  @Test
+  public void testDoubleEqualsAlmostBBelowARangeAbsoluteNoFail()
+  {
+    double valueA = 0.1241d;
+    double valueB = 0.123d;
+    if (checker.isDoubleEqualsAlmost(this, valueA, valueB))
+    {
+      failer.failDoubleEqualsAlmost(this, "valueA", "valueB");
+    }
+    assertTrue("Expected valueA & valueB to pass the equals check", true);
+    assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+  }
+
+  @Test
+  public void testDoubleEqualsAlmostBAboveARangeAbsoluteNoFail()
+  {
+    double valueA = 0.123d;
+    double valueB = 0.1241d;
     if (checker.isDoubleEqualsAlmost(this, valueA, valueB))
     {
       failer.failDoubleEqualsAlmost(this, "valueA", "valueB");
@@ -415,6 +463,109 @@ public class DoubleEqualsAlmostTest
       System.out.println(failFastException.getMessage());
       throw failFastException;
 
+    }
+  }
+  
+  // 6th - override defaults
+  
+  @Test(expected = FailFastException.class)
+  public void testDoubleEqualsAlmostBBelowARangeNoMoreAbsoluteFailNoMessage()
+  {
+    double defaultAbsoluteEpsilon = 0.01d;
+    checker.setDoubleEqualsAlmostDefaultAbsoluteEpsilon(defaultAbsoluteEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Double)defaultAbsoluteEpsilon, checker.getDoubleEqualsAlmostDefaultAbsoluteEpsilon());
+    double valueA = 0.1241d;
+    double valueB = 0.123d;
+    try
+    {
+      if (checker.isDoubleEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failDoubleEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+    }
+  }
+
+  @Test(expected = FailFastException.class)
+  public void testDoubleEqualsAlmostBAboveARangeNoMoreAbsoluteFailNoMessage()
+  {
+    double defaultAbsoluteEpsilon = 0.01d;
+    checker.setDoubleEqualsAlmostDefaultAbsoluteEpsilon(defaultAbsoluteEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Double)defaultAbsoluteEpsilon, checker.getDoubleEqualsAlmostDefaultAbsoluteEpsilon());
+    double valueA = 0.123d;
+    double valueB = 0.1241d;
+    try
+    {
+      if (checker.isDoubleEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failDoubleEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+    }
+  }
+  
+  
+  @Test(expected = FailFastException.class)
+  public void testDoubleEqualsAlmostBBelowARangeNoMoreRelativeFailNoMessage()
+  {
+    double defaultRelativeEpsilon = 0.1d;
+    checker.setDoubleEqualsAlmostDefaultRelativeEpsilon(defaultRelativeEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Double)defaultRelativeEpsilon, checker.getDoubleEqualsAlmostDefaultRelativeEpsilon());
+    double valueA = 1d * (double)Math.pow(10d, 10d);
+    double valueB = 0.9d * (double)Math.pow(10d, 10d);
+    try
+    {
+      if (checker.isDoubleEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failDoubleEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
+    }
+  }
+
+  @Test(expected = FailFastException.class)
+  public void testDoubleEqualsAlmostBAboveARangeNoMoreRelativeFailNoMessage()
+  {
+    double defaultRelativeEpsilon = 0.1d;
+    checker.setDoubleEqualsAlmostDefaultRelativeEpsilon(defaultRelativeEpsilon);
+    assertEquals("Expected a custom default value", 
+        (Double)defaultRelativeEpsilon, checker.getDoubleEqualsAlmostDefaultRelativeEpsilon());
+    double valueB = 0.9d * (double)Math.pow(10d, 10d);
+    double valueA = 1d * (double)Math.pow(10d, 10d);
+    try
+    {
+      if (checker.isDoubleEqualsAlmost(this, valueA, valueB))
+      {
+        failer.failDoubleEqualsAlmost(this, "valueA", "valueB");
+      }
+    }
+    catch (FailFastException failFastException)
+    {
+      assertEquals("Expected registered exception in failer", failFastException,
+          failer.getFailFastExceptionOrNull());
+      System.out.println(failFastException.getMessage());
+      throw failFastException;
     }
   }
 }

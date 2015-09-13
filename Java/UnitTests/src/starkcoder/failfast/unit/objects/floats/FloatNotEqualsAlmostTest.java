@@ -238,6 +238,19 @@ public class FloatNotEqualsAlmostTest
     assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
   }
 
+  @Test
+  public void testFloatNotEqualsAlmostSameReferenceNoFail()
+  {
+    Float referenceA = 0.123001f;
+    Float referenceB = referenceA;
+    if (checker.isFloatNotEqualsAlmost(this, referenceA, referenceB))
+    {
+      failer.failFloatNotEqualsAlmost(this, "referenceA", "referenceB");
+    }
+    assertTrue("Expected referenceA & referenceB to pass the equals check", true);
+    assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+  }
+
   // 4tf - method override cases
 
   @Test(expected = FailFastException.class)

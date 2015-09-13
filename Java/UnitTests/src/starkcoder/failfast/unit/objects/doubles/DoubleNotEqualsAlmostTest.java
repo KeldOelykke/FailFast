@@ -239,6 +239,19 @@ public class DoubleNotEqualsAlmostTest
     assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
   }
 
+  @Test
+  public void testDoubleNotEqualsAlmostSameReferenceNoFail()
+  {
+    Double referenceA = 0.123001d;
+    Double referenceB = referenceA;
+    if (checker.isDoubleNotEqualsAlmost(this, referenceA, referenceB))
+    {
+      failer.failDoubleNotEqualsAlmost(this, "referenceA", "referenceB");
+    }
+    assertTrue("Expected referenceA & referenceB to pass the equals check", true);
+    assertNull("Expected no registered exception in failer", failer.getFailFastExceptionOrNull());
+  }
+
   // 4tf - method override cases
 
   @Test(expected = FailFastException.class)
