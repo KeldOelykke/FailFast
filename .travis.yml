@@ -4,4 +4,6 @@ jdk:
   - oraclejdk7
   - openjdk7
 #  - openjdk6
+# Don't use the Travis Container-Based Infrastructure
+sudo: true
 script: ant cleanall build unitreport examplesreport
