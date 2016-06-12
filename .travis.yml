@@ -6,4 +6,7 @@ jdk:
 #  - openjdk6
 # Don't use the Travis Container-Based Infrastructure
 sudo: true
+before_script:
+ - "echo $JAVA_OPTS"
+ - "export JAVA_OPTS=-Xmx128m"
 script: ant cleanall build unitreport examplesreport
